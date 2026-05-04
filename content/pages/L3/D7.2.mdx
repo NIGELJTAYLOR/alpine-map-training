@@ -1,0 +1,137 @@
+---
+id: "L3.D7.2"
+level: 3
+section: "D7"
+page: "D7.2"
+title: "Aspect-of-Slope Relocation"
+kind: "page"
+order: 702
+learningAim: "By the end of this page, you should be able to use the four-stage aspect-of-slope relocation technique to fix your position when no features are visible, recognise the conditions under which the technique works (and the conditions under which it fails), and explain why it is the alpine-specific alternative to resection in poor visibility."
+exerciseCount: 4
+selfCheckCount: 5
+sourceFile: "L3_D7.1_D7.2_D7.3_Learner_Pages.md"
+---
+### Learning aim
+
+By the end of this page, you should be able to use the four-stage aspect-of-slope relocation technique to fix your position when no features are visible, recognise the conditions under which the technique works (and the conditions under which it fails), and explain why it is the alpine-specific alternative to resection in poor visibility.
+
+### Why this matters
+
+Resection (D3.3) requires two visible features. In alpine poor visibility (whiteout, fog, low cloud) this condition rarely holds. The aspect-of-slope technique substitutes the unavailable second feature with two pieces of information that are always available on a slope: the slope's aspect (which you can measure with a compass) and your altitude (which you can read from a calibrated altimeter).
+
+For an IMS / EMS candidate, this is the canonical alpine relocation technique. It is the assessor's standard answer to the question "what do you do when resection does not work?" Without it the candidate has no reliable position-fix in poor visibility on a featureless slope; with it the candidate can fix position to within a few tens of metres in conditions where resection would fail completely.
+
+### The four-stage procedure
+
+The technique is verified at primary source on Mountaineering Scotland and Alpine Guides. The four stages:
+
+1. **Take a compass bearing directly down the fall line of the slope you are standing on.** This is a bearing taken at right angles to the contour lines, perpendicular to the slope. Use the D3.1 ground-bearing procedure (point the direction-of-travel arrow down the slope, rotate the bezel, read the bearing). The bearing is the **aspect bearing** for the slope.
+
+2. **Subtract the magnetic variation to get a grid bearing.** The aspect bearing as measured is magnetic; the work on the map is in grid. Apply the D2.2 conversion in the inverse direction (magnetic to grid).
+
+3. **Place the compass on the map over the area you believe you are in.** Rotate the compass (with the bezel held at the aspect bearing from stage 2) until the parallel orienting lines align with the map's grid lines. The direction-of-travel arrow now points in the direction of the aspect bearing on the map. Find a place on the map where this direction is **perpendicular to the contours**. There may be many such places; you are now constrained to a line of possible positions.
+
+4. **Cross-reference with your altimeter.** Read the altimeter. Your position is the unique point where the perpendicular-to-contour direction (from stage 3) crosses the contour at your altimeter altitude.
+
+The technique gives a single position fix using only the slope you are standing on and the altimeter. No visible distant feature is needed.
+
+### Why it works
+
+A slope has two pieces of information that can be measured locally:
+
+- **Aspect** (the direction the slope faces). Different slopes face different directions; identifying which slope you are on narrows the possibilities.
+- **Altitude** (your height above sea level). On any given slope, altitude pins down the contour you are on.
+
+Together, aspect (the slope) and altitude (the contour) uniquely identify the position. The map already encodes both: the contours show altitude bands, and the contour pattern shows which way each slope faces. The technique is just the procedure for using both to find the unique point on the map that matches both.
+
+### When it works and when it does not
+
+The technique works well when:
+
+- the slope is **uniform enough** to give a single, clear aspect bearing (the fall line is consistent across the area you can see),
+- the slope is **distinctive enough** that not many other slopes on the map have the same aspect at the same altitude,
+- and the altimeter is **recently calibrated** so the altitude reading is reliable.
+
+The technique fails when:
+
+- the slope is **curving** (the fall line points different directions at different points; no single aspect bearing exists),
+- many slopes in the area have **the same aspect at the same altitude** (the technique returns multiple possible positions),
+- the ground is **very flat** (no meaningful fall line; aspect is ambiguous),
+- or the **altimeter is uncalibrated** (the altitude reading is wrong, so the position fix is wrong).
+
+For an IMS / EMS candidate, recognising when the technique works and when it does not is part of the skill. On a curving slope the candidate falls back to other techniques (a partner moved on a bearing, waiting for visibility, sheltering until conditions improve).
+
+### Worked example
+
+A candidate is on the upper east-facing flank of a summit in flat light. Visibility is approximately 30 m. No distant features are visible. Two known features (a col to the north, a hut to the south) cannot be seen. Resection is not possible.
+
+Working through the four-stage procedure:
+
+1. The candidate takes a bearing directly down the fall line. The compass reads 092 magnetic (roughly east).
+2. The current magnetic variation is +2 degrees east. Magnetic to grid = subtract for east = 092 - 2 = **090 grid**. The aspect bearing in grid is 090 degrees, which means the slope faces east.
+3. The candidate places the compass on the map over the upper east-facing flank of the summit. Holding the bezel at 090, rotates the compass until the parallel orienting lines align with the map's grid lines. The direction-of-travel arrow now points east on the map. Looking at the contours: the east-facing flank of the summit is the area where the contours run roughly north-south and the perpendicular-to-contour direction is east. The candidate is somewhere on this flank, constrained to a line.
+4. The candidate reads the altimeter: 2,250 m. On the map, the 2,250 m contour crosses the upper east-facing flank at approximately (using the standard extract) the position labelled X.
+
+The candidate's position is X, on the upper east-facing flank at 2,250 m. The fix is good to within approximately 20 to 30 m at 1:25,000.
+
+The candidate now has a position fix and can plan the next leg from there.
+
+### Exercise 1 - Walk through the technique at a known starting point
+
+On your exam-area map, choose a known position on a uniform slope. Without telling yourself the position, work through the four-stage procedure:
+
+1. Determine the aspect bearing the slope would have. (For this exercise, you can read the aspect from the contour pattern using C4.2; in the field the candidate would measure with the compass.)
+2. Convert magnetic to grid (using a typical Alpine variation; for the exercise use the figure looked up in D2.2 Exercise 1).
+3. Place the compass on the map and identify all positions where the aspect bearing is perpendicular to contours.
+4. Use a chosen altitude (consistent with the slope) to pin down the unique position.
+
+| Stage | Your work |
+|---|---|
+| 1. Aspect bearing (magnetic) |  |
+| 2. Grid bearing after variation |  |
+| 3. Possible positions on the map |  |
+| 4. Position fix from altimeter |  |
+
+### Exercise 2 - When the technique works
+
+In two or three sentences, explain in your own words the conditions under which the aspect-of-slope technique gives a reliable position fix.
+
+____________________________________________________
+____________________________________________________
+____________________________________________________
+
+### Exercise 3 - When the technique fails
+
+For each of the following scenarios, state whether the aspect-of-slope technique would give a reliable fix, and explain why or why not.
+
+| Scenario | Reliable? | Reason |
+|---|---|---|
+| Whiteout on a uniform north-facing slope, altimeter calibrated 30 minutes ago |  |  |
+| Whiteout in the bottom of a curving valley, with the fall line pointing different directions at different points |  |  |
+| Flat light on a wide plateau where the ground is essentially flat |  |  |
+| Whiteout on a north-facing slope, but the altimeter has not been calibrated for 4 hours and weather has been actively deteriorating |  |  |
+| Whiteout on a north-facing slope of a long ridge, where many points on the ridge have the same north aspect at the same altitude |  |  |
+
+### Exercise 4 - Time the procedure
+
+Practical drill at home or with the trainer. With the candidate's exam-area map and a real compass and altimeter, time the candidate working through the four stages on a known position they have not seen before.
+
+1. Time taken: __________ seconds
+2. Was the position fix accurate (within 50 m of the known position)? __________
+3. If no, what stage of the procedure went wrong? __________
+
+The IMS / EMS working target is under two minutes for the full procedure on a slope where the technique is appropriate.
+
+### Self-check
+
+- [ ] I can execute the four-stage aspect-of-slope relocation technique on a known slope.
+- [ ] I understand the technique uses aspect (from the slope) and altitude (from the altimeter) as the two position references.
+- [ ] I can recognise the conditions under which the technique gives a reliable fix.
+- [ ] I can recognise the conditions under which it fails (curving slope, ambiguous aspect, very flat ground, uncalibrated altimeter).
+- [ ] I can complete the procedure in under two minutes on a slope where it is appropriate.
+
+### Why this matters for IMS
+
+Aspect-of-slope relocation is the alpine-specific position-fix technique that the IMS / EMS assessor will expect the candidate to know. The technique is referenced explicitly in Mountaineering Scotland's "when navigation goes wrong" page and in Alpine Guides' altimeter-navigation guide; both treat it as the standard alpine alternative to resection in poor visibility.
+
+The candidate who can execute the four stages reliably and who can recognise when the technique works (and when it does not) has the answer to the assessor's "what do you do when resection does not work?" question. After D7.2 the candidate has the alpine relocation toolkit complete: resection (D3.3) for good visibility, aspect-of-slope (D7.2) for poor visibility on appropriate terrain.

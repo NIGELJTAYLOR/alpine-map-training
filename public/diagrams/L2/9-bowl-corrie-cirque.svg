@@ -1,0 +1,17 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <path d="M 30 200 Q 60 90 200 60 Q 340 90 370 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 50 200 Q 80 110 200 85 Q 320 110 350 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 70 200 Q 95 125 200 105 Q 305 125 330 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 90 200 Q 110 138 200 122 Q 290 138 310 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 110 200 Q 125 150 200 138 Q 275 150 290 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 130 200 Q 142 162 200 152 Q 258 162 270 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 230 Q 200 240 370 230" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 260 Q 200 270 370 260" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="190" y="55" font-family="Arial, sans-serif" font-size="10" fill="#444">headwall</text>
+  <text x="20" y="80" font-family="Arial, sans-serif" font-size="10" fill="#444">flank</text>
+  <text x="350" y="80" font-family="Arial, sans-serif" font-size="10" fill="#444">flank</text>
+  <text x="180" y="195" font-family="Arial, sans-serif" font-size="10" fill="#444">mouth</text>
+  <circle cx="200" cy="125" r="12" fill="#cce5ff" opacity="0.5"/>
+  <text x="218" y="128" font-family="Arial, sans-serif" font-size="9" fill="#1e88e5">wind-loaded snow</text>
+</svg>

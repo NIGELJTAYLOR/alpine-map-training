@@ -1,0 +1,127 @@
+---
+id: "L3.D3.3"
+level: 3
+section: "D3"
+page: "D3.3"
+title: "Resection (Position Fix from Two Visible Features)"
+kind: "page"
+order: 303
+learningAim: "By the end of this page, you should be able to fix your position on the map by taking compass bearings to two identifiable features, plotting the back bearings on the map, and reading the position where the lines cross. You should also be able to explain why resection works only in good visibility and what alternatives exist for poor-visibility relocation."
+exerciseCount: 4
+selfCheckCount: 5
+sourceFile: "L3_D3.1_D3.2_D3.3_Learner_Pages.md"
+---
+### Learning aim
+
+By the end of this page, you should be able to fix your position on the map by taking compass bearings to two identifiable features, plotting the back bearings on the map, and reading the position where the lines cross. You should also be able to explain why resection works only in good visibility and what alternatives exist for poor-visibility relocation.
+
+### Why this matters
+
+Resection is the standard map-and-compass position fix when the candidate is uncertain of where they are but can see at least two named features. It is taught at every level of mountain navigation from Mountain Leader to BASI EMS.
+
+The IMS / EMS candidate is expected to know resection and to perform it accurately in good visibility. It is not the primary alpine relocation technique because alpine poor visibility makes the two-features-visible condition hard to meet; for poor-visibility relocation, the aspect-of-slope technique (D7.2) is the alpine-specific alternative. Both are part of the toolkit.
+
+### The four-step procedure
+
+Standing in an unknown position with two identifiable features visible on the ground and the map:
+
+1. **Take a compass bearing to feature A** using the D3.1 ground procedure. Convert from magnetic to grid.
+2. **Take a compass bearing to feature B**, also using the D3.1 procedure. Convert from magnetic to grid.
+3. **Calculate back bearings for both** using the D3.2 plus-or-minus 180-degree rule.
+4. **Plot each back bearing on the map** as a line drawn from the corresponding feature, using the compass baseplate as a straight edge:
+   - Place the baseplate edge against the feature on the map.
+   - Rotate the bezel until the back bearing reads at the index mark.
+   - Rotate the whole compass (with the bezel held) until the parallel orienting lines align with the map's grid lines.
+   - Draw a line from the feature along the baseplate edge, in the direction the back bearing points.
+
+The two lines drawn from features A and B will cross at a single point. **That point is your position.**
+
+### Why two bearings, not one
+
+A single bearing tells you that your position is somewhere along a line; it does not tell you where on the line. Two bearings produce two lines, and where they cross is the unique point that satisfies both bearings. That point is your position.
+
+For best accuracy:
+
+- The two features should be **roughly 90 degrees apart** as seen from your position. Two features at 90 degrees produce lines that cross at a sharp angle, giving a clean fix. Two features close together (or close to opposite each other) produce lines that cross at a shallow angle, and small bearing errors translate into large position errors.
+- The two features should be **clearly identified on both the ground and the map**. A feature you cannot uniquely identify on the map cannot be used.
+
+A third bearing (to a third feature) produces three lines that should cross at the same point. They almost never do exactly; instead they form a small triangle (a "cocked hat") whose centre is the best estimate of position. A cocked hat with sides longer than about 100 m at 1:25,000 indicates a bearing error worth investigating.
+
+### Why resection fails in poor visibility
+
+Resection requires the candidate to see at least two features at known positions. In poor visibility (whiteout, fog, low cloud) this condition rarely holds:
+
+- A single visible feature is not enough.
+- Three features visible in fog at unknown distances may be hard to identify on the map.
+- Local visibility (a rock at 50 m) does not produce features identifiable on a 1:25,000 map.
+
+The alpine relocation technique for poor visibility is the **aspect-of-slope relocation** (D7.2), which uses the slope itself as one of the position references and the altimeter as the second. It substitutes the unavailable second feature with two pieces of information that are always available on a slope (its aspect and the candidate's altitude).
+
+### Worked example
+
+A candidate is uncertain of position on a broad upper slope. Two features are clearly visible:
+
+- **Feature A:** a sharp rock summit at 2,950 m, identified on the map by its spot height.
+- **Feature B:** a hut at 2,200 m in the valley below, identified on the map by its symbol and label.
+
+Working through the procedure:
+
+1. Bearing to A: 312 magnetic. Variation +2 east. Grid bearing = 310.
+2. Bearing to B: 045 magnetic. Variation +2 east. Grid bearing = 043.
+3. Back bearings: A back = 310 - 180 = 130. B back = 043 + 180 = 223.
+4. Plot back bearing 130 from feature A on the map; plot back bearing 223 from feature B on the map. The two lines cross at approximately 2,500 m on the upper east-facing slope.
+
+The candidate's position is at the intersection. Cross-check: the contour at the intersection reads 2,500 m, which the altimeter (set at the morning's reference point) confirms within 20 m.
+
+### Exercise 1 - Plot a back bearing
+
+For practice on the map, take the worked-example back bearing 130 from a named feature on the Section D3.3 map extract. Draw the line on the extract using the compass baseplate as a straight edge.
+
+1. Feature you used: ____________________
+2. Length of line drawn: __________
+3. Cross-checking the line: does it pass through the kind of terrain you would expect? ____________________
+
+### Exercise 2 - Practical resection
+
+Practical drill. From a known position with at least two named features visible:
+
+1. Identify two features visible on both the ground and the map: ____________________ and ____________________
+2. Take magnetic bearings to each: __________ and __________
+3. Convert to grid bearings: __________ and __________
+4. Calculate back bearings: __________ and __________
+5. Plot the back bearings on the map.
+6. Where do the lines cross? ____________________
+7. How does this compare with your known position? ____________________
+
+### Exercise 3 - The 90-degree rule
+
+In two or three sentences, explain in your own words why two features roughly 90 degrees apart from your position give a more accurate resection than two features close together.
+
+____________________________________________________
+____________________________________________________
+____________________________________________________
+
+### Exercise 4 - When resection does not work
+
+For each of the following scenarios, state whether resection is a viable position-fix technique. If not, name the alpine-specific alternative covered in D7.2.
+
+| Scenario | Resection viable? | Alternative if not |
+|---|---|---|
+| Clear day, summit visible to the north and hut visible to the east | Yes | n/a |
+| Whiteout on a broad slope; no features visible beyond 30 m |  |  |
+| Flat light; one ridge visible to the south but no second feature |  |  |
+| Clear day on a wide plateau; nearest features all on the same skyline 5 km away |  |  |
+
+### Self-check
+
+- [ ] I can take two compass bearings to identifiable features and convert them to grid back bearings.
+- [ ] I can plot back bearings on a map using the compass baseplate as a straight edge.
+- [ ] I can read my position from the intersection of two plotted lines.
+- [ ] I know that two features roughly 90 degrees apart give the most accurate resection.
+- [ ] I recognise the conditions in which resection does not work and know that aspect-of-slope relocation is the alpine alternative.
+
+### Why this matters for IMS
+
+Resection is a foundational map-and-compass skill expected at IMS / EMS level and is consistent with Mountain Leader and Mountaineering Scotland's published guidance. The IMS / EMS-specific point is the recognition of when resection fails and the readiness to switch to aspect-of-slope relocation (D7.2). A candidate who knows both techniques and can choose between them is at the working assessment standard.
+
+After D3.3 the candidate has the full bearings-from-the-ground skill set. D4 covers practical accuracy: the bearing shapes drill, aiming off, and magnetic interference.

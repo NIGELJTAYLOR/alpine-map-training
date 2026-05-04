@@ -1,0 +1,21 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <ellipse cx="80" cy="150" rx="60" ry="90" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="80" cy="150" rx="40" ry="65" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="80" cy="150" rx="22" ry="40" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="320" cy="150" rx="60" ry="90" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="320" cy="150" rx="40" ry="65" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="320" cy="150" rx="22" ry="40" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 140 90 Q 200 110 260 90" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 140 60 Q 200 85 260 60" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 140 210 Q 200 190 260 210" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 140 240 Q 200 215 260 240" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <polygon points="78,148 74,156 82,156" fill="#000"/>
+  <text x="60" y="170" font-family="Arial, sans-serif" font-size="10" fill="#000">2,840 m</text>
+  <polygon points="318,148 314,156 322,156" fill="#000"/>
+  <text x="298" y="170" font-family="Arial, sans-serif" font-size="10" fill="#000">2,920 m</text>
+  <polygon points="200,150 196,158 204,158" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="210" y="158" font-family="Arial, sans-serif" font-size="10" fill="#000">col 2,718 m</text>
+  <text x="170" y="20" font-family="Arial, sans-serif" font-size="10" fill="#444">valley</text>
+  <text x="170" y="290" font-family="Arial, sans-serif" font-size="10" fill="#444">valley</text>
+</svg>

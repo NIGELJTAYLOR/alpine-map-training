@@ -1,0 +1,10 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <ellipse cx="200" cy="150" rx="155" ry="115" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="200" cy="150" rx="115" ry="85" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="200" cy="150" rx="75" ry="55" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="200" cy="150" rx="38" ry="28" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <polygon points="200,144 196,152 204,152" fill="#000"/>
+  <text x="207" y="155" font-family="Arial, sans-serif" font-size="11" fill="#000">2,210 m</text>
+  <text x="20" y="285" font-family="Arial, sans-serif" font-size="10" fill="#444">Rounded summit: widely spaced closed loops with a broad central area.</text>
+</svg>

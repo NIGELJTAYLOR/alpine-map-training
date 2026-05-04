@@ -1,14 +1,26 @@
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site/site-header";
-import { getPages } from "@/lib/content";
+import {
+  AVAILABLE_LEVELS,
+  getPages,
+  getDiagramsForLevel,
+  getAllTemplates,
+} from "@/lib/content";
+
+const LEVEL_BLURBS: Record<number, string> = {
+  1: "Map literacy foundations",
+  2: "Terrain interpretation",
+  3: "Mountain navigation toolkit",
+};
 
 export default function Home() {
-  const l1 = getPages(1);
+  const allDiagrams = AVAILABLE_LEVELS.flatMap((l) => getDiagramsForLevel(l));
+  const templates = getAllTemplates();
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-12 sm:py-16">
+      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-10 sm:py-16">
         <header className="flex flex-col gap-3">
           <p className="font-sans text-sm uppercase tracking-[0.2em] text-muted-foreground">
             Alpine Map Training
@@ -24,8 +36,9 @@ export default function Home() {
             supporting BASI Alpine Level 4 ISTD candidates and their trainers.
           </p>
           <p>
-            Level 1 ({l1.length} pages) is now navigable. Levels 2 and 3 land in
-            Session 3. Interactive quizzes arrive in Session 4 and trainer mode in Session 7.
+            All three levels are now navigable, with {allDiagrams.length} schematic
+            diagrams and {templates.length} printable templates. Interactive
+            quizzes arrive in Session 4 and trainer mode in Session 7.
           </p>
         </div>
 
@@ -38,14 +51,53 @@ export default function Home() {
           </Button>
         </div>
 
-        <ul className="grid gap-2 font-sans text-sm text-muted-foreground sm:grid-cols-2">
-          <li>✓ Next.js 16 App Router</li>
-          <li>✓ Tailwind v4 + shadcn/ui</li>
-          <li>✓ Velite MDX content pipeline</li>
-          <li>✓ {l1.length} Level 1 pages ingested</li>
-          <li>✓ Mountain palette + serif body</li>
-          <li>· Service worker → Session 6</li>
-        </ul>
+        <section className="grid gap-3 sm:grid-cols-3">
+          {AVAILABLE_LEVELS.map((level) => {
+            const count = getPages(level).length;
+            return (
+              <Link
+                key={level}
+                href={`/levels/${level}`}
+                className="group rounded-lg border border-border p-4 transition-colors hover:border-primary"
+              >
+                <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  Level {level}
+                </p>
+                <p className="mt-1 font-sans text-base font-semibold text-foreground group-hover:text-primary">
+                  {LEVEL_BLURBS[level] ?? `Level ${level}`}
+                </p>
+                <p className="mt-1 font-sans text-xs text-muted-foreground">
+                  {count} pages
+                </p>
+              </Link>
+            );
+          })}
+        </section>
+
+        <section className="grid gap-3 sm:grid-cols-2">
+          <Link
+            href="/diagrams"
+            className="group rounded-lg border border-border p-4 transition-colors hover:border-primary"
+          >
+            <p className="font-sans text-sm font-semibold text-foreground group-hover:text-primary">
+              Schematic diagrams →
+            </p>
+            <p className="mt-1 font-sans text-xs text-muted-foreground">
+              {allDiagrams.length} diagrams across L2 and L3
+            </p>
+          </Link>
+          <Link
+            href="/templates"
+            className="group rounded-lg border border-border p-4 transition-colors hover:border-primary"
+          >
+            <p className="font-sans text-sm font-semibold text-foreground group-hover:text-primary">
+              Templates →
+            </p>
+            <p className="mt-1 font-sans text-xs text-muted-foreground">
+              {templates.length} printable forms
+            </p>
+          </Link>
+        </section>
       </main>
     </>
   );

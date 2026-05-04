@@ -1,0 +1,25 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <path d="M 30 80 Q 200 75 370 80" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 100 Q 200 95 370 100" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 130 L 370 130" fill="none" stroke="#222" stroke-width="3"/>
+  <path d="M 30 135 L 370 135" fill="none" stroke="#222" stroke-width="2.5"/>
+  <path d="M 30 140 L 370 140" fill="none" stroke="#222" stroke-width="2.5"/>
+  <polygon points="50,128 47,134 53,134" fill="#666"/>
+  <polygon points="80,128 77,134 83,134" fill="#666"/>
+  <polygon points="110,128 107,134 113,134" fill="#666"/>
+  <polygon points="140,128 137,134 143,134" fill="#666"/>
+  <polygon points="170,128 167,134 173,134" fill="#666"/>
+  <polygon points="200,128 197,134 203,134" fill="#666"/>
+  <polygon points="230,128 227,134 233,134" fill="#666"/>
+  <polygon points="260,128 257,134 263,134" fill="#666"/>
+  <polygon points="290,128 287,134 293,134" fill="#666"/>
+  <polygon points="320,128 317,134 323,134" fill="#666"/>
+  <polygon points="350,128 347,134 353,134" fill="#666"/>
+  <path d="M 30 170 Q 200 175 370 170" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 200 Q 200 210 370 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 230 Q 200 245 370 230" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="20" y="125" font-family="Arial, sans-serif" font-size="10" fill="#444">close-spaced contours</text>
+  <text x="20" y="155" font-family="Arial, sans-serif" font-size="10" fill="#444">merged contours + rock symbology = cliff band</text>
+  <text x="20" y="285" font-family="Arial, sans-serif" font-size="10" fill="#444">Both cues required: merged contours alone OR rock symbology alone can mislead.</text>
+</svg>

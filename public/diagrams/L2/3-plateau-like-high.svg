@@ -1,0 +1,9 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <ellipse cx="200" cy="150" rx="170" ry="120" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <ellipse cx="200" cy="150" rx="125" ry="90" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 90 145 Q 115 110 165 105 Q 220 100 270 110 Q 320 122 305 165 Q 285 200 230 205 Q 170 210 120 195 Q 80 180 90 145 Z" fill="none" stroke="#B5651D" stroke-width="1.4"/>
+  <polygon points="195,148 191,156 199,156" fill="#000"/>
+  <text x="202" y="159" font-family="Arial, sans-serif" font-size="11" fill="#000">1,932 m</text>
+  <text x="20" y="285" font-family="Arial, sans-serif" font-size="10" fill="#444">Plateau-like high: one closed loop around a broad nearly contour-free area.</text>
+</svg>

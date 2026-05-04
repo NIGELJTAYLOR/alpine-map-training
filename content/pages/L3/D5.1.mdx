@@ -1,0 +1,122 @@
+---
+id: "L3.D5.1"
+level: 3
+section: "D5"
+page: "D5.1"
+title: "How an Altimeter Works"
+kind: "page"
+order: 501
+learningAim: "By the end of this page, you should understand that a barometric altimeter measures atmospheric pressure and converts it to altitude using a standard atmosphere model, distinguish a barometric altimeter from a GPS altimeter, and recognise that altimeter readings drift with weather changes."
+exerciseCount: 4
+selfCheckCount: 5
+sourceFile: "L3_D5.1_D5.2_Learner_Pages.md"
+---
+### Learning aim
+
+By the end of this page, you should understand that a barometric altimeter measures atmospheric pressure and converts it to altitude using a standard atmosphere model, distinguish a barometric altimeter from a GPS altimeter, and recognise that altimeter readings drift with weather changes.
+
+### Why this matters
+
+The altimeter is the second navigation instrument in the IMS / EMS toolkit. Where the compass tells you direction, the altimeter tells you height. Together they form the position-fixing pair that does not require visible features, which is what makes them the alpine-specific alternative to resection.
+
+Understanding how the altimeter works is the prerequisite for using it well. A candidate who treats the altimeter as a magic box will be confused by drift; a candidate who understands the pressure-to-altitude conversion will read drift as information.
+
+### The barometric altimeter mechanism
+
+A barometric altimeter measures atmospheric pressure with a small aneroid capsule (a flexible metal chamber that expands and contracts with pressure changes). The altimeter then converts the measured pressure into an altitude figure using a standard atmosphere model.
+
+The standard model assumes:
+
+- pressure decreases predictably with altitude,
+- the rate of decrease is approximately **1 hectopascal (hPa) per 8 metres** of altitude gain in the lower troposphere (the relevant range for alpine work),
+- and the conversion is calibrated to a sea-level reference pressure of 1013.25 hPa under standard temperature.
+
+The mechanism is mechanical and reliable. It does not require batteries (in mechanical altimeters) or satellite signal. It is the same technology used in aircraft altimeters at lower altitudes.
+
+### Why altimeters drift
+
+The conversion from pressure to altitude assumes stable weather. Real weather is not stable. Two factors produce drift:
+
+- **Weather pressure changes.** A passing weather system changes atmospheric pressure independent of the candidate's altitude. A falling barometer (incoming low pressure) makes the altimeter over-read; a rising barometer (high pressure building) makes it under-read.
+- **Temperature.** The standard atmosphere model assumes a specific temperature profile. In very cold conditions the air is denser at altitude than the model assumes, so the altimeter may under-read. The error is small (typically less than 1 percent) and rarely matters for IMS / EMS work, but it is present.
+
+For practical IMS / EMS work, weather pressure drift is the dominant error source. D5.3 covers it in detail. The take-away here is that an altimeter reading at any given moment depends on both your altitude and the current weather pressure; if either changes, the reading changes.
+
+### GPS altimeters
+
+A GPS altimeter measures altitude directly using satellite signals. It does not depend on atmospheric pressure and does not drift with weather.
+
+The trade-offs:
+
+- GPS altimeters are typically **less accurate than barometric altimeters** in stable conditions (often 10 to 20 m error vs 1 to 3 m for a properly calibrated barometric).
+- GPS altimeters require satellite signal, which can be poor in steep terrain, dense forest, or under low cloud.
+- GPS altimeters are generally more battery-dependent.
+
+The IMS / EMS recommendation is to use both:
+
+- **Barometric altimeter as the primary tool** because it is more accurate when calibrated and works in any weather.
+- **GPS altimeter as a backup** for cross-check and for use when the barometric has drifted significantly without the opportunity to recalibrate.
+
+### Worked example
+
+A candidate sets a barometric altimeter at home in the morning. The reading at 8am is 90 m above sea level (the candidate's known home elevation).
+
+The candidate does not move from home all day. Readings:
+
+- 8am: 90 m
+- noon: 95 m
+- 4pm: 105 m
+- 8pm: 115 m
+
+The altimeter has not moved, but the reading has changed by 25 m over 12 hours. This implies a barometric pressure change of approximately 25 m / 8 m per hPa = approximately **3 hPa drop** over the period.
+
+The candidate cross-checks against a weather forecast or a separate barometer. A 3 hPa drop in 12 hours is consistent with a slowly approaching weather system.
+
+The point of the exercise is to demonstrate that the altimeter is doing its job correctly: the reading change accurately reflects the pressure change. The error appears only if the candidate assumes the reading is altitude when the pressure has shifted.
+
+### Exercise 1 - 24-hour stationary drill
+
+Practical drill at home. Set the altimeter to your known home elevation in the morning. Record the reading every few hours over a 24-hour period without moving the altimeter.
+
+| Time | Altimeter reading | Apparent altitude change from start |
+|---|---|---|
+| Morning |  | 0 (start) |
+| Midday |  |  |
+| Evening |  |  |
+| Next morning |  |  |
+
+### Exercise 2 - Calculate the implied pressure change
+
+For your largest apparent altitude change between two readings in Exercise 1, calculate the implied pressure change using the rule of thumb (1 hPa = 8 m).
+
+1. Apparent altitude change: __________ m
+2. Implied pressure change: __________ hPa
+3. Direction (rising or falling pressure): __________
+4. Weather expected from this trend (improving, stable, deteriorating): __________
+
+### Exercise 3 - Distinguish barometric from GPS
+
+In two or three sentences, explain in your own words the key differences between a barometric altimeter and a GPS altimeter, and state which the IMS / EMS-relevant primary tool is and why.
+
+____________________________________________________
+____________________________________________________
+____________________________________________________
+
+### Exercise 4 - When the altimeter is preferred over GPS
+
+In two or three sentences, give one specific scenario in which the barometric altimeter would be preferred over a GPS altimeter for navigation, even if both are working.
+
+____________________________________________________
+____________________________________________________
+
+### Self-check
+
+- [ ] I understand that a barometric altimeter measures pressure and converts it to altitude.
+- [ ] I know the standard rule of thumb (1 hPa pressure change = approximately 8 m of apparent altitude change).
+- [ ] I can distinguish a barometric altimeter from a GPS altimeter and explain the trade-offs.
+- [ ] I recognise that altimeter readings drift with weather pressure changes, even when stationary.
+- [ ] I know the IMS / EMS-recommended pairing: barometric primary, GPS backup.
+
+### Why this matters for IMS
+
+The altimeter is the second navigation instrument in the IMS / EMS toolkit, paired with the compass. Together they enable the alpine-specific aspect-of-slope relocation technique (D7.2) that does not require visible features. Understanding how the altimeter works is the prerequisite for using it well; a candidate who treats it as a magic box will misread drift as altitude error and lose confidence in the instrument when they should be reading the weather.

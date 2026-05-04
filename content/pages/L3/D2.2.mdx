@@ -1,0 +1,136 @@
+---
+id: "L3.D2.2"
+level: 3
+section: "D2"
+page: "D2.2"
+title: "The Three Norths Revisited and Magnetic Variation"
+kind: "page"
+order: 202
+learningAim: "By the end of this page, you should be able to distinguish the three norths (true, grid and magnetic), explain magnetic variation, look up the current variation for your map area and date using a recognised official source, and convert a grid bearing into a magnetic bearing for use in the field."
+exerciseCount: 4
+selfCheckCount: 5
+sourceFile: "L3_D2.1_D2.2_D2.3_Learner_Pages.md"
+---
+### Learning aim
+
+By the end of this page, you should be able to distinguish the three norths (true, grid and magnetic), explain magnetic variation, look up the current variation for your map area and date using a recognised official source, and convert a grid bearing into a magnetic bearing for use in the field.
+
+### Why this matters
+
+A grid bearing taken from the map and a magnetic bearing read on the compass in the field are not the same number. The difference is magnetic variation, which depends on where you are and when. A candidate who walks on a grid bearing without applying the variation will drift off the intended line; the further they go, the more they drift.
+
+For aspect reading at C4.2 the variation was small enough to ignore. For walking on a bearing, it is not. The IMS / EMS assessor expects every leg's bearing on the route card to have variation applied correctly, with the variation figure documented.
+
+### The three norths
+
+Three different "norths" exist on a map and in the field:
+
+- **True north.** The geographic North Pole. The fixed astronomical reference. Lines of longitude meet at true north.
+- **Grid north.** The "up" direction of the map's grid lines. On most alpine 1:25,000 sheets, grid north is within a degree of true north and the difference can be ignored at IMS / EMS resolution.
+- **Magnetic north.** Where a compass needle points. The location of the magnetic north pole drifts over time and currently sits in the Canadian Arctic. The angular difference between magnetic north and grid (or true) north is the magnetic variation.
+
+For practical IMS / EMS work:
+
+- **Aspect reading** uses grid north (per C4.2). The eight-direction resolution makes the variation negligible.
+- **Walking on a bearing** requires the conversion to magnetic. The 1- to 3-degree variation typical in the Alps is enough to matter on a leg of more than a few hundred metres.
+
+### Looking up current variation
+
+Magnetic variation changes by location and over time. The workbook does not bake in a fixed figure because the figure that was correct in the map margin three years ago may be wrong this year.
+
+Three official sources for current variation:
+
+- **British Geological Survey (BGS) World Magnetic Model calculator.** The standard UK source. Enter coordinates and date; returns variation. URL in `00_Research_Inputs/Sources.md`.
+- **NOAA / NCEI declination calculator.** The standard US source, equivalent precision.
+- **swisstopo magnetic declination geoservice.** The standard Swiss source, particularly convenient for European Alps work.
+
+The map margin will also show a variation figure with a date and an annual rate of change. If the map is recent (within five years), the margin figure is usable. If the map is older or the candidate is uncertain, look up the current value online before the tour.
+
+For the worked examples below, a variation of **+2 degrees east** is used. This figure is illustrative; check current variation for your map area and date using one of the sources above.
+
+### Converting grid to magnetic
+
+The conversion rule depends on whether the variation is east or west of grid north:
+
+- **Variation is east** (positive, common in the Alps): **add the variation to the grid bearing** to get the magnetic bearing.
+- **Variation is west** (negative, common in the UK): **subtract the variation from the grid bearing** to get the magnetic bearing.
+
+Two mnemonics that some candidates find useful:
+
+- "Grid to mag, add" (when variation is east). "Mag to grid, get rid" (subtract when going the other way).
+- More general: "the magnetic needle leans towards the variation, so the magnetic bearing leans the same way relative to grid".
+
+Both work. Pick one and stick with it. The key is to apply the conversion automatically, not to derive it from first principles each time.
+
+### Worked example
+
+A candidate has taken five grid bearings from D2.1. The current magnetic variation for the map area and date is +2 degrees east (verified using the BGS WMM calculator).
+
+| Leg | Grid bearing | Variation | Magnetic bearing |
+|---|---|---|---|
+| 1 | 218 | +2E | 220 |
+| 2 | 045 | +2E | 047 |
+| 3 | 312 | +2E | 314 |
+| 4 | 178 | +2E | 180 |
+| 5 | 003 | +2E | 005 |
+
+Note that on leg 1 the magnetic bearing of 220 degrees would be set on the compass bezel and walked. The grid bearing of 218 stays on the route card as the original figure; the magnetic bearing is what the candidate uses in the field.
+
+### Exercise 1 - Look up the variation
+
+For the map area you are working with, look up the current magnetic variation using one of the three official sources (BGS WMM, NOAA / NCEI, or swisstopo).
+
+1. Source used: __________
+2. Coordinates entered: __________
+3. Date entered: __________
+4. Magnetic variation returned (degrees east or west): __________
+
+### Exercise 2 - Convert grid to magnetic
+
+For the five grid bearings you took in D2.1 Exercise 1, apply the variation from D2.2 Exercise 1 to convert each to a magnetic bearing.
+
+| Leg | Grid bearing (D2.1) | Variation (D2.2 Ex 1) | Magnetic bearing |
+|---|---|---|---|
+| 1 |  |  |  |
+| 2 |  |  |  |
+| 3 |  |  |  |
+| 4 |  |  |  |
+| 5 |  |  |  |
+
+### Exercise 3 - Reflect on the consequence
+
+In two or three sentences, calculate or estimate the lateral drift you would experience over a 1,500 m leg if you walked on the grid bearing without applying the variation. Use the variation figure from Exercise 1.
+
+(Reference figure: at a typical Alpine variation of around 2 degrees, the lateral drift over 1,500 m would be approximately 1,500 m times the tangent of 2 degrees, which is approximately 52 m. Adjust for the actual variation you looked up.)
+
+____________________________________________________
+____________________________________________________
+____________________________________________________
+
+### Exercise 4 - Variation in different parts of the world
+
+The variation is not the same everywhere. Look up (or recall) typical variation for two of the following:
+
+| Location | Approximate variation |
+|---|---|
+| Scottish Highlands (UK) |  |
+| French Alps |  |
+| Swiss Alps |  |
+| Pacific Northwest (Cascades, US) |  |
+| Southern Alps (New Zealand) |  |
+
+In one sentence, explain why a candidate using the workbook in a non-Alpine location must look up the variation rather than assume the Alpine figure.
+
+____________________________________________________
+
+### Self-check
+
+- [ ] I can name the three norths and explain how each differs.
+- [ ] I can look up current magnetic variation for any location and date using BGS WMM, NOAA / NCEI, or swisstopo.
+- [ ] I can convert a grid bearing to a magnetic bearing using the right addition or subtraction rule for the local variation.
+- [ ] I record both the grid bearing and the magnetic bearing on my route card.
+- [ ] I do not bake a fixed variation into my workbook practice; I look it up for the date and area.
+
+### Why this matters for IMS
+
+The variation conversion is one of the most assessable habits in the IMS / EMS skill set: small, repeated, easy to skip under pressure, and consequential when skipped. The candidate who applies it automatically and documents it on the route card has built one of the foundational instructor habits.

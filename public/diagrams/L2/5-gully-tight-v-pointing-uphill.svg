@@ -1,0 +1,16 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <path d="M 30 80 Q 200 145 370 80" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 105 Q 200 175 370 105" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 130 Q 200 200 370 130" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 155 Q 200 225 370 155" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 180 Q 200 250 370 180" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="20" y="80" font-family="Arial, sans-serif" font-size="10" fill="#000">2,520</text>
+  <text x="20" y="105" font-family="Arial, sans-serif" font-size="10" fill="#000">2,500</text>
+  <text x="20" y="130" font-family="Arial, sans-serif" font-size="10" fill="#000">2,480</text>
+  <text x="20" y="155" font-family="Arial, sans-serif" font-size="10" fill="#000">2,460</text>
+  <text x="20" y="180" font-family="Arial, sans-serif" font-size="10" fill="#000">2,440</text>
+  <path d="M 200 30 L 200 50 M 195 45 L 200 50 L 205 45" fill="none" stroke="#444" stroke-width="1"/>
+  <text x="208" y="42" font-family="Arial, sans-serif" font-size="10" fill="#444">uphill (tight V)</text>
+  <text x="20" y="285" font-family="Arial, sans-serif" font-size="10" fill="#444">Gully: tight V-up with close side-wall contours; concentrates moving snow.</text>
+</svg>

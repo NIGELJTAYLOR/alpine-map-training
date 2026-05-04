@@ -62,6 +62,36 @@ const trainerNotes = defineCollection({
   }),
 });
 
+const diagrams = defineCollection({
+  name: "Diagram",
+  pattern: "diagrams/**/*.mdx",
+  schema: s.object({
+    id: s.string(),
+    level: s.number().int().min(1).max(6),
+    number: s.number().int(),
+    sub: s.string().default(""),
+    title: s.string(),
+    svgUrl: s.string(),
+    pageRefs: s.array(s.string()).default([]),
+    whenToUse: s.string().optional(),
+    sourceFile: s.string().optional(),
+    body: s.mdx(),
+  }),
+});
+
+const templates = defineCollection({
+  name: "Template",
+  pattern: "templates/*.mdx",
+  schema: s.object({
+    id: s.string(),
+    number: s.number().int(),
+    title: s.string(),
+    pageRefs: s.array(s.string()).default([]),
+    sourceFile: s.string().optional(),
+    body: s.mdx(),
+  }),
+});
+
 export default defineConfig({
   root: "content",
   output: {
@@ -71,7 +101,7 @@ export default defineConfig({
     name: "[name]-[hash:6].[ext]",
     clean: true,
   },
-  collections: { pages, answerKeys, trainerNotes },
+  collections: { pages, answerKeys, trainerNotes, diagrams, templates },
   mdx: {
     rehypePlugins: [],
     remarkPlugins: [],

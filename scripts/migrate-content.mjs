@@ -21,6 +21,15 @@ const CONTENT_DIR = path.join(PROJECT_ROOT, "content");
 const SOURCE_ROOT =
   "C:/Users/mrnig_ndtz4tw/OneDrive - performos.ai/Documents/Alpine_Map_Training";
 
+const PUBLIC_DIR = path.join(PROJECT_ROOT, "public");
+
+const DIAGRAMS = {
+  2: "08_Schematic_Diagrams/Level_2_Schematic_Diagrams.md",
+  3: "08_Schematic_Diagrams/Level_3_Schematic_Diagrams.md",
+};
+
+const TEMPLATES_FILE = "08_Schematic_Diagrams/Templates.md";
+
 const LEVELS = {
   1: {
     learner: "02_Workbook_Level_1Learner_Pages",
@@ -420,6 +429,129 @@ function detectSectionsFromBody(body) {
 }
 
 // ---------------------------------------------------------------------------
+// Diagram processor
+// ---------------------------------------------------------------------------
+
+const DIAGRAM_NUM_RE = /^(\d+)([a-z]?)\.\s*(.+)$/;
+
+async function processDiagrams(level, sourceFile, mdxOutDir, svgOutDir) {
+  const raw = await fs.readFile(path.join(SOURCE_ROOT, sourceFile), "utf8");
+  const sections = splitH2(raw);
+  let written = 0;
+
+  for (const sec of sections) {
+    const m = sec.heading.match(DIAGRAM_NUM_RE);
+    if (!m) continue; // Skip "How to use", "Production notes", etc.
+
+    const num = parseInt(m[1], 10);
+    const sub = m[2] || "";
+    const title = m[3].trim();
+    const idCode = `${num}${sub}`;
+    const slug = `${idCode}-${slugifyDiagram(title)}`;
+    const id = `L${level}.diagram.${slug}`;
+
+    const whenToUse = extractFieldFromBody(sec.body, "When to use");
+    const pointOut = extractFieldFromBody(sec.body, "What to point out");
+    const pageRefs = extractPageRefs(whenToUse + " " + (pointOut || ""));
+    const svg = extractSvgBlock(sec.body);
+
+    if (!svg) continue;
+
+    // Write SVG to public/diagrams/L<n>/<slug>.svg
+    await ensureDir(svgOutDir);
+    const svgPath = path.join(svgOutDir, `${slug}.svg`);
+    await fs.writeFile(svgPath, svg, "utf8");
+    const svgUrl = `/diagrams/L${level}/${slug}.svg`;
+
+    // Write MDX record (body holds the pedagogical notes)
+    const fm = buildFrontMatter({
+      id,
+      level,
+      number: num,
+      sub,
+      title,
+      svgUrl,
+      pageRefs,
+      whenToUse: whenToUse?.trim(),
+      sourceFile,
+    });
+    const bodyParts = [];
+    if (pointOut) {
+      bodyParts.push("**What to point out:** " + pointOut.trim());
+    }
+    await writeMdx(path.join(mdxOutDir, `${slug}.mdx`), fm, bodyParts.join("\n\n"));
+    written += 1;
+  }
+  return { written };
+}
+
+function extractFieldFromBody(body, label) {
+  // Match `**<label>:** <content>` up to a blank line, the next bold field,
+  // or a code-fence opener.
+  const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const re = new RegExp(`\\*\\*${escaped}:\\*\\*\\s*([\\s\\S]+?)(?=\\n\\s*\\n|\\*\\*[A-Z][^*]+:\\*\\*|\\n\`\`\`|$)`);
+  const m = body.match(re);
+  return m ? m[1].trim() : undefined;
+}
+
+function extractPageRefs(text) {
+  if (!text) return [];
+  const refs = new Set();
+  for (const m of text.matchAll(/\b([BCD]\d{1,2}\.\d{1,2})\b/g)) {
+    refs.add(m[1]);
+  }
+  return [...refs];
+}
+
+function extractSvgBlock(body) {
+  const m = body.match(/```svg\s*\n([\s\S]+?)\n```/);
+  return m ? m[1] : undefined;
+}
+
+function slugifyDiagram(s) {
+  return s
+    .toLowerCase()
+    .replace(/[()]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// ---------------------------------------------------------------------------
+// Templates processor
+// ---------------------------------------------------------------------------
+
+async function processTemplates(outDir) {
+  const raw = await fs.readFile(path.join(SOURCE_ROOT, TEMPLATES_FILE), "utf8");
+  const sections = splitH2(raw);
+  let written = 0;
+
+  for (const sec of sections) {
+    // Skip non-template H2s (Contents, How to print, Closing note).
+    const numMatch = sec.heading.match(/^(\d+)\.\s*(.+)$/);
+    if (!numMatch) continue;
+    const num = parseInt(numMatch[1], 10);
+    const title = numMatch[2].trim();
+    const slug = slugifyDiagram(title);
+    const id = `template.${slug}`;
+
+    // Templates label the page they're for inconsistently ("Used in", "Linked
+    // to", "When to use"), so just scan the whole body for page-code refs.
+    const pageRefs = extractPageRefs(title + " " + sec.body);
+
+    const fm = buildFrontMatter({
+      id,
+      number: num,
+      title,
+      pageRefs,
+      sourceFile: TEMPLATES_FILE,
+    });
+    await writeMdx(path.join(outDir, `${num.toString().padStart(2, "0")}-${slug}.mdx`), fm, sec.body);
+    written += 1;
+  }
+  return { written };
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -447,9 +579,28 @@ async function processLevel(level) {
   const answerResult = await processAnswerKeys(level, answersSrc, answersOut);
   const trainerResult = await processTrainerNotes(level, trainerSrc, trainerOut);
 
+  let diagramResult = { written: 0 };
+  if (DIAGRAMS[level]) {
+    const diagramOut = path.join(CONTENT_DIR, "diagrams", `L${level}`);
+    const svgOut = path.join(PUBLIC_DIR, "diagrams", `L${level}`);
+    await fs.rm(diagramOut, { recursive: true, force: true });
+    await fs.rm(svgOut, { recursive: true, force: true });
+    await ensureDir(diagramOut);
+    await ensureDir(svgOut);
+    diagramResult = await processDiagrams(level, DIAGRAMS[level], diagramOut, svgOut);
+  }
+
   console.log(
-    `Level ${level}: ${pageResult.written} pages, ${answerResult.written} answer keys, ${trainerResult.written} trainer-notes bundles`,
+    `Level ${level}: ${pageResult.written} pages, ${answerResult.written} answer keys, ${trainerResult.written} trainer-notes bundles, ${diagramResult.written} diagrams`,
   );
+}
+
+async function runTemplates() {
+  const outDir = path.join(CONTENT_DIR, "templates");
+  await fs.rm(outDir, { recursive: true, force: true });
+  await ensureDir(outDir);
+  const r = await processTemplates(outDir);
+  console.log(`Templates: ${r.written} ingested`);
 }
 
 async function main() {
@@ -458,6 +609,9 @@ async function main() {
     for (const level of Object.keys(LEVELS)) {
       await processLevel(parseInt(level, 10));
     }
+    await runTemplates();
+  } else if (arg === "templates") {
+    await runTemplates();
   } else {
     await processLevel(parseInt(arg, 10));
   }

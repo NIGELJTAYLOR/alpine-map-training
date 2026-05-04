@@ -1,0 +1,20 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <path d="M 30 40 Q 200 35 370 40" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 75 Q 200 70 370 75" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 105 Q 200 100 370 105" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 130 Q 200 122 370 130" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 145 Q 200 138 370 145" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 158 Q 200 150 370 158" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 168 Q 130 170 175 175 Q 200 200 225 175 Q 270 170 370 168" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 178 Q 130 180 170 188 Q 200 220 230 188 Q 270 180 370 178" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 188 Q 130 190 165 200 Q 200 240 235 200 Q 270 190 370 188" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 198 Q 200 200 370 198" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 230 Q 200 235 370 230" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 260 Q 200 265 370 260" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="20" y="35" font-family="Arial, sans-serif" font-size="10" fill="#444">gentle upper slope</text>
+  <text x="20" y="155" font-family="Arial, sans-serif" font-size="10" fill="#d32f2f">convex roll (steepens)</text>
+  <text x="160" y="270" font-family="Arial, sans-serif" font-size="10" fill="#d32f2f">narrow gully (terrain trap)</text>
+  <circle cx="200" cy="155" r="6" fill="#d32f2f" opacity="0.4"/>
+  <text x="208" y="148" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f">trigger point</text>
+</svg>

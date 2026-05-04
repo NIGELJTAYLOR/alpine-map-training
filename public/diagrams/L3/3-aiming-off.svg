@@ -1,0 +1,26 @@
+<svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="360" fill="#fafaf5"/>
+  <line x1="40" y1="180" x2="560" y2="180" stroke="#1e88e5" stroke-width="2"/>
+  <text x="50" y="170" font-family="Arial, sans-serif" font-size="11" fill="#1e88e5">stream (linear feature)</text>
+  <rect x="345" y="195" width="20" height="14" fill="#222" stroke="#000" stroke-width="1"/>
+  <polygon points="343,195 367,195 355,182" fill="#222"/>
+  <text x="338" y="225" font-family="Arial, sans-serif" font-size="11" fill="#000" font-weight="bold">target hut</text>
+  <circle cx="100" cy="320" r="6" fill="#000"/>
+  <text x="55" y="340" font-family="Arial, sans-serif" font-size="11" fill="#000" font-weight="bold">start</text>
+  <line x1="100" y1="320" x2="355" y2="195" stroke="#999" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="240" y="248" font-family="Arial, sans-serif" font-size="10" fill="#999">direct bearing 220°</text>
+  <text x="240" y="261" font-family="Arial, sans-serif" font-size="10" fill="#999">(might miss; which side?)</text>
+  <line x1="100" y1="320" x2="290" y2="180" stroke="#d32f2f" stroke-width="2"/>
+  <polygon points="285,180 296,180 290,170" fill="#d32f2f"/>
+  <text x="155" y="290" font-family="Arial, sans-serif" font-size="11" fill="#d32f2f" font-weight="bold">aim-off bearing 210°</text>
+  <text x="155" y="304" font-family="Arial, sans-serif" font-size="10" fill="#d32f2f">(10° offset, deliberately to north of hut)</text>
+  <line x1="290" y1="170" x2="350" y2="170" stroke="#388e3c" stroke-width="2"/>
+  <polygon points="350,170 340,166 340,174" fill="#388e3c"/>
+  <text x="295" y="155" font-family="Arial, sans-serif" font-size="10" fill="#388e3c">walk south along stream to hut</text>
+  <text x="40" y="40" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Aiming-off:</text>
+  <text x="40" y="56" font-family="Arial, sans-serif" font-size="10" fill="#444">1. Identify the linear feature near the target.</text>
+  <text x="40" y="70" font-family="Arial, sans-serif" font-size="10" fill="#444">2. Choose the safe side (no hazard between you and the target).</text>
+  <text x="40" y="84" font-family="Arial, sans-serif" font-size="10" fill="#444">3. Offset the bearing by 5 to 10 degrees towards the safe side.</text>
+  <text x="40" y="98" font-family="Arial, sans-serif" font-size="10" fill="#444">4. Walk on the offset bearing until you hit the linear feature.</text>
+  <text x="40" y="112" font-family="Arial, sans-serif" font-size="10" fill="#444">5. Turn and walk along the feature to the target.</text>
+</svg>

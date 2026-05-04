@@ -1,0 +1,32 @@
+<svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="380" fill="#fafaf5"/>
+  <rect x="100" y="40" width="300" height="300" fill="#eef2f3" stroke="#666" stroke-width="1.5" rx="6" opacity="0.7"/>
+  <line x1="110" y1="50" x2="120" y2="50" stroke="#444" stroke-width="0.8"/>
+  <line x1="110" y1="60" x2="120" y2="60" stroke="#444" stroke-width="0.8"/>
+  <line x1="110" y1="70" x2="120" y2="70" stroke="#444" stroke-width="0.8"/>
+  <line x1="110" y1="80" x2="120" y2="80" stroke="#444" stroke-width="0.8"/>
+  <line x1="250" y1="60" x2="250" y2="120" stroke="#000" stroke-width="2.5"/>
+  <polygon points="244,68 250,55 256,68" fill="#000"/>
+  <circle cx="250" cy="200" r="80" fill="#fff" stroke="#444" stroke-width="2"/>
+  <text x="246" y="135" font-family="Arial, sans-serif" font-size="11" fill="#000" font-weight="bold">N</text>
+  <text x="246" y="278" font-family="Arial, sans-serif" font-size="11" fill="#000" font-weight="bold">S</text>
+  <text x="328" y="205" font-family="Arial, sans-serif" font-size="11" fill="#000" font-weight="bold">E</text>
+  <text x="166" y="205" font-family="Arial, sans-serif" font-size="11" fill="#000" font-weight="bold">W</text>
+  <path d="M 244 165 L 244 235 L 256 235 L 256 165 L 250 145 Z" fill="none" stroke="#d32f2f" stroke-width="2"/>
+  <line x1="234" y1="170" x2="234" y2="230" stroke="#d32f2f" stroke-width="0.8"/>
+  <line x1="266" y1="170" x2="266" y2="230" stroke="#d32f2f" stroke-width="0.8"/>
+  <polygon points="265,150 250,200 250,250 235,200 250,150" fill="#d32f2f"/>
+  <polygon points="235,250 250,200 250,150 265,200 250,250" fill="#fff" stroke="#d32f2f" stroke-width="1"/>
+  <line x1="65" y1="50" x2="100" y2="50" stroke="#444" stroke-width="0.8"/>
+  <text x="20" y="48" font-family="Arial, sans-serif" font-size="11" fill="#000">1. _________________</text>
+  <line x1="265" y1="80" x2="280" y2="50" stroke="#444" stroke-width="0.8"/>
+  <text x="285" y="48" font-family="Arial, sans-serif" font-size="11" fill="#000">2. _________________</text>
+  <line x1="330" y1="200" x2="425" y2="170" stroke="#444" stroke-width="0.8"/>
+  <text x="430" y="170" font-family="Arial, sans-serif" font-size="11" fill="#000">3. _____________</text>
+  <line x1="244" y1="155" x2="220" y2="120" stroke="#444" stroke-width="0.8"/>
+  <text x="60" y="120" font-family="Arial, sans-serif" font-size="11" fill="#000">4. _________________</text>
+  <line x1="234" y1="200" x2="190" y2="320" stroke="#444" stroke-width="0.8"/>
+  <text x="20" y="335" font-family="Arial, sans-serif" font-size="11" fill="#000">5. _________________</text>
+  <line x1="265" y1="200" x2="395" y2="270" stroke="#444" stroke-width="0.8"/>
+  <text x="400" y="270" font-family="Arial, sans-serif" font-size="11" fill="#000">6. _____________</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#fafaf5"/>
+  <path d="M 30 60 Q 130 80 175 80 Q 230 80 280 60" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 90 Q 130 130 200 130 Q 270 130 350 90" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 130 Q 130 180 200 180 Q 270 180 350 130" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 165 Q 130 220 200 220 Q 270 220 350 165" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 195 Q 130 250 200 250 Q 270 250 350 195" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="355" y="62" font-family="Arial, sans-serif" font-size="10" fill="#000">2,380</text>
+  <text x="355" y="92" font-family="Arial, sans-serif" font-size="10" fill="#000">2,340</text>
+  <text x="355" y="132" font-family="Arial, sans-serif" font-size="10" fill="#000">2,280</text>
+  <text x="355" y="167" font-family="Arial, sans-serif" font-size="10" fill="#000">2,240</text>
+  <text x="355" y="197" font-family="Arial, sans-serif" font-size="10" fill="#000">2,200</text>
+  <text x="20" y="40" font-family="Arial, sans-serif" font-size="10" fill="#444">parent feature (summit)</text>
+  <path d="M 200 270 L 200 285 M 195 280 L 200 285 L 205 280" fill="none" stroke="#444" stroke-width="1"/>
+  <text x="208" y="285" font-family="Arial, sans-serif" font-size="10" fill="#444">downhill</text>
+</svg>
