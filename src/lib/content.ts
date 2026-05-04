@@ -4,6 +4,7 @@ import {
   trainerNotes as allTrainerNotes,
   diagrams as allDiagrams,
   templates as allTemplates,
+  quizzes as allQuizzes,
 } from "#site/content";
 
 export type Page = (typeof allPages)[number];
@@ -11,6 +12,8 @@ export type AnswerKey = (typeof allAnswerKeys)[number];
 export type TrainerNote = (typeof allTrainerNotes)[number];
 export type Diagram = (typeof allDiagrams)[number];
 export type Template = (typeof allTemplates)[number];
+export type Quiz = (typeof allQuizzes)[number];
+export type QuizQuestion = Quiz["questions"][number];
 
 export const AVAILABLE_LEVELS = [
   ...new Set(allPages.map((p) => p.level)),
@@ -72,4 +75,14 @@ export function getTemplate(slug: string): Template | undefined {
 
 export function getTemplatesForPage(_level: number, page: string): Template[] {
   return allTemplates.filter((t) => t.pageRefs.includes(page));
+}
+
+export function getQuiz(level: number, page: string): Quiz | undefined {
+  return allQuizzes.find((q) => q.level === level && q.page === page);
+}
+
+export function getAllQuizzes(): Quiz[] {
+  return [...allQuizzes].sort((a, b) =>
+    a.level - b.level || a.page.localeCompare(b.page),
+  );
 }

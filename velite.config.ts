@@ -92,6 +92,48 @@ const templates = defineCollection({
   }),
 });
 
+const questionType = s.enum(["numeric", "mc", "self-mark", "practical"]);
+
+const numericInput = s.object({
+  label: s.string(),
+  expected: s.number(),
+  tolerance: s.number().default(0),
+});
+
+const baseQuestion = s.object({
+  id: s.string(),
+  title: s.string(),
+  prompt: s.string(),
+  type: questionType,
+  inputs: s.array(numericInput).optional(),
+  options: s.array(s.string()).optional(),
+  correct: s.union([s.number(), s.array(s.number())]).optional(),
+  modelAnswer: s.string().optional(),
+  expectations: s.string().optional(),
+  explanation: s.string().optional(),
+  skillArea: s.string(),
+  pageRef: s.string(),
+});
+
+const skillArea = s.object({
+  id: s.string(),
+  label: s.string(),
+});
+
+const quizzes = defineCollection({
+  name: "Quiz",
+  pattern: "quizzes/*.json",
+  schema: s.object({
+    id: s.string(),
+    level: s.number().int().min(1).max(6),
+    page: s.string(),
+    title: s.string(),
+    intro: s.string(),
+    skillAreas: s.array(skillArea),
+    questions: s.array(baseQuestion),
+  }),
+});
+
 export default defineConfig({
   root: "content",
   output: {
@@ -101,7 +143,7 @@ export default defineConfig({
     name: "[name]-[hash:6].[ext]",
     clean: true,
   },
-  collections: { pages, answerKeys, trainerNotes, diagrams, templates },
+  collections: { pages, answerKeys, trainerNotes, diagrams, templates, quizzes },
   mdx: {
     rehypePlugins: [],
     remarkPlugins: [],

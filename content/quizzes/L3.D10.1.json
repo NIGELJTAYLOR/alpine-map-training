@@ -1,0 +1,165 @@
+{
+  "id": "L3.D10.1",
+  "level": 3,
+  "page": "D10.1",
+  "title": "Level 3 — Mixed Quiz",
+  "intro": "15 short questions, drawn from across Sections D1 to D9. Numeric and multiple-choice answers are auto-graded; everything else shows the model answer and lets you self-mark. The IMS / EMS readiness target is 12+ correct out of 15.",
+  "skillAreas": [
+    { "id": "compass", "label": "Compass parts and reading (D1)" },
+    { "id": "bearings", "label": "Bearings from the map and variation (D2)" },
+    { "id": "ground", "label": "Bearings on the ground and resection (D3)" },
+    { "id": "accuracy", "label": "Practical accuracy and instrument hygiene (D4)" },
+    { "id": "altimeter", "label": "Altimeter and barometer (D5, D6)" },
+    { "id": "combined", "label": "Combined techniques (D7), aspect-of-slope relocation" },
+    { "id": "poorVis", "label": "Poor visibility (D8) and route cards (D9)" }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "title": "Compass parts",
+      "prompt": "Name the two parts of a baseplate compass that are most commonly confused with each other, and give a one-sentence distinction.",
+      "type": "self-mark",
+      "modelAnswer": "**Direction-of-travel arrow** and **orienting arrow**.\n\nThe direction-of-travel arrow is fixed on the baseplate and points where you are going; the orienting arrow is on the floor of the rotating bezel and is the alignment target for the magnetic needle.\n\nIf you named the magnetic needle and the orienting arrow, the wrong distinction has crept in — recycle D1.1.",
+      "skillArea": "compass",
+      "pageRef": "D1.1"
+    },
+    {
+      "id": "Q2",
+      "title": "Reading a bearing — accuracy and time",
+      "prompt": "The IMS / EMS-relevant working standard for reading a bearing from a set compass is what accuracy and what time?",
+      "type": "self-mark",
+      "modelAnswer": "**Accuracy:** within 2 degrees.\n**Time:** under 60 seconds.\n\nBoth from the IMS Nav Programme assessment standard. Both halves required.",
+      "skillArea": "compass",
+      "pageRef": "D1.2"
+    },
+    {
+      "id": "Q3",
+      "title": "Four-step procedure",
+      "prompt": "Name the four steps of the procedure for taking a bearing from the map (single phrase per step).",
+      "type": "self-mark",
+      "modelAnswer": "1. **Place the baseplate edge along the line** from start to destination, direction-of-travel arrow pointing towards destination.\n2. **Rotate the bezel** until the parallel orienting lines align with the grid lines on the map.\n3. **Take the compass off the map.**\n4. **Read the bearing** from the direction-of-travel arrow against the bezel scale.\n\nMost consequential errors: omitting step 1, or reversing the direction-of-travel arrow. Coach D2.1.",
+      "skillArea": "bearings",
+      "pageRef": "D2.1"
+    },
+    {
+      "id": "Q4",
+      "title": "Magnetic variation",
+      "prompt": "The current magnetic variation for your map area is +2 degrees east. The grid bearing for a leg is 178 degrees. What is the magnetic bearing?",
+      "type": "numeric",
+      "inputs": [{ "label": "Magnetic bearing (°)", "expected": 180 }],
+      "explanation": "Grid 178° + east variation 2° = magnetic 180°. If you got 176, the rule is reversed for east variation — recycle D2.2.",
+      "skillArea": "bearings",
+      "pageRef": "D2.2"
+    },
+    {
+      "id": "Q5",
+      "title": "Walking on a bearing — drift",
+      "prompt": "The IMS / EMS-relevant working standard for drift while walking on a bearing is what figure?",
+      "type": "numeric",
+      "inputs": [
+        { "label": "Drift target (m)", "expected": 15 },
+        { "label": "per (m of travel)", "expected": 100 }
+      ],
+      "explanation": "Less than 15 m drift per 100 m of travel.",
+      "skillArea": "ground",
+      "pageRef": "D3.1"
+    },
+    {
+      "id": "Q6",
+      "title": "Back bearing",
+      "prompt": "The forward bearing for a leg is 220 magnetic. What is the back bearing?",
+      "type": "numeric",
+      "inputs": [{ "label": "Back bearing (°)", "expected": 40 }],
+      "explanation": "220 - 180 = 40. (Adding 180 gives 400, which wraps to 40 — same result.)",
+      "skillArea": "ground",
+      "pageRef": "D3.2"
+    },
+    {
+      "id": "Q7",
+      "title": "Resection",
+      "prompt": "Resection requires what minimum number of visible features, and what angular separation between them produces the most accurate fix?",
+      "type": "numeric",
+      "inputs": [
+        { "label": "Minimum features", "expected": 2 },
+        { "label": "Optimal separation (°)", "expected": 90 }
+      ],
+      "explanation": "Two features at ~90° produce a sharp intersection. Closer-together or near-opposite features give a shallow intersection where small bearing errors become large position errors.",
+      "skillArea": "ground",
+      "pageRef": "D3.3"
+    },
+    {
+      "id": "Q8",
+      "title": "Bearing-shapes drill closure",
+      "prompt": "The IMS / EMS-relevant working closure error standard for a 100-pace square bearing-shapes drill is approximately what figure?",
+      "type": "numeric",
+      "inputs": [{ "label": "Less than ___ paces", "expected": 5 }],
+      "explanation": "Less than 5 paces.",
+      "skillArea": "accuracy",
+      "pageRef": "D4.1"
+    },
+    {
+      "id": "Q9",
+      "title": "Magnetic interference",
+      "prompt": "Name the four most common magnetic interference sources on a ski tour and give the workbook's minimum safe distance for each.",
+      "type": "self-mark",
+      "modelAnswer": "| Source | Minimum safe distance |\n|---|---|\n| Steel ski bindings | 50 cm |\n| Ice axes | 50 cm |\n| Mobile phones | 30 cm |\n| Radio handsets | 30 cm |\n\nThe 50 cm vs 30 cm distinction is the steel-vs-electronics distinction. Reversing them means the principle is wrong — recycle D4.3.",
+      "skillArea": "accuracy",
+      "pageRef": "D4.3"
+    },
+    {
+      "id": "Q10",
+      "title": "Altimeter and pressure rule of thumb",
+      "prompt": "The rule of thumb for converting altimeter drift to implied pressure change is approximately:\n\n**1 hPa = ___ m of apparent altitude change.**",
+      "type": "numeric",
+      "inputs": [{ "label": "metres", "expected": 8 }],
+      "explanation": "1 hPa ≈ 8 m, the standard rule for the lower troposphere (D5.1).",
+      "skillArea": "altimeter",
+      "pageRef": "D5.1"
+    },
+    {
+      "id": "Q11",
+      "title": "Barometric trend bands",
+      "prompt": "Name the five IMS Nav Programme barometric trend categories with the rate threshold for each.",
+      "type": "self-mark",
+      "modelAnswer": "| Trend | Rate threshold |\n|---|---|\n| Rising | Any positive rate |\n| Steady | Less than 0.1 hPa/hr sustained for 3 hours |\n| Slow fall | Less than 0.5 hPa/hr (falling) |\n| Moderate fall | 0.5 to 1.0 hPa/hr (falling) |\n| Rapid fall | More than 1.0 hPa/hr (falling) |\n\nMost common confusion is between moderate and rapid — drill the threshold.",
+      "skillArea": "altimeter",
+      "pageRef": "D6.1"
+    },
+    {
+      "id": "Q12",
+      "title": "Aspect-of-slope relocation",
+      "prompt": "The four-stage aspect-of-slope relocation procedure starts with what action, and the IMS / EMS-relevant target time for the full procedure on a known slope is what figure?",
+      "type": "self-mark",
+      "modelAnswer": "**Stage 1 action:** Take a compass bearing directly down the fall line of the slope you are standing on (the aspect bearing).\n\n**Target time:** under 2 minutes for the full procedure on a known slope.\n\nBoth halves required.",
+      "skillArea": "combined",
+      "pageRef": "D7.2"
+    },
+    {
+      "id": "Q13",
+      "title": "Pole-and-cord conditional use",
+      "prompt": "The pole-and-cord technique is appropriate when all three of which conditions hold?",
+      "type": "self-mark",
+      "modelAnswer": "1. **Visibility is less than 5 to 10 m.**\n2. **The terrain has hidden hazards** (drops, cornices, crevasse margins, sudden steepening).\n3. **A bearing-walked approach is the only available navigation option.**\n\nAll three required. Naming only one or two has missed the conditional logic — coach D8.2.",
+      "skillArea": "poorVis",
+      "pageRef": "D8.2"
+    },
+    {
+      "id": "Q14",
+      "title": "Route card fields",
+      "prompt": "Name the eleven standard fields of an IMS-style route card.",
+      "type": "self-mark",
+      "modelAnswer": "1. Leg number\n2. Start point and altitude\n3. End point and altitude\n4. Compass bearing (magnetic)\n5. Distance (map)\n6. Estimated time\n7. Altimeter trigger height\n8. Key terrain features\n9. Avalanche assessment\n10. Decision point criteria\n11. Escape route\n\nMissing two or more means the field set hasn't internalised — recycle D9.1.",
+      "skillArea": "poorVis",
+      "pageRef": "D9.1"
+    },
+    {
+      "id": "Q15",
+      "title": "Pre-agreed criteria standard",
+      "prompt": "The three-component standard for a pre-agreed go / no-go criterion requires what three things?",
+      "type": "self-mark",
+      "modelAnswer": "1. **A specific trigger** (a measurable condition).\n2. **A specific action** (turn around, take alternative line, etc.).\n3. **A named decision point** (where the criterion is checked).\n\nMissing any component has not internalised the standard — recycle D6.2 and D9.3.",
+      "skillArea": "poorVis",
+      "pageRef": "D9.3"
+    }
+  ]
+}

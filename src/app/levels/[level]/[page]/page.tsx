@@ -1,11 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader } from "@/components/site/site-header";
 import { PageShell } from "@/components/site/page-shell";
 import { AnswerToggle } from "@/components/site/answer-toggle";
 import { DiagramCard } from "@/components/site/diagram-card";
 import { mdxComponents } from "@/components/mdx/components";
 import { MDXContent } from "@/lib/mdx";
+import { buttonVariants } from "@/components/ui/button";
 import {
   getPage,
   getPages,
@@ -13,8 +15,8 @@ import {
   getAnswerKeyForPage,
   getDiagramsForPage,
   getTemplatesForPage,
+  getQuiz,
 } from "@/lib/content";
-import Link from "next/link";
 
 interface PageProps {
   params: Promise<{ level: string; page: string }>;
@@ -46,11 +48,31 @@ export default async function PageRoute({ params }: PageProps) {
   const answerKey = getAnswerKeyForPage(level, pageCode);
   const diagrams = getDiagramsForPage(level, pageCode);
   const templates = getTemplatesForPage(level, pageCode);
+  const quiz = getQuiz(level, pageCode);
 
   return (
     <>
       <SiteHeader />
       <PageShell page={page} prev={neighbours.prev} next={neighbours.next}>
+        {quiz ? (
+          <aside className="mb-6 rounded-lg border border-primary/40 bg-primary/5 p-4">
+            <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary">
+              Interactive quiz available
+            </p>
+            <p className="mt-1 font-serif text-sm text-foreground">
+              The {quiz.questions.length}-question version of this quiz can be
+              taken in the app: numeric and multiple-choice answers are
+              auto-graded, the rest are self-marked against the model answer.
+            </p>
+            <Link
+              href={`/levels/${level}/${pageCode}/quiz`}
+              className={buttonVariants({ size: "sm" }) + " mt-3"}
+            >
+              Take the interactive quiz →
+            </Link>
+          </aside>
+        ) : null}
+
         <MDXContent code={page.body} components={mdxComponents} />
 
         {diagrams.length > 0 ? (

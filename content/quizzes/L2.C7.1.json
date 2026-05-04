@@ -1,0 +1,162 @@
+{
+  "id": "L2.C7.1",
+  "level": 2,
+  "page": "C7.1",
+  "title": "Level 2 — Mixed Contour Quiz",
+  "intro": "15 short questions, drawn from across Sections C1 to C6. Numeric and multiple-choice answers are auto-graded; everything else shows the model answer and lets you self-mark. Aim for 12+ correct out of 15 with no family-level errors on feature identification.",
+  "skillAreas": [
+    { "id": "steepness", "label": "Steepness reading from contour spacing" },
+    { "id": "features", "label": "Feature recognition (summits, valleys, gullies, ridges, spurs)" },
+    { "id": "advanced", "label": "Cols, bowls, plateaux, cliff bands" },
+    { "id": "aspect", "label": "Aspect reading to eight directions" },
+    { "id": "visualisation", "label": "Visualisation (cross-section, photo-matching, sustained description)" },
+    { "id": "routeChoice", "label": "Route choice and terrain-trap reading" }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "title": "Contour intervals",
+      "prompt": "The Section C7.1 extract has a 10 m contour interval. If you walk from a contour at 2,180 m to one at 2,260 m, how many contour lines have you crossed and how much height have you gained?",
+      "type": "numeric",
+      "inputs": [
+        { "label": "Crossings", "expected": 8 },
+        { "label": "Height gained (m)", "expected": 80 }
+      ],
+      "explanation": "2,180 m to 2,260 m is 80 m of climb at 10 m intervals = 8 crossings.",
+      "skillArea": "steepness",
+      "pageRef": "C1.1"
+    },
+    {
+      "id": "Q2",
+      "title": "Steepness from spacing",
+      "prompt": "Point Q1 sits on a slope where contours are 2 mm apart. Using the C1.2 rule of thumb (1:25,000 with 10 m contours), is this slope at or above 30 degrees?",
+      "type": "mc",
+      "options": ["Yes — at or above 30°", "No — below 30°"],
+      "correct": 0,
+      "explanation": "2 mm spacing sits well inside the 30° threshold (which is around 3 mm on these parameters).",
+      "skillArea": "steepness",
+      "pageRef": "C1.2"
+    },
+    {
+      "id": "Q3",
+      "title": "Identify the feature (snippet A)",
+      "prompt": "Snippet **A** on the snippet sheet shows a contour pattern. Name the feature.",
+      "type": "self-mark",
+      "modelAnswer": "Spur (V-down). The V points downhill; closed loops are absent; contours show a projecting ridge from a parent feature.",
+      "skillArea": "features",
+      "pageRef": "C2.3"
+    },
+    {
+      "id": "Q4",
+      "title": "Identify the feature (snippet B)",
+      "prompt": "Snippet **B** on the snippet sheet. Name the feature.",
+      "type": "self-mark",
+      "modelAnswer": "Bowl. U-shape or arc opening downhill, tightly spaced contours at the back (headwall), wider on the flanks.",
+      "skillArea": "advanced",
+      "pageRef": "C3.1"
+    },
+    {
+      "id": "Q5",
+      "title": "Identify the feature (snippet C)",
+      "prompt": "Snippet **C** on the snippet sheet. Name the feature.",
+      "type": "self-mark",
+      "modelAnswer": "Plateau. One closed loop around a broad nearly contour-free area, with a spot height as the only altitude reference.",
+      "skillArea": "advanced",
+      "pageRef": "C3.2"
+    },
+    {
+      "id": "Q6",
+      "title": "Aspect to eight directions",
+      "prompt": "On the C7.1 extract, the slope at point Q2 falls towards the lower-right corner of the page. Grid north points up the page. The aspect is:",
+      "type": "mc",
+      "options": ["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
+      "correct": 3,
+      "explanation": "Lower-right corner with north-up = SE. If you answered S or E alone, the four-direction default has crept back in — recycle C4.2.",
+      "skillArea": "aspect",
+      "pageRef": "C4.2"
+    },
+    {
+      "id": "Q7",
+      "title": "Fall line",
+      "prompt": "At point Q2, sketch the fall-line arrow on the printed extract. The arrow runs perpendicular to the contour at Q2, pointing from higher to lower contour, in the SE direction.",
+      "type": "practical",
+      "expectations": "Arrow drawn perpendicular to the contour (not parallel), pointing downhill in the SE direction.",
+      "skillArea": "aspect",
+      "pageRef": "C4.1"
+    },
+    {
+      "id": "Q8",
+      "title": "Inverse pairing",
+      "prompt": "A V-shape of contours points downhill. The feature is:",
+      "type": "mc",
+      "options": ["valley", "gully", "ridge", "spur", "col", "cliff band"],
+      "correct": 3,
+      "explanation": "V down = spur (or ridge if the feature is long enough — both accepted). If you chose valley or gully, the C2.3 inverse-pairing rule has not stuck.",
+      "skillArea": "features",
+      "pageRef": "C2.3"
+    },
+    {
+      "id": "Q9",
+      "title": "Col vs summit",
+      "prompt": "In one short sentence, name the contour-pattern difference between a summit and a col.",
+      "type": "self-mark",
+      "modelAnswer": "A summit shows closed contour loops with the highest contour at the centre; a col shows two opposite sides of contours rising (towards two summits) and two opposite sides falling (towards two valleys). The difference is the contour pattern, not the elevation.",
+      "skillArea": "advanced",
+      "pageRef": "C3.3"
+    },
+    {
+      "id": "Q10",
+      "title": "Bowl reading",
+      "prompt": "A bowl shows what contour pattern, and where on that pattern would you expect wind-loaded snow to accumulate?",
+      "type": "self-mark",
+      "modelAnswer": "**Pattern:** U-shape or arc of contours opening downhill, with tightly spaced contours at the back (headwall) and wider-spaced contours on the flanks.\n\n**Wind-loaded snow accumulates:** in the upper part of the bowl, just below the headwall, on the lee side of the prevailing wind. Cornices may build on the rim above.",
+      "skillArea": "advanced",
+      "pageRef": "C3.1"
+    },
+    {
+      "id": "Q11",
+      "title": "Cliff band cues",
+      "prompt": "Two cues together identify a cliff band on most national alpine 1:25,000 series. Name them.",
+      "type": "self-mark",
+      "modelAnswer": "1. **Merged or near-merged contours** drawn as a single thick line.\n2. **Rock symbology** overlaid (hatching on IGN, stippling on Swisstopo, rock-face shading on Alpenvereinskarte).\n\nEither cue alone can mislead. Both together are diagnostic.",
+      "skillArea": "advanced",
+      "pageRef": "C3.4"
+    },
+    {
+      "id": "Q12",
+      "title": "Skinning gradient",
+      "prompt": "The comfortable skinning gradient band is approximately what range, and what contour spacing on a 1:25,000 map with 10 m contours corresponds to the upper end of that band?",
+      "type": "self-mark",
+      "modelAnswer": "**Gradient range:** 8 to 12 degrees comfortable; up to 15 degrees as the upper sustained limit.\n\n**Upper-end contour spacing:** 5 to 6 mm on a 1:25,000 map with 10 m contours (using the C1.2 rule).\n\nNote: the comfortable band (8–12) and the upper limit (up to 15) are different concepts.",
+      "skillArea": "routeChoice",
+      "pageRef": "C6.1"
+    },
+    {
+      "id": "Q13",
+      "title": "Terrain trap",
+      "prompt": "In one sentence, give the simplest definition of a terrain trap that a Level 2 candidate should be able to apply.",
+      "type": "self-mark",
+      "modelAnswer": "A piece of ground where a small avalanche or fall produces disproportionate consequences, often because the configuration concentrates moving snow (gully), removes the exit (single-mouth bowl), or adds a vertical drop (cliff band below the slope). Terrain trap is about the consequence, not just the slope angle.",
+      "skillArea": "routeChoice",
+      "pageRef": "C6.2"
+    },
+    {
+      "id": "Q14",
+      "title": "Sketch — sharp peak with two spurs",
+      "prompt": "Sketch the side profile of a sharp peak with two spurs running out from it on different aspects. Label the summit and the two spurs.",
+      "type": "practical",
+      "expectations": "Sharp peak (narrow, pointed, steep flanks); two spurs as projections from the summit; labels for summit and both spurs; spurs facing different aspects (a brief direction note for each is helpful).",
+      "skillArea": "visualisation",
+      "pageRef": "C5.1"
+    },
+    {
+      "id": "Q15",
+      "title": "Written description (Q3)",
+      "prompt": "Pick the point on the C7.1 extract that your trainer marks as Q3. Write a four-sentence description of what you would see standing at Q3, using the four-part structure from C5.3 (underfoot, slope and aspect, near features, far features).",
+      "type": "self-mark",
+      "modelAnswer": "A strong answer uses all four parts of the structure, eight-direction aspect terms, C1.2 steepness vocabulary, specific feature references (named summit, valley, col, spur), and describes the imagined view rather than the symbol layout.\n\n_For the standard Q3 (moderate NE-facing slope at ~2,250 m, summit at 2,500 m to the SW, broad valley with stream at 1,950 m to the NE):_\n\n1. **Underfoot:** Firm spring snow with a thin breakable crust on the lee side of small ridges; rocks outcropping above.\n2. **Slope and aspect:** A NE-facing slope at around 25 degrees (4 mm contour spacing), opening into a wider bowl below.\n3. **Near features:** A small spur to the SE forming the lower edge of a shallow bowl; a stream channel cutting across the valley floor 300 m below.\n4. **Far features:** The summit at 2,500 m to the SW, with two visible spurs running NW and S from it; a band of cliffs forming the headwall of the corrie to the west.",
+      "skillArea": "visualisation",
+      "pageRef": "C5.3"
+    }
+  ]
+}
