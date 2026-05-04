@@ -1,26 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Quiz, QuizQuestion } from "@/lib/content";
 import { MarkdownString } from "./markdown";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { useProgress } from "@/lib/progress/provider";
+import type { QuizResponse } from "@/lib/progress/types";
 
-type ResponseStatus =
-  | "unanswered"
-  | "auto-correct"
-  | "auto-incorrect"
-  | "self-correct"
-  | "self-partial"
-  | "self-incorrect"
-  | "skipped";
-
-interface Response {
-  value: unknown;
-  status: ResponseStatus;
-  submittedAt?: number;
-}
-
+type ResponseStatus = QuizResponse["status"];
+type Response = QuizResponse;
 type Responses = Record<string, Response>;
 
 const SCORE_BY_STATUS: Record<ResponseStatus, number> = {
@@ -38,25 +27,44 @@ interface QuizPlayerProps {
 }
 
 export function QuizPlayer({ quiz }: QuizPlayerProps) {
+  const progress = useProgress();
+  const persisted = progress.getQuiz(quiz.id);
+  const responses = persisted?.responses ?? {};
   const [idx, setIdx] = useState(0);
-  const [responses, setResponses] = useState<Responses>({});
-  const [finished, setFinished] = useState(false);
-  const [startedAt] = useState(() => Date.now());
+  const [finished, setFinished] = useState(Boolean(persisted?.completedAt));
+  const [startedAt, setStartedAt] = useState(() =>
+    persisted?.startedAt ? Date.parse(persisted.startedAt) : Date.now(),
+  );
+
+  // Re-sync local progression when the persisted quiz changes (e.g. after reset).
+  useEffect(() => {
+    if (persisted?.completedAt) setFinished(true);
+  }, [persisted?.completedAt]);
 
   const total = quiz.questions.length;
   const current = quiz.questions[idx];
-  const response = responses[current.id] ?? { value: null, status: "unanswered" };
+  const response: Response =
+    responses[current.id] ?? { value: null, status: "unanswered" };
 
   function setResponse(id: string, partial: Partial<Response>) {
-    setResponses((prev) => ({
-      ...prev,
-      [id]: { ...(prev[id] ?? { value: null, status: "unanswered" }), ...partial },
-    }));
+    const existing = responses[id] ?? { value: null, status: "unanswered" as const };
+    progress.setQuizResponse(quiz.id, id, { ...existing, ...partial });
   }
 
   function next() {
-    if (idx < total - 1) setIdx(idx + 1);
-    else setFinished(true);
+    if (idx < total - 1) {
+      setIdx(idx + 1);
+    } else {
+      const stats = computeStats(quiz, responses);
+      const elapsedMs = Date.now() - startedAt;
+      const minutes = Math.max(1, Math.round(elapsedMs / 60000));
+      progress.finishQuiz(quiz.id, {
+        score: stats.score,
+        totalQuestions: total,
+        timeMinutes: minutes,
+      });
+      setFinished(true);
+    }
   }
   function previous() {
     if (idx > 0) setIdx(idx - 1);
@@ -66,17 +74,21 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
     next();
   }
   function restart() {
+    progress.resetQuiz(quiz.id);
     setIdx(0);
-    setResponses({});
+    setStartedAt(Date.now());
     setFinished(false);
   }
 
   if (finished) {
+    const elapsedMs = persisted?.timeMinutes
+      ? persisted.timeMinutes * 60_000
+      : Date.now() - startedAt;
     return (
       <ScoreSummary
         quiz={quiz}
         responses={responses}
-        elapsedMs={Date.now() - startedAt}
+        elapsedMs={elapsedMs}
         onRestart={restart}
       />
     );

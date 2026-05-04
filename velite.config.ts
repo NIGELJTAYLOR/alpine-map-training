@@ -1,4 +1,5 @@
 import { defineConfig, defineCollection, s } from "velite";
+import remarkGfm from "remark-gfm";
 
 const pageKind = s.enum([
   "page",
@@ -146,6 +147,6 @@ export default defineConfig({
   collections: { pages, answerKeys, trainerNotes, diagrams, templates, quizzes },
   mdx: {
     rehypePlugins: [],
-    remarkPlugins: [],
+    remarkPlugins: [remarkGfm],
   },
 });

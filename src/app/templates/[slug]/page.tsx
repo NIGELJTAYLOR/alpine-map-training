@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site/site-header";
-import { mdxComponents } from "@/components/mdx/components";
-import { MDXContent } from "@/lib/mdx";
+import { AnswerKeyBody } from "@/components/site/answer-key-body";
 import { getAllTemplates, getTemplate } from "@/lib/content";
 
 interface PageProps {
@@ -51,7 +50,7 @@ export default async function TemplateRoute({ params }: PageProps) {
         </header>
 
         <div className="mdx-body">
-          <MDXContent code={template.body} components={mdxComponents} />
+          <AnswerKeyBody body={template.body} />
         </div>
       </article>
     </>

@@ -1,3 +1,5 @@
+"use client";
+
 import * as runtime from "react/jsx-runtime";
 import type { ComponentType } from "react";
 

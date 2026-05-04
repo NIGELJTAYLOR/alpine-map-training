@@ -2,6 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/site/site-header";
+import {
+  LevelProgressBar,
+  PageStatusBadge,
+} from "@/components/site/progress-indicators";
 import { getPages, getDiagramsForLevel } from "@/lib/content";
 
 interface PageProps {
@@ -66,6 +70,10 @@ export default async function LevelIndex({ params }: PageProps) {
             {pages.length} pages
             {diagrams.length > 0 ? ` · ${diagrams.length} schematic diagrams` : ""}
           </p>
+          <LevelProgressBar
+            pageIds={pages.map((p) => p.id)}
+            className="mt-4"
+          />
         </header>
 
         <ol className="space-y-2">
@@ -76,9 +84,10 @@ export default async function LevelIndex({ params }: PageProps) {
             >
               <Link
                 href={`/levels/${level}/${p.page}`}
-                className="flex items-baseline gap-3 p-3"
+                className="flex items-center gap-3 p-3"
               >
-                <span className="w-16 shrink-0 font-mono text-xs text-muted-foreground">
+                <PageStatusBadge pageId={p.id} />
+                <span className="w-14 shrink-0 font-mono text-xs text-muted-foreground">
                   {p.kind === "contents"
                     ? "Intro"
                     : p.kind === "reflection"
@@ -87,7 +96,9 @@ export default async function LevelIndex({ params }: PageProps) {
                     ? "Quiz"
                     : p.page}
                 </span>
-                <span className="font-sans text-base text-foreground">{p.title}</span>
+                <span className="flex-1 font-sans text-base text-foreground">
+                  {p.title}
+                </span>
               </Link>
             </li>
           ))}

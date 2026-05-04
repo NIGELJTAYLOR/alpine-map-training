@@ -15,6 +15,7 @@ const NAV: NavItem[] = [
   { href: "/levels/3", label: "Level 3", matchPrefix: "/levels/3" },
   { href: "/diagrams", label: "Diagrams", matchPrefix: "/diagrams" },
   { href: "/templates", label: "Templates", matchPrefix: "/templates" },
+  { href: "/progress", label: "Progress", matchPrefix: "/progress" },
 ];
 
 export function SiteHeader() {

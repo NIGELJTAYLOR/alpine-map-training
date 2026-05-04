@@ -1,7 +1,16 @@
+"use client";
+
 import type { ComponentPropsWithoutRef } from "react";
+import { SelfCheckCheckbox } from "@/components/site/self-check-checkbox";
 
 /** Replace native HTML elements emitted by MDX with styled versions. */
 export const mdxComponents = {
+  input: (props: ComponentPropsWithoutRef<"input">) => {
+    if (props.type === "checkbox") {
+      return <SelfCheckCheckbox {...props} />;
+    }
+    return <input {...props} />;
+  },
   h1: (props: ComponentPropsWithoutRef<"h1">) => (
     <h1
       {...props}

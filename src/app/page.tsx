@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { SiteHeader } from "@/components/site/site-header";
+import { LevelProgressCount } from "@/components/site/progress-indicators";
 import {
   AVAILABLE_LEVELS,
   getPages,
@@ -53,7 +54,7 @@ export default function Home() {
 
         <section className="grid gap-3 sm:grid-cols-3">
           {AVAILABLE_LEVELS.map((level) => {
-            const count = getPages(level).length;
+            const ids = getPages(level).map((p) => p.id);
             return (
               <Link
                 key={level}
@@ -66,8 +67,8 @@ export default function Home() {
                 <p className="mt-1 font-sans text-base font-semibold text-foreground group-hover:text-primary">
                   {LEVEL_BLURBS[level] ?? `Level ${level}`}
                 </p>
-                <p className="mt-1 font-sans text-xs text-muted-foreground">
-                  {count} pages
+                <p className="mt-1">
+                  <LevelProgressCount pageIds={ids} />
                 </p>
               </Link>
             );

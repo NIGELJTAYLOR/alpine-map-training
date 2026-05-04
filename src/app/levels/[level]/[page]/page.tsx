@@ -5,8 +5,9 @@ import { SiteHeader } from "@/components/site/site-header";
 import { PageShell } from "@/components/site/page-shell";
 import { AnswerToggle } from "@/components/site/answer-toggle";
 import { DiagramCard } from "@/components/site/diagram-card";
-import { mdxComponents } from "@/components/mdx/components";
-import { MDXContent } from "@/lib/mdx";
+import { PageBody } from "@/components/site/page-body";
+import { AnswerKeyBody } from "@/components/site/answer-key-body";
+import { PageCompletionControls } from "@/components/site/page-completion";
 import { buttonVariants } from "@/components/ui/button";
 import {
   getPage,
@@ -73,7 +74,7 @@ export default async function PageRoute({ params }: PageProps) {
           </aside>
         ) : null}
 
-        <MDXContent code={page.body} components={mdxComponents} />
+        <PageBody pageId={page.id} body={page.body} />
 
         {diagrams.length > 0 ? (
           <section className="mt-10">
@@ -111,9 +112,11 @@ export default async function PageRoute({ params }: PageProps) {
 
         {answerKey ? (
           <AnswerToggle>
-            <MDXContent code={answerKey.body} components={mdxComponents} />
+            <AnswerKeyBody body={answerKey.body} />
           </AnswerToggle>
         ) : null}
+
+        <PageCompletionControls pageId={page.id} />
       </PageShell>
     </>
   );
