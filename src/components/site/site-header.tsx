@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useProgress } from "@/lib/progress/provider";
 
 interface NavItem {
   href: string;
@@ -16,19 +17,33 @@ const NAV: NavItem[] = [
   { href: "/diagrams", label: "Diagrams", matchPrefix: "/diagrams" },
   { href: "/templates", label: "Templates", matchPrefix: "/templates" },
   { href: "/progress", label: "Progress", matchPrefix: "/progress" },
+  { href: "/settings", label: "Settings", matchPrefix: "/settings" },
 ];
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { hydrated, store } = useProgress();
+  const trainerOn = hydrated && store.settings.trainerMode;
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
-        <Link
-          href="/"
-          className="font-sans text-sm font-semibold tracking-tight text-foreground whitespace-nowrap"
-        >
-          Alpine Map Training
-        </Link>
+        <div className="flex items-center gap-2 min-w-0">
+          <Link
+            href="/"
+            className="font-sans text-sm font-semibold tracking-tight text-foreground whitespace-nowrap"
+          >
+            Alpine Map Training
+          </Link>
+          {trainerOn ? (
+            <Link
+              href="/settings"
+              className="rounded-full bg-contour/15 px-2 py-0.5 font-sans text-[10px] font-semibold uppercase tracking-wider text-contour"
+              title="Trainer mode is on — tap to manage in Settings"
+            >
+              Trainer
+            </Link>
+          ) : null}
+        </div>
         <nav className="flex items-center gap-1 overflow-x-auto font-sans text-sm">
           {NAV.map((item) => {
             const active = item.matchPrefix

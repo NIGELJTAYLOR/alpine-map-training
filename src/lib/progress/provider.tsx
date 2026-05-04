@@ -41,6 +41,8 @@ interface ProgressContextValue {
   // confidence + readiness
   setConfidence: (areaId: string, value: number | null) => void;
   setReadiness: (key: string, status: ReadinessStatus, notes?: string) => void;
+  // settings
+  setTrainerMode: (on: boolean) => void;
   // bulk
   reset: () => void;
 }
@@ -226,6 +228,13 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  const setTrainerMode = useCallback((on: boolean) => {
+    setStore((prev) => ({
+      ...prev,
+      settings: { ...prev.settings, trainerMode: on },
+    }));
+  }, []);
+
   const reset = useCallback(() => {
     clearProgress();
     setStore(emptyProgress());
@@ -245,6 +254,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       resetQuiz,
       setConfidence,
       setReadiness,
+      setTrainerMode,
       reset,
     }),
     [
@@ -260,6 +270,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       resetQuiz,
       setConfidence,
       setReadiness,
+      setTrainerMode,
       reset,
     ],
   );

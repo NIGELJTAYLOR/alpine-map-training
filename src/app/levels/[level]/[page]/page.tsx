@@ -8,6 +8,8 @@ import { DiagramCard } from "@/components/site/diagram-card";
 import { PageBody } from "@/components/site/page-body";
 import { AnswerKeyBody } from "@/components/site/answer-key-body";
 import { PageCompletionControls } from "@/components/site/page-completion";
+import { TrainerNotesPanel } from "@/components/site/trainer-notes-panel";
+import { ReadinessCheckInput } from "@/components/site/readiness-check-input";
 import { buttonVariants } from "@/components/ui/button";
 import {
   getPage,
@@ -17,10 +19,45 @@ import {
   getDiagramsForPage,
   getTemplatesForPage,
   getQuiz,
+  getTrainerNotesForSection,
 } from "@/lib/content";
 
 interface PageProps {
   params: Promise<{ level: string; page: string }>;
+}
+
+interface ReadinessConfig {
+  scopeKey: string;
+  title: string;
+  prompt: string;
+}
+
+function readinessConfigFor(pageId: string): ReadinessConfig | null {
+  if (pageId === "L1.Reflection") {
+    return {
+      scopeKey: "L1.Reflection.readiness",
+      title: "Level 1 readiness",
+      prompt:
+        "Looking at your Level 1 work as a whole, are you ready to begin Level 2? Stored on this device.",
+    };
+  }
+  if (pageId === "L2.C7.2") {
+    return {
+      scopeKey: "L2.C7.2.readiness",
+      title: "Level 3 readiness",
+      prompt:
+        "Looking at the C7.1 quiz, the C7.2 walk and your error log, are you ready for Level 3? Stored on this device.",
+    };
+  }
+  if (pageId === "L3.D10.2") {
+    return {
+      scopeKey: "L3.D10.2.readiness",
+      title: "Level 4 readiness",
+      prompt:
+        "Looking at the D10.1 quiz, the D10.2 walk and your error log, are you ready for Level 4 / IMS assessment? Stored on this device.",
+    };
+  }
+  return null;
 }
 
 export async function generateStaticParams() {
@@ -50,6 +87,10 @@ export default async function PageRoute({ params }: PageProps) {
   const diagrams = getDiagramsForPage(level, pageCode);
   const templates = getTemplatesForPage(level, pageCode);
   const quiz = getQuiz(level, pageCode);
+  const trainerNotes = getTrainerNotesForSection(level, page.section).map(
+    (n) => ({ id: n.id, title: n.title, body: n.body, sections: n.sections }),
+  );
+  const readinessConfig = readinessConfigFor(page.id);
 
   return (
     <>
@@ -115,6 +156,22 @@ export default async function PageRoute({ params }: PageProps) {
             <AnswerKeyBody body={answerKey.body} />
           </AnswerToggle>
         ) : null}
+
+        {readinessConfig ? (
+          <section className="mt-10 rounded-xl border border-border bg-card p-4 sm:p-5">
+            <h2 className="font-sans text-lg font-semibold text-foreground">
+              {readinessConfig.title}
+            </h2>
+            <div className="mt-3">
+              <ReadinessCheckInput
+                scopeKey={readinessConfig.scopeKey}
+                prompt={readinessConfig.prompt}
+              />
+            </div>
+          </section>
+        ) : null}
+
+        <TrainerNotesPanel notes={trainerNotes} />
 
         <PageCompletionControls pageId={page.id} />
       </PageShell>

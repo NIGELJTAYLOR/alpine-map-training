@@ -17,9 +17,11 @@ export function loadProgress(): ProgressStore {
       return emptyProgress();
     }
     // Hydrate any missing fields conservatively.
+    const empty = emptyProgress();
     return {
-      ...emptyProgress(),
+      ...empty,
       ...parsed,
+      settings: { ...empty.settings, ...(parsed.settings ?? {}) },
       pages: parsed.pages ?? {},
       quizzes: parsed.quizzes ?? {},
       confidenceScores: parsed.confidenceScores ?? {},

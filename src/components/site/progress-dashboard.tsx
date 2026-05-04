@@ -120,6 +120,72 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
         </ul>
       </section>
 
+      {Object.keys(store.confidenceScores).length > 0 ? (
+        <section>
+          <h3 className="font-sans text-xl font-semibold text-foreground">
+            Confidence ratings
+          </h3>
+          <ul className="mt-3 space-y-1">
+            {Object.entries(store.confidenceScores).map(([key, score]) => (
+              <li
+                key={key}
+                className="flex items-center justify-between gap-3 rounded-md border border-border px-3 py-2"
+              >
+                <span className="font-mono text-xs text-muted-foreground">
+                  {key}
+                </span>
+                <span className="font-sans text-sm font-medium">
+                  {score.value ?? "—"}/5
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {Object.keys(store.readinessChecks).length > 0 ? (
+        <section>
+          <h3 className="font-sans text-xl font-semibold text-foreground">
+            Readiness checks
+          </h3>
+          <ul className="mt-3 space-y-2">
+            {Object.entries(store.readinessChecks).map(([key, check]) => (
+              <li
+                key={key}
+                className="rounded-md border border-border p-3"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {key}
+                  </span>
+                  <span
+                    className={
+                      "rounded-full px-2 py-0.5 font-sans text-xs " +
+                      (check.status === "yes"
+                        ? "bg-success/15 text-success"
+                        : check.status === "not-quite"
+                        ? "bg-contour/15 text-contour"
+                        : "bg-destructive/15 text-destructive")
+                    }
+                  >
+                    {check.status === "yes"
+                      ? "Ready"
+                      : check.status === "not-quite"
+                      ? "Not quite"
+                      : "Not ready"}
+                  </span>
+                </div>
+                {check.notes ? (
+                  <p className="mt-2 font-serif text-sm text-muted-foreground">
+                    {check.notes}
+                  </p>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <section>
         <h3 className="font-sans text-xl font-semibold text-foreground">Quizzes</h3>
         <ul className="mt-3 space-y-2">

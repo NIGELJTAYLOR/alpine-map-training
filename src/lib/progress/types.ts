@@ -44,10 +44,15 @@ export interface ReadinessCheck {
   updatedAt: string;
 }
 
+export interface AppSettings {
+  trainerMode: boolean;
+}
+
 export interface ProgressStore {
   candidateId: string;
   version: number;
   lastUpdated: string;
+  settings: AppSettings;
   pages: Record<string, PageProgress>;
   quizzes: Record<string, QuizProgress>;
   confidenceScores: Record<string, ConfidenceScore>;
@@ -59,6 +64,7 @@ export function emptyProgress(): ProgressStore {
     candidateId: "default",
     version: PROGRESS_VERSION,
     lastUpdated: new Date().toISOString(),
+    settings: { trainerMode: false },
     pages: {},
     quizzes: {},
     confidenceScores: {},

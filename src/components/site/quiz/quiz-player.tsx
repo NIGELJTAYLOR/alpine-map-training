@@ -6,6 +6,7 @@ import type { Quiz, QuizQuestion } from "@/lib/content";
 import { MarkdownString } from "./markdown";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useProgress } from "@/lib/progress/provider";
+import { ConfidenceScoreInput } from "@/components/site/confidence-score-input";
 import type { QuizResponse } from "@/lib/progress/types";
 
 type ResponseStatus = QuizResponse["status"];
@@ -609,6 +610,20 @@ function ScoreSummary({
             );
           })}
         </ul>
+      </section>
+
+      <section>
+        <h3 className="font-sans text-xl font-semibold text-foreground">
+          Confidence ratings
+        </h3>
+        <p className="mt-2 font-serif text-sm text-muted-foreground">
+          Independent of the quiz score above — capture how confident you feel
+          on each skill area. Useful for the trainer review and the next
+          session&rsquo;s focus.
+        </p>
+        <div className="mt-3">
+          <ConfidenceScoreInput scopeKey={quiz.id} skillAreas={quiz.skillAreas} />
+        </div>
       </section>
 
       <section>
