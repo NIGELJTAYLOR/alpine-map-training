@@ -319,9 +319,11 @@ function MultipleChoiceInput({
     });
   }
 
+  const groupName = `q-${question.id}`;
+
   return (
-    <div className="space-y-2">
-      <ul className="space-y-2" role="radiogroup">
+    <div role="radiogroup" aria-label={question.title} className="space-y-2">
+      <div className="space-y-2">
         {options.map((opt, i) => {
           const selected = value === i;
           const isCorrect = Array.isArray(correct) ? correct.includes(i) : i === correct;
@@ -336,19 +338,33 @@ function MultipleChoiceInput({
             stateClass = "border-border hover:border-primary";
           }
           return (
-            <li key={i}>
-              <button
-                type="button"
-                onClick={() => pick(i)}
+            <label
+              key={i}
+              className={
+                "flex w-full cursor-pointer items-center gap-2 rounded-md border px-3 py-2 transition-colors focus-within:ring-2 focus-within:ring-ring/40 " +
+                stateClass +
+                (submitted ? " cursor-not-allowed" : "")
+              }
+            >
+              <input
+                type="radio"
+                name={groupName}
+                value={i}
+                checked={selected}
+                onChange={() => pick(i)}
                 disabled={submitted}
-                className={`w-full rounded-md border px-3 py-2 text-left transition-colors ${stateClass}`}
-              >
-                <span className="font-sans text-sm">{opt}</span>
-              </button>
-            </li>
+                className="sr-only"
+              />
+              <span aria-hidden className="inline-block h-4 w-4 shrink-0 rounded-full border border-current">
+                {selected ? (
+                  <span className="block h-full w-full scale-50 rounded-full bg-current" />
+                ) : null}
+              </span>
+              <span className="font-sans text-sm">{opt}</span>
+            </label>
           );
         })}
-      </ul>
+      </div>
       {!submitted ? (
         <Button onClick={submit} disabled={value === null} className="mt-2">
           Submit answer
