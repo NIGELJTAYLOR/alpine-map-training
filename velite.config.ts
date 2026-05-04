@@ -1,5 +1,13 @@
 import { defineConfig, defineCollection, s } from "velite";
 
+const pageKind = s.enum([
+  "page",
+  "quiz",
+  "contents",
+  "reflection",
+  "marking-guide",
+]);
+
 const pages = defineCollection({
   name: "Page",
   pattern: "pages/**/*.mdx",
@@ -10,14 +18,48 @@ const pages = defineCollection({
       section: s.string(),
       page: s.string(),
       title: s.string(),
+      kind: pageKind.default("page"),
+      order: s.number().int().default(5000),
       learningAim: s.string().optional(),
-      slug: s.path(),
+      exerciseCount: s.number().int().default(0),
+      selfCheckCount: s.number().int().default(0),
+      sourceFile: s.string().optional(),
       body: s.mdx(),
     })
     .transform((data) => ({
       ...data,
-      slug: `/levels/${data.level}/${data.section}/${data.page}`,
+      slug: `/levels/${data.level}/${data.page}`,
     })),
+});
+
+const answerKeys = defineCollection({
+  name: "AnswerKey",
+  pattern: "answer-keys/**/*.mdx",
+  schema: s.object({
+    id: s.string(),
+    pageId: s.string().optional(),
+    level: s.number().int().min(1).max(6),
+    // section/page are absent on file-level marking-guide records.
+    section: s.string().optional(),
+    page: s.string().optional(),
+    title: s.string(),
+    kind: pageKind.default("page"),
+    sourceFile: s.string().optional(),
+    body: s.mdx(),
+  }),
+});
+
+const trainerNotes = defineCollection({
+  name: "TrainerNote",
+  pattern: "trainer-notes/**/*.mdx",
+  schema: s.object({
+    id: s.string(),
+    level: s.number().int().min(1).max(6),
+    title: s.string(),
+    sections: s.array(s.string()).default([]),
+    sourceFile: s.string().optional(),
+    body: s.mdx(),
+  }),
 });
 
 export default defineConfig({
@@ -29,7 +71,7 @@ export default defineConfig({
     name: "[name]-[hash:6].[ext]",
     clean: true,
   },
-  collections: { pages },
+  collections: { pages, answerKeys, trainerNotes },
   mdx: {
     rehypePlugins: [],
     remarkPlugins: [],
