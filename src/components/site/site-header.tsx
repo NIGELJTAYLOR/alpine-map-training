@@ -25,7 +25,7 @@ export function SiteHeader() {
   const { hydrated, store } = useProgress();
   const trainerOn = hydrated && store.settings.trainerMode;
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="no-print sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
         <div className="flex items-center gap-2 min-w-0">
           <Link
@@ -53,6 +53,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={
                   "whitespace-nowrap rounded-md px-2.5 py-1 transition-colors " +
                   (active

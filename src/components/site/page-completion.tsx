@@ -17,7 +17,7 @@ export function PageCompletionControls({ pageId }: PageCompletionProps) {
 
   if (!hydrated) {
     return (
-      <div className="mt-12 rounded-lg border border-border p-4">
+      <div className="no-print mt-12 rounded-lg border border-border p-4">
         <p className="font-sans text-xs text-muted-foreground">
           Loading progress…
         </p>
@@ -29,7 +29,7 @@ export function PageCompletionControls({ pageId }: PageCompletionProps) {
   const isCompleted = page.status === "completed";
 
   return (
-    <div className="mt-12 rounded-lg border border-border p-4">
+    <div className="no-print mt-12 rounded-lg border border-border p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">

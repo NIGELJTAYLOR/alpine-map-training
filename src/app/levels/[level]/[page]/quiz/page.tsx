@@ -32,7 +32,7 @@ export default async function QuizRoute({ params }: PageProps) {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-8 sm:py-10">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-8 sm:py-10 focus:outline-none">
         <nav className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <Link href={`/levels/${level}`} className="hover:text-foreground">
             Level {level}

@@ -30,7 +30,7 @@ export default async function TemplateRoute({ params }: PageProps) {
   return (
     <>
       <SiteHeader />
-      <article className="mx-auto max-w-3xl px-4 py-8 sm:py-10">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-8 sm:py-10 focus:outline-none">
         <nav className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <Link href="/templates" className="hover:text-foreground">
             Templates
@@ -52,7 +52,7 @@ export default async function TemplateRoute({ params }: PageProps) {
         <div className="mdx-body">
           <AnswerKeyBody body={template.body} />
         </div>
-      </article>
+      </main>
     </>
   );
 }

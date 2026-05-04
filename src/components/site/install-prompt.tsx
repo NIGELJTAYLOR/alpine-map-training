@@ -75,8 +75,12 @@ export function InstallPrompt() {
 
   if (deferred) {
     return (
-      <div className="fixed inset-x-3 bottom-3 z-40 mx-auto max-w-md rounded-xl border border-border bg-card p-4 shadow-lg sm:bottom-4">
-        <p className="font-sans text-sm font-medium text-foreground">
+      <div
+        role="dialog"
+        aria-labelledby="install-prompt-title"
+        className="no-print fixed inset-x-3 bottom-3 z-40 mx-auto max-w-md rounded-xl border border-border bg-card p-4 shadow-lg sm:bottom-4"
+      >
+        <p id="install-prompt-title" className="font-sans text-sm font-medium text-foreground">
           Install this app for offline use
         </p>
         <p className="mt-1 font-serif text-xs text-muted-foreground">
@@ -105,8 +109,12 @@ export function InstallPrompt() {
 
   if (showIosHint) {
     return (
-      <div className="fixed inset-x-3 bottom-3 z-40 mx-auto max-w-md rounded-xl border border-border bg-card p-4 shadow-lg sm:bottom-4">
-        <p className="font-sans text-sm font-medium text-foreground">
+      <div
+        role="dialog"
+        aria-labelledby="install-hint-title"
+        className="no-print fixed inset-x-3 bottom-3 z-40 mx-auto max-w-md rounded-xl border border-border bg-card p-4 shadow-lg sm:bottom-4"
+      >
+        <p id="install-hint-title" className="font-sans text-sm font-medium text-foreground">
           Add to Home Screen for offline use
         </p>
         <p className="mt-1 font-serif text-xs text-muted-foreground">

@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-10 sm:py-16">
+      <main id="main-content" tabIndex={-1} className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-6 py-10 sm:py-16 focus:outline-none">
         <header className="flex flex-col gap-3">
           <p className="font-sans text-sm uppercase tracking-[0.2em] text-muted-foreground">
             Alpine Map Training

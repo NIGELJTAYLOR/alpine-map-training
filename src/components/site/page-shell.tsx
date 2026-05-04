@@ -11,8 +11,9 @@ interface PageShellProps {
 
 export function PageShell({ page, prev, next, children }: PageShellProps) {
   return (
-    <article className="mx-auto max-w-3xl px-4 py-8 sm:py-12">
-      <Breadcrumb level={page.level} section={page.section} pageCode={page.page} />
+    <main id="main-content" tabIndex={-1} className="focus:outline-none">
+      <article className="mx-auto max-w-3xl px-4 py-8 sm:py-12">
+        <Breadcrumb level={page.level} section={page.section} pageCode={page.page} />
 
       <header className="mt-4 mb-8">
         <h1 className="font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
@@ -33,7 +34,8 @@ export function PageShell({ page, prev, next, children }: PageShellProps) {
       <div className="mdx-body">{children}</div>
 
       <PrevNext prev={prev} next={next} level={page.level} />
-    </article>
+      </article>
+    </main>
   );
 }
 

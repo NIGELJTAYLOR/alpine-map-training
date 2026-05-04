@@ -140,6 +140,80 @@
 }
 
 @media print {
-  .no-print { display: none !important; }
-  body { background: white; color: black; }
+  .no-print,
+  header[class*="sticky"],
+  [role="dialog"],
+  [role="status"] {
+    display: none !important;
+  }
+
+  /* Force a clean light printing context regardless of dark-mode preference. */
+  :root,
+  .dark {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.18 0.02 257);
+    --muted: oklch(0.96 0 0);
+    --muted-foreground: oklch(0.35 0 0);
+    --border: oklch(0.85 0 0);
+    --card: oklch(1 0 0);
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: underline;
+  }
+
+  /* Always show the answer-key body when printing — collapsed UI is useless on paper. */
+  details:not([open]) > *:not(summary) {
+    display: revert !important;
+  }
+
+  /* Avoid breaking inside cards, tables, code blocks. */
+  article,
+  table,
+  pre,
+  figure,
+  section.rounded-xl,
+  div.rounded-xl,
+  div.rounded-lg {
+    break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    break-after: avoid;
+  }
+
+  img,
+  svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Tighter typography for paper. */
+  body,
+  .font-serif,
+  .font-sans {
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  @page {
+    margin: 1.5cm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -8,7 +8,7 @@ export default function OfflinePage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex min-h-[70vh] max-w-2xl flex-col items-center justify-center px-4 py-10 text-center">
+      <main id="main-content" tabIndex={-1} className="mx-auto flex min-h-[70vh] max-w-2xl flex-col items-center justify-center px-4 py-10 text-center focus:outline-none">
         <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Offline
         </p>

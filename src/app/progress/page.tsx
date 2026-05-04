@@ -29,7 +29,7 @@ export default function ProgressPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-8 sm:py-10">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-8 sm:py-10 focus:outline-none">
         <header className="mb-8">
           <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Personal

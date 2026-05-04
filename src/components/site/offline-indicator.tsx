@@ -26,7 +26,9 @@ export function OfflineIndicator() {
   return (
     <div
       role="status"
-      className="fixed inset-x-0 top-0 z-50 mx-auto w-fit rounded-b-md bg-destructive px-3 py-1 font-sans text-xs font-medium text-white shadow"
+      aria-live="polite"
+      aria-atomic="true"
+      className="no-print fixed inset-x-0 top-0 z-50 mx-auto w-fit rounded-b-md bg-destructive px-3 py-1 font-sans text-xs font-medium text-white shadow"
     >
       Offline — showing cached pages
     </div>
