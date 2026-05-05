@@ -29,8 +29,13 @@ export function SiteHeader() {
   const trainerOn = hydrated && store.settings.trainerMode;
   return (
     <header className="no-print sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur supports-[backdrop-filter]:bg-paper/70">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
-        <div className="flex min-w-0 items-center gap-3">
+      {/*
+        Mobile (default): wordmark on its own row, nav on a second row.
+        Gives the title room to breathe and the nav a full-width strip
+        to scroll. Desktop (md+): single row, wordmark left + nav right.
+      */}
+      <div className="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-3 md:flex-row md:items-center md:justify-between md:gap-3">
+        <div className="flex min-w-0 items-center justify-between gap-3 md:justify-start">
           <Wordmark href="/" />
           {trainerOn ? (
             <Link
@@ -42,7 +47,7 @@ export function SiteHeader() {
             </Link>
           ) : null}
         </div>
-        <nav className="flex items-center gap-0.5 overflow-x-auto">
+        <nav className="-mx-1 flex items-center gap-0.5 overflow-x-auto px-1 md:mx-0 md:px-0">
           {NAV.map((item) => {
             const active = item.matchPrefix
               ? pathname?.startsWith(item.matchPrefix)

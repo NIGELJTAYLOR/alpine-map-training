@@ -93,6 +93,33 @@ export function SettingsPanel() {
           </p>
         </div>
       </section>
+
+      {/* Get in touch */}
+      <section>
+        <p className="eyebrow eyebrow-contour">Get in touch</p>
+        <ul className="mt-3 space-y-2 font-sans text-[14px] leading-relaxed text-ink-2">
+          <li>
+            · <strong className="text-ink">Web</strong>:{" "}
+            <a
+              href="https://www.performos.ai"
+              className="text-contour underline underline-offset-4 hover:text-ink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              performos.ai
+            </a>
+          </li>
+          <li>
+            · <strong className="text-ink">Email</strong>:{" "}
+            <a
+              href="mailto:Hello@performos.ai"
+              className="text-contour underline underline-offset-4 hover:text-ink"
+            >
+              Hello@performos.ai
+            </a>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
