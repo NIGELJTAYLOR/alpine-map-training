@@ -259,6 +259,34 @@ export default function AboutPage() {
             </p>
           </section>
 
+          <section>
+            <h2 className="font-display text-2xl font-medium tracking-[-0.01em] text-ink">
+              Get in touch
+            </h2>
+            <ul className="mt-3 space-y-2 font-sans text-base leading-relaxed text-ink-2">
+              <li>
+                · <strong className="text-ink">Web</strong>:{" "}
+                <a
+                  href="https://www.performos.ai"
+                  className="text-contour underline underline-offset-4 hover:text-ink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  performos.ai
+                </a>
+              </li>
+              <li>
+                · <strong className="text-ink">Email</strong>:{" "}
+                <a
+                  href="mailto:Hello@performos.ai"
+                  className="text-contour underline underline-offset-4 hover:text-ink"
+                >
+                  Hello@performos.ai
+                </a>
+              </li>
+            </ul>
+          </section>
+
           <section className="border-t border-rule pt-8">
             <p className="page-code">
               Built by Claude · Conversations directed by Nigel Taylor ·

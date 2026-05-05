@@ -57,6 +57,30 @@ Run before any deploy you actually trust. ~5 minutes for the core flow,
 - [ ] `/diagrams` shows all 20 diagrams grouped by level. Page-ref backlinks work.
 - [ ] `/templates` lists 9 templates. Each links to a per-template view that renders the form.
 
+### Glossary (new in v1.5)
+- [ ] `/glossary` shows the alphabet jump strip plus 50+ terms grouped by initial letter.
+- [ ] Each term shows level pills (L1/L2/L3); cross-references link to other terms.
+- [ ] Header nav has a "Glossary" link, highlighted when active.
+
+### About (new in v1.5)
+- [ ] `/about` opens with a contour-line backdrop and the "A workbook, a conversation, a working app." headline.
+- [ ] Lists 11 sessions; links to performos.ai, mailto Hello@performos.ai, and the GitHub repo.
+
+### Quiz map extracts (new in v1.5)
+- [ ] `/levels/2/C7.1/quiz` shows an OpenTopoMap extract above the QuizPlayer with three coloured marker dots (Q1 crimson, Q2 ink, Q3 moss) and a legend.
+- [ ] `/levels/3/D10.1/quiz` shows its extract with Q4 + F1 + F2 markers.
+- [ ] `/levels/2/C7.2` shows the A → B → C → D walk with a route line drawn between markers.
+- [ ] `/levels/3/D10.2` shows the multi-leg tour with Start / DP1 / DP2 / DP3 / End markers + line.
+- [ ] Each map carries the OpenStreetMap + OpenTopoMap CC-BY-SA attribution.
+
+### See-also panels (new in v1.5)
+- [ ] Bottom of `/levels/2/C2.1` (or any page with diagrams) — a "See also" card with related diagrams + flashcards in two columns.
+
+### PerformOS branding (new in v1.5)
+- [ ] Header byline shows the PerformOS SVG wordmark, not the typed-out "BY PERFORMOS" text.
+- [ ] Browser tab favicon is the PerformOS icon.
+- [ ] Re-installing the PWA shows the PerformOS icon on the home screen (not the placeholder slate triangle).
+
 ## Accessibility (5 mins)
 
 - [ ] Skip-to-content link appears when you press Tab on a fresh page load.
@@ -70,7 +94,7 @@ Run before any deploy you actually trust. ~5 minutes for the core flow,
 ## PWA + offline (mobile-friendly, 5 mins)
 
 - [ ] On Chrome/Edge desktop or Android: install banner appears within 5s.
-- [ ] Install — the app opens standalone; theme colour is slate-blue.
+- [ ] Install — the app opens standalone; theme colour is cream paper (Carta).
 - [ ] Browse 3 pages while online.
 - [ ] Turn on Airplane Mode — already-visited pages still load; a never-visited page routes to `/~offline`.
 - [ ] Red "Offline" pill appears at the top.
