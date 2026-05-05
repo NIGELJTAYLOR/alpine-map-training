@@ -21,7 +21,7 @@ Run before any deploy you actually trust. ~5 minutes for the core flow,
 - [ ] `/levels/1/B1.1` renders the title, learning aim card, and full body.
 - [ ] Self-check checkboxes accept clicks and persist on reload.
 - [ ] "Mark page complete" toggles status; reload preserves it.
-- [ ] Diagrams (e.g. `/levels/2/C2.1`) render inline below the body.
+- [ ] Diagrams (e.g. `/levels/2/C2.1` — actual workbook title is "Hills and Summits") render inline below the body.
 - [ ] Linked templates (e.g. `/levels/3/D9.2`) appear as a card linking to `/templates/...`.
 - [ ] Answer-key toggle reveals the answer key with no scroll jump.
 
