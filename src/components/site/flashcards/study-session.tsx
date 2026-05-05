@@ -4,14 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { Flashcard } from "@/data/flashcards.generated";
 import { useProgress } from "@/lib/progress/provider";
-import {
-  applyRating,
-  dueHint,
-  isDue,
-  type Rating,
-} from "@/lib/flashcards/sm2";
+import { applyRating, isDue, type Rating } from "@/lib/flashcards/sm2";
 import { MarkdownString } from "@/components/site/quiz/markdown";
-import { Button, buttonVariants } from "@/components/ui/button";
 
 interface StudySessionProps {
   deckId: string;
@@ -19,11 +13,11 @@ interface StudySessionProps {
   cards: Flashcard[];
 }
 
-const RATING_LABELS: { rating: Rating; label: string; help: string; tone: string }[] = [
-  { rating: "again", label: "Again", help: "I forgot — show me soon", tone: "border-destructive bg-destructive/10 hover:bg-destructive/20 text-foreground" },
-  { rating: "hard", label: "Hard", help: "Got it but with effort", tone: "border-contour bg-contour/10 hover:bg-contour/20 text-foreground" },
-  { rating: "good", label: "Good", help: "Normal recall", tone: "border-primary bg-primary/10 hover:bg-primary/20 text-foreground" },
-  { rating: "easy", label: "Easy", help: "Trivial — wider gap next time", tone: "border-success bg-success/10 hover:bg-success/20 text-foreground" },
+const RATING_LABELS: { rating: Rating; label: string; key: string; tone: string }[] = [
+  { rating: "again", label: "Again", key: "1", tone: "border-crimson/40 bg-crimson/[.06] hover:bg-crimson/[.12] text-ink" },
+  { rating: "hard",  label: "Hard",  key: "2", tone: "border-amber/40 bg-amber/[.06] hover:bg-amber/[.12] text-ink" },
+  { rating: "good",  label: "Good",  key: "3", tone: "border-rule bg-paper-3 hover:bg-paper-2 text-ink" },
+  { rating: "easy",  label: "Easy",  key: "4", tone: "border-moss/40 bg-moss/[.06] hover:bg-moss/[.12] text-ink" },
 ];
 
 export function StudySession({ deckId, pseudo, cards }: StudySessionProps) {
@@ -80,45 +74,36 @@ export function StudySession({ deckId, pseudo, cards }: StudySessionProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div>
-        <div className="flex items-center justify-between font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          <span>
-            Card {idx + 1} of {queue.length}
-          </span>
-          <span>
-            {sched ? dueHint(sched) : "new"} · ease {sched ? sched.easiness.toFixed(2) : "—"}
-          </span>
+        <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3">
+          <span>Session · {String(idx + 1).padStart(2, "0")} / {queue.length}</span>
+          <span>SM-2 · {sched ? `ease ${sched.easiness.toFixed(2)}` : "new"}</span>
         </div>
-        <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-muted">
-          <div
-            className="h-full bg-primary transition-all"
-            style={{ width: `${((idx + (revealed ? 0.5 : 0)) / queue.length) * 100}%` }}
-          />
+        <div className="carta-progress mt-2">
+          <i style={{ width: `${((idx + (revealed ? 0.5 : 0)) / queue.length) * 100}%` }} />
         </div>
       </div>
 
-      <article className="rounded-xl border border-border bg-card p-5 sm:p-6">
-        <header className="mb-3">
-          <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {card.id} · {card.title}
+      <article className="surface-card p-5 sm:p-7">
+        <header className="mb-4">
+          <p className="eyebrow eyebrow-contour">
+            Card · {card.id} · {card.title}
           </p>
         </header>
 
-        <div className="mt-2">
+        <div className="mt-3 [&_p]:font-display [&_p]:text-xl [&_p]:font-medium [&_p]:tracking-[-0.01em] [&_p]:leading-snug [&_p]:text-ink">
           <MarkdownString text={card.front} />
         </div>
 
         {revealed ? (
-          <div className="mt-6 border-t border-border pt-4">
-            <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary">
-              Back
-            </p>
+          <div className="mt-6 border-t border-rule pt-5">
+            <p className="eyebrow">Back</p>
             <div className="mt-2">
               <MarkdownString text={card.back} />
             </div>
             {card.tags.length > 0 ? (
-              <p className="mt-3 font-sans text-xs text-muted-foreground">
+              <p className="page-code mt-4">
                 {card.tags.join(" · ")}
               </p>
             ) : null}
@@ -128,32 +113,39 @@ export function StudySession({ deckId, pseudo, cards }: StudySessionProps) {
 
       {!revealed ? (
         <div className="flex justify-center">
-          <Button onClick={() => setRevealed(true)} size="lg">
+          <button
+            type="button"
+            onClick={() => setRevealed(true)}
+            className="inline-flex items-center justify-center gap-2 rounded-[4px] border border-ink bg-ink px-6 py-3 font-sans text-sm font-semibold text-paper hover:bg-ink-2"
+          >
             Show answer
-          </Button>
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {RATING_LABELS.map(({ rating, label, help, tone }) => (
+          {RATING_LABELS.map(({ rating, label, key, tone }) => (
             <button
               key={rating}
               type="button"
               onClick={() => rate(rating)}
               className={`flex flex-col items-center justify-center rounded-md border px-3 py-3 transition-colors ${tone}`}
             >
-              <span className="font-sans text-sm font-semibold">{label}</span>
-              <span className="mt-0.5 font-sans text-[11px] text-muted-foreground">
-                {help}
+              <span className="font-display text-base font-medium">{label}</span>
+              <span className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                {nextHint(sched, rating)} · {key}
               </span>
             </button>
           ))}
         </div>
       )}
 
-      <div className="flex justify-end pt-4 border-t border-border">
+      <div className="flex items-center justify-between gap-3 border-t border-rule pt-4">
+        <span className="page-code">
+          Press 1 / 2 / 3 / 4 to rate · SPACE to flip
+        </span>
         <Link
           href="/flashcards"
-          className={buttonVariants({ variant: "outline", size: "sm" })}
+          className="inline-flex items-center justify-center gap-2 rounded-[4px] border border-rule bg-transparent px-3 py-1.5 font-sans text-xs font-semibold text-ink hover:border-ink"
         >
           End session
         </Link>
@@ -162,10 +154,27 @@ export function StudySession({ deckId, pseudo, cards }: StudySessionProps) {
   );
 }
 
+/** Lightweight next-interval hint shown under each rating button. */
+function nextHint(
+  sched: { intervalDays: number; easiness: number; repetitions: number } | undefined,
+  rating: Rating,
+): string {
+  if (!sched || sched.repetitions === 0) {
+    if (rating === "again") return "<1d";
+    if (rating === "hard") return "1d";
+    if (rating === "good") return "1d";
+    return "4d";
+  }
+  if (rating === "again") return "<1d";
+  if (rating === "hard")  return `${Math.max(1, Math.round(sched.intervalDays * 0.7))}d`;
+  if (rating === "good")  return sched.repetitions === 1 ? "6d" : `${Math.round(sched.intervalDays * sched.easiness)}d`;
+  return `${Math.round(sched.intervalDays * sched.easiness * 1.3)}d`;
+}
+
 function SessionComplete({ deckId, completed }: { deckId: string; completed: number }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6 text-center">
-      <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
+    <div className="surface-card p-7 text-center sm:p-10">
+      <p className="eyebrow eyebrow-contour">
         Session complete
       </p>
       <h2 className="mt-2 font-sans text-2xl font-semibold text-foreground">
@@ -175,21 +184,21 @@ function SessionComplete({ deckId, completed }: { deckId: string; completed: num
           ? "1 card reviewed"
           : `${completed} cards reviewed`}
       </h2>
-      <p className="mt-3 font-serif text-sm text-muted-foreground">
+      <p className="mt-3 font-sans text-[14px] leading-relaxed text-ink-2">
         Each card you rated has been scheduled for its next review based on
         how well you knew it.
       </p>
-      <div className="mt-5 flex flex-wrap justify-center gap-2">
+      <div className="mt-6 flex flex-wrap justify-center gap-2">
         <Link
           href="/flashcards"
-          className={buttonVariants({})}
+          className="inline-flex items-center justify-center rounded-[4px] border border-ink bg-ink px-4 py-2 font-sans text-sm font-semibold text-paper hover:bg-ink-2"
         >
           Back to flashcards
         </Link>
         {deckId !== "review" ? (
           <Link
             href="/flashcards/study/review"
-            className={buttonVariants({ variant: "outline" })}
+            className="inline-flex items-center justify-center rounded-[4px] border border-rule bg-transparent px-4 py-2 font-sans text-sm font-semibold text-ink hover:border-ink"
           >
             Daily review
           </Link>

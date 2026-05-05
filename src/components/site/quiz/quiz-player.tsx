@@ -100,17 +100,12 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-center justify-between font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          <span>
-            Question {idx + 1} of {total}
-          </span>
+        <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3">
+          <span>Q {String(idx + 1).padStart(2, "0")} / {total}</span>
           <span>{answered} answered</span>
         </div>
-        <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-muted">
-          <div
-            className="h-full bg-primary transition-all"
-            style={{ width: `${((idx + 1) / total) * 100}%` }}
-          />
+        <div className="carta-progress mt-2">
+          <i style={{ width: `${((idx + 1) / total) * 100}%` }} />
         </div>
       </div>
 
@@ -150,12 +145,12 @@ function QuestionCard({
   setResponse: (p: Partial<Response>) => void;
 }) {
   return (
-    <article className="rounded-xl border border-border bg-card p-5 sm:p-6">
-      <header className="mb-4">
-        <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
+    <article className="surface-card p-5 sm:p-7">
+      <header className="mb-5">
+        <p className="eyebrow eyebrow-contour">
           {question.id} · {question.title}
         </p>
-        <div className="mt-2">
+        <div className="mt-3 [&_p]:font-display [&_p]:text-xl [&_p]:font-medium [&_p]:tracking-[-0.01em] [&_p]:text-ink [&_p]:leading-snug">
           <MarkdownString text={question.prompt} />
         </div>
       </header>
@@ -582,45 +577,51 @@ function ScoreSummary({
   const minutes = Math.max(1, Math.round(elapsedMs / 60000));
 
   return (
-    <div className="space-y-8">
-      <header className="rounded-xl border border-border bg-card p-6">
-        <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Result
+    <div className="space-y-10">
+      <header className="surface-card p-6 sm:p-8">
+        <p className="eyebrow eyebrow-contour">
+          Quiz · {quiz.title.replace(/^Level \d+ — /, "")} · {minutes} min
         </p>
-        <h2 className="mt-1 font-sans text-3xl font-semibold text-foreground">
-          {stats.score} / {quiz.questions.length}
-        </h2>
-        <p className="mt-2 font-serif text-sm text-muted-foreground">
+        <p className="mt-3 font-display text-[64px] font-medium leading-none tracking-[-0.025em] text-ink sm:text-[88px]">
+          {stats.score}
+          <span className="text-ink-3">/{quiz.questions.length}</span>
+        </p>
+        <p className="mt-3 font-sans text-[15px] leading-relaxed text-ink-2">
           {stats.autoCorrect} auto-graded correct · {stats.selfCorrect} self-marked correct ·{" "}
-          {stats.selfPartial} partial · {stats.incorrect} incorrect ·{" "}
-          {stats.skipped} skipped · {minutes} min
+          {stats.selfPartial} partial · {stats.incorrect} incorrect · {stats.skipped} skipped
         </p>
         {stats.score >= 12 ? (
-          <p className="mt-3 font-sans text-sm font-medium text-success">
+          <p className="mt-3 font-sans text-sm font-semibold text-moss">
             Above the readiness target (12+).
           </p>
         ) : (
-          <p className="mt-3 font-sans text-sm font-medium text-destructive">
+          <p className="mt-3 font-sans text-sm font-semibold text-crimson">
             Below the readiness target — see the error log below for the pages to revisit.
           </p>
         )}
       </header>
 
       <section>
-        <h3 className="font-sans text-xl font-semibold text-foreground">
-          By skill area
+        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
+          Per-skill breakdown
         </h3>
-        <ul className="mt-3 space-y-2">
+        <ul className="mt-4 space-y-2">
           {quiz.skillAreas.map((area) => {
             const inArea = stats.byArea[area.id] ?? { total: 0, score: 0 };
+            const pct = inArea.total === 0 ? 0 : (inArea.score / inArea.total) * 100;
             return (
               <li
                 key={area.id}
-                className="flex items-center justify-between rounded-lg border border-border p-3"
+                className="grid grid-cols-[minmax(0,1fr)_120px_60px] items-center gap-3 border-b border-rule py-2.5 last:border-b-0"
               >
-                <span className="font-sans text-sm">{area.label}</span>
-                <span className="font-mono text-sm text-muted-foreground">
-                  {inArea.score} / {inArea.total}
+                <span className="font-sans text-[14px] text-ink truncate">
+                  {area.label}
+                </span>
+                <span className="carta-progress">
+                  <i style={{ width: `${pct}%` }} />
+                </span>
+                <span className="text-right font-mono text-[12px] text-ink-3">
+                  {inArea.score}/{inArea.total}
                 </span>
               </li>
             );
@@ -629,55 +630,48 @@ function ScoreSummary({
       </section>
 
       <section>
-        <h3 className="font-sans text-xl font-semibold text-foreground">
+        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
           Confidence ratings
         </h3>
-        <p className="mt-2 font-serif text-sm text-muted-foreground">
+        <p className="mt-2 font-sans text-[14px] leading-relaxed text-ink-2">
           Independent of the quiz score above — capture how confident you feel
           on each skill area. Useful for the trainer review and the next
           session&rsquo;s focus.
         </p>
-        <div className="mt-3">
+        <div className="mt-4">
           <ConfidenceScoreInput scopeKey={quiz.id} skillAreas={quiz.skillAreas} />
         </div>
       </section>
 
       <section>
-        <h3 className="font-sans text-xl font-semibold text-foreground">Error log</h3>
+        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
+          Error log
+        </h3>
         {stats.errorRows.length === 0 ? (
-          <p className="mt-2 font-serif text-base text-muted-foreground">
+          <p className="mt-3 font-sans text-base text-ink-3">
             No incorrect or skipped questions.
           </p>
         ) : (
-          <div className="mt-3 overflow-x-auto">
-            <table className="w-full border-collapse text-left text-sm">
-              <thead>
-                <tr>
-                  <th className="border border-border bg-muted px-3 py-2 font-sans">Q</th>
-                  <th className="border border-border bg-muted px-3 py-2 font-sans">Skill area</th>
-                  <th className="border border-border bg-muted px-3 py-2 font-sans">Page to revisit</th>
-                  <th className="border border-border bg-muted px-3 py-2 font-sans">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {stats.errorRows.map((row) => (
-                  <tr key={row.id}>
-                    <td className="border border-border px-3 py-2 font-mono">{row.id}</td>
-                    <td className="border border-border px-3 py-2 font-sans">{row.skillLabel}</td>
-                    <td className="border border-border px-3 py-2">
-                      <Link
-                        href={`/levels/${quiz.level}/${row.pageRef}`}
-                        className="font-sans text-primary hover:underline"
-                      >
-                        {row.pageRef}
-                      </Link>
-                    </td>
-                    <td className="border border-border px-3 py-2 font-sans">{row.statusLabel}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <ul className="mt-4 divide-y divide-rule overflow-hidden rounded-md border border-rule bg-paper-3">
+            {stats.errorRows.map((row) => (
+              <li
+                key={row.id}
+                className="grid grid-cols-[60px_1fr_80px_80px] items-center gap-3 px-4 py-3"
+              >
+                <span className="page-code">{row.id}</span>
+                <span className="font-sans text-[14px] text-ink-2">{row.skillLabel}</span>
+                <Link
+                  href={`/levels/${quiz.level}/${row.pageRef}`}
+                  className="page-code text-contour hover:text-ink"
+                >
+                  {row.pageRef}
+                </Link>
+                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3 text-right">
+                  {row.statusLabel}
+                </span>
+              </li>
+            ))}
+          </ul>
         )}
       </section>
 

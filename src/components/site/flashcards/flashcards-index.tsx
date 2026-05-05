@@ -49,27 +49,32 @@ export function FlashcardsIndex({ decks }: { decks: DeckSummary[] }) {
   const others = enriched.filter((e) => !e.deck.primary);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {reviewSummary ? (
-        <section className="rounded-xl border border-primary/40 bg-primary/5 p-5 sm:p-6">
-          <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary">
-            Today
-          </p>
-          <h2 className="mt-1 font-sans text-2xl font-semibold tracking-tight text-foreground">
-            {hydrated ? `${reviewSummary.dueCount} cards due` : "Loading…"}
+        <section className="surface-card p-6 sm:p-8">
+          <p className="eyebrow eyebrow-contour">Today</p>
+          <h2 className="mt-2 font-display text-3xl font-medium tracking-[-0.015em] text-ink sm:text-[44px]">
+            {hydrated ? (
+              <>
+                {reviewSummary.dueCount}{" "}
+                <span className="text-ink-3">{reviewSummary.dueCount === 1 ? "card due" : "cards due"}</span>
+              </>
+            ) : (
+              "Loading…"
+            )}
           </h2>
-          <p className="mt-1 font-sans text-sm text-muted-foreground">
+          <p className="mt-2 font-sans text-[15px] leading-relaxed text-ink-2">
             {reviewSummary.deck.description}
           </p>
           {hydrated && reviewSummary.dueCount > 0 ? (
             <Link
               href="/flashcards/study/review"
-              className="mt-4 inline-block rounded-md bg-primary px-4 py-2 font-sans text-sm font-medium text-primary-foreground hover:bg-primary/90"
+              className="mt-5 inline-flex items-center justify-center gap-2 rounded-[4px] border border-ink bg-ink px-5 py-2.5 font-sans text-sm font-semibold text-paper hover:bg-ink-2"
             >
               Start daily review →
             </Link>
           ) : hydrated ? (
-            <p className="mt-3 font-serif text-sm text-muted-foreground">
+            <p className="mt-4 font-sans text-sm text-ink-3">
               All caught up — see you tomorrow.
             </p>
           ) : null}
@@ -77,14 +82,17 @@ export function FlashcardsIndex({ decks }: { decks: DeckSummary[] }) {
       ) : null}
 
       <section>
-        <h2 className="font-sans text-xl font-semibold text-foreground">
-          Focused decks
-        </h2>
-        <p className="mt-1 font-sans text-sm text-muted-foreground">
+        <div className="mb-3 flex items-baseline justify-between gap-3">
+          <h2 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
+            Focused decks
+          </h2>
+          <span className="eyebrow eyebrow-contour">By level</span>
+        </div>
+        <p className="font-sans text-[14px] leading-relaxed text-ink-2">
           Pick a level and study its cards in order. New cards graduate into
           your daily review queue once you rate them.
         </p>
-        <ul className="mt-3 space-y-2">
+        <ul className="mt-4 space-y-2">
           {focused.map(({ deck, dueCount, newCount, totalCount }) => (
             <DeckRow
               key={deck.id}
@@ -99,10 +107,13 @@ export function FlashcardsIndex({ decks }: { decks: DeckSummary[] }) {
       </section>
 
       <section>
-        <h2 className="font-sans text-xl font-semibold text-foreground">
-          Other decks
-        </h2>
-        <ul className="mt-3 space-y-2">
+        <div className="mb-3 flex items-baseline justify-between gap-3">
+          <h2 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
+            Other decks
+          </h2>
+          <span className="eyebrow eyebrow-contour">Topical</span>
+        </div>
+        <ul className="space-y-2">
           {others.map(({ deck, dueCount, newCount, totalCount }) => (
             <DeckRow
               key={deck.id}
@@ -133,29 +144,27 @@ function DeckRow({
   hydrated: boolean;
 }) {
   return (
-    <li className="rounded-lg border border-border transition-colors hover:border-primary">
+    <li className="rounded-md border border-rule bg-paper-3 transition-colors hover:border-ink">
       <Link
         href={`/flashcards/study/${deck.id}`}
         className="block p-4"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="font-sans text-base font-medium text-foreground">
+            <p className="font-display text-base font-medium text-ink">
               {deck.title}
             </p>
-            <p className="mt-1 font-serif text-sm text-muted-foreground">
+            <p className="mt-1 font-sans text-[13px] leading-relaxed text-ink-2">
               {deck.description}
             </p>
           </div>
           <div className="shrink-0 text-right">
-            <p className="font-mono text-sm text-foreground">
+            <p className="font-mono text-[15px] text-ink">
               {hydrated ? `${dueCount}/${totalCount}` : `–/${totalCount}`}
             </p>
-            <p className="font-sans text-xs text-muted-foreground">
-              due / total
-            </p>
+            <p className="page-code">due / total</p>
             {hydrated && newCount > 0 ? (
-              <p className="mt-1 font-sans text-xs text-primary">
+              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-contour">
                 {newCount} new
               </p>
             ) : null}
