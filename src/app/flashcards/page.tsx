@@ -13,16 +13,14 @@ export default function FlashcardsPage() {
       <main
         id="main-content"
         tabIndex={-1}
-        className="mx-auto max-w-3xl px-4 py-8 sm:py-10 focus:outline-none"
+        className="mx-auto max-w-3xl px-4 py-10 sm:py-14 focus:outline-none"
       >
-        <header className="mb-8">
-          <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Spaced repetition
-          </p>
-          <h1 className="mt-2 font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        <header className="mb-10">
+          <p className="eyebrow eyebrow-contour">Spaced repetition</p>
+          <h1 className="mt-3 font-display text-3xl font-medium tracking-[-0.015em] text-ink sm:text-[44px]">
             Flashcards
           </h1>
-          <p className="mt-3 font-serif text-base leading-relaxed text-muted-foreground">
+          <p className="mt-3 font-sans text-base leading-relaxed text-ink-2">
             {FLASHCARDS.length} cards across the workbook. Each card you rate
             schedules its next review using the SM-2 algorithm — keep your
             daily review queue clear and the deck builds toward fluent recall.

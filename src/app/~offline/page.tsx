@@ -9,34 +9,23 @@ export default function OfflinePage() {
     <>
       <SiteHeader />
       <main id="main-content" tabIndex={-1} className="mx-auto flex min-h-[70vh] max-w-2xl flex-col items-center justify-center px-4 py-10 text-center focus:outline-none">
-        <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Offline
-        </p>
-        <h1 className="mt-3 font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        <p className="eyebrow eyebrow-contour">Offline</p>
+        <h1 className="mt-4 font-display text-3xl font-medium tracking-[-0.015em] text-ink sm:text-[44px]">
           You&rsquo;re offline
         </h1>
-        <p className="mt-4 font-serif text-base leading-relaxed text-muted-foreground">
+        <p className="mt-4 font-sans text-base leading-relaxed text-ink-2">
           This page hasn&rsquo;t been cached yet. Pages you&rsquo;ve already
           visited remain available; head back to the level index or your
           progress dashboard.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link
-            href="/"
-            className="rounded-md border border-border px-4 py-2 font-sans text-sm hover:border-primary"
-          >
+          <Link href="/" className="inline-flex items-center justify-center rounded-[4px] border border-rule bg-transparent px-4 py-2 font-sans text-sm font-semibold text-ink hover:border-ink">
             Home
           </Link>
-          <Link
-            href="/levels/1"
-            className="rounded-md border border-border px-4 py-2 font-sans text-sm hover:border-primary"
-          >
+          <Link href="/levels/1" className="inline-flex items-center justify-center rounded-[4px] border border-rule bg-transparent px-4 py-2 font-sans text-sm font-semibold text-ink hover:border-ink">
             Level 1
           </Link>
-          <Link
-            href="/progress"
-            className="rounded-md border border-border px-4 py-2 font-sans text-sm hover:border-primary"
-          >
+          <Link href="/progress" className="inline-flex items-center justify-center rounded-[4px] border border-rule bg-transparent px-4 py-2 font-sans text-sm font-semibold text-ink hover:border-ink">
             Your progress
           </Link>
         </div>

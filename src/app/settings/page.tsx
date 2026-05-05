@@ -8,18 +8,14 @@ export default function SettingsPage() {
   return (
     <>
       <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="mx-auto max-w-2xl px-4 py-8 sm:py-10 focus:outline-none">
-        <header className="mb-8">
-          <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Personal
-          </p>
-          <h1 className="mt-2 font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-2xl px-4 py-10 sm:py-14 focus:outline-none">
+        <header className="mb-10">
+          <p className="eyebrow eyebrow-contour">Personal</p>
+          <h1 className="mt-3 font-display text-3xl font-medium tracking-[-0.015em] text-ink sm:text-[44px]">
             Settings
           </h1>
-          <p className="mt-3 font-serif text-base leading-relaxed text-muted-foreground">
-            Stored on this device only. Trainer mode toggles a richer view —
-            answer keys auto-expand, trainer notes appear inline, and the
-            progress dashboard surfaces extra detail.
+          <p className="mt-3 font-sans text-base leading-relaxed text-ink-2">
+            Local-first. Nothing leaves this device unless you export it.
           </p>
         </header>
 

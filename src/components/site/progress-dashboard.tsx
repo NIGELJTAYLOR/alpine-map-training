@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { useProgress } from "@/lib/progress/provider";
-import { Button } from "@/components/ui/button";
 import { FLASHCARDS } from "@/data/flashcards.generated";
-import { isDue, todayIso } from "@/lib/flashcards/sm2";
+import { todayIso } from "@/lib/flashcards/sm2";
 
 interface DashboardLevel {
   level: number;
@@ -29,7 +28,7 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
 
   if (!hydrated) {
     return (
-      <p className="font-sans text-sm text-muted-foreground">Loading your progress…</p>
+      <p className="font-sans text-sm text-ink-3">Loading your progress…</p>
     );
   }
 
@@ -51,11 +50,24 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
     ? new Date(store.lastUpdated).toLocaleString()
     : "—";
 
+  // Flashcard summary
+  let flashDue = 0;
+  let flashStudied = 0;
+  for (const c of FLASHCARDS) {
+    const sched = store.flashcards[c.id];
+    if (sched) {
+      flashStudied += 1;
+      if (sched.dueDate <= todayIso()) flashDue += 1;
+    } else {
+      flashDue += 1;
+    }
+  }
+
   function confirmReset() {
     if (
       typeof window !== "undefined" &&
       window.confirm(
-        "Reset all progress? This clears completion, self-checks, quiz scores and confidence ratings stored on this device. Cannot be undone.",
+        "Reset all progress? This clears completion, self-checks, quiz scores, confidence ratings and flashcard schedules stored on this device. Cannot be undone.",
       )
     ) {
       reset();
@@ -63,28 +75,29 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
   }
 
   return (
-    <div className="space-y-10">
-      <section className="rounded-xl border border-border bg-card p-5 sm:p-6">
-        <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Overall
+    <div className="space-y-12">
+      {/* ===== Overall ===== */}
+      <section className="surface-card p-6 sm:p-8">
+        <p className="eyebrow eyebrow-contour">Overall</p>
+        <p className="mt-3 font-display text-[64px] font-medium leading-none tracking-[-0.025em] text-ink sm:text-[88px]">
+          {Math.round(overallPct)}
+          <span className="text-ink-3">%</span>
         </p>
-        <h2 className="mt-1 font-sans text-3xl font-semibold text-foreground">
-          {totalCompleted} / {totalPages} pages complete
-        </h2>
-        <p className="mt-1 font-serif text-sm text-muted-foreground">
-          {totalInProgress} in progress · last activity {lastUpdated}
+        <p className="mt-3 font-sans text-[15px] leading-relaxed text-ink-2">
+          {totalCompleted} of {totalPages} pages complete · {totalInProgress} in progress
         </p>
-        <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-muted">
-          <div
-            className="h-full bg-primary transition-all"
-            style={{ width: `${overallPct}%` }}
-          />
+        <p className="mt-1 page-code">Last activity {lastUpdated}</p>
+        <div className="carta-progress mt-5">
+          <i style={{ width: `${overallPct}%` }} />
         </div>
       </section>
 
+      {/* ===== By level ===== */}
       <section>
-        <h3 className="font-sans text-xl font-semibold text-foreground">By level</h3>
-        <ul className="mt-3 space-y-2">
+        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
+          By level
+        </h3>
+        <ul className="mt-4 space-y-3">
           {levels.map((l) => {
             let completed = 0;
             let inProg = 0;
@@ -93,51 +106,83 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
               if (s === "completed") completed += 1;
               else if (s === "in-progress") inProg += 1;
             }
-            const pct = ((completed + inProg * 0.5) / l.pages.length) * 100;
+            const pct = l.pages.length
+              ? ((completed + inProg * 0.5) / l.pages.length) * 100
+              : 0;
             return (
-              <li
-                key={l.level}
-                className="rounded-lg border border-border p-3"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <Link
-                    href={`/levels/${l.level}`}
-                    className="font-sans text-sm font-medium text-foreground hover:text-primary"
-                  >
-                    Level {l.level}
-                  </Link>
-                  <span className="font-mono text-xs text-muted-foreground">
-                    {completed} / {l.pages.length}
-                  </span>
-                </div>
-                <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <div
-                    className="h-full bg-primary transition-all"
-                    style={{ width: `${pct}%` }}
-                  />
-                </div>
+              <li key={l.level} className="grid grid-cols-[120px_1fr_64px] items-center gap-3 border-b border-rule pb-3 last:border-b-0">
+                <Link
+                  href={`/levels/${l.level}`}
+                  className="font-display text-base font-medium text-ink hover:text-ink-2"
+                >
+                  Level {l.level}
+                </Link>
+                <span className="carta-progress">
+                  <i style={{ width: `${pct}%` }} />
+                </span>
+                <span className="text-right font-mono text-[12px] text-ink-3">
+                  {completed}/{l.pages.length}
+                </span>
               </li>
             );
           })}
         </ul>
       </section>
 
+      {/* ===== Quizzes ===== */}
+      <section>
+        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
+          Quizzes
+        </h3>
+        <ul className="mt-4 space-y-2">
+          {quizMeta.map((q) => {
+            const attempt = store.quizzes[q.id];
+            const isComplete = Boolean(attempt?.completedAt);
+            const statusText = isComplete
+              ? `${attempt!.score} / ${q.totalQuestions} · ${attempt!.timeMinutes ?? 0} min`
+              : attempt
+              ? `${Object.keys(attempt.responses).length} of ${q.totalQuestions} answered`
+              : "Not started";
+            return (
+              <li
+                key={q.id}
+                className="rounded-md border border-rule bg-paper-3 transition-colors hover:border-ink"
+              >
+                <Link
+                  href={`/levels/${q.level}/${q.page}/quiz`}
+                  className="flex items-center justify-between gap-3 px-4 py-3"
+                >
+                  <div className="min-w-0">
+                    <p className="font-display text-base font-medium text-ink">
+                      {q.title}
+                    </p>
+                    <p className="page-code mt-0.5">{statusText}</p>
+                  </div>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-contour">
+                    {isComplete ? "Review →" : attempt ? "Continue →" : "Start →"}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      {/* ===== Confidence ===== */}
       {Object.keys(store.confidenceScores).length > 0 ? (
         <section>
-          <h3 className="font-sans text-xl font-semibold text-foreground">
+          <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
             Confidence ratings
           </h3>
-          <ul className="mt-3 space-y-1">
+          <ul className="mt-4 divide-y divide-rule overflow-hidden rounded-md border border-rule bg-paper-3">
             {Object.entries(store.confidenceScores).map(([key, score]) => (
               <li
                 key={key}
-                className="flex items-center justify-between gap-3 rounded-md border border-border px-3 py-2"
+                className="flex items-center justify-between gap-3 px-4 py-3"
               >
-                <span className="font-mono text-xs text-muted-foreground">
-                  {key}
-                </span>
-                <span className="font-sans text-sm font-medium">
-                  {score.value ?? "—"}/5
+                <span className="page-code">{key}</span>
+                <span className="font-display text-base font-medium text-ink">
+                  {score.value ?? "—"}<span className="text-ink-3">/5</span>
                 </span>
               </li>
             ))}
@@ -145,40 +190,38 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
         </section>
       ) : null}
 
+      {/* ===== Readiness ===== */}
       {Object.keys(store.readinessChecks).length > 0 ? (
         <section>
-          <h3 className="font-sans text-xl font-semibold text-foreground">
+          <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
             Readiness checks
           </h3>
-          <ul className="mt-3 space-y-2">
+          <ul className="mt-4 space-y-2">
             {Object.entries(store.readinessChecks).map(([key, check]) => (
               <li
                 key={key}
-                className="rounded-md border border-border p-3"
+                className="rounded-md border border-rule bg-paper-3 p-4"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-xs text-muted-foreground">
-                    {key}
-                  </span>
+                  <span className="page-code">{key}</span>
                   <span
                     className={
-                      "rounded-full px-2 py-0.5 font-sans text-xs " +
-                      (check.status === "yes"
-                        ? "bg-success/15 text-success"
+                      check.status === "yes"
+                        ? "pill pill-moss"
                         : check.status === "not-quite"
-                        ? "bg-contour/15 text-contour"
-                        : "bg-destructive/15 text-destructive")
+                        ? "pill pill-amber"
+                        : "pill pill-crimson"
                     }
                   >
                     {check.status === "yes"
-                      ? "Ready"
+                      ? "Met"
                       : check.status === "not-quite"
                       ? "Not quite"
                       : "Not ready"}
                   </span>
                 </div>
                 {check.notes ? (
-                  <p className="mt-2 font-serif text-sm text-muted-foreground">
+                  <p className="mt-2 font-sans text-[14px] leading-relaxed text-ink-2">
                     {check.notes}
                   </p>
                 ) : null}
@@ -188,87 +231,41 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
         </section>
       ) : null}
 
-      <section className="rounded-lg border border-border p-4">
+      {/* ===== Flashcards ===== */}
+      <section className="surface-card p-5 sm:p-6">
         <div className="flex items-center justify-between gap-3">
-          <h3 className="font-sans text-xl font-semibold text-foreground">
+          <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
             Flashcards
           </h3>
           <Link
             href="/flashcards"
-            className="font-sans text-xs text-primary hover:underline"
+            className="font-mono text-[11px] uppercase tracking-[0.14em] text-contour hover:text-ink"
           >
             Open →
           </Link>
         </div>
-        {(() => {
-          const total = FLASHCARDS.length;
-          let due = 0;
-          let studied = 0;
-          for (const c of FLASHCARDS) {
-            const sched = store.flashcards[c.id];
-            if (sched) {
-              studied += 1;
-              if (sched.dueDate <= todayIso()) due += 1;
-            } else {
-              due += 1;
-            }
-          }
-          return (
-            <p className="mt-2 font-sans text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{due}</span> due today ·{" "}
-              <span className="font-medium text-foreground">{studied}</span> ever studied ·{" "}
-              <span className="font-medium text-foreground">{total}</span> in deck
-            </p>
-          );
-        })()}
+        <p className="mt-3 font-sans text-[15px] leading-relaxed text-ink-2">
+          <span className="font-display text-2xl font-medium text-ink">{flashDue}</span>{" "}
+          due today · {flashStudied} ever studied · {FLASHCARDS.length} in deck
+        </p>
       </section>
 
-      <section>
-        <h3 className="font-sans text-xl font-semibold text-foreground">Quizzes</h3>
-        <ul className="mt-3 space-y-2">
-          {quizMeta.map((q) => {
-            const attempt = store.quizzes[q.id];
-            const status = attempt?.completedAt
-              ? `Completed · score ${attempt.score} / ${q.totalQuestions} (${attempt.timeMinutes ?? 0} min)`
-              : attempt
-              ? `Started · ${Object.keys(attempt.responses).length} of ${q.totalQuestions} answered`
-              : "Not started";
-            return (
-              <li key={q.id} className="rounded-lg border border-border p-3">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div>
-                    <Link
-                      href={`/levels/${q.level}/${q.page}/quiz`}
-                      className="font-sans text-sm font-medium text-foreground hover:text-primary"
-                    >
-                      {q.title}
-                    </Link>
-                    <p className="mt-1 font-sans text-xs text-muted-foreground">
-                      {status}
-                    </p>
-                  </div>
-                  <Link
-                    href={`/levels/${q.level}/${q.page}/quiz`}
-                    className="font-sans text-xs text-primary hover:underline"
-                  >
-                    {attempt?.completedAt ? "Review →" : attempt ? "Continue →" : "Start →"}
-                  </Link>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      <section>
-        <h3 className="font-sans text-xl font-semibold text-foreground">Reset</h3>
-        <p className="mt-2 font-serif text-sm text-muted-foreground">
+      {/* ===== Reset ===== */}
+      <section className="border-t border-rule pt-8">
+        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
+          Reset
+        </h3>
+        <p className="mt-2 font-sans text-[14px] leading-relaxed text-ink-2">
           Progress is stored only in this browser&rsquo;s localStorage. Clear
           it here if you want to start over or hand the device to someone else.
         </p>
-        <Button variant="outline" onClick={confirmReset} className="mt-3">
+        <button
+          type="button"
+          onClick={confirmReset}
+          className="mt-4 inline-flex items-center justify-center rounded-[4px] border border-rule bg-transparent px-4 py-2 font-sans text-sm font-semibold text-ink hover:border-crimson hover:text-crimson"
+        >
           Reset all progress
-        </Button>
+        </button>
       </section>
     </div>
   );

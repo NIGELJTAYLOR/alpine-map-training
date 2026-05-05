@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { SelfCheckCheckbox } from "@/components/site/self-check-checkbox";
 
-/** Replace native HTML elements emitted by MDX with styled versions. */
+/** Replace native HTML elements emitted by MDX with Carta-styled versions. */
 export const mdxComponents = {
   input: (props: ComponentPropsWithoutRef<"input">) => {
     if (props.type === "checkbox") {
@@ -14,13 +14,13 @@ export const mdxComponents = {
   h1: (props: ComponentPropsWithoutRef<"h1">) => (
     <h1
       {...props}
-      className="font-sans text-3xl font-semibold tracking-tight text-foreground mt-10 mb-4"
+      className="font-display text-3xl font-medium tracking-[-0.015em] text-ink mt-12 mb-4"
     />
   ),
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
     <h2
       {...props}
-      className="font-sans text-2xl font-semibold tracking-tight text-foreground mt-10 mb-3"
+      className="font-display text-2xl font-medium tracking-[-0.01em] text-ink mt-12 mb-3"
     />
   ),
   h3: (props: ComponentPropsWithoutRef<"h3">) => {
@@ -29,56 +29,58 @@ export const mdxComponents = {
     return (
       <h3
         {...props}
-        className={`font-sans text-lg font-semibold tracking-tight ${variant} mt-8 mb-2`}
-        data-h3-variant={variant ? "tagged" : undefined}
+        className={`font-display text-lg font-medium tracking-[-0.01em] ${variant} mt-8 mb-2`}
       />
     );
   },
   p: (props: ComponentPropsWithoutRef<"p">) => (
-    <p {...props} className="font-serif text-base leading-relaxed text-foreground my-3" />
+    <p {...props} className="font-sans text-[15px] leading-relaxed text-ink-2 my-3" />
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
-    <ul {...props} className="font-serif text-base leading-relaxed text-foreground my-3 ml-6 list-disc space-y-1" />
+    <ul {...props} className="font-sans text-[15px] leading-relaxed text-ink-2 my-3 ml-6 list-disc space-y-1" />
   ),
   ol: (props: ComponentPropsWithoutRef<"ol">) => (
-    <ol {...props} className="font-serif text-base leading-relaxed text-foreground my-3 ml-6 list-decimal space-y-1" />
+    <ol {...props} className="font-sans text-[15px] leading-relaxed text-ink-2 my-3 ml-6 list-decimal space-y-1" />
   ),
-  li: (props: ComponentPropsWithoutRef<"li">) => <li {...props} className="pl-1" />,
+  li: (props: ComponentPropsWithoutRef<"li">) => <li {...props} className="pl-1 marker:text-ink-3" />,
   table: (props: ComponentPropsWithoutRef<"table">) => (
-    <div className="my-4 overflow-x-auto">
+    <div className="my-5 overflow-x-auto rounded-md border border-rule">
       <table {...props} className="w-full border-collapse text-left text-sm" />
     </div>
   ),
   th: (props: ComponentPropsWithoutRef<"th">) => (
     <th
       {...props}
-      className="border border-border bg-muted px-3 py-2 font-sans font-medium text-foreground"
+      className="border-b border-rule bg-paper-3 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3"
     />
   ),
   td: (props: ComponentPropsWithoutRef<"td">) => (
-    <td {...props} className="border border-border px-3 py-2 align-top" />
+    <td {...props} className="border-b border-rule px-3 py-2 align-top text-ink-2 last:border-b-0" />
   ),
-  hr: (props: ComponentPropsWithoutRef<"hr">) => (
-    <hr {...props} className="my-8 border-border" />
+  hr: () => (
+    <hr className="my-10 border-0 border-t border-rule" />
   ),
   code: (props: ComponentPropsWithoutRef<"code">) => (
-    <code {...props} className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm" />
+    <code {...props} className="rounded-[3px] bg-paper-2 px-1.5 py-0.5 font-mono text-[13px] text-ink" />
   ),
   blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
       {...props}
-      className="my-4 border-l-4 border-border pl-4 italic text-muted-foreground"
+      className="my-5 border-l-2 border-l-contour pl-4 italic text-ink-3"
     />
+  ),
+  strong: (props: ComponentPropsWithoutRef<"strong">) => (
+    <strong {...props} className="font-semibold text-ink" />
   ),
 };
 
-/** Tag certain H3s with a colour cue based on their text content. */
+/** Tag certain H3s with a Carta colour cue based on their text content. */
 function h3Variant(text: string): string {
-  if (/^learning aim$/i.test(text)) return "text-primary";
+  if (/^learning aim$/i.test(text)) return "text-contour";
   if (/^worked example$/i.test(text)) return "text-contour";
-  if (/^exercise\b/i.test(text)) return "text-foreground";
-  if (/^self[- ]check$/i.test(text)) return "text-success";
-  if (/^reflection$/i.test(text)) return "text-muted-foreground";
-  if (/^questions?$/i.test(text)) return "text-foreground";
-  return "text-foreground";
+  if (/^exercise\b/i.test(text)) return "text-ink";
+  if (/^self[- ]check$/i.test(text)) return "text-moss";
+  if (/^reflection$/i.test(text)) return "text-ink-3";
+  if (/^questions?$/i.test(text)) return "text-ink";
+  return "text-ink";
 }
