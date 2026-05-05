@@ -26,6 +26,7 @@ export function loadProgress(): ProgressStore {
       quizzes: parsed.quizzes ?? {},
       confidenceScores: parsed.confidenceScores ?? {},
       readinessChecks: parsed.readinessChecks ?? {},
+      flashcards: parsed.flashcards ?? {},
     };
   } catch {
     return emptyProgress();

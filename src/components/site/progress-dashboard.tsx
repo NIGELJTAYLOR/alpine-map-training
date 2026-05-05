@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useProgress } from "@/lib/progress/provider";
 import { Button } from "@/components/ui/button";
+import { FLASHCARDS } from "@/data/flashcards.generated";
+import { isDue, todayIso } from "@/lib/flashcards/sm2";
 
 interface DashboardLevel {
   level: number;
@@ -185,6 +187,41 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
           </ul>
         </section>
       ) : null}
+
+      <section className="rounded-lg border border-border p-4">
+        <div className="flex items-center justify-between gap-3">
+          <h3 className="font-sans text-xl font-semibold text-foreground">
+            Flashcards
+          </h3>
+          <Link
+            href="/flashcards"
+            className="font-sans text-xs text-primary hover:underline"
+          >
+            Open →
+          </Link>
+        </div>
+        {(() => {
+          const total = FLASHCARDS.length;
+          let due = 0;
+          let studied = 0;
+          for (const c of FLASHCARDS) {
+            const sched = store.flashcards[c.id];
+            if (sched) {
+              studied += 1;
+              if (sched.dueDate <= todayIso()) due += 1;
+            } else {
+              due += 1;
+            }
+          }
+          return (
+            <p className="mt-2 font-sans text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">{due}</span> due today ·{" "}
+              <span className="font-medium text-foreground">{studied}</span> ever studied ·{" "}
+              <span className="font-medium text-foreground">{total}</span> in deck
+            </p>
+          );
+        })()}
+      </section>
 
       <section>
         <h3 className="font-sans text-xl font-semibold text-foreground">Quizzes</h3>

@@ -12,6 +12,7 @@ import {
 import {
   emptyProgress,
   type ConfidenceScore,
+  type FlashcardSchedule,
   type PageProgress,
   type PageStatus,
   type ProgressStore,
@@ -43,6 +44,10 @@ interface ProgressContextValue {
   setReadiness: (key: string, status: ReadinessStatus, notes?: string) => void;
   // settings
   setTrainerMode: (on: boolean) => void;
+  // flashcards
+  getFlashcardSchedule: (cardId: string) => FlashcardSchedule | undefined;
+  setFlashcardSchedule: (cardId: string, schedule: FlashcardSchedule) => void;
+  resetFlashcards: () => void;
   // bulk
   reset: () => void;
 }
@@ -235,6 +240,25 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
+  const getFlashcardSchedule = useCallback(
+    (cardId: string) => store.flashcards[cardId],
+    [store.flashcards],
+  );
+
+  const setFlashcardSchedule = useCallback(
+    (cardId: string, schedule: FlashcardSchedule) => {
+      setStore((prev) => ({
+        ...prev,
+        flashcards: { ...prev.flashcards, [cardId]: schedule },
+      }));
+    },
+    [],
+  );
+
+  const resetFlashcards = useCallback(() => {
+    setStore((prev) => ({ ...prev, flashcards: {} }));
+  }, []);
+
   const reset = useCallback(() => {
     clearProgress();
     setStore(emptyProgress());
@@ -255,6 +279,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       setConfidence,
       setReadiness,
       setTrainerMode,
+      getFlashcardSchedule,
+      setFlashcardSchedule,
+      resetFlashcards,
       reset,
     }),
     [
@@ -271,6 +298,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       setConfidence,
       setReadiness,
       setTrainerMode,
+      getFlashcardSchedule,
+      setFlashcardSchedule,
+      resetFlashcards,
       reset,
     ],
   );

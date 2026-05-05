@@ -48,6 +48,19 @@ export interface AppSettings {
   trainerMode: boolean;
 }
 
+/**
+ * Per-card SM-2 schedule. Imported from src/lib/flashcards/sm2.ts shape but
+ * re-declared here so this file has no cross-module dep.
+ */
+export interface FlashcardSchedule {
+  easiness: number;
+  repetitions: number;
+  intervalDays: number;
+  dueDate: string;
+  lastReviewed?: string;
+  lastQuality?: number;
+}
+
 export interface ProgressStore {
   candidateId: string;
   version: number;
@@ -57,6 +70,8 @@ export interface ProgressStore {
   quizzes: Record<string, QuizProgress>;
   confidenceScores: Record<string, ConfidenceScore>;
   readinessChecks: Record<string, ReadinessCheck>;
+  /** SM-2 schedules keyed by card id. Missing card = never studied. */
+  flashcards: Record<string, FlashcardSchedule>;
 }
 
 export function emptyProgress(): ProgressStore {
@@ -69,5 +84,6 @@ export function emptyProgress(): ProgressStore {
     quizzes: {},
     confidenceScores: {},
     readinessChecks: {},
+    flashcards: {},
   };
 }

@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "velite",
+    "predev": "velite && node scripts/build-flashcards-data.mjs",
     "dev": "next dev",
-    "prebuild": "velite",
+    "prebuild": "velite && node scripts/build-flashcards-data.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "content:build": "velite",
-    "content:watch": "velite --watch"
+    "content:build": "velite && node scripts/build-flashcards-data.mjs",
+    "content:watch": "velite --watch",
+    "flashcards:build": "node scripts/build-flashcards-data.mjs",
+    "flashcards:docx": "node scripts/build-flashcards-docx.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

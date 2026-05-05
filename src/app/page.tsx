@@ -8,6 +8,7 @@ import {
   getDiagramsForLevel,
   getAllTemplates,
 } from "@/lib/content";
+import { FLASHCARDS } from "@/data/flashcards.generated";
 
 const LEVEL_BLURBS: Record<number, string> = {
   1: "Map literacy foundations",
@@ -75,7 +76,18 @@ export default function Home() {
           })}
         </section>
 
-        <section className="grid gap-3 sm:grid-cols-2">
+        <section className="grid gap-3 sm:grid-cols-3">
+          <Link
+            href="/flashcards"
+            className="group rounded-lg border border-border p-4 transition-colors hover:border-primary"
+          >
+            <p className="font-sans text-sm font-semibold text-foreground group-hover:text-primary">
+              Flashcards →
+            </p>
+            <p className="mt-1 font-sans text-xs text-muted-foreground">
+              {FLASHCARDS.length} cards · spaced repetition
+            </p>
+          </Link>
           <Link
             href="/diagrams"
             className="group rounded-lg border border-border p-4 transition-colors hover:border-primary"
