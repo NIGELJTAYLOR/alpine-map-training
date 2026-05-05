@@ -1,26 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Source_Serif_4, Geist_Mono } from "next/font/google";
+import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ProgressProvider } from "@/lib/progress/provider";
 import { SwRegister } from "@/components/site/sw-register";
 import { InstallPrompt } from "@/components/site/install-prompt";
 import { OfflineIndicator } from "@/components/site/offline-indicator";
 
+// Carta typography stack — Direction 1
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  // Fraunces is a variable font — `axes` requires `weight` to be omitted
+  // (or set to "variable"), so all weights are available via font-weight.
+  axes: ["opsz"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -30,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s — Alpine Map Training",
   },
   description:
-    "A digital companion to the Alpine Map Training workbook for ski instructors preparing for BASI Alpine Level 4 ISTD.",
+    "The digital companion to the Alpine Map Training workbook. For ski instructors preparing for BASI Alpine Level 4 ISTD.",
   manifest: "/manifest.webmanifest",
   applicationName: "Alpine Map Training",
   appleWebApp: {
@@ -41,7 +47,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#475569",
+  // Carta paper background — keeps the system UI consistent with the page.
+  themeColor: "#F4ECD8",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -55,12 +62,12 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${sourceSerif.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:font-sans focus:text-sm focus:text-primary-foreground focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:text-primary-foreground focus:shadow-lg"
         >
           Skip to main content
         </a>
