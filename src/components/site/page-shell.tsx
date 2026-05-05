@@ -13,27 +13,29 @@ export function PageShell({ page, prev, next, children }: PageShellProps) {
   return (
     <main id="main-content" tabIndex={-1} className="focus:outline-none">
       <article className="mx-auto max-w-3xl px-4 py-8 sm:py-12">
-        <Breadcrumb level={page.level} section={page.section} pageCode={page.page} />
+        <Breadcrumb
+          level={page.level}
+          section={page.section}
+          pageCode={page.page}
+        />
 
-      <header className="mt-4 mb-8">
-        <h1 className="font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-          {page.title}
-        </h1>
-        {page.learningAim ? (
-          <aside className="mt-4 rounded-lg border border-border bg-muted/40 p-4">
-            <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Learning aim
-            </p>
-            <p className="mt-1 font-serif text-base leading-relaxed text-foreground">
-              {page.learningAim}
-            </p>
-          </aside>
-        ) : null}
-      </header>
+        <header className="mt-5 mb-8">
+          <h1 className="font-display text-3xl font-medium leading-tight tracking-[-0.015em] text-ink sm:text-[44px]">
+            {page.title}
+          </h1>
+          {page.learningAim ? (
+            <aside className="surface-card mt-6 border-l-[3px] border-l-contour bg-paper-3 p-5">
+              <p className="eyebrow eyebrow-contour">Learning aim</p>
+              <p className="mt-2 font-sans text-[15px] leading-relaxed text-ink-2">
+                {page.learningAim}
+              </p>
+            </aside>
+          ) : null}
+        </header>
 
-      <div className="mdx-body">{children}</div>
+        <div className="mdx-body">{children}</div>
 
-      <PrevNext prev={prev} next={next} level={page.level} />
+        <PrevNext prev={prev} next={next} level={page.level} />
       </article>
     </main>
   );
@@ -49,31 +51,37 @@ function Breadcrumb({
   pageCode: string;
 }) {
   return (
-    <nav className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-      <Link href={`/levels/${level}`} className="hover:text-foreground">
-        Level {level}
+    <nav className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3">
+      <Link href={`/levels/${level}`} className="hover:text-ink">
+        Workbook · Level {level}
       </Link>
-      <span className="mx-2 opacity-50">/</span>
+      <span className="mx-2 text-rule">/</span>
       <span>{section}</span>
-      <span className="mx-2 opacity-50">/</span>
-      <span className="text-foreground">{pageCode}</span>
+      <span className="mx-2 text-rule">/</span>
+      <span className="text-ink">{pageCode}</span>
     </nav>
   );
 }
 
-function PrevNext({ prev, next, level }: { prev?: Page; next?: Page; level: number }) {
+function PrevNext({
+  prev,
+  next,
+  level,
+}: {
+  prev?: Page;
+  next?: Page;
+  level: number;
+}) {
   if (!prev && !next) return null;
   return (
-    <nav className="mt-12 flex items-stretch justify-between gap-3 border-t border-border pt-6">
+    <nav className="mt-12 flex items-stretch justify-between gap-3 border-t border-rule pt-6">
       {prev ? (
         <Link
           href={`/levels/${level}/${prev.page}`}
-          className="group flex flex-1 flex-col rounded-lg border border-border p-3 hover:border-primary"
+          className="group flex flex-1 flex-col rounded-md border border-rule bg-paper-3 p-3 transition-colors hover:border-ink"
         >
-          <span className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            ← Previous
-          </span>
-          <span className="mt-1 font-sans text-sm font-medium text-foreground group-hover:text-primary">
+          <span className="eyebrow">← Previous</span>
+          <span className="mt-1 font-display text-base font-medium text-ink group-hover:text-ink-2">
             {prev.title}
           </span>
         </Link>
@@ -83,12 +91,10 @@ function PrevNext({ prev, next, level }: { prev?: Page; next?: Page; level: numb
       {next ? (
         <Link
           href={`/levels/${level}/${next.page}`}
-          className="group flex flex-1 flex-col rounded-lg border border-border p-3 text-right hover:border-primary"
+          className="group flex flex-1 flex-col rounded-md border border-rule bg-paper-3 p-3 text-right transition-colors hover:border-ink"
         >
-          <span className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Next →
-          </span>
-          <span className="mt-1 font-sans text-sm font-medium text-foreground group-hover:text-primary">
+          <span className="eyebrow">Next →</span>
+          <span className="mt-1 font-display text-base font-medium text-ink group-hover:text-ink-2">
             {next.title}
           </span>
         </Link>

@@ -21,21 +21,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return { title: `Level ${level}` };
 }
 
-const LEVEL_TITLES: Record<number, { name: string; tagline: string }> = {
+const LEVEL_TITLES: Record<number, { name: string; tagline: string; word: string }> = {
   1: {
-    name: "Map Literacy Foundations",
+    name: "Map literacy",
+    word: "ONE",
     tagline:
-      "Map basics, structure, scale, grid references and orientation. The groundwork for everything that follows.",
+      "Scale, grid references, contour reading, symbol recognition. The fundamentals — finished here, the rest is craft.",
   },
   2: {
-    name: "Terrain Interpretation",
+    name: "Terrain interpretation",
+    word: "TWO",
     tagline:
-      "Reading contour shapes, judging steepness, recognising features and route choice from maps.",
+      "Read shape before steepness. Summit forms, ridges, gullies, aspect, slope angle, terrain traps.",
   },
   3: {
-    name: "Mountain Navigation Toolkit",
+    name: "Navigation toolkit",
+    word: "THREE",
     tagline:
-      "Compass work, altimeter use, route cards, decision points and the full IMS-aligned toolkit.",
+      "Compass, altimeter, route cards, pacing, timing, attack points, and poor-vis techniques.",
   },
 };
 
@@ -48,73 +51,85 @@ export default async function LevelIndex({ params }: PageProps) {
   if (pages.length === 0) notFound();
 
   const diagrams = getDiagramsForLevel(level);
-  const meta = LEVEL_TITLES[level] ?? { name: `Level ${level}`, tagline: "" };
+  const meta = LEVEL_TITLES[level] ?? { name: `Level ${level}`, word: String(level), tagline: "" };
+  const pageIds = pages.map((p) => p.id);
 
   return (
     <>
       <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-8 sm:py-10 focus:outline-none">
-        <header className="mb-8">
-          <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Level {level}
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="mx-auto max-w-3xl px-4 py-10 sm:py-14 focus:outline-none"
+      >
+        {/* ===== Hero band ===== */}
+        <div className="border-b border-rule pb-8">
+          <Link
+            href="/"
+            className="eyebrow inline-flex items-center gap-1 hover:text-ink"
+          >
+            ← Home
+          </Link>
+          <p className="eyebrow eyebrow-contour mt-6">Level {meta.word}</p>
+          <p className="mt-3 font-display text-[80px] font-medium leading-none tracking-[-0.025em] text-contour sm:text-[96px]">
+            0{level}
           </p>
-          <h1 className="mt-2 font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <h1 className="mt-2 font-display text-3xl font-medium tracking-[-0.015em] text-ink sm:text-[36px]">
             {meta.name}
           </h1>
-          {meta.tagline ? (
-            <p className="mt-3 font-serif text-base leading-relaxed text-muted-foreground">
-              {meta.tagline}
-            </p>
-          ) : null}
-          <p className="mt-3 font-sans text-sm text-muted-foreground">
-            {pages.length} pages
-            {diagrams.length > 0 ? ` · ${diagrams.length} schematic diagrams` : ""}
+          <p className="mt-3 max-w-[55ch] font-sans text-base leading-relaxed text-ink-2">
+            {meta.tagline}
           </p>
-          <LevelProgressBar
-            pageIds={pages.map((p) => p.id)}
-            className="mt-4"
-          />
-        </header>
+          <div className="mt-6">
+            <LevelProgressBar pageIds={pageIds} />
+          </div>
+        </div>
 
-        <ol className="space-y-2">
+        {/* ===== Page list ===== */}
+        <ol className="mt-8 divide-y divide-rule overflow-hidden rounded-md border border-rule bg-paper-3">
           {pages.map((p) => (
-            <li
-              key={p.id}
-              className="rounded-lg border border-border transition-colors hover:border-primary"
-            >
+            <li key={p.id}>
               <Link
                 href={`/levels/${level}/${p.page}`}
-                className="flex items-center gap-3 p-3"
+                className="flex items-center gap-4 px-4 py-3.5 transition-colors hover:bg-paper-2"
               >
                 <PageStatusBadge pageId={p.id} />
-                <span className="w-14 shrink-0 font-mono text-xs text-muted-foreground">
+                <span className="page-code w-14 shrink-0">
                   {p.kind === "contents"
-                    ? "Intro"
+                    ? "INTRO"
                     : p.kind === "reflection"
-                    ? "End"
+                    ? "END"
                     : p.kind === "quiz"
-                    ? "Quiz"
+                    ? "QUIZ"
                     : p.page}
                 </span>
-                <span className="flex-1 font-sans text-base text-foreground">
+                <span className="flex-1 font-sans text-[15px] text-ink">
                   {p.title}
                 </span>
+                <svg
+                  className="h-3.5 w-3.5 text-ink-3"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  aria-hidden
+                >
+                  <path d="M5 2l5 5-5 5" />
+                </svg>
               </Link>
             </li>
           ))}
         </ol>
 
         {diagrams.length > 0 ? (
-          <div className="mt-8 rounded-lg border border-border bg-muted/30 p-4">
-            <p className="font-sans text-sm">
-              <Link
-                href={`/diagrams#L${level}`}
-                className="font-medium text-primary hover:underline"
-              >
-                See all {diagrams.length} schematic diagrams for Level {level} →
-              </Link>
-            </p>
-          </div>
+          <p className="mt-6 text-center">
+            <Link
+              href={`/diagrams#L${level}`}
+              className="font-sans text-sm text-ink-2 underline-offset-4 hover:text-ink hover:underline"
+            >
+              See all {diagrams.length} schematic diagrams for Level {level} →
+            </Link>
+          </p>
         ) : null}
       </main>
     </>

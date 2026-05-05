@@ -10,7 +10,6 @@ import { AnswerKeyBody } from "@/components/site/answer-key-body";
 import { PageCompletionControls } from "@/components/site/page-completion";
 import { TrainerNotesPanel } from "@/components/site/trainer-notes-panel";
 import { ReadinessCheckInput } from "@/components/site/readiness-check-input";
-import { buttonVariants } from "@/components/ui/button";
 import {
   getPage,
   getPages,
@@ -97,18 +96,16 @@ export default async function PageRoute({ params }: PageProps) {
       <SiteHeader />
       <PageShell page={page} prev={neighbours.prev} next={neighbours.next}>
         {quiz ? (
-          <aside className="mb-6 rounded-lg border border-primary/40 bg-primary/5 p-4">
-            <p className="font-sans text-xs uppercase tracking-[0.2em] text-primary">
-              Interactive quiz available
-            </p>
-            <p className="mt-1 font-serif text-sm text-foreground">
+          <aside className="mb-8 rounded-md border border-rule bg-paper-3 p-5">
+            <p className="eyebrow eyebrow-contour">Interactive quiz available</p>
+            <p className="mt-2 font-sans text-[15px] leading-relaxed text-ink-2">
               The {quiz.questions.length}-question version of this quiz can be
               taken in the app: numeric and multiple-choice answers are
               auto-graded, the rest are self-marked against the model answer.
             </p>
             <Link
               href={`/levels/${level}/${pageCode}/quiz`}
-              className={buttonVariants({ size: "sm" }) + " mt-3"}
+              className="mt-4 inline-flex items-center gap-2 rounded-[4px] border border-ink bg-ink px-4 py-2 font-sans text-sm font-semibold text-paper hover:bg-ink-2"
             >
               Take the interactive quiz →
             </Link>
@@ -118,8 +115,8 @@ export default async function PageRoute({ params }: PageProps) {
         <PageBody pageId={page.id} body={page.body} />
 
         {diagrams.length > 0 ? (
-          <section className="mt-10">
-            <h2 className="font-sans text-xl font-semibold text-foreground">
+          <section className="mt-12">
+            <h2 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
               Schematic diagrams for this page
             </h2>
             {diagrams.map((d) => (
@@ -129,19 +126,19 @@ export default async function PageRoute({ params }: PageProps) {
         ) : null}
 
         {templates.length > 0 ? (
-          <section className="mt-10">
-            <h2 className="font-sans text-xl font-semibold text-foreground">
+          <section className="mt-12">
+            <h2 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
               Templates linked to this page
             </h2>
             <ul className="mt-3 space-y-2">
               {templates.map((t) => (
                 <li
                   key={t.id}
-                  className="rounded-lg border border-border p-3 hover:border-primary"
+                  className="rounded-md border border-rule bg-paper-3 transition-colors hover:border-ink"
                 >
                   <Link
                     href={`/templates/${t.id.replace(/^template\./, "")}`}
-                    className="font-sans text-sm font-medium text-foreground hover:text-primary"
+                    className="block p-3 font-display text-base font-medium text-ink hover:text-ink-2"
                   >
                     {t.number}. {t.title}
                   </Link>
@@ -158,8 +155,8 @@ export default async function PageRoute({ params }: PageProps) {
         ) : null}
 
         {readinessConfig ? (
-          <section className="mt-10 rounded-xl border border-border bg-card p-4 sm:p-5">
-            <h2 className="font-sans text-lg font-semibold text-foreground">
+          <section className="mt-10 rounded-md border border-rule bg-paper-3 p-5">
+            <h2 className="font-display text-lg font-medium text-ink">
               {readinessConfig.title}
             </h2>
             <div className="mt-3">
