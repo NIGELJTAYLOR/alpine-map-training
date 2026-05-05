@@ -10,6 +10,8 @@ import { AnswerKeyBody } from "@/components/site/answer-key-body";
 import { PageCompletionControls } from "@/components/site/page-completion";
 import { TrainerNotesPanel } from "@/components/site/trainer-notes-panel";
 import { ReadinessCheckInput } from "@/components/site/readiness-check-input";
+import { SeeAlso } from "@/components/site/see-also";
+import { MapExtract } from "@/components/site/map-extract";
 import {
   getPage,
   getPages,
@@ -20,6 +22,7 @@ import {
   getQuiz,
   getTrainerNotesForSection,
 } from "@/lib/content";
+import { FLASHCARDS } from "@/data/flashcards.generated";
 
 interface PageProps {
   params: Promise<{ level: string; page: string }>;
@@ -30,6 +33,41 @@ interface ReadinessConfig {
   title: string;
   prompt: string;
 }
+
+interface PageMapConfig {
+  id: string;
+  title: string;
+  caption?: string;
+  markers: { label: string; description: string; color?: "crimson" | "ink" | "moss" | "amber" }[];
+}
+
+const PAGE_MAPS: Record<string, PageMapConfig> = {
+  "L2.C7.2": {
+    id: "c7-2",
+    title: "Section C7.2 — Virtual terrain walk",
+    caption:
+      "The route runs A → B → C → D. Use this extract for the standing descriptions and route-choice questions on the page below.",
+    markers: [
+      { label: "A", description: "Col / saddle — start of the day, on a ridge between two valleys", color: "ink" },
+      { label: "B", description: "Bowl — mid-route, on a slope facing into a corrie", color: "crimson" },
+      { label: "C", description: "Spur — descending towards the valley floor", color: "amber" },
+      { label: "D", description: "Valley floor with stream — end of the day", color: "moss" },
+    ],
+  },
+  "L3.D10.2": {
+    id: "d10-2",
+    title: "Section D10.2 — Virtual day on a tour",
+    caption:
+      "Six-leg tour with three pre-agreed decision points. Bearings, altimeter triggers, and decision-point criteria all reference these markers.",
+    markers: [
+      { label: "Start", description: "Departure point — set altimeter at known elevation here", color: "ink" },
+      { label: "DP1", description: "First decision point — check bulletin against bowl exposure", color: "crimson" },
+      { label: "DP2", description: "Second decision point — terrain-trap check before committing to descent", color: "crimson" },
+      { label: "DP3", description: "Third decision point — pole-and-cord assessment if visibility drops", color: "crimson" },
+      { label: "End", description: "Tour end — final altimeter reading and barometric trend", color: "moss" },
+    ],
+  },
+};
 
 function readinessConfigFor(pageId: string): ReadinessConfig | null {
   if (pageId === "L1.Reflection") {
@@ -91,6 +129,15 @@ export default async function PageRoute({ params }: PageProps) {
   );
   const readinessConfig = readinessConfigFor(page.id);
 
+  // Related flashcards: cards whose tags include this page code
+  const relatedFlashcards = FLASHCARDS.filter((c) =>
+    c.tags.some((t) => t === pageCode),
+  )
+    .slice(0, 6)
+    .map((c) => ({ id: c.id, title: c.title }));
+
+  const pageMap = PAGE_MAPS[page.id];
+
   return (
     <>
       <SiteHeader />
@@ -114,6 +161,15 @@ export default async function PageRoute({ params }: PageProps) {
 
         <PageBody pageId={page.id} body={page.body} />
 
+        {pageMap ? (
+          <MapExtract
+            id={pageMap.id}
+            title={pageMap.title}
+            caption={pageMap.caption}
+            markers={pageMap.markers}
+          />
+        ) : null}
+
         {diagrams.length > 0 ? (
           <section className="mt-12">
             <h2 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
@@ -122,29 +178,6 @@ export default async function PageRoute({ params }: PageProps) {
             {diagrams.map((d) => (
               <DiagramCard key={d.id} diagram={d} />
             ))}
-          </section>
-        ) : null}
-
-        {templates.length > 0 ? (
-          <section className="mt-12">
-            <h2 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
-              Templates linked to this page
-            </h2>
-            <ul className="mt-3 space-y-2">
-              {templates.map((t) => (
-                <li
-                  key={t.id}
-                  className="rounded-md border border-rule bg-paper-3 transition-colors hover:border-ink"
-                >
-                  <Link
-                    href={`/templates/${t.id.replace(/^template\./, "")}`}
-                    className="block p-3 font-display text-base font-medium text-ink hover:text-ink-2"
-                  >
-                    {t.number}. {t.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </section>
         ) : null}
 
@@ -169,6 +202,24 @@ export default async function PageRoute({ params }: PageProps) {
         ) : null}
 
         <TrainerNotesPanel notes={trainerNotes} />
+
+        <SeeAlso
+          level={level}
+          pageCode={pageCode}
+          diagrams={diagrams.map((d) => ({
+            id: d.id,
+            level: d.level,
+            number: d.number,
+            sub: d.sub,
+            title: d.title,
+          }))}
+          templates={templates.map((t) => ({
+            id: t.id,
+            number: t.number,
+            title: t.title,
+          }))}
+          flashcards={relatedFlashcards}
+        />
 
         <PageCompletionControls pageId={page.id} />
       </PageShell>

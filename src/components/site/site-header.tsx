@@ -18,6 +18,7 @@ const NAV: NavItem[] = [
   { href: "/flashcards", label: "Cards", matchPrefix: "/flashcards" },
   { href: "/diagrams", label: "Diagrams", matchPrefix: "/diagrams" },
   { href: "/templates", label: "Templates", matchPrefix: "/templates" },
+  { href: "/glossary", label: "Glossary", matchPrefix: "/glossary" },
   { href: "/progress", label: "Progress", matchPrefix: "/progress" },
   { href: "/settings", label: "Settings", matchPrefix: "/settings" },
 ];

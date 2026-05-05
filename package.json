@@ -12,7 +12,8 @@
     "content:build": "velite && node scripts/build-flashcards-data.mjs",
     "content:watch": "velite --watch",
     "flashcards:build": "node scripts/build-flashcards-data.mjs",
-    "flashcards:docx": "node scripts/build-flashcards-docx.mjs"
+    "flashcards:docx": "node scripts/build-flashcards-docx.mjs",
+    "maps:build": "node scripts/generate-quiz-maps.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
