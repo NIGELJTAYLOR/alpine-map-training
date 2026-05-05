@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface WordmarkProps {
   href?: string;
@@ -7,8 +8,8 @@ interface WordmarkProps {
 
 /**
  * Carta wordmark: three stacked contour curves (in --contour) +
- * "Alpine Map Training" + "By PerformOS" byline.
- * Defaults to linking to home; pass href={null} via empty string to disable.
+ * "Alpine Map Training" + the PerformOS byline image.
+ * Defaults to linking to home; pass href="" to render without a link.
  */
 export function Wordmark({ href = "/", showByline = true }: WordmarkProps) {
   const inner = (
@@ -39,13 +40,25 @@ export function Wordmark({ href = "/", showByline = true }: WordmarkProps) {
       </svg>
       <span>
         <span className="name block">Alpine Map Training</span>
-        {showByline ? <span className="by block">By PerformOS</span> : null}
+        {showByline ? (
+          <span className="block leading-none">
+            <Image
+              src="/brand/by-performos-black-transparent.svg"
+              alt="By PerformOS"
+              width={638}
+              height={127}
+              priority
+              unoptimized
+              className="mt-1 h-[14px] w-auto"
+            />
+          </span>
+        ) : null}
       </span>
     </span>
   );
   if (!href) return inner;
   return (
-    <Link href={href} className="no-underline" aria-label="Alpine Map Training — home">
+    <Link href={href} className="no-underline" aria-label="Alpine Map Training — home, By PerformOS">
       {inner}
     </Link>
   );
