@@ -4,40 +4,27 @@ import Image from "next/image";
 interface WordmarkProps {
   href?: string;
   showByline?: boolean;
+  /** Override the emblem display height in px (default 48). Useful in heroes / splash. */
+  emblemSize?: number;
 }
 
 /**
- * Carta wordmark: three stacked contour curves (in --contour) +
- * "Alpine Map Training" + the PerformOS byline image.
+ * Carta wordmark: Alpine Map Training emblem (compass + crossed skis on a
+ * map background) + "Alpine Map Training" + the PerformOS byline image.
  * Defaults to linking to home; pass href="" to render without a link.
  */
-export function Wordmark({ href = "/", showByline = true }: WordmarkProps) {
+export function Wordmark({ href = "/", showByline = true, emblemSize = 48 }: WordmarkProps) {
   const inner = (
     <span className="wordmark">
-      <svg
+      <Image
+        src="/brand/amt-emblem.png"
+        alt=""
+        width={320}
+        height={213}
+        priority
         className="glyph"
-        viewBox="0 0 28 28"
-        fill="none"
-        aria-hidden
-      >
-        <path
-          d="M2 22 Q 7 8, 14 14 T 26 6"
-          stroke="var(--contour)"
-          strokeWidth="1.4"
-        />
-        <path
-          d="M2 26 Q 7 12, 14 18 T 26 10"
-          stroke="var(--contour)"
-          strokeWidth="1.4"
-          opacity="0.7"
-        />
-        <path
-          d="M2 18 Q 7 4, 14 10 T 26 2"
-          stroke="var(--contour)"
-          strokeWidth="1.4"
-          opacity="0.4"
-        />
-      </svg>
+        style={{ width: emblemSize * (320 / 213), height: emblemSize }}
+      />
       <span>
         <span className="name block">Alpine Map Training</span>
         {showByline ? (
@@ -49,7 +36,7 @@ export function Wordmark({ href = "/", showByline = true }: WordmarkProps) {
               height={127}
               priority
               unoptimized
-              className="mt-1 h-[14px] w-auto"
+              className="mt-1.5 h-[24px] w-auto"
             />
           </span>
         ) : null}

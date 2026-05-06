@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { Diagram } from "@/lib/content";
+import { ZoomableImage } from "./zoomable-image";
 
 interface DiagramCardProps {
   diagram: Diagram;
@@ -9,16 +9,13 @@ interface DiagramCardProps {
 export function DiagramCard({ diagram, showCaption = true }: DiagramCardProps) {
   return (
     <figure className="my-6 rounded-md border border-rule bg-paper-3 p-3 sm:p-4">
-      <div className="relative w-full overflow-hidden rounded-[4px] border border-rule bg-paper">
-        <Image
-          src={diagram.svgUrl}
-          alt={diagram.title}
-          width={800}
-          height={600}
-          className="h-auto w-full"
-          unoptimized
-        />
-      </div>
+      <ZoomableImage
+        src={diagram.svgUrl}
+        alt={diagram.title}
+        width={800}
+        height={600}
+        caption={`Fig. ${diagram.number}${diagram.sub} · ${diagram.title}`}
+      />
       {showCaption ? (
         <figcaption className="mt-3 space-y-2">
           <p className="page-code">

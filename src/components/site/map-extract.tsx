@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ZoomableImage } from "./zoomable-image";
 
 interface MarkerLegend {
   label: string;
@@ -49,15 +49,13 @@ export function MapExtract({
         ) : null}
       </header>
 
-      <div className="relative w-full overflow-hidden border-b border-rule bg-paper">
-        <Image
+      <div className="relative w-full border-b border-rule bg-paper">
+        <ZoomableImage
           src={`/maps/${id}.png`}
           alt={`Quiz extract for ${title} — Courchevel area, OpenTopoMap rendering with marked points`}
           width={1024}
           height={768}
-          className="h-auto w-full"
-          unoptimized
-          priority={false}
+          caption={title}
         />
       </div>
 
