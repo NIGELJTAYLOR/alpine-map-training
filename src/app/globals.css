@@ -188,9 +188,9 @@
    Reusable Carta utility classes
    ========================================================================= */
 
-/* Wordmark — bumped ~70% for header presence */
+/* Wordmark — bumped ~70% for header presence; emblem height is set inline by the component */
 .wordmark { display: flex; align-items: center; gap: 14px; }
-.wordmark .glyph { width: 48px; height: 48px; }
+.wordmark .glyph { display: block; }
 .wordmark .name {
   font-family: var(--font-display);
   font-weight: 500;
@@ -298,16 +298,6 @@
   background: linear-gradient(90deg, var(--amber) 50%, var(--paper) 50%);
   border-color: var(--amber);
 }
-
-/* =========================================================================
-   Splash / loading bar — slides under prefers-reduced-motion below
-   ========================================================================= */
-@keyframes amt-splash-slide {
-  0%   { transform: translateX(-110%); }
-  60%  { transform: translateX(220%); }
-  100% { transform: translateX(220%); }
-}
-.amt-splash-bar { animation: amt-splash-slide 1.4s ease-in-out infinite; }
 
 /* =========================================================================
    Print

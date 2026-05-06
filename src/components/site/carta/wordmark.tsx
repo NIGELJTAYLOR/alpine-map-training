@@ -4,26 +4,29 @@ import Image from "next/image";
 interface WordmarkProps {
   href?: string;
   showByline?: boolean;
-  /** Override the emblem display height in px (default 48). Useful in heroes / splash. */
+  /** Override the emblem display height in px (default 60, sized to align top+bottom with the text block). */
   emblemSize?: number;
 }
+
+const EMBLEM_W = 480;
+const EMBLEM_H = 412;
 
 /**
  * Carta wordmark: Alpine Map Training emblem (compass + crossed skis on a
  * map background) + "Alpine Map Training" + the PerformOS byline image.
  * Defaults to linking to home; pass href="" to render without a link.
  */
-export function Wordmark({ href = "/", showByline = true, emblemSize = 48 }: WordmarkProps) {
+export function Wordmark({ href = "/", showByline = true, emblemSize = 60 }: WordmarkProps) {
   const inner = (
     <span className="wordmark">
       <Image
         src="/brand/amt-emblem.png"
         alt=""
-        width={320}
-        height={213}
+        width={EMBLEM_W}
+        height={EMBLEM_H}
         priority
         className="glyph"
-        style={{ width: emblemSize * (320 / 213), height: emblemSize }}
+        style={{ width: emblemSize * (EMBLEM_W / EMBLEM_H), height: emblemSize }}
       />
       <span>
         <span className="name block">Alpine Map Training</span>

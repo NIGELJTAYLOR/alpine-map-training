@@ -5,6 +5,7 @@ import { ProgressProvider } from "@/lib/progress/provider";
 import { SwRegister } from "@/components/site/sw-register";
 import { InstallPrompt } from "@/components/site/install-prompt";
 import { OfflineIndicator } from "@/components/site/offline-indicator";
+import { IntroSplash } from "@/components/site/intro-splash";
 
 // Carta typography stack — Direction 1
 const inter = Inter({
@@ -72,6 +73,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ProgressProvider>
+          <IntroSplash />
           <OfflineIndicator />
           {children}
           <InstallPrompt />
