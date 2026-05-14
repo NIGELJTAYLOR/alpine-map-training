@@ -3,6 +3,8 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { SelfCheckCheckbox } from "@/components/site/self-check-checkbox";
 import { DiagramCard } from "@/components/site/diagram-card";
+import { AnswerSlot } from "@/components/site/answer-slot";
+import { ExerciseField } from "@/components/site/exercise-field";
 import { getDiagramByRef } from "@/lib/content";
 
 interface DiagramTagProps {
@@ -14,6 +16,13 @@ interface DiagramTagProps {
 
 /** Replace native HTML elements emitted by MDX with Carta-styled versions. */
 export const mdxComponents = {
+  // Inserted by the remark-exercise-fields velite plugin.
+  //   <AnswerSlot ex q size />  — one typeable answer field, placed inline
+  //     wherever the author wrote `____` in the source MDX.
+  //   <ExerciseField n />       — Grade with AI button + grade panel at the
+  //     end of each Exercise N section. Reads every `ex-{n}-q*` slot value.
+  AnswerSlot,
+  ExerciseField,
   Diagram: ({ fig, showCaption = true }: DiagramTagProps) => {
     const diagram = getDiagramByRef(fig);
     if (!diagram) {

@@ -23,7 +23,7 @@
 
 import type { Page, Quiz } from "@/lib/content";
 import { BRAND } from "@/config/brand";
-import { exerciseInputKey, parseExercises } from "@/lib/exercises";
+import { parseExercises } from "@/lib/exercises";
 import type { ProgressStore } from "./types";
 
 export interface ExportContext {
@@ -306,9 +306,31 @@ export function buildProgressMarkdown(
       // the raw source.
       const exercises = parseExercises(p.rawBody ?? p.body);
       const inputs = progress?.inputs ?? {};
-      const hasAnyResponse = exercises.some((_e, idx) => {
-        const v = inputs[exerciseInputKey(idx)];
-        return v && v.trim().length > 0;
+
+      // The new (v6) input keys are per-slot: `ex-{N}-q{K}`. The export
+      // groups these by exercise number for trainer readability. Any
+      // legacy `ex-{N}` keys from earlier sessions are surfaced too so
+      // pre-migration answers don't silently disappear from exports.
+      function slotsForExercise(exNum: number) {
+        const slotPrefix = `ex-${exNum}-q`;
+        return Object.entries(inputs)
+          .filter(([k]) => k.startsWith(slotPrefix))
+          .map(([k, v]) => ({
+            q: parseInt(k.slice(slotPrefix.length), 10),
+            value: v,
+          }))
+          .filter((e) => Number.isFinite(e.q))
+          .sort((a, b) => a.q - b.q);
+      }
+
+      const hasAnyResponse = exercises.some((ex, idx) => {
+        const exNum = ex.number ?? idx + 1;
+        const slots = slotsForExercise(exNum);
+        const legacy = inputs[`ex-${exNum}`];
+        return (
+          slots.some((s) => s.value && s.value.trim().length > 0) ||
+          (legacy && legacy.trim().length > 0)
+        );
       });
 
       const pageGrades = progress?.grades ?? {};
@@ -319,15 +341,30 @@ export function buildProgressMarkdown(
           out.push("**Exercise responses:**");
           out.push("");
           exercises.forEach((ex, idx) => {
-            const k = exerciseInputKey(idx);
-            const raw = inputs[k];
+            const exNum = ex.number ?? idx + 1;
+            const slots = slotsForExercise(exNum);
+            const legacy = inputs[`ex-${exNum}`];
             const label = ex.number != null
               ? `Exercise ${ex.number} — ${ex.title}`
               : ex.title;
             out.push(`*${label}*`);
             out.push("");
-            out.push(quote(raw ?? ""));
-            out.push("");
+            if (slots.length > 0 && slots.some((s) => s.value.trim())) {
+              for (const slot of slots) {
+                const v = slot.value.trim();
+                if (v.length === 0) continue;
+                out.push(`Q${slot.q}:`);
+                out.push("");
+                out.push(quote(slot.value));
+                out.push("");
+              }
+            } else if (legacy && legacy.trim().length > 0) {
+              out.push(quote(legacy));
+              out.push("");
+            } else {
+              out.push("_(no answer recorded)_");
+              out.push("");
+            }
 
             // Include any AI grade that exists for this exercise. The
             // structure below — bold score header, italic meta line,
@@ -335,7 +372,7 @@ export function buildProgressMarkdown(
             // gives a clear visual hierarchy in every renderer (raw .md
             // reader, modal preview, styled HTML, Word .docx, PDF) without
             // needing any renderer-specific markup.
-            const grade = pageGrades[k];
+            const grade = pageGrades[`ex-${exNum}`];
             if (grade) {
               const scoreLabel =
                 grade.score === "met"

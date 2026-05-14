@@ -11,7 +11,6 @@ import { TrainerNotesPanel } from "@/components/site/trainer-notes-panel";
 import { ReadinessCheckInput } from "@/components/site/readiness-check-input";
 import { SeeAlso } from "@/components/site/see-also";
 import { MapExtract } from "@/components/site/map-extract";
-import { ExerciseResponses } from "@/components/site/exercise-responses";
 import {
   getPage,
   getPages,
@@ -163,7 +162,11 @@ export default async function PageRoute({ params }: PageProps) {
           </aside>
         ) : null}
 
-        <PageBody pageId={page.id} body={page.body} />
+        <PageBody
+          pageId={page.id}
+          body={page.body}
+          answerKeyBody={answerKey?.rawBody}
+        />
 
         {pageMap ? (
           <MapExtract
@@ -185,11 +188,11 @@ export default async function PageRoute({ params }: PageProps) {
           </section>
         ) : null}
 
-        <ExerciseResponses
-          pageId={page.id}
-          body={page.rawBody}
-          answerKeyBody={answerKey?.rawBody}
-        />
+        {/* Per-exercise textareas now render inline within the workbook
+            body via the remark-exercise-fields velite plugin (which injects
+            <AnswerSlot> wherever the source has `____` markers). The Grade
+            with AI button sits at the foot of each exercise as <ExerciseField>.
+            The legacy bottom "Your responses" panel is retired. */}
 
         {answerKey ? (
           <AnswerToggle>

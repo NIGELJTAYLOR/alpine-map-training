@@ -8,13 +8,13 @@
  *   "### Exercise 1: Label the aspect"
  *   "### Exercise 1 Label the aspect"
  *
- * Both the in-page response panel (`<ExerciseResponses>`) and the trainer
- * Markdown export rely on the same parse so that the keying ("ex-1", "ex-2",
- * ...) stays stable across surfaces. If you change this function, also walk
- * the call sites and verify keys still line up.
+ * Used by the trainer Markdown export (`@/lib/progress/export`) and the
+ * AI grader (`@/lib/ai/grading-prompt`) to scan workbook content. The
+ * per-question `<AnswerSlot>` fields are inserted at MDX build time by
+ * `velite/remark-exercise-fields`.
  *
- * Framework note: this is content-agnostic. Any future customer's workbook
- * that adopts the "### Exercise N" convention reuses both surfaces unchanged.
+ * Framework note: content-agnostic. Any future customer's workbook that
+ * adopts the "### Exercise N" convention reuses both surfaces unchanged.
  */
 
 export interface ParsedExercise {
@@ -42,11 +42,6 @@ export function parseExercises(body: string): ParsedExercise[] {
     }
   }
   return out;
-}
-
-/** Build the stable storage key for the Nth exercise on a page (1-indexed). */
-export function exerciseInputKey(indexFromZero: number): string {
-  return `ex-${indexFromZero + 1}`;
 }
 
 export interface ExerciseSection extends ParsedExercise {

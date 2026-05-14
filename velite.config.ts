@@ -1,5 +1,6 @@
 import { defineConfig, defineCollection, s } from "velite";
 import remarkGfm from "remark-gfm";
+import { remarkExerciseFields } from "./velite/remark-exercise-fields";
 
 const pageKind = s.enum([
   "page",
@@ -30,7 +31,7 @@ const pages = defineCollection({
       // section. Default false preserves the legacy bottom rendering for any page
       // that has not yet been migrated to inline placement.
       hasInlineDiagrams: s.boolean().default(false),
-      body: s.mdx(),
+      body: s.mdx({ remarkPlugins: [remarkExerciseFields] }),
       // Raw markdown body, alongside the compiled MDX. Used by the
       // exercise parser (and the AI grader) which look for "### Exercise N"
       // headings — those don't survive MDX compilation as text.

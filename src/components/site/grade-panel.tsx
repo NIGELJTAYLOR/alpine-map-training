@@ -27,9 +27,9 @@ const SCORE_TAG: Record<GradeScore, string> = {
 /**
  * Renders one AI grade beneath an exercise.
  *
- * Pure presentational. The host (`ExerciseResponses`) owns the grading
- * lifecycle (button, in-flight state, error handling) and passes a grade
- * in when one is available.
+ * Pure presentational. The host (`ExerciseField` rendered at the end of
+ * each exercise) owns the grading lifecycle (button, in-flight state,
+ * error handling) and passes a grade in when one is available.
  */
 export function GradePanel({
   grade,
