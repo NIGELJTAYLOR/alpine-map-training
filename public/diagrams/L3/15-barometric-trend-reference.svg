@@ -1,0 +1,110 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">The five barometric trend categories</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">The rate of change of pressure over time. Read the trend, not the absolute value, for tour-time decisions.</text>
+
+  <!-- Five panels in a row -->
+  <g font-family="Arial, sans-serif" font-size="9" fill="#000">
+    <!-- Panel 1: Rising -->
+    <g transform="translate(30,80)">
+      <rect width="120" height="180" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+      <text x="60" y="18" font-size="10" font-weight="bold" fill="#1a8a3a" text-anchor="middle">Rising</text>
+      <line x1="15" y1="30" x2="15" y2="155" stroke="#888" stroke-width="0.6"/>
+      <line x1="15" y1="155" x2="110" y2="155" stroke="#888" stroke-width="0.6"/>
+      <text x="10" y="35" text-anchor="end" font-size="7" fill="#888">hPa</text>
+      <text x="110" y="170" text-anchor="end" font-size="7" fill="#888">time</text>
+      <path d="M 18 130 Q 50 110 100 60" fill="none" stroke="#1a8a3a" stroke-width="2.3"/>
+      <polygon points="95,68 100,55 105,68" fill="#1a8a3a"/>
+    </g>
+    <text x="90" y="276" font-size="8" font-weight="bold" fill="#1a8a3a" text-anchor="middle">any rate up</text>
+    <text x="90" y="288" font-size="8" fill="#444" text-anchor="middle">high pressure</text>
+    <text x="90" y="299" font-size="8" fill="#444" text-anchor="middle">building</text>
+    <text x="90" y="310" font-size="8" fill="#444" text-anchor="middle">weather improving</text>
+
+    <!-- Panel 2: Steady -->
+    <g transform="translate(160,80)">
+      <rect width="120" height="180" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+      <text x="60" y="18" font-size="10" font-weight="bold" fill="#1a8a3a" text-anchor="middle">Steady</text>
+      <line x1="15" y1="30" x2="15" y2="155" stroke="#888" stroke-width="0.6"/>
+      <line x1="15" y1="155" x2="110" y2="155" stroke="#888" stroke-width="0.6"/>
+      <text x="10" y="35" text-anchor="end" font-size="7" fill="#888">hPa</text>
+      <text x="110" y="170" text-anchor="end" font-size="7" fill="#888">time</text>
+      <path d="M 18 92 Q 50 90 100 92" fill="none" stroke="#1a8a3a" stroke-width="2.3"/>
+    </g>
+    <text x="220" y="276" font-size="8" font-weight="bold" fill="#1a8a3a" text-anchor="middle">stable &gt;3 h</text>
+    <text x="220" y="288" font-size="8" fill="#444" text-anchor="middle">systems</text>
+    <text x="220" y="299" font-size="8" fill="#444" text-anchor="middle">not changing</text>
+    <text x="220" y="310" font-size="8" fill="#444" text-anchor="middle">conditions hold</text>
+
+    <!-- Panel 3: Slow fall -->
+    <g transform="translate(290,80)">
+      <rect width="120" height="180" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+      <text x="60" y="18" font-size="10" font-weight="bold" fill="#d4a23a" text-anchor="middle">Slow fall</text>
+      <line x1="15" y1="30" x2="15" y2="155" stroke="#888" stroke-width="0.6"/>
+      <line x1="15" y1="155" x2="110" y2="155" stroke="#888" stroke-width="0.6"/>
+      <text x="10" y="35" text-anchor="end" font-size="7" fill="#888">hPa</text>
+      <text x="110" y="170" text-anchor="end" font-size="7" fill="#888">time</text>
+      <path d="M 18 70 Q 50 80 100 110" fill="none" stroke="#d4a23a" stroke-width="2.3"/>
+      <polygon points="95,103 100,118 108,108" fill="#d4a23a"/>
+    </g>
+    <text x="350" y="276" font-size="8" font-weight="bold" fill="#d4a23a" text-anchor="middle">&lt; 0.5 hPa / h</text>
+    <text x="350" y="288" font-size="8" fill="#444" text-anchor="middle">mild</text>
+    <text x="350" y="299" font-size="8" fill="#444" text-anchor="middle">deterioration</text>
+    <text x="350" y="310" font-size="8" fill="#444" text-anchor="middle">likely</text>
+
+    <!-- Panel 4: Moderate fall -->
+    <g transform="translate(420,80)">
+      <rect width="120" height="180" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+      <text x="60" y="18" font-size="10" font-weight="bold" fill="#d32f2f" text-anchor="middle">Moderate fall</text>
+      <line x1="15" y1="30" x2="15" y2="155" stroke="#888" stroke-width="0.6"/>
+      <line x1="15" y1="155" x2="110" y2="155" stroke="#888" stroke-width="0.6"/>
+      <text x="10" y="35" text-anchor="end" font-size="7" fill="#888">hPa</text>
+      <text x="110" y="170" text-anchor="end" font-size="7" fill="#888">time</text>
+      <path d="M 18 55 Q 50 90 100 135" fill="none" stroke="#d32f2f" stroke-width="2.3"/>
+      <polygon points="95,127 100,143 108,132" fill="#d32f2f"/>
+    </g>
+    <text x="480" y="276" font-size="8" font-weight="bold" fill="#d32f2f" text-anchor="middle">0.5&#8211;1 hPa / h</text>
+    <text x="480" y="288" font-size="8" fill="#444" text-anchor="middle">significant</text>
+    <text x="480" y="299" font-size="8" fill="#444" text-anchor="middle">system</text>
+    <text x="480" y="310" font-size="8" fill="#444" text-anchor="middle">approaching</text>
+
+    <!-- Panel 5: Rapid fall -->
+    <g transform="translate(550,80)">
+      <rect width="120" height="180" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+      <text x="60" y="18" font-size="10" font-weight="bold" fill="#d32f2f" text-anchor="middle">Rapid fall</text>
+      <line x1="15" y1="30" x2="15" y2="155" stroke="#888" stroke-width="0.6"/>
+      <line x1="15" y1="155" x2="110" y2="155" stroke="#888" stroke-width="0.6"/>
+      <text x="10" y="35" text-anchor="end" font-size="7" fill="#888">hPa</text>
+      <text x="110" y="170" text-anchor="end" font-size="7" fill="#888">time</text>
+      <path d="M 18 45 L 50 70 L 100 145" fill="none" stroke="#d32f2f" stroke-width="2.8"/>
+      <polygon points="95,135 102,150 110,140" fill="#d32f2f"/>
+    </g>
+    <text x="610" y="276" font-size="8" font-weight="bold" fill="#d32f2f" text-anchor="middle">&gt; 1 hPa / h</text>
+    <text x="610" y="288" font-size="8" fill="#444" text-anchor="middle">fast-moving</text>
+    <text x="610" y="299" font-size="8" fill="#444" text-anchor="middle">serious</text>
+    <text x="610" y="310" font-size="8" fill="#444" text-anchor="middle">deterioration</text>
+  </g>
+
+  <!-- Decision row -->
+  <text x="30" y="345" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Decision response (D6.2)</text>
+  <g font-family="Arial, sans-serif" font-size="9" fill="#444">
+    <text x="30" y="365">Rising or steady</text>
+    <line x1="125" y1="362" x2="155" y2="362" stroke="#444" stroke-width="0.8"/>
+    <text x="160" y="365" fill="#1a8a3a" font-weight="bold">proceed as planned.</text>
+
+    <text x="30" y="382">Slow fall</text>
+    <line x1="125" y1="379" x2="155" y2="379" stroke="#444" stroke-width="0.8"/>
+    <text x="160" y="382" fill="#d4a23a" font-weight="bold">proceed but shorten the line; keep escape options open.</text>
+
+    <text x="30" y="399">Moderate fall</text>
+    <line x1="125" y1="396" x2="155" y2="396" stroke="#444" stroke-width="0.8"/>
+    <text x="160" y="399" fill="#d32f2f" font-weight="bold">consider escape route now; do not commit to remote terrain.</text>
+
+    <text x="30" y="416">Rapid fall</text>
+    <line x1="125" y1="413" x2="155" y2="413" stroke="#444" stroke-width="0.8"/>
+    <text x="160" y="416" fill="#d32f2f" font-weight="bold">initiate escape route; weather is imminent.</text>
+  </g>
+
+  <text x="350" y="450" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Read multiple readings &gt;3 h apart to classify a settled trend. A single drop in one hour can be noise.</text>
+  <text x="350" y="466" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Pair the trend with the avalanche bulletin and the cloud / visibility observation in the field.</text>
+</svg>

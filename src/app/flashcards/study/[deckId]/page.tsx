@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SiteHeader } from "@/components/site/site-header";
+import { ChevronRight } from "lucide-react";
 import { StudySession } from "@/components/site/flashcards/study-session";
 import {
   DECKS,
@@ -39,32 +39,35 @@ export default async function StudyDeckRoute({ params }: PageProps) {
         .filter((c): c is Flashcard => Boolean(c));
 
   return (
-    <>
-      <SiteHeader />
-      <main
-        id="main-content"
-        tabIndex={-1}
-        className="mx-auto max-w-3xl px-4 py-8 sm:py-10 focus:outline-none"
-      >
-        <nav className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          <Link href="/flashcards" className="hover:text-foreground">
+    <main id="main-content" tabIndex={-1} className="focus:outline-none">
+      {/* Header band */}
+      <header className="border-b border-rule bg-paper-3 px-[22px] pb-5 pt-5 md:px-14 md:pt-10">
+        <nav className="flex items-center gap-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+          <Link href="/" className="no-underline hover:text-ink">
+            Home
+          </Link>
+          <ChevronRight className="h-2 w-2" aria-hidden />
+          <Link href="/flashcards" className="no-underline hover:text-ink">
             Flashcards
           </Link>
-          <span className="mx-2 opacity-50">/</span>
-          <span className="text-foreground">{deck.title}</span>
+          <ChevronRight className="h-2 w-2" aria-hidden />
+          <span className="text-ink">{deck.title}</span>
         </nav>
+        <h1 className="mb-1.5 mt-3 font-display text-[28px] font-extrabold leading-[1.1] tracking-[-0.025em] text-ink md:text-[40px]">
+          {deck.title}
+        </h1>
+        <p className="max-w-[62ch] text-[14px] leading-[1.55] text-ink-2 md:text-[15px]">
+          {deck.description}
+        </p>
+      </header>
 
-        <header className="mt-4 mb-6">
-          <h1 className="font-sans text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            {deck.title}
-          </h1>
-          <p className="mt-2 font-serif text-base leading-relaxed text-muted-foreground">
-            {deck.description}
-          </p>
-        </header>
-
-        <StudySession deckId={deck.id} pseudo={deck.pseudo === true} cards={allCards} />
-      </main>
-    </>
+      <div className="px-[22px] py-6 md:mx-auto md:max-w-3xl md:px-14 md:py-10">
+        <StudySession
+          deckId={deck.id}
+          pseudo={deck.pseudo === true}
+          cards={allCards}
+        />
+      </div>
+    </main>
   );
 }

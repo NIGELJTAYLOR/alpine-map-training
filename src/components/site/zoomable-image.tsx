@@ -111,7 +111,7 @@ function Lightbox({
             {caption ?? alt}
           </p>
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper-2/70">
-            Scroll or pinch to zoom · drag to pan · ESC to close
+            Scroll or pinch to zoom · drag to pan · ESC to close · rotate phone for a wider landscape view
           </p>
         </div>
         <button
@@ -130,27 +130,55 @@ function Lightbox({
           minScale={0.5}
           maxScale={6}
           centerOnInit
-          doubleClick={{ mode: "zoomIn", step: 1 }}
-          wheel={{ step: 0.15 }}
-          pinch={{ step: 5 }}
+          centerZoomedOut
+          // Per-step scale change. Lower values = gentler zoom on every input.
+          // wheel.step is per scroll-wheel tick; pinch.step is per pinch unit;
+          // doubleClick.step is the multiplier per double-click; the +/- buttons
+          // pass an explicit step below (default would be 0.7, which doubles each
+          // click; 0.25 gives a slower, more controllable increment).
+          doubleClick={{ mode: "zoomIn", step: 0.2 }}
+          // wheel.step controls per-scroll-tick zoom. v4 of the library
+          // only honours `step` (smoothStep was a v2/v3 prop, silently
+          // dropped in v4). 0.01 = 1% scale change per wheel detent, well
+          // below the library default of 0.2; this gives fine control on
+          // detailed maps with a real mouse wheel.
+          wheel={{ step: 0.01 }}
+          pinch={{ step: 3 }}
+          velocityAnimation={{ disabled: true }}
         >
           {({ zoomIn, zoomOut, resetTransform }) => (
             <>
               <div className="absolute right-3 top-3 z-10 flex flex-col gap-1.5 sm:right-4 sm:top-4">
-                <ZoomBtn label="+" onClick={() => zoomIn()} />
-                <ZoomBtn label="−" onClick={() => zoomOut()} />
+                <ZoomBtn label="+" onClick={() => zoomIn(0.15)} />
+                <ZoomBtn label="−" onClick={() => zoomOut(0.15)} />
                 <ZoomBtn label="↺" onClick={() => resetTransform()} />
               </div>
               <TransformComponent
                 wrapperStyle={{ width: "100%", height: "100%" }}
-                contentStyle={{ width: "100%", height: "100%" }}
+                contentStyle={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
+                {/* maxWidth + maxHeight + auto width/height keeps a landscape
+                    image fit-to-screen on both landscape and portrait viewports
+                    without stretching, with letterboxed empty space if the
+                    aspect ratios disagree. */}
                 <img
                   src={src}
                   alt={alt}
                   width={width}
                   height={height}
-                  style={{ maxWidth: "100%", height: "auto", margin: "0 auto" }}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                  }}
                   draggable={false}
                 />
               </TransformComponent>

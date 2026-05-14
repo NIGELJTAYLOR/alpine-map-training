@@ -1,16 +1,21 @@
 "use client";
 
-import { createContext, useContext, useRef, type ReactNode } from "react";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
 
 interface SelfCheckCtx {
   pageId: string;
-  // mutable counter so each <SelfCheckCheckbox> gets a stable, in-DOM-order index
-  nextIndex: () => number;
-  totalRef: React.RefObject<number>;
 }
 
 const Ctx = createContext<SelfCheckCtx | null>(null);
 
+/**
+ * Wraps a lesson page's MDX body so any `<SelfCheckCheckbox>` children
+ * inside it can read the current `pageId` and bind to the progress store.
+ *
+ * Each checkbox keys itself by `React.useId()`, so identity is stable across
+ * SSR and the client hydration pass; the provider no longer needs to assign
+ * a render-time index.
+ */
 export function SelfCheckProvider({
   pageId,
   children,
@@ -18,23 +23,7 @@ export function SelfCheckProvider({
   pageId: string;
   children: ReactNode;
 }) {
-  // Each render starts the counter fresh. React calls the children render in
-  // top-to-bottom DOM order, so checkboxes get indices that match their visual
-  // position.
-  const counterRef = useRef(0);
-  const totalRef = useRef(0);
-  counterRef.current = 0;
-  totalRef.current = 0;
-  const value: SelfCheckCtx = {
-    pageId,
-    nextIndex: () => {
-      const n = counterRef.current;
-      counterRef.current += 1;
-      totalRef.current = counterRef.current;
-      return n;
-    },
-    totalRef,
-  };
+  const value = useMemo<SelfCheckCtx>(() => ({ pageId }), [pageId]);
   return <Ctx value={value}>{children}</Ctx>;
 }
 

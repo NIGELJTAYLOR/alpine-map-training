@@ -1,0 +1,68 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">The two most-confused parts of the compass</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">The direction-of-travel arrow lives on the BASEPLATE and points where you are going.</text>
+  <text x="20" y="60" font-family="Arial, sans-serif" font-size="10" fill="#444">The orienting arrow lives INSIDE THE BEZEL and rotates with it; you use it to align the compass with the map or with the magnetic needle.</text>
+
+  <!-- Left compass: direction-of-travel highlighted -->
+  <g transform="translate(180,265)">
+    <rect x="-100" y="-130" width="200" height="200" fill="#eef2f3" stroke="#666" stroke-width="1.2" rx="6"/>
+    <!-- direction of travel arrow on baseplate, highlighted -->
+    <line x1="0" y1="-90" x2="0" y2="-40" stroke="#d32f2f" stroke-width="4"/>
+    <polygon points="-8,-82 0,-100 8,-82" fill="#d32f2f"/>
+    <!-- bezel circle -->
+    <circle r="55" fill="#fff" stroke="#666" stroke-width="1.4"/>
+    <text y="-40" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">N</text>
+    <text y="48" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">S</text>
+    <text x="44" y="3" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">E</text>
+    <text x="-44" y="3" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">W</text>
+    <!-- orienting arrow inside bezel (faint) -->
+    <polygon points="-7,-25 7,-25 0,-38" fill="none" stroke="#888" stroke-width="1.4"/>
+    <line x1="-7" y1="-25" x2="-7" y2="15" stroke="#888" stroke-width="0.9"/>
+    <line x1="7" y1="-25" x2="7" y2="15" stroke="#888" stroke-width="0.9"/>
+    <!-- magnetic needle (faint) -->
+    <polygon points="0,-22 -5,15 0,12 5,15" fill="#d32f2f" opacity="0.5"/>
+    <polygon points="0,22 -5,-15 0,-12 5,-15" fill="#444" opacity="0.4"/>
+  </g>
+
+  <text x="180" y="100" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#d32f2f" text-anchor="middle">Direction-of-travel arrow</text>
+  <text x="180" y="120" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Engraved on the BASEPLATE.</text>
+  <text x="180" y="133" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Fixed; does not rotate.</text>
+  <text x="180" y="350" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">&#8220;Where am I going?&#8221;</text>
+  <text x="180" y="365" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Point this towards your target.</text>
+  <text x="180" y="378" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Walk in line with it.</text>
+
+  <!-- Right compass: orienting arrow highlighted -->
+  <g transform="translate(520,265)">
+    <rect x="-100" y="-130" width="200" height="200" fill="#eef2f3" stroke="#666" stroke-width="1.2" rx="6"/>
+    <!-- direction of travel arrow (faint) -->
+    <line x1="0" y1="-90" x2="0" y2="-40" stroke="#888" stroke-width="2"/>
+    <polygon points="-5,-82 0,-95 5,-82" fill="#888"/>
+    <!-- bezel circle -->
+    <circle r="55" fill="#fff" stroke="#666" stroke-width="1.4"/>
+    <text y="-40" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">N</text>
+    <text y="48" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">S</text>
+    <text x="44" y="3" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">E</text>
+    <text x="-44" y="3" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#888" text-anchor="middle">W</text>
+    <!-- orienting arrow inside bezel, highlighted -->
+    <polygon points="-10,-22 10,-22 0,-40" fill="#d32f2f"/>
+    <line x1="-10" y1="-22" x2="-10" y2="20" stroke="#d32f2f" stroke-width="1.6"/>
+    <line x1="10" y1="-22" x2="10" y2="20" stroke="#d32f2f" stroke-width="1.6"/>
+    <!-- magnetic needle (faint) -->
+    <polygon points="0,-22 -5,15 0,12 5,15" fill="#888" opacity="0.4"/>
+    <polygon points="0,22 -5,-15 0,-12 5,-15" fill="#888" opacity="0.4"/>
+  </g>
+
+  <text x="520" y="100" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#d32f2f" text-anchor="middle">Orienting arrow (and parallel lines)</text>
+  <text x="520" y="120" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Inside the BEZEL.</text>
+  <text x="520" y="133" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Rotates when you turn the bezel.</text>
+  <text x="520" y="350" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">&#8220;Which way is the bearing pointing?&#8221;</text>
+  <text x="520" y="365" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Align with grid north on the map,</text>
+  <text x="520" y="378" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">or boxed around the magnetic needle.</text>
+
+  <!-- Warning bar -->
+  <rect x="60" y="410" width="580" height="55" fill="#fff4d6" stroke="#d4a23a" stroke-width="1.2" rx="3"/>
+  <text x="350" y="430" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">Mnemonic: &#8220;baseplate is going&#8221; / &#8220;orienting is for orienting&#8221;.</text>
+  <text x="350" y="446" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">The direction-of-travel arrow stays put on the body of the compass; it is the one you walk with.</text>
+  <text x="350" y="459" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">The orienting arrow is the one inside the spinning bezel; it is the one you align with the map or the needle.</text>
+</svg>

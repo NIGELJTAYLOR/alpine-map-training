@@ -1,12 +1,19 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { SiteHeader } from "@/components/site/site-header";
+import { ChevronRight } from "lucide-react";
 import { QuizPlayer } from "@/components/site/quiz/quiz-player";
 import { MapExtract } from "@/components/site/map-extract";
 import { getAllQuizzes, getQuiz } from "@/lib/content";
 
-const QUIZ_MAPS: Record<string, { id: string; title: string; markers: { label: string; description: string; color?: "crimson" | "ink" | "moss" | "amber" }[] }> = {
+const QUIZ_MAPS: Record<
+  string,
+  {
+    id: string;
+    title: string;
+    markers: { label: string; description: string; color?: "crimson" | "ink" | "moss" | "amber" }[];
+  }
+> = {
   "L2.C7.1": {
     id: "c7-1",
     title: "Section C7.1 — Mixed contour quiz",
@@ -54,41 +61,61 @@ export default async function QuizRoute({ params }: PageProps) {
   const mapCfg = QUIZ_MAPS[quiz.id];
 
   return (
-    <>
-      <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-10 sm:py-14 focus:outline-none">
-        <nav className="eyebrow">
-          <Link href={`/levels/${level}`} className="hover:text-ink">
+    <main id="main-content" tabIndex={-1} className="focus:outline-none">
+      {/* Header band */}
+      <header className="border-b border-rule bg-paper-3 px-[22px] pb-5 pt-5 md:px-14 md:pt-10">
+        <nav className="flex items-center gap-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+          <Link href="/" className="no-underline hover:text-ink">
+            Home
+          </Link>
+          <ChevronRight className="h-2 w-2" aria-hidden />
+          <Link
+            href={`/levels/${level}`}
+            className="no-underline hover:text-ink"
+          >
             Level {level}
           </Link>
-          <span className="mx-2 text-rule">/</span>
-          <Link href={`/levels/${level}/${pageCode}`} className="hover:text-ink">
+          <ChevronRight className="h-2 w-2" aria-hidden />
+          <Link
+            href={`/levels/${level}/${pageCode}`}
+            className="no-underline hover:text-ink"
+          >
             {pageCode}
           </Link>
-          <span className="mx-2 text-rule">/</span>
-          <span className="text-ink">Interactive quiz</span>
+          <ChevronRight className="h-2 w-2" aria-hidden />
+          <span className="text-red">Quiz</span>
         </nav>
+        <h1 className="mb-1.5 mt-3 font-display text-[30px] font-extrabold leading-[1.1] tracking-[-0.025em] text-ink md:text-[48px]">
+          {quiz.title}
+        </h1>
+        <p className="max-w-[62ch] text-[14px] leading-[1.55] text-ink-2 md:text-[15px]">
+          {quiz.intro}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          <span className="tag red">
+            <span className="dot" />
+            Quiz · {quiz.questions.length} questions
+          </span>
+          <span className="tag">Auto-graded + self-mark</span>
+        </div>
+      </header>
 
-        <header className="mt-5 mb-8">
-          <h1 className="font-display text-3xl font-medium tracking-[-0.015em] text-ink sm:text-[44px]">
-            {quiz.title}
-          </h1>
-          <p className="mt-3 font-sans text-base leading-relaxed text-ink-2">
-            {quiz.intro}
-          </p>
-        </header>
-
-        {mapCfg ? (
+      {/* Optional map extract */}
+      {mapCfg ? (
+        <div className="px-[22px] pt-6 md:px-14">
           <MapExtract
             id={mapCfg.id}
             title={mapCfg.title}
-            caption="Use this extract for the questions that reference Q1, Q2, Q3 (or F1/F2 on the L3 quiz). Numbered points are approximate; the workbook is calibrated against your trainer's printed extract — this is here so you can practise solo."
+            caption="Use this extract for the questions that reference the marked points. Numbered points are approximate; the workbook is calibrated against your trainer's printed extract — this is here so you can practise solo."
             markers={mapCfg.markers}
           />
-        ) : null}
+        </div>
+      ) : null}
 
+      {/* Quiz body */}
+      <div className="px-[22px] pb-10 pt-4 md:px-14 md:pt-6">
         <QuizPlayer quiz={quiz} />
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

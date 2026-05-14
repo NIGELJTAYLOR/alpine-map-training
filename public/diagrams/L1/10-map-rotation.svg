@@ -1,0 +1,87 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Rotating the map to match the terrain</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">You are not changing the map. You are changing how you hold it, so the features on the paper point the same way as the features in front of you.</text>
+
+  <!-- True compass rose at the top centre -->
+  <text x="350" y="78" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle">True directions on the ground</text>
+  <g transform="translate(350,100)">
+    <line x1="0" y1="-18" x2="0" y2="18" stroke="#888" stroke-width="0.6"/>
+    <line x1="-18" y1="0" x2="18" y2="0" stroke="#888" stroke-width="0.6"/>
+    <polygon points="-3,-12 0,-22 3,-12" fill="#1a1a1a"/>
+    <text x="0" y="-26" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000" text-anchor="middle">N</text>
+    <text x="22" y="3" font-family="Arial, sans-serif" font-size="8" fill="#888">E</text>
+    <text x="0" y="30" font-family="Arial, sans-serif" font-size="8" fill="#888" text-anchor="middle">S</text>
+    <text x="-22" y="3" font-family="Arial, sans-serif" font-size="8" fill="#888" text-anchor="end">W</text>
+  </g>
+
+  <!-- Left panel: north-up, mismatched -->
+  <rect x="30" y="135" width="310" height="300" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+  <text x="185" y="152" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Map held north-up</text>
+  <text x="185" y="167" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Path on the map points up-right; in reality the path heads up-right too,</text>
+  <text x="185" y="178" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">but the learner is facing north-east, not north.</text>
+
+  <!-- Reality: person at junction facing NE -->
+  <g transform="translate(185,230)">
+    <line x1="0" y1="0" x2="60" y2="-60" stroke="#3a78a4" stroke-width="2"/>
+    <polygon points="55,-65 65,-65 60,-55" fill="#3a78a4"/>
+    <text x="68" y="-58" font-family="Arial, sans-serif" font-size="8" fill="#3a78a4">path NE</text>
+    <line x1="0" y1="0" x2="-50" y2="0" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="0" y1="0" x2="0" y2="50" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+    <circle r="6" fill="#d32f2f"/>
+    <polygon points="-3,-2 0,-9 3,-2" fill="#d32f2f"/>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle">you, facing NE</text>
+  </g>
+
+  <!-- Map rectangle (held flat, north points up the page) -->
+  <g transform="translate(185,355)">
+    <rect x="-65" y="-40" width="130" height="80" fill="#fcf6e8" stroke="#1a1a1a" stroke-width="1"/>
+    <line x1="-50" y1="20" x2="50" y2="-25" stroke="#3a78a4" stroke-width="2"/>
+    <polygon points="45,-30 55,-30 50,-20" fill="#3a78a4"/>
+    <polygon points="-4,-30 0,-40 4,-30" fill="#1a1a1a"/>
+    <text x="0" y="-44" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#000" text-anchor="middle">N</text>
+    <text x="0" y="55" font-family="Arial, sans-serif" font-size="7" fill="#444" text-anchor="middle">map in your hands</text>
+  </g>
+
+  <!-- Mismatch indicator -->
+  <text x="50" y="300" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold">mismatch:</text>
+  <text x="50" y="313" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f">you must rotate</text>
+  <text x="50" y="324" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f">in your head.</text>
+
+  <!-- Right panel: map rotated to match -->
+  <rect x="370" y="135" width="300" height="300" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+  <text x="520" y="152" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Map rotated to match the terrain</text>
+  <text x="520" y="167" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Path on the paper now points the same way as the path on the ground.</text>
+  <text x="520" y="178" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">North on the map is no longer at the top of the page, but the alignment is right.</text>
+
+  <!-- Reality: same person facing NE -->
+  <g transform="translate(520,230)">
+    <line x1="0" y1="0" x2="60" y2="-60" stroke="#3a78a4" stroke-width="2"/>
+    <polygon points="55,-65 65,-65 60,-55" fill="#3a78a4"/>
+    <text x="68" y="-58" font-family="Arial, sans-serif" font-size="8" fill="#3a78a4">path NE</text>
+    <line x1="0" y1="0" x2="-50" y2="0" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="0" y1="0" x2="0" y2="50" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
+    <circle r="6" fill="#1a8a3a"/>
+    <polygon points="-3,-2 0,-9 3,-2" fill="#1a8a3a"/>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="7" fill="#1a8a3a" text-anchor="middle">you, facing NE</text>
+  </g>
+
+  <!-- Map rotated 45° clockwise so its 'up' aligns with NE -->
+  <g transform="translate(520,355) rotate(45)">
+    <rect x="-65" y="-40" width="130" height="80" fill="#fcf6e8" stroke="#1a1a1a" stroke-width="1"/>
+    <line x1="-50" y1="20" x2="50" y2="-25" stroke="#3a78a4" stroke-width="2"/>
+    <polygon points="45,-30 55,-30 50,-20" fill="#3a78a4"/>
+    <polygon points="-4,-30 0,-40 4,-30" fill="#1a1a1a"/>
+    <text x="0" y="-44" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#000" text-anchor="middle" transform="rotate(-45)">N</text>
+  </g>
+  <text x="520" y="430" font-family="Arial, sans-serif" font-size="7" fill="#444" text-anchor="middle">map in your hands, rotated</text>
+
+  <!-- Match indicator -->
+  <text x="630" y="300" font-family="Arial, sans-serif" font-size="9" fill="#1a8a3a" font-weight="bold" text-anchor="end">match:</text>
+  <text x="630" y="313" font-family="Arial, sans-serif" font-size="8" fill="#1a8a3a" text-anchor="end">no rotation</text>
+  <text x="630" y="324" font-family="Arial, sans-serif" font-size="8" fill="#1a8a3a" text-anchor="end">needed in your head.</text>
+
+  <!-- Footer note -->
+  <text x="350" y="460" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">You don&#8217;t change the map&#8217;s north; you change how you hold the paper.</text>
+  <text x="350" y="475" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Turn the map until an obvious linear feature on the paper points the same way as the same feature on the ground.</text>
+</svg>

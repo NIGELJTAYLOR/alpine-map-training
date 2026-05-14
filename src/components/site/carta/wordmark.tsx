@@ -1,48 +1,46 @@
 import Link from "next/link";
-import Image from "next/image";
 
 interface WordmarkProps {
   href?: string;
   showByline?: boolean;
-  /** Override the emblem display height in px (default 60, sized to align top+bottom with the text block). */
+  /** Override the mark size in px (default 30, matches Glacier Lab spec). */
   emblemSize?: number;
 }
 
-const EMBLEM_W = 480;
-const EMBLEM_H = 412;
-
 /**
- * Carta wordmark: Alpine Map Training emblem (compass + crossed skis on a
- * map background) + "Alpine Map Training" + the PerformOS byline image.
- * Defaults to linking to home; pass href="" to render without a link.
+ * Glacier Lab wordmark: a 30 px minimal mark (navy square, white contour
+ * line zigzag, alpine-red summit dot) paired with the "Alpine Map Training"
+ * name in Manrope 800 and the "By PerformOS" byline in IBM Plex Mono mono
+ * caps.
+ *
+ * Per the design handoff, the mark is intentionally minimal during the
+ * re-skin. A polished bespoke mark can replace the inline SVG later; the
+ * layout and surrounding type are locked.
  */
-export function Wordmark({ href = "/", showByline = true, emblemSize = 60 }: WordmarkProps) {
+export function Wordmark({ href = "/", showByline = true, emblemSize = 30 }: WordmarkProps) {
   const inner = (
     <span className="wordmark">
-      <Image
-        src="/brand/amt-emblem.png"
-        alt=""
-        width={EMBLEM_W}
-        height={EMBLEM_H}
-        priority
-        className="glyph"
-        style={{ width: emblemSize * (EMBLEM_W / EMBLEM_H), height: emblemSize }}
-      />
+      <span
+        className="mark"
+        style={{ width: emblemSize, height: emblemSize, display: "block", flexShrink: 0 }}
+        aria-hidden
+      >
+        <svg viewBox="0 0 30 30" width={emblemSize} height={emblemSize}>
+          <rect width="30" height="30" fill="#0E1A2E" />
+          <path
+            d="M4 22 L11 12 L16 18 L21 10 L26 16"
+            stroke="#FFFFFF"
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="24" cy="8" r="2.5" fill="#D7263D" />
+        </svg>
+      </span>
       <span>
         <span className="name block">Alpine Map Training</span>
-        {showByline ? (
-          <span className="block leading-none">
-            <Image
-              src="/brand/by-performos-black-transparent.svg"
-              alt="By PerformOS"
-              width={638}
-              height={127}
-              priority
-              unoptimized
-              className="mt-1.5 h-[24px] w-auto"
-            />
-          </span>
-        ) : null}
+        {showByline ? <span className="by block">By PerformOS</span> : null}
       </span>
     </span>
   );

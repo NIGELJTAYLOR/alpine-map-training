@@ -1,0 +1,97 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Minimum clearances from magnetic interference</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">An overhead view of the candidate holding the compass at chest height. Keep ferrous items, batteries and electronics outside the radii below to keep the needle reading true.</text>
+
+  <!-- Concentric rings -->
+  <g transform="translate(350,260)">
+    <!-- 2 m ring -->
+    <circle r="170" fill="#fff" stroke="#999" stroke-width="0.7" stroke-dasharray="4,4"/>
+    <text x="0" y="-180" font-family="Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">2 m</text>
+    <!-- 50 cm ring -->
+    <circle r="80" fill="#fcf6e8" stroke="#d4a23a" stroke-width="0.9" stroke-dasharray="4,4"/>
+    <text x="0" y="-90" font-family="Arial, sans-serif" font-size="9" fill="#d4a23a" text-anchor="middle" font-weight="bold">50 cm</text>
+    <!-- 30 cm ring -->
+    <circle r="48" fill="#fff4d6" stroke="#d32f2f" stroke-width="1.0" stroke-dasharray="3,3"/>
+    <text x="0" y="-58" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f" text-anchor="middle" font-weight="bold">30 cm</text>
+
+    <!-- Candidate at centre: compass top-down -->
+    <rect x="-18" y="-10" width="36" height="20" fill="#eef2f3" stroke="#666" stroke-width="0.8"/>
+    <circle r="8" fill="#fff" stroke="#666" stroke-width="0.7"/>
+    <polygon points="-2,-2 2,-2 0,-7" fill="#d32f2f"/>
+    <line x1="-3" y1="-2" x2="-3" y2="6" stroke="#d32f2f" stroke-width="0.6"/>
+    <line x1="3" y1="-2" x2="3" y2="6" stroke="#d32f2f" stroke-width="0.6"/>
+    <polygon points="0,-2 -2,5 0,4 2,5" fill="#d32f2f"/>
+    <text x="0" y="22" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">compass</text>
+    <text x="0" y="32" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">at chest height</text>
+  </g>
+
+  <!-- Items at typical positions -->
+  <!-- phone in pocket: inside 30 cm zone is BAD -->
+  <g transform="translate(285,290)">
+    <rect x="-7" y="-10" width="14" height="20" fill="#1a1a1a" rx="1"/>
+    <rect x="-5" y="-8" width="10" height="14" fill="#3a78a4"/>
+    <text x="0" y="22" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">phone</text>
+    <text x="0" y="32" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle" font-weight="bold">&#10005; too close</text>
+  </g>
+
+  <!-- ice axe inside 50 cm zone: BAD -->
+  <g transform="translate(420,235)">
+    <line x1="-3" y1="-18" x2="-3" y2="18" stroke="#1a1a1a" stroke-width="2"/>
+    <polygon points="-9,-18 3,-18 -3,-26" fill="#1a1a1a"/>
+    <text x="2" y="30" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">ice axe</text>
+    <text x="2" y="40" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle" font-weight="bold">&#10005; too close</text>
+  </g>
+
+  <!-- ski binding farther away -->
+  <g transform="translate(220,360)">
+    <rect x="-12" y="-4" width="24" height="8" fill="#888"/>
+    <rect x="-10" y="-2" width="6" height="4" fill="#444"/>
+    <rect x="4" y="-2" width="6" height="4" fill="#444"/>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">ski binding</text>
+    <text x="0" y="30" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle" font-weight="bold">&#10005; too close</text>
+  </g>
+
+  <!-- partner skier outside 2 m: OK -->
+  <g transform="translate(550,180)">
+    <circle r="5" fill="#1a8a3a"/>
+    <line x1="0" y1="5" x2="0" y2="18" stroke="#1a8a3a" stroke-width="1.5"/>
+    <line x1="0" y1="10" x2="-6" y2="14" stroke="#1a8a3a" stroke-width="1.2"/>
+    <line x1="0" y1="10" x2="6" y2="14" stroke="#1a8a3a" stroke-width="1.2"/>
+    <text x="0" y="32" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">partner</text>
+    <text x="0" y="42" font-family="Arial, sans-serif" font-size="7" fill="#1a8a3a" text-anchor="middle" font-weight="bold">&#10003; clear</text>
+  </g>
+
+  <!-- snowmobile or vehicle farther -->
+  <g transform="translate(150,160)">
+    <rect x="-20" y="-7" width="40" height="14" fill="#7a4a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+    <circle cx="-12" cy="9" r="3" fill="#1a1a1a"/>
+    <circle cx="12" cy="9" r="3" fill="#1a1a1a"/>
+    <text x="0" y="26" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">vehicle / sled</text>
+    <text x="0" y="36" font-family="Arial, sans-serif" font-size="7" fill="#1a8a3a" text-anchor="middle" font-weight="bold">&#10003; clear</text>
+  </g>
+
+  <!-- Right side: legend -->
+  <rect x="555" y="280" width="130" height="160" fill="#ffffff" stroke="#444" stroke-width="0.7"/>
+  <text x="620" y="297" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">Clearance summary</text>
+
+  <circle cx="570" cy="315" r="4" fill="none" stroke="#d32f2f" stroke-width="1.2"/>
+  <text x="580" y="318" font-family="Arial, sans-serif" font-size="8" fill="#000">30 cm: phone, GPS,</text>
+  <text x="580" y="328" font-family="Arial, sans-serif" font-size="8" fill="#000">watch, headlamp.</text>
+
+  <circle cx="570" cy="350" r="4" fill="none" stroke="#d4a23a" stroke-width="1.2"/>
+  <text x="580" y="353" font-family="Arial, sans-serif" font-size="8" fill="#000">50 cm: ice axe,</text>
+  <text x="580" y="363" font-family="Arial, sans-serif" font-size="8" fill="#000">crampons, ski binding,</text>
+  <text x="580" y="373" font-family="Arial, sans-serif" font-size="8" fill="#000">ski edges close to body.</text>
+
+  <circle cx="570" cy="395" r="4" fill="none" stroke="#999" stroke-width="1.2" stroke-dasharray="2,2"/>
+  <text x="580" y="398" font-family="Arial, sans-serif" font-size="8" fill="#000">2 m: vehicle, sled,</text>
+  <text x="580" y="408" font-family="Arial, sans-serif" font-size="8" fill="#000">power line, partner&#8217;s</text>
+  <text x="580" y="418" font-family="Arial, sans-serif" font-size="8" fill="#000">compass / electronics.</text>
+
+  <text x="620" y="433" font-family="Arial, sans-serif" font-size="7" fill="#777" text-anchor="middle" font-style="italic">Values are field-practical;</text>
+  <text x="620" y="442" font-family="Arial, sans-serif" font-size="7" fill="#777" text-anchor="middle" font-style="italic">check the interference table.</text>
+
+  <!-- Footer -->
+  <text x="350" y="470" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000" text-anchor="middle">Develop a personal interference table during training; recheck whenever you add or change kit.</text>
+</svg>

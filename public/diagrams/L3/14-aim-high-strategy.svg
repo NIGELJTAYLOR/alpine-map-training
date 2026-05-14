@@ -1,0 +1,55 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">The &#8220;aim high&#8221; strategy when descending to a target altitude</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Approach the target from 10 m above; stop and confirm; then follow the altimeter down to the exact target.</text>
+  <text x="20" y="60" font-family="Arial, sans-serif" font-size="10" fill="#444">Going slightly too high is recoverable. Going too low may not be.</text>
+
+  <!-- Sky -->
+  <rect x="30" y="80" width="640" height="170" fill="#e8eef2"/>
+
+  <!-- Slope profile descending to a cliff -->
+  <path d="M 30 100 L 100 120 L 200 160 L 320 200 L 420 240 L 460 270 L 510 295 L 540 320 L 550 360 L 555 410 L 670 410 L 670 80 L 30 80 Z" fill="#fafaf5"/>
+  <path d="M 30 100 L 100 120 L 200 160 L 320 200 L 420 240 L 460 270 L 510 295 L 540 320 L 550 360 L 555 410" fill="none" stroke="#8a7a5a" stroke-width="1.5"/>
+  <!-- Slope fill below profile -->
+  <path d="M 30 100 L 100 120 L 200 160 L 320 200 L 420 240 L 460 270 L 510 295 L 540 320 L 550 360 L 555 410 L 555 460 L 30 460 Z" fill="#dfd4b6" opacity="0.75"/>
+
+  <!-- Cliff -->
+  <rect x="554" y="360" width="20" height="105" fill="#7a6a5a"/>
+  <text x="600" y="395" font-family="Arial, sans-serif" font-size="9" fill="#1a1a1a" font-weight="bold">CLIFF BAND</text>
+  <text x="600" y="408" font-family="Arial, sans-serif" font-size="8" fill="#444">overshooting drops here</text>
+
+  <!-- runout below cliff -->
+  <path d="M 574 410 L 670 415 L 670 460 L 574 460 Z" fill="#aa9b78" opacity="0.6"/>
+
+  <!-- Altitude lines: target and target+10 -->
+  <line x1="30" y1="295" x2="670" y2="295" stroke="#1a8a3a" stroke-width="0.9" stroke-dasharray="6,4"/>
+  <text x="40" y="290" font-family="Arial, sans-serif" font-size="9" fill="#1a8a3a" font-weight="bold">target + 10 m (2,260 m): STOP &amp; CHECK</text>
+
+  <line x1="30" y1="320" x2="670" y2="320" stroke="#d32f2f" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="40" y="315" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold">target altitude (2,250 m)</text>
+
+  <!-- Path on the slope: descending from upper left -->
+  <path d="M 80 110 L 180 150 L 280 190 L 380 225 L 460 270 L 510 295" fill="none" stroke="#3a78a4" stroke-width="2.4"/>
+  <!-- Stop at target+10 -->
+  <circle cx="510" cy="295" r="6" fill="#1a8a3a" stroke="#fff" stroke-width="1.3"/>
+  <text x="510" y="285" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#1a8a3a" text-anchor="middle">1. STOP HERE</text>
+
+  <!-- Then drop carefully to target -->
+  <path d="M 510 295 L 520 315" fill="none" stroke="#3a78a4" stroke-width="2.4" stroke-dasharray="3,2"/>
+  <circle cx="520" cy="315" r="6" fill="#d32f2f" stroke="#fff" stroke-width="1.3"/>
+  <text x="540" y="320" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#d32f2f">2. then drop to target</text>
+
+  <!-- annotation arrows -->
+  <line x1="500" y1="295" x2="500" y2="319" stroke="#1a1a1a" stroke-width="0.8"/>
+  <polygon points="497,317 500,323 503,317" fill="#1a1a1a"/>
+  <text x="485" y="312" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="end">10 m</text>
+
+  <!-- DANGER label -->
+  <text x="555" y="450" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f" font-weight="bold" text-anchor="middle">DANGER ZONE</text>
+
+  <!-- Lower text panel: when to use -->
+  <text x="30" y="437" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Apply aim-high for:</text>
+  <text x="30" y="452" font-family="Arial, sans-serif" font-size="9" fill="#444">- descents above cliff bands or runout zones,</text>
+  <text x="30" y="465" font-family="Arial, sans-serif" font-size="9" fill="#444">- approaches to cols from above (overshoot drops you into the wrong valley),</text>
+  <text x="30" y="477" font-family="Arial, sans-serif" font-size="9" fill="#444">- and any descent in poor visibility where you cannot see what is below.</text>
+</svg>

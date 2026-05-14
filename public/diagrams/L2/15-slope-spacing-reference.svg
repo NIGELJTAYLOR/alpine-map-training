@@ -1,0 +1,64 @@
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="380" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Contour spacing to slope angle (1:25,000 with 10 m contour interval)</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">The closer the contour lines, the steeper the ground. Reference values for the working IMS / EMS rule of thumb.</text>
+  <rect x="30" y="65" width="150" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="105" y="87" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#3f8a3a" text-anchor="middle">Gentle</text>
+  <line x1="50" y1="105" x2="160" y2="105" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="135" x2="160" y2="135" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="165" x2="160" y2="165" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="195" x2="160" y2="195" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="225" x2="160" y2="225" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="105" y="262" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">~ 8 mm</text>
+  <text x="105" y="282" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#3f8a3a" text-anchor="middle">~ 10 deg</text>
+  <rect x="195" y="65" width="150" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="270" y="87" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#c89000" text-anchor="middle">Moderate</text>
+  <line x1="215" y1="100" x2="325" y2="100" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="215" y1="118" x2="325" y2="118" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="215" y1="136" x2="325" y2="136" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="215" y1="154" x2="325" y2="154" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="215" y1="172" x2="325" y2="172" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="215" y1="190" x2="325" y2="190" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="215" y1="208" x2="325" y2="208" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="215" y1="226" x2="325" y2="226" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="270" y="262" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">~ 5 mm</text>
+  <text x="270" y="282" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#c89000" text-anchor="middle">~ 18 to 22 deg</text>
+  <rect x="360" y="65" width="150" height="180" fill="#fff" stroke="#d32f2f" stroke-width="1.2" rx="4"/>
+  <text x="435" y="87" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#d32f2f" text-anchor="middle">Steep (30 deg threshold)</text>
+  <line x1="380" y1="105" x2="490" y2="105" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="118" x2="490" y2="118" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="131" x2="490" y2="131" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="144" x2="490" y2="144" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="157" x2="490" y2="157" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="170" x2="490" y2="170" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="183" x2="490" y2="183" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="196" x2="490" y2="196" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="209" x2="490" y2="209" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="222" x2="490" y2="222" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="380" y1="235" x2="490" y2="235" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="435" y="262" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">~ 3 mm</text>
+  <text x="435" y="282" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#d32f2f" text-anchor="middle">~ 30 deg</text>
+  <rect x="525" y="65" width="150" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="600" y="87" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7a0000" text-anchor="middle">Very steep</text>
+  <line x1="545" y1="100" x2="655" y2="100" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="110" x2="655" y2="110" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="120" x2="655" y2="120" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="130" x2="655" y2="130" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="140" x2="655" y2="140" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="150" x2="655" y2="150" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="160" x2="655" y2="160" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="170" x2="655" y2="170" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="180" x2="655" y2="180" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="190" x2="655" y2="190" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="200" x2="655" y2="200" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="210" x2="655" y2="210" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="220" x2="655" y2="220" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="230" x2="655" y2="230" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="545" y1="240" x2="655" y2="240" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="600" y="262" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">~ 2 mm or less</text>
+  <text x="600" y="282" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#7a0000" text-anchor="middle">~ 35 deg+</text>
+  <line x1="20" y1="305" x2="680" y2="305" stroke="#444" stroke-width="0.6"/>
+  <text x="20" y="325" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Working rule of thumb (1:25,000 with 10 m contours):</text>
+  <text x="20" y="345" font-family="Arial, sans-serif" font-size="10" fill="#444">contours roughly 3 mm apart or closer indicate slopes of approximately 30 degrees or more,</text>
+  <text x="20" y="360" font-family="Arial, sans-serif" font-size="10" fill="#444">the lower bound of the slab-release range. Always check the contour interval before applying the rule.</text>
+</svg>

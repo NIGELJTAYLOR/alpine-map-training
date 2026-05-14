@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quiz · Carta · Glacier Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Two phones side by side: question + score */
+.mocks.quiz-pair { grid-template-columns: 375px 375px 1fr; }
+
+/* Quiz question — mobile */
+.qz-bar { padding: 16px 22px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 12px; background: var(--paper-3); }
+.qz-bar .pbar { flex: 1; height: 4px; }
+.qz-bar .qct { font: 700 11px var(--font-mono); color: var(--ink); letter-spacing: 0.08em; }
+.qz-bar .quit { font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; }
+
+.qz-card { padding: 22px; display: flex; flex-direction: column; gap: 18px; }
+.qz-eyebrow { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); }
+.qz-q { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.25; letter-spacing: -0.018em; }
+.qz-options { display: flex; flex-direction: column; gap: 8px; }
+.qz-opt {
+  display: grid; grid-template-columns: 18px 24px 1fr; gap: 12px; align-items: flex-start;
+  padding: 14px 16px; background: var(--paper-3); border: 1px solid var(--rule);
+  cursor: pointer; font-size: 14px; line-height: 1.4;
+}
+.qz-opt .radio { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--ink-3); margin-top: 1px; position: relative; }
+.qz-opt.sel { border-color: var(--ink); background: var(--paper-3); border-width: 2px; padding: 13px 15px; }
+.qz-opt.sel .radio { border-color: var(--ink); }
+.qz-opt.sel .radio::after { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: var(--ink); }
+.qz-opt .letter { font: 700 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.06em; padding-top: 1px; }
+
+.qz-actions { padding: 0 22px 22px; display: flex; gap: 8px; justify-content: flex-end; align-items: center; }
+.qz-actions .help { margin-right: auto; font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* Score — mobile */
+.sc-head { padding: 32px 22px 24px; border-bottom: 1px solid var(--rule); background: var(--paper-3); position: relative; overflow: hidden; }
+.sc-head .grid-bg { background-size: 40px 40px; }
+.sc-head > * { position: relative; }
+.sc-eyebrow { font: 600 10px var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); }
+.sc-big { font-family: var(--font-display); font-weight: 800; font-size: 88px; line-height: 0.95; color: var(--ink); letter-spacing: -0.035em; margin: 8px 0 4px; }
+.sc-big small { font-family: var(--font-display); font-weight: 700; font-size: 28px; color: var(--ink-3); letter-spacing: -0.01em; }
+.sc-msg { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--red); max-width: 30ch; line-height: 1.3; letter-spacing: -0.015em; }
+.sc-tags { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+
+.sc-section { padding: 22px; border-bottom: 1px solid var(--rule); background: var(--paper-3); }
+.sc-section h3 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; font-weight: 600; }
+.skill-row { display: grid; grid-template-columns: 1fr 60px 50px; gap: 10px; align-items: center; padding: 8px 0; }
+.skill-row .nm { font-size: 14px; }
+.skill-row .pbar { height: 4px; }
+.skill-row .pc { font: 700 12px var(--font-mono); color: var(--ink); text-align: right; }
+.err-row { display: grid; grid-template-columns: 30px 1fr 60px; gap: 8px; padding: 12px 0; border-top: 1px solid var(--rule); font-size: 13px; align-items: start; }
+.err-row:first-of-type { border-top: 0; }
+.err-row .qn { font: 700 11px var(--font-mono); color: var(--ink-3); }
+.err-row .qd { color: var(--ink-2); line-height: 1.4; }
+.err-row .topic { font: 600 10px var(--font-mono); color: var(--red); letter-spacing: 0.06em; text-align: right; text-transform: uppercase; }
+
+.sc-foot { padding: 18px 22px; background: var(--paper-3); display: flex; gap: 8px; }
+.sc-foot .btn { flex: 1; }
+</style>
+</head>
+<body>
+<div class="std">
+  <div class="std-head">
+    <div>
+      <div class="std-eyebrow">Glacier Lab · Direction 02 · Screen 04</div>
+      <h1 class="std-title">Quiz · question &amp; score</h1>
+      <p class="std-sub">The graded-quiz flow: one question at a time, then a structured score with breakdown.</p>
+    </div>
+    <div class="std-nav">
+      <a href="home.html">01 Home</a>
+      <a href="level-index.html">02 Level</a>
+      <a href="workbook.html">03 Workbook</a>
+      <a class="active" href="quiz.html">04 Quiz</a>
+      <a href="flashcard.html">05 Card</a>
+      <a href="dashboard.html">06 Stats</a>
+      <a href="settings.html">07 Settings</a>
+      <a href="onboarding.html">08 Onboarding</a>
+      <a href="level-complete.html">09 Complete</a>
+      <a href="index.html">All screens →</a>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <symbol id="i-x" viewBox="0 0 12 12"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.5" fill="none"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="mocks quiz-pair">
+    <!-- QUESTION -->
+    <div>
+      <div class="mock-label">Mobile · Quiz question</div>
+      <div class="phone">
+        <div class="ios-bar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="9" width="3" height="3"/><rect x="4" y="6" width="3" height="6"/><rect x="8" y="3" width="3" height="9"/><rect x="12" y="0" width="3" height="12"/></svg>
+            <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5 Q8 -2 15 5"/><path d="M3 7 Q8 2 13 7"/></svg>
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="14" height="6" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="qz-bar">
+          <a class="quit" href="level-index.html"><svg width="12" height="12"><use href="#i-x"/></svg></a>
+          <div class="pbar"><i style="width:53%"></i></div>
+          <span class="qct">8 / 15</span>
+        </div>
+
+        <div class="qz-card">
+          <div class="qz-eyebrow">L1 Mock · Question 8 · Map literacy</div>
+          <div class="qz-q">A six-figure grid reference identifies a square of what size on a 1:25 000 map?</div>
+          <div class="qz-options">
+            <label class="qz-opt"><span class="radio"></span><span class="letter">A</span><span>1,000 m × 1,000 m</span></label>
+            <label class="qz-opt"><span class="radio"></span><span class="letter">B</span><span>500 m × 500 m</span></label>
+            <label class="qz-opt sel"><span class="radio"></span><span class="letter">C</span><span>100 m × 100 m</span></label>
+            <label class="qz-opt"><span class="radio"></span><span class="letter">D</span><span>10 m × 10 m</span></label>
+          </div>
+        </div>
+
+        <div class="qz-actions">
+          <span class="help">Tap to select</span>
+          <a class="btn ghost sm" href="#">Skip</a>
+          <a class="btn red sm" href="#">Next →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORE -->
+    <div>
+      <div class="mock-label">Mobile · Quiz score</div>
+      <div class="phone">
+        <div class="ios-bar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="9" width="3" height="3"/><rect x="4" y="6" width="3" height="6"/><rect x="8" y="3" width="3" height="9"/><rect x="12" y="0" width="3" height="12"/></svg>
+            <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5 Q8 -2 15 5"/><path d="M3 7 Q8 2 13 7"/></svg>
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="14" height="6" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="sc-head">
+          <div class="grid-bg"></div>
+          <div class="sc-eyebrow">L1 Mock quiz · Submitted</div>
+          <div class="sc-big">12<small>/15</small></div>
+          <div class="sc-msg">Pass mark cleared — you're ready for the next level.</div>
+          <div class="sc-tags">
+            <span class="tag moss"><span class="dot" style="background:var(--moss)"></span>80% · Pass</span>
+            <span class="tag">12 m 04 s</span>
+            <span class="tag">First attempt</span>
+          </div>
+        </div>
+
+        <div class="sc-section">
+          <h3>By topic</h3>
+          <div class="skill-row"><span class="nm">Scale &amp; distance</span><div class="pbar"><i style="width:100%"></i></div><span class="pc">4/4</span></div>
+          <div class="skill-row"><span class="nm">Contour reading</span><div class="pbar"><i style="width:80%"></i></div><span class="pc">4/5</span></div>
+          <div class="skill-row"><span class="nm">Grid references</span><div class="pbar ice"><i style="width:67%"></i></div><span class="pc">2/3</span></div>
+          <div class="skill-row"><span class="nm">Symbology</span><div class="pbar"><i style="width:100%"></i></div><span class="pc">2/2</span></div>
+          <div class="skill-row"><span class="nm">Bearings</span><div class="pbar"><i style="width:0%;background:var(--crimson)"></i></div><span class="pc" style="color:var(--crimson)">0/1</span></div>
+        </div>
+
+        <div class="sc-section">
+          <h3>Review · 3 missed</h3>
+          <div class="err-row"><span class="qn">Q4</span><span class="qd">Bearing from grid north to magnetic north in 2025</span><span class="topic">C1.02</span></div>
+          <div class="err-row"><span class="qn">Q9</span><span class="qd">Index contour interval at 1:50 000</span><span class="topic">C1.05</span></div>
+          <div class="err-row"><span class="qn">Q13</span><span class="qd">Six-figure reference for col between two peaks</span><span class="topic">C1.13</span></div>
+        </div>
+
+        <div class="sc-foot">
+          <a class="btn ghost sm" href="dashboard.html">Stats</a>
+          <a class="btn red sm" href="flashcard.html">Drill the misses</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP version of the score, since it's the bigger moment -->
+    <div>
+      <div class="mock-label">Desktop · Score (1200)</div>
+      <div class="desktop" style="min-height: 720px;">
+        <div class="browser-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="url">alpinemaptraining.app / quiz / L1-mock / result</div>
+        </div>
+
+        <div style="padding: 56px 64px; border-bottom: 1px solid var(--rule); position: relative; overflow: hidden; background: var(--paper-3);">
+          <div class="grid-bg"></div>
+          <div style="position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center;">
+            <div>
+              <div class="sc-eyebrow" style="font-size:11px">L1 Map literacy · Mock quiz · Submitted Tue 09:42</div>
+              <div style="display:flex;align-items:flex-end;gap:24px;margin-top:14px;">
+                <div class="sc-big" style="font-size: 144px;margin:0;">12<small style="font-size:44px">/15</small></div>
+                <div style="padding-bottom:18px;">
+                  <div class="sc-msg" style="font-size:22px;max-width:24ch;">Pass mark cleared — you're ready for Level 2.</div>
+                  <div class="sc-tags" style="margin-top:16px;">
+                    <span class="tag moss"><span class="dot" style="background:var(--moss)"></span>80% · Pass</span>
+                    <span class="tag">12 m 04 s · 48 s / Q</span>
+                    <span class="tag">First attempt</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--ink);color:var(--paper-3);padding:24px;border-radius:4px;">
+              <div style="font: 600 9px var(--font-mono); letter-spacing:0.2em; text-transform:uppercase; color: rgba(255,255,255,.55); margin-bottom: 12px;">Next step</div>
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.015em; margin-bottom: 6px;">Level 2 unlocked — Terrain interpretation</div>
+              <div style="color:rgba(255,255,255,.65); font-size: 13px; line-height: 1.5;">18 pages, 54 cards. Estimated 3 hours.</div>
+              <div style="display:flex;gap:8px;margin-top:18px;">
+                <a class="btn red sm" href="level-index.html">Open Level 2 →</a>
+                <a class="btn ghost sm" style="color:var(--paper-3);border-color:rgba(255,255,255,.3);" href="flashcard.html">Drill the misses</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 320px;">
+          <div style="padding: 36px 56px; border-right: 1px solid var(--rule);">
+            <h3 style="font: 600 10px var(--font-mono); letter-spacing:0.18em; text-transform:uppercase; color: var(--ink-3); margin: 0 0 18px; font-weight:600;">By topic</h3>
+            <div class="skill-row"><span class="nm">Scale &amp; distance</span><div class="pbar"><i style="width:100%"></i></div><span class="pc">4 / 4</span></div>
+            <div class="skill-row"><span class="nm">Contour reading</span><div class="pbar"><i style="width:80%"></i></div><span class="pc">4 / 5</span></div>
+            <div class="skill-row"><span class="nm">Grid references</span><div class="pbar ice"><i style="width:67%"></i></div><span class="pc">2 / 3</span></div>
+            <div class="skill-row"><span class="nm">Symbology</span><div class="pbar"><i style="width:100%"></i></div><span class="pc">2 / 2</span></div>
+            <div class="skill-row"><span class="nm">Bearings &amp; azimuth</span><div class="pbar"><i style="width:0%;background:var(--crimson)"></i></div><span class="pc" style="color:var(--crimson)">0 / 1</span></div>
+          </div>
+          <div style="padding: 36px 56px;">
+            <h3 style="font: 600 10px var(--font-mono); letter-spacing:0.18em; text-transform:uppercase; color: var(--ink-3); margin: 0 0 18px; font-weight:600;">Missed questions · 3</h3>
+            <div class="err-row"><span class="qn">Q4</span><span class="qd">Bearing from grid north to magnetic north in 2025 for Cairngorm</span><span class="topic">C1.02</span></div>
+            <div class="err-row"><span class="qn">Q9</span><span class="qd">Standard index contour interval on a 1:50 000 OS map</span><span class="topic">C1.05</span></div>
+            <div class="err-row"><span class="qn">Q13</span><span class="qd">Six-figure grid reference for col between two adjacent peaks</span><span class="topic">C1.13</span></div>
+            <a href="flashcard.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:18px;color:var(--red);font:700 12px var(--font-mono);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;">Drill the misses →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="340" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Cliff-band rock symbology across the major alpine series</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Merged contour lines plus rock symbology together identify a cliff band. Symbology varies; the diagnostic is the same.</text>
+  <rect x="30" y="65" width="170" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="115" y="87" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">IGN TOP25 (France)</text>
+  <text x="115" y="103" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Black rock-pattern hatching</text>
+  <line x1="50" y1="135" x2="180" y2="135" stroke="#B5651D" stroke-width="1"/>
+  <line x1="50" y1="148" x2="180" y2="148" stroke="#B5651D" stroke-width="1"/>
+  <line x1="50" y1="160" x2="180" y2="160" stroke="#B5651D" stroke-width="2.5"/>
+  <line x1="55" y1="160" x2="59" y2="172" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="65" y1="160" x2="68" y2="170" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="75" y1="160" x2="79" y2="172" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="85" y1="160" x2="88" y2="170" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="95" y1="160" x2="99" y2="172" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="105" y1="160" x2="108" y2="170" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="115" y1="160" x2="119" y2="172" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="125" y1="160" x2="128" y2="170" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="135" y1="160" x2="139" y2="172" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="145" y1="160" x2="148" y2="170" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="155" y1="160" x2="159" y2="172" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="165" y1="160" x2="168" y2="170" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="175" y1="160" x2="179" y2="172" stroke="#1a1a1a" stroke-width="1"/>
+  <line x1="50" y1="190" x2="180" y2="190" stroke="#B5651D" stroke-width="1"/>
+  <line x1="50" y1="205" x2="180" y2="205" stroke="#B5651D" stroke-width="1"/>
+  <line x1="50" y1="220" x2="180" y2="220" stroke="#B5651D" stroke-width="1"/>
+  <rect x="215" y="65" width="170" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="300" y="87" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Swisstopo (Switzerland)</text>
+  <text x="300" y="103" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Brown stippled rock pattern</text>
+  <line x1="235" y1="135" x2="365" y2="135" stroke="#B5651D" stroke-width="1"/>
+  <line x1="235" y1="148" x2="365" y2="148" stroke="#B5651D" stroke-width="1"/>
+  <rect x="235" y="155" width="130" height="20" fill="#9e6f3a" opacity="0.55"/>
+  <line x1="235" y1="190" x2="365" y2="190" stroke="#B5651D" stroke-width="1"/>
+  <line x1="235" y1="205" x2="365" y2="205" stroke="#B5651D" stroke-width="1"/>
+  <line x1="235" y1="220" x2="365" y2="220" stroke="#B5651D" stroke-width="1"/>
+  <rect x="400" y="65" width="170" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="485" y="87" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Alpenvereinskarte (Austria)</text>
+  <text x="485" y="103" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Grey rock shading and edges</text>
+  <line x1="420" y1="135" x2="550" y2="135" stroke="#B5651D" stroke-width="1"/>
+  <line x1="420" y1="148" x2="550" y2="148" stroke="#B5651D" stroke-width="1"/>
+  <rect x="420" y="155" width="130" height="22" fill="#888" opacity="0.4"/>
+  <line x1="420" y1="155" x2="550" y2="155" stroke="#444" stroke-width="0.8"/>
+  <line x1="420" y1="177" x2="550" y2="177" stroke="#444" stroke-width="1.2"/>
+  <line x1="420" y1="190" x2="550" y2="190" stroke="#B5651D" stroke-width="1"/>
+  <line x1="420" y1="205" x2="550" y2="205" stroke="#B5651D" stroke-width="1"/>
+  <line x1="420" y1="220" x2="550" y2="220" stroke="#B5651D" stroke-width="1"/>
+  <text x="20" y="270" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">The diagnostic for a cliff band:</text>
+  <text x="20" y="290" font-family="Arial, sans-serif" font-size="10" fill="#444">Two cues together: contour lines so close they merge into a single thick band, plus a rock symbology overlay.</text>
+  <text x="20" y="305" font-family="Arial, sans-serif" font-size="10" fill="#444">A merged-contour band on its own may be very steep ground rather than a cliff.</text>
+  <text x="20" y="320" font-family="Arial, sans-serif" font-size="10" fill="#444">Rock symbology alone may indicate scattered boulders rather than a continuous face. Both cues together identify the cliff.</text>
+</svg>

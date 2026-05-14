@@ -13,8 +13,15 @@ export function loadProgress(): ProgressStore {
     const parsed = JSON.parse(raw) as ProgressStore;
     if (!parsed || typeof parsed !== "object") return emptyProgress();
     if (parsed.version !== PROGRESS_VERSION) {
-      // Future: migration. For v1 we drop on mismatch.
-      return emptyProgress();
+      // Additive schema history (all backward-compatible):
+      //   v2 → v3: optional onboarding settings
+      //   v3 → v4: profile fields + per-page inputs map
+      //   v4 → v5: per-exercise AI grade map
+      // The field-by-field hydration below fills any missing maps. Pre-v2
+      // stores are dropped.
+      if (typeof parsed.version !== "number" || parsed.version < 2) {
+        return emptyProgress();
+      }
     }
     // Hydrate any missing fields conservatively.
     const empty = emptyProgress();

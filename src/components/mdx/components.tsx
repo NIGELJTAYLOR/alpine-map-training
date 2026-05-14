@@ -2,9 +2,29 @@
 
 import type { ComponentPropsWithoutRef } from "react";
 import { SelfCheckCheckbox } from "@/components/site/self-check-checkbox";
+import { DiagramCard } from "@/components/site/diagram-card";
+import { getDiagramByRef } from "@/lib/content";
+
+interface DiagramTagProps {
+  /** Short reference like "L1.1", "L2.14", "L3.1a". */
+  fig: string;
+  /** Hide the caption block under the figure. Defaults to true. */
+  showCaption?: boolean;
+}
 
 /** Replace native HTML elements emitted by MDX with Carta-styled versions. */
 export const mdxComponents = {
+  Diagram: ({ fig, showCaption = true }: DiagramTagProps) => {
+    const diagram = getDiagramByRef(fig);
+    if (!diagram) {
+      return (
+        <div className="my-6 rounded-md border border-dashed border-rule bg-paper-3 p-3 text-sm text-ink-3">
+          Diagram not found: <code className="font-mono">{fig}</code>
+        </div>
+      );
+    }
+    return <DiagramCard diagram={diagram} showCaption={showCaption} />;
+  },
   input: (props: ComponentPropsWithoutRef<"input">) => {
     if (props.type === "checkbox") {
       return <SelfCheckCheckbox {...props} />;

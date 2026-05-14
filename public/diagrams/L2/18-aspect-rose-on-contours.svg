@@ -1,0 +1,48 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Reading aspect from a contour pattern</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Aspect is the direction a slope faces, the same as the direction of the fall line.</text>
+  <text x="20" y="60" font-family="Arial, sans-serif" font-size="10" fill="#444">Read the fall line first (perpendicular to the contour), then name the compass direction it points in.</text>
+  <path d="M 30 90 Q 200 105 380 115 Q 480 120 670 110" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 120 Q 200 135 380 145 Q 480 150 670 140" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 150 Q 200 165 380 175 Q 480 180 670 170" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 180 Q 200 195 380 205 Q 480 210 670 200" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 210 Q 200 225 380 235 Q 480 240 670 230" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 240 Q 200 255 380 265 Q 480 270 670 260" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 270 Q 200 285 380 295 Q 480 300 670 290" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <path d="M 30 300 Q 200 315 380 325 Q 480 330 670 320" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="40" y="88" font-family="Arial, sans-serif" font-size="9" fill="#777">2,500 m</text>
+  <text x="40" y="298" font-family="Arial, sans-serif" font-size="9" fill="#777">2,420 m</text>
+  <line x1="350" y1="70" x2="350" y2="92" stroke="#1a1a1a" stroke-width="1.5"/>
+  <polygon points="345,80 350,67 355,80" fill="#1a1a1a"/>
+  <text x="358" y="80" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Grid N</text>
+  <circle cx="350" cy="205" r="68" fill="#fff" fill-opacity="0.85" stroke="#888" stroke-width="0.8"/>
+  <line x1="350" y1="205" x2="350" y2="143" stroke="#888" stroke-width="0.6"/>
+  <line x1="350" y1="205" x2="398" y2="157" stroke="#888" stroke-width="0.6"/>
+  <line x1="350" y1="205" x2="412" y2="205" stroke="#888" stroke-width="0.6"/>
+  <line x1="350" y1="205" x2="398" y2="253" stroke="#888" stroke-width="0.6"/>
+  <line x1="350" y1="205" x2="350" y2="267" stroke="#888" stroke-width="0.6"/>
+  <line x1="350" y1="205" x2="302" y2="253" stroke="#888" stroke-width="0.6"/>
+  <line x1="350" y1="205" x2="288" y2="205" stroke="#888" stroke-width="0.6"/>
+  <line x1="350" y1="205" x2="302" y2="157" stroke="#888" stroke-width="0.6"/>
+  <text x="350" y="138" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">N</text>
+  <text x="406" y="155" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">NE</text>
+  <text x="420" y="209" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">E</text>
+  <text x="406" y="262" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">SE</text>
+  <text x="350" y="285" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">S</text>
+  <text x="294" y="262" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="end">SW</text>
+  <text x="280" y="209" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="end">W</text>
+  <text x="294" y="155" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="end">NW</text>
+  <line x1="350" y1="170" x2="350" y2="248" stroke="#d32f2f" stroke-width="2.4"/>
+  <polygon points="344,240 350,255 356,240" fill="#d32f2f"/>
+  <text x="500" y="200" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#d32f2f">fall line</text>
+  <text x="500" y="215" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f">perpendicular to contour,</text>
+  <text x="500" y="227" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f">points downhill</text>
+  <line x1="495" y1="218" x2="362" y2="222" stroke="#d32f2f" stroke-width="0.6" stroke-dasharray="3,2"/>
+  <text x="20" y="365" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Read the aspect:</text>
+  <text x="20" y="385" font-family="Arial, sans-serif" font-size="10" fill="#444">1. The contours run roughly east to west; higher values (2,500 m) at the top, lower (2,420 m) at the bottom.</text>
+  <text x="20" y="400" font-family="Arial, sans-serif" font-size="10" fill="#444">2. The fall line, drawn perpendicular to the contour and pointing from high to low, points south.</text>
+  <text x="20" y="415" font-family="Arial, sans-serif" font-size="10" fill="#444">3. The slope therefore faces south. Aspect = S.</text>
+  <text x="20" y="445" font-family="Arial, sans-serif" font-size="10" fill="#444">Name aspect to one of N, NE, E, SE, S, SW, W, NW. Read against grid north on the map.</text>
+  <text x="20" y="465" font-family="Arial, sans-serif" font-size="9" fill="#777" font-style="italic">Aspect = the direction the slope faces = the direction of the fall line.</text>
+</svg>

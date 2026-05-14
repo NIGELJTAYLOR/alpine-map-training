@@ -1,0 +1,108 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Bird&#8217;s-eye view and ground view of the same scene</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">A small valley: a stream, a bridge, three buildings, steeper ground to the east and gentler ground to the west.</text>
+  <text x="20" y="60" font-family="Arial, sans-serif" font-size="10" fill="#444">Map reading is the skill of moving fluently between these two views.</text>
+
+  <!-- Left panel: bird's-eye / map view -->
+  <rect x="30" y="80" width="310" height="320" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+  <text x="185" y="95" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Bird&#8217;s-eye view (map)</text>
+
+  <!-- Contours: close east -->
+  <path d="M 235 110 Q 270 200 240 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+  <path d="M 250 110 Q 285 200 255 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+  <path d="M 265 110 Q 300 200 270 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+  <path d="M 280 110 Q 315 200 285 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+  <path d="M 295 110 Q 330 200 300 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+
+  <!-- Contours: spaced west -->
+  <path d="M 60 110 Q 80 200 75 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+  <path d="M 95 110 Q 115 200 110 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+  <path d="M 135 110 Q 155 200 150 320" fill="none" stroke="#B5651D" stroke-width="1.0"/>
+
+  <!-- Stream -->
+  <path d="M 200 105 Q 195 180 205 230 Q 210 285 200 395" fill="none" stroke="#3a78a4" stroke-width="2"/>
+
+  <!-- Bridge -->
+  <line x1="178" y1="225" x2="222" y2="225" stroke="#1a1a1a" stroke-width="3"/>
+  <line x1="178" y1="220" x2="178" y2="230" stroke="#1a1a1a" stroke-width="1.2"/>
+  <line x1="222" y1="220" x2="222" y2="230" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- Buildings (3 rectangles west of bridge) -->
+  <rect x="120" y="245" width="14" height="10" fill="#1a1a1a"/>
+  <rect x="140" y="252" width="14" height="10" fill="#1a1a1a"/>
+  <rect x="125" y="270" width="14" height="10" fill="#1a1a1a"/>
+
+  <!-- Labels -->
+  <text x="190" y="217" font-family="Arial, sans-serif" font-size="8" fill="#000" text-anchor="end">bridge</text>
+  <text x="125" y="240" font-family="Arial, sans-serif" font-size="8" fill="#000">buildings</text>
+  <text x="170" y="115" font-family="Arial, sans-serif" font-size="8" fill="#3a78a4">stream</text>
+  <text x="90" y="370" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">contours spaced apart</text>
+  <text x="90" y="382" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">(gentler slope)</text>
+  <text x="240" y="370" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">contours close together</text>
+  <text x="240" y="382" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">(steeper slope)</text>
+
+  <!-- North arrow -->
+  <line x1="305" y1="115" x2="305" y2="135" stroke="#000" stroke-width="1"/>
+  <polygon points="301,123 305,113 309,123" fill="#000"/>
+  <text x="315" y="121" font-family="Arial, sans-serif" font-size="8" fill="#000">N</text>
+
+  <!-- Right panel: ground view / side profile -->
+  <rect x="360" y="80" width="310" height="320" fill="#f1efe6" stroke="#444" stroke-width="0.8"/>
+  <text x="515" y="95" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Ground view (side profile)</text>
+
+  <!-- Sky -->
+  <rect x="361" y="100" width="308" height="120" fill="#e8eef2"/>
+
+  <!-- Land profile: gentle slope left, valley centre, steep slope right -->
+  <path d="M 361 220 Q 420 215 470 235 Q 495 245 510 255 L 530 255 Q 540 250 555 220 Q 580 170 615 130 L 670 110 L 670 360 L 361 360 Z" fill="#dfd4b6" stroke="#8a7a5a" stroke-width="0.8"/>
+
+  <!-- Stream (small curve under bridge) -->
+  <ellipse cx="520" cy="258" rx="14" ry="3" fill="#3a78a4"/>
+  <ellipse cx="520" cy="262" rx="11" ry="2" fill="#3a78a4" opacity="0.6"/>
+
+  <!-- Bridge -->
+  <rect x="505" y="248" width="30" height="4" fill="#1a1a1a"/>
+  <rect x="505" y="252" width="2" height="6" fill="#1a1a1a"/>
+  <rect x="533" y="252" width="2" height="6" fill="#1a1a1a"/>
+
+  <!-- Buildings on the gentle slope side -->
+  <rect x="430" y="218" width="14" height="14" fill="#c9b48f" stroke="#1a1a1a" stroke-width="0.6"/>
+  <polygon points="430,218 437,210 444,218" fill="#7a4a2a"/>
+  <rect x="450" y="222" width="14" height="14" fill="#c9b48f" stroke="#1a1a1a" stroke-width="0.6"/>
+  <polygon points="450,222 457,214 464,222" fill="#7a4a2a"/>
+  <rect x="470" y="225" width="14" height="14" fill="#c9b48f" stroke="#1a1a1a" stroke-width="0.6"/>
+  <polygon points="470,225 477,217 484,225" fill="#7a4a2a"/>
+
+  <!-- Sun -->
+  <circle cx="640" cy="125" r="9" fill="#f5d76e"/>
+
+  <!-- Labels with leader lines -->
+  <text x="430" y="200" font-family="Arial, sans-serif" font-size="8" fill="#000">buildings</text>
+  <line x1="450" y1="203" x2="455" y2="215" stroke="#000" stroke-width="0.6" stroke-dasharray="2,2"/>
+
+  <text x="500" y="240" font-family="Arial, sans-serif" font-size="8" fill="#000" text-anchor="end">bridge</text>
+  <line x1="498" y1="243" x2="510" y2="249" stroke="#000" stroke-width="0.6" stroke-dasharray="2,2"/>
+
+  <text x="555" y="240" font-family="Arial, sans-serif" font-size="8" fill="#3a78a4">stream</text>
+  <line x1="552" y1="243" x2="540" y2="256" stroke="#3a78a4" stroke-width="0.6" stroke-dasharray="2,2"/>
+
+  <text x="390" y="280" font-family="Arial, sans-serif" font-size="8" fill="#000">gentler slope (west)</text>
+  <text x="610" y="200" font-family="Arial, sans-serif" font-size="8" fill="#000" text-anchor="end">steeper slope (east)</text>
+
+  <!-- Foreground viewer indicator -->
+  <circle cx="380" cy="350" r="4" fill="#d32f2f"/>
+  <text x="390" y="354" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f">your eye</text>
+
+  <!-- Connecting note between panels -->
+  <text x="350" y="240" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#d32f2f" text-anchor="middle">→</text>
+  <text x="350" y="252" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle">translate</text>
+
+  <!-- Caption row -->
+  <text x="185" y="425" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Symbols, contours and colours, all seen straight down.</text>
+  <text x="515" y="425" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">The same scene as a side-on sketch at eye level.</text>
+
+  <!-- Footer -->
+  <text x="350" y="455" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">Read the map clues; imagine the ground; describe what you would see.</text>
+  <text x="350" y="470" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Close contours mean steep ground. Wide-spaced contours mean gentle ground.</text>
+</svg>

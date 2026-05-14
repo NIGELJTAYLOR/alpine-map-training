@@ -28,7 +28,11 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
 
   if (!hydrated) {
     return (
-      <p className="font-sans text-sm text-ink-3">Loading your progress…</p>
+      <div className="px-[22px] py-8 md:px-14">
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
+          Loading your progress…
+        </p>
+      </div>
     );
   }
 
@@ -63,6 +67,10 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
     }
   }
 
+  const completedQuizzes = quizMeta.filter(
+    (q) => store.quizzes[q.id]?.completedAt,
+  ).length;
+
   function confirmReset() {
     if (
       typeof window !== "undefined" &&
@@ -75,142 +83,210 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
   }
 
   return (
-    <div className="space-y-12">
-      {/* ===== Overall ===== */}
-      <section className="surface-card p-6 sm:p-8">
-        <p className="eyebrow eyebrow-contour">Overall</p>
-        <p className="mt-3 font-display text-[64px] font-medium leading-none tracking-[-0.025em] text-ink sm:text-[88px]">
-          {Math.round(overallPct)}
-          <span className="text-ink-3">%</span>
-        </p>
-        <p className="mt-3 font-sans text-[15px] leading-relaxed text-ink-2">
-          {totalCompleted} of {totalPages} pages complete · {totalInProgress} in progress
-        </p>
-        <p className="mt-1 page-code">Last activity {lastUpdated}</p>
-        <div className="carta-progress mt-5">
+    <>
+      {/* ===== Overall card ===== */}
+      <section className="border-b border-rule bg-paper-3 px-[22px] py-5 md:px-14 md:py-6">
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+              Overall
+            </p>
+            <p className="mt-1 font-display text-[56px] font-extrabold leading-[0.9] tracking-[-0.028em] text-ink md:text-[80px]">
+              {Math.round(overallPct)}
+              <small className="font-display text-[22px] font-bold text-ink-3 md:text-[28px]">
+                %
+              </small>
+            </p>
+          </div>
+          <p className="pb-1.5 text-right font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-moss">
+            {totalCompleted} / {totalPages} pages
+          </p>
+        </div>
+        <div className="pbar thick mt-3.5">
           <i style={{ width: `${overallPct}%` }} />
         </div>
+        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-3">
+          Last activity {lastUpdated}
+          {totalInProgress > 0 ? ` · ${totalInProgress} in progress` : ""}
+        </p>
       </section>
 
-      {/* ===== By level ===== */}
-      <section>
-        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
-          By level
-        </h3>
-        <ul className="mt-4 space-y-3">
-          {levels.map((l) => {
-            let completed = 0;
-            let inProg = 0;
-            for (const p of l.pages) {
-              const s = getPage(p.id).status;
-              if (s === "completed") completed += 1;
-              else if (s === "in-progress") inProg += 1;
-            }
-            const pct = l.pages.length
-              ? ((completed + inProg * 0.5) / l.pages.length) * 100
-              : 0;
-            return (
-              <li key={l.level} className="grid grid-cols-[120px_1fr_64px] items-center gap-3 border-b border-rule pb-3 last:border-b-0">
-                <Link
-                  href={`/levels/${l.level}`}
-                  className="font-display text-base font-medium text-ink hover:text-ink-2"
-                >
-                  Level {l.level}
-                </Link>
-                <span className="carta-progress">
-                  <i style={{ width: `${pct}%` }} />
-                </span>
-                <span className="text-right font-mono text-[12px] text-ink-3">
-                  {completed}/{l.pages.length}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
+      {/* ===== Desktop 4-cell stripe ===== */}
+      <section className="hidden grid-cols-4 gap-px border-b border-rule bg-rule md:grid">
+        <StripeCell label="Pages complete" value={`${totalCompleted}`} suffix={` / ${totalPages}`} />
+        <StripeCell label="In progress" value={`${totalInProgress}`} suffix=" pages" />
+        <StripeCell
+          label="Due today"
+          value={`${flashDue}`}
+          suffix=" cards"
+          deltaColor={flashDue > 0 ? "var(--red)" : "var(--moss)"}
+          delta={flashDue > 0 ? "Review now" : "All clear"}
+        />
+        <StripeCell
+          label="Quizzes done"
+          value={`${completedQuizzes}`}
+          suffix={` / ${quizMeta.length}`}
+        />
       </section>
 
-      {/* ===== Quizzes ===== */}
-      <section>
-        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
-          Quizzes
-        </h3>
-        <ul className="mt-4 space-y-2">
-          {quizMeta.map((q) => {
-            const attempt = store.quizzes[q.id];
-            const isComplete = Boolean(attempt?.completedAt);
-            const statusText = isComplete
-              ? `${attempt!.score} / ${q.totalQuestions} · ${attempt!.timeMinutes ?? 0} min`
-              : attempt
-              ? `${Object.keys(attempt.responses).length} of ${q.totalQuestions} answered`
-              : "Not started";
-            return (
-              <li
-                key={q.id}
-                className="rounded-md border border-rule bg-paper-3 transition-colors hover:border-ink"
-              >
-                <Link
-                  href={`/levels/${q.level}/${q.page}/quiz`}
-                  className="flex items-center justify-between gap-3 px-4 py-3"
-                >
-                  <div className="min-w-0">
-                    <p className="font-display text-base font-medium text-ink">
-                      {q.title}
-                    </p>
-                    <p className="page-code mt-0.5">{statusText}</p>
-                  </div>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-contour">
-                    {isComplete ? "Review →" : attempt ? "Continue →" : "Start →"}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      {/* ===== Confidence ===== */}
-      {Object.keys(store.confidenceScores).length > 0 ? (
-        <section>
-          <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
-            Confidence ratings
+      <div className="px-[22px] pb-12 pt-5 md:grid md:grid-cols-2 md:gap-6 md:px-14 md:pt-8">
+        {/* ===== By level ===== */}
+        <section className="mb-6 border-b border-rule bg-paper-3 px-4 py-5 md:mb-0 md:border md:border-rule md:px-6 md:py-6">
+          <h3 className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+            By level
           </h3>
-          <ul className="mt-4 divide-y divide-rule overflow-hidden rounded-md border border-rule bg-paper-3">
-            {Object.entries(store.confidenceScores).map(([key, score]) => (
-              <li
-                key={key}
-                className="flex items-center justify-between gap-3 px-4 py-3"
-              >
-                <span className="page-code">{key}</span>
-                <span className="font-display text-base font-medium text-ink">
-                  {score.value ?? "—"}<span className="text-ink-3">/5</span>
-                </span>
-              </li>
-            ))}
+          <ul className="space-y-0">
+            {levels.map((l) => {
+              let completed = 0;
+              let inProg = 0;
+              for (const p of l.pages) {
+                const s = getPage(p.id).status;
+                if (s === "completed") completed += 1;
+                else if (s === "in-progress") inProg += 1;
+              }
+              const pct = l.pages.length
+                ? ((completed + inProg * 0.5) / l.pages.length) * 100
+                : 0;
+              return (
+                <li
+                  key={l.level}
+                  className="grid items-center gap-2.5 border-t border-rule py-3 first:border-t-0 first:pt-0"
+                  style={{ gridTemplateColumns: "1fr 70px 60px" }}
+                >
+                  <Link
+                    href={`/levels/${l.level}`}
+                    className="text-[14px] no-underline"
+                  >
+                    <span className="block font-display font-bold tracking-[-0.01em] text-ink">
+                      Level {l.level}
+                    </span>
+                    <span className="mt-0.5 block font-mono text-[9px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+                      {l.pages.length} pages
+                    </span>
+                  </Link>
+                  <span className={"pbar " + (pct >= 100 ? "moss" : pct > 0 ? "ice" : "")}>
+                    <i style={{ width: `${pct}%` }} />
+                  </span>
+                  <span className="text-right font-mono text-[12px] font-bold text-ink">
+                    {Math.round(pct)}%
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         </section>
-      ) : null}
 
-      {/* ===== Readiness ===== */}
-      {Object.keys(store.readinessChecks).length > 0 ? (
-        <section>
-          <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
-            Readiness checks
+        {/* ===== Quizzes ===== */}
+        <section className="mb-6 border-b border-rule bg-paper-3 px-4 py-5 md:mb-0 md:border md:border-rule md:px-6 md:py-6">
+          <h3 className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+            Quizzes
           </h3>
-          <ul className="mt-4 space-y-2">
-            {Object.entries(store.readinessChecks).map(([key, check]) => (
-              <li
-                key={key}
-                className="rounded-md border border-rule bg-paper-3 p-4"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <span className="page-code">{key}</span>
+          <ul className="space-y-0">
+            {quizMeta.map((q) => {
+              const attempt = store.quizzes[q.id];
+              const isComplete = Boolean(attempt?.completedAt);
+              const statusText = isComplete
+                ? `${attempt!.score} / ${q.totalQuestions} · ${attempt!.timeMinutes ?? 0} min`
+                : attempt
+                ? `${Object.keys(attempt.responses).length} of ${q.totalQuestions} answered`
+                : "Not started";
+              return (
+                <li
+                  key={q.id}
+                  className="border-t border-rule py-3 first:border-t-0 first:pt-0"
+                >
+                  <Link
+                    href={`/levels/${q.level}/${q.page}/quiz`}
+                    className="flex items-center justify-between gap-3 no-underline"
+                  >
+                    <div className="min-w-0">
+                      <p className="font-display text-[14px] font-bold tracking-[-0.01em] text-ink">
+                        {q.title}
+                      </p>
+                      <p className="mt-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-ink-3">
+                        {statusText}
+                      </p>
+                    </div>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-red">
+                      {isComplete ? "Review →" : attempt ? "Continue →" : "Start →"}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        {/* ===== Flashcards summary ===== */}
+        <section className="mb-6 border-b border-rule bg-paper-3 px-4 py-5 md:col-span-2 md:mb-0 md:border md:border-rule md:px-6 md:py-6">
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <h3 className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+              Flashcards
+            </h3>
+            <Link
+              href="/flashcards"
+              className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-red no-underline"
+            >
+              Open →
+            </Link>
+          </div>
+          <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1">
+            <span>
+              <span className="font-display text-[32px] font-extrabold tracking-[-0.018em] text-ink">
+                {flashDue}
+              </span>
+              <span className="ml-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-3">
+                due
+              </span>
+            </span>
+            <span>
+              <span className="font-display text-[20px] font-extrabold tracking-[-0.01em] text-ink">
+                {flashStudied}
+              </span>
+              <span className="ml-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-3">
+                studied
+              </span>
+            </span>
+            <span>
+              <span className="font-display text-[20px] font-extrabold tracking-[-0.01em] text-ink">
+                {FLASHCARDS.length}
+              </span>
+              <span className="ml-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-3">
+                in deck
+              </span>
+            </span>
+          </div>
+        </section>
+
+        {/* ===== Readiness checks (conditional) ===== */}
+        {Object.keys(store.readinessChecks).length > 0 ? (
+          <section className="mb-6 border-b border-rule bg-paper-3 px-4 py-5 md:col-span-2 md:mb-0 md:border md:border-rule md:px-6 md:py-6">
+            <h3 className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+              Readiness checks
+            </h3>
+            <ul className="space-y-0">
+              {Object.entries(store.readinessChecks).map(([key, check]) => (
+                <li
+                  key={key}
+                  className="flex items-start justify-between gap-3 border-t border-rule py-3 first:border-t-0 first:pt-0"
+                >
+                  <div className="min-w-0">
+                    <span className="block font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+                      {key}
+                    </span>
+                    {check.notes ? (
+                      <p className="mt-1 text-[13px] leading-[1.5] text-ink-2">
+                        {check.notes}
+                      </p>
+                    ) : null}
+                  </div>
                   <span
                     className={
                       check.status === "yes"
-                        ? "pill pill-moss"
+                        ? "tag moss"
                         : check.status === "not-quite"
-                        ? "pill pill-amber"
-                        : "pill pill-crimson"
+                        ? "tag amber"
+                        : "tag crimson"
                     }
                   >
                     {check.status === "yes"
@@ -219,54 +295,91 @@ export function ProgressDashboard({ levels, quizMeta }: DashboardProps) {
                       ? "Not quite"
                       : "Not ready"}
                   </span>
-                </div>
-                {check.notes ? (
-                  <p className="mt-2 font-sans text-[14px] leading-relaxed text-ink-2">
-                    {check.notes}
-                  </p>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
-      {/* ===== Flashcards ===== */}
-      <section className="surface-card p-5 sm:p-6">
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
-            Flashcards
+        {/* ===== Confidence (conditional) ===== */}
+        {Object.keys(store.confidenceScores).length > 0 ? (
+          <section className="mb-6 border-b border-rule bg-paper-3 px-4 py-5 md:col-span-2 md:mb-0 md:border md:border-rule md:px-6 md:py-6">
+            <h3 className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+              Confidence ratings
+            </h3>
+            <ul className="space-y-0">
+              {Object.entries(store.confidenceScores).map(([key, score]) => (
+                <li
+                  key={key}
+                  className="flex items-center justify-between border-t border-rule py-3 first:border-t-0 first:pt-0"
+                >
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+                    {key}
+                  </span>
+                  <span className="font-display text-[18px] font-extrabold tracking-[-0.01em] text-ink">
+                    {score.value ?? "—"}
+                    <small className="ml-0.5 font-mono text-[11px] font-medium text-ink-3">
+                      / 5
+                    </small>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {/* ===== Reset ===== */}
+        <section className="mt-2 border-t border-rule bg-paper px-4 py-6 md:col-span-2 md:mt-4 md:bg-transparent md:px-0 md:py-6">
+          <h3 className="mb-1 font-display text-[16px] font-extrabold tracking-[-0.012em] text-ink">
+            Reset
           </h3>
-          <Link
-            href="/flashcards"
-            className="font-mono text-[11px] uppercase tracking-[0.14em] text-contour hover:text-ink"
-          >
-            Open →
-          </Link>
-        </div>
-        <p className="mt-3 font-sans text-[15px] leading-relaxed text-ink-2">
-          <span className="font-display text-2xl font-medium text-ink">{flashDue}</span>{" "}
-          due today · {flashStudied} ever studied · {FLASHCARDS.length} in deck
-        </p>
-      </section>
+          <p className="mb-3 text-[13px] leading-[1.5] text-ink-2">
+            Progress is stored only in this browser&rsquo;s localStorage. Clear
+            it here if you want to start over or hand the device to someone else.
+          </p>
+          <button type="button" onClick={confirmReset} className="btn ghost sm">
+            Reset all progress
+          </button>
+        </section>
+      </div>
+    </>
+  );
+}
 
-      {/* ===== Reset ===== */}
-      <section className="border-t border-rule pt-8">
-        <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
-          Reset
-        </h3>
-        <p className="mt-2 font-sans text-[14px] leading-relaxed text-ink-2">
-          Progress is stored only in this browser&rsquo;s localStorage. Clear
-          it here if you want to start over or hand the device to someone else.
-        </p>
-        <button
-          type="button"
-          onClick={confirmReset}
-          className="mt-4 inline-flex items-center justify-center rounded-[4px] border border-rule bg-transparent px-4 py-2 font-sans text-sm font-semibold text-ink hover:border-crimson hover:text-crimson"
+function StripeCell({
+  label,
+  value,
+  suffix,
+  delta,
+  deltaColor,
+}: {
+  label: string;
+  value: string;
+  suffix?: string;
+  delta?: string;
+  deltaColor?: string;
+}) {
+  return (
+    <div className="bg-paper-3 px-6 py-[18px]">
+      <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+        {label}
+      </div>
+      <div className="mt-1.5 font-display text-[28px] font-extrabold leading-none tracking-[-0.018em] text-ink">
+        {value}
+        {suffix ? (
+          <small className="ml-0.5 text-[13px] font-semibold text-ink-3">
+            {suffix}
+          </small>
+        ) : null}
+      </div>
+      {delta ? (
+        <div
+          className="mt-1.5 font-mono text-[10px] font-semibold tracking-[0.08em]"
+          style={{ color: deltaColor ?? "var(--moss)" }}
         >
-          Reset all progress
-        </button>
-      </section>
+          {delta}
+        </div>
+      ) : null}
     </div>
   );
 }

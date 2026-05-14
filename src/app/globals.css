@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /* =========================================================================
-   Carta — Design tokens (Direction 1, locked)
-   See design/tokens.css and design/README.md for the full spec.
+   Glacier Lab — Design tokens (Direction 2, locked)
+   See design_handoff_glacier_lab/design/tokens.css for the canonical spec.
+   Cool light · Navy ink · Alpine red accent · Glacier blue secondary
    ========================================================================= */
 
 @theme inline {
@@ -15,18 +16,29 @@
   --color-paper:      var(--paper);
   --color-paper-2:    var(--paper-2);
   --color-paper-3:    var(--paper-3);
+  --color-paper-4:    var(--paper-4);
   --color-ink:        var(--ink);
   --color-ink-2:      var(--ink-2);
   --color-ink-3:      var(--ink-3);
+  --color-ink-4:      var(--ink-4);
   --color-rule:       var(--rule);
-  --color-contour:    var(--contour);
-  --color-contour-2:  var(--contour-2);
-  --color-slate:      var(--slate);
+  --color-rule-2:     var(--rule-2);
+  --color-red:        var(--red);
+  --color-red-2:      var(--red-2);
+  --color-ice:        var(--ice);
   --color-moss:       var(--moss);
   --color-amber:      var(--amber);
   --color-crimson:    var(--crimson);
 
-  /* Semantic tokens (legacy from shadcn) — point at Carta values */
+  /* Transitional aliases. The old design's contour-brown accent and slate
+     secondary action no longer exist in Glacier Lab. We map them to safe
+     replacements so existing components keep rendering during the
+     re-skin; both will be removed in pass 2 after the component sweep. */
+  --color-contour:    var(--contour);
+  --color-contour-2:  var(--contour-2);
+  --color-slate:      var(--slate);
+
+  /* Semantic tokens (legacy from shadcn) — point at Glacier Lab values */
   --color-background:           var(--background);
   --color-foreground:           var(--foreground);
   --color-card:                 var(--card);
@@ -61,55 +73,78 @@
   --color-chart-5:              var(--chart-5);
 
   /* Fonts — wired from next/font in layout.tsx */
-  --font-display: var(--font-fraunces);
-  --font-sans:    var(--font-inter);
-  --font-serif:   var(--font-fraunces);
-  --font-mono:    var(--font-jetbrains-mono);
-  --font-heading: var(--font-fraunces);
+  --font-display: var(--font-manrope);
+  --font-sans:    var(--font-manrope);
+  --font-serif:   var(--font-manrope);
+  --font-mono:    var(--font-plex-mono);
+  --font-heading: var(--font-manrope);
 
-  /* Radii */
+  /* Radii — Glacier Lab uses tighter corners than Carta */
+  --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
   --radius-xl: 12px;
   --radius-2xl: 16px;
   --radius-3xl: 28px;
+  --radius-pill: 999px;
 }
 
 :root {
-  /* ===== Carta palette (hex from design/tokens.css) ===== */
-  --paper:      #F4ECD8;   /* page background */
-  --paper-2:    #EAE0C7;   /* recessed surfaces */
-  --paper-3:    #FBF6E9;   /* cards, sidebar */
-  --ink:        #1F2A33;   /* body, primary action */
-  --ink-2:      #354553;   /* card body */
-  --ink-3:      #6B7986;   /* meta, captions */
-  --rule:       #C8B98F;   /* hairlines */
-  --contour:    #8B5A2B;   /* decorative motif ONLY */
-  --contour-2:  #B98455;
-  --slate:      #3E5266;   /* alt action */
-  --slate-2:    #2C3A47;
-  --moss:       #5C7A3F;   /* success */
-  --crimson:    #A33B2A;   /* destructive */
-  --amber:      #C58B2C;   /* in-progress */
+  /* ===== Glacier Lab palette (hex from design_handoff_glacier_lab/design/tokens.css) ===== */
+  --paper:      #EEF1F4;   /* page background — pale glacier-grey */
+  --paper-2:    #E2E7EC;   /* recessed surfaces */
+  --paper-3:    #FFFFFF;   /* card / list-row surface */
+  --paper-4:    #F7F9FB;   /* sidebar tint */
+  --ink:        #0E1A2E;   /* deep navy — body, primary action fill */
+  --ink-2:      #3F4D63;   /* secondary ink — body copy on cards */
+  --ink-3:      #8693A6;   /* tertiary ink — meta, captions, mono labels */
+  --ink-4:      #B5BFCE;   /* quaternary — placeholder, locked */
+  --rule:       #D0D7E0;   /* hairlines */
+  --rule-2:     #BCC5D0;   /* emphasised hairline */
+
+  /* Action & state */
+  --red:        #D7263D;   /* alpine red — single accent, CTAs + active */
+  --red-2:      #B41E32;   /* hover/pressed */
+  --red-bg:     rgba(215,38,61,.08);
+  --red-line:   rgba(215,38,61,.4);
+  --ice:        #2480B5;   /* glacier blue — secondary state (in-progress) */
+  --ice-bg:     rgba(36,128,181,.08);
+  --ice-line:   rgba(36,128,181,.4);
+  --moss:       #2E7D5B;   /* success */
+  --moss-bg:    rgba(46,125,91,.1);
+  --amber:      #C58B2C;   /* partial / in-progress badge alt */
+  --crimson:    #A33B2A;   /* error / "Again" */
+
+  /* Transitional aliases (removed in pass 2). The contour-brown accent of
+     the previous design (--contour, --contour-2) and its secondary action
+     slate (--slate, --slate-2) no longer exist. We alias them to safe
+     Glacier Lab values so legacy bg-/text-/border-contour utilities don't
+     throw or render as missing-colour. The migration sweep in pass 2 will
+     rename the actual usages and delete these aliases. */
+  --contour:    var(--ink-3);
+  --contour-2:  var(--ink-3);
+  --slate:      var(--ink-2);
+  --slate-2:    var(--ink);
 
   /* ===== Type scale (px) ===== */
-  --fs-display-xl: 96px;
-  --fs-display-l:  72px;
-  --fs-display-m:  64px;
-  --fs-display-s:  44px;
-  --fs-h1:         36px;
-  --fs-h2:         28px;
-  --fs-h3:         22px;
-  --fs-h4:         18px;
+  --fs-display-xl: 88px;
+  --fs-display-l:  64px;
+  --fs-display-m:  48px;
+  --fs-display-s:  36px;
+  --fs-h1:         32px;
+  --fs-h2:         24px;
+  --fs-h3:         19px;
+  --fs-h4:         16px;
   --fs-body:       15px;
   --fs-body-s:     14px;
   --fs-body-xs:    13px;
   --fs-meta:       11px;
   --fs-meta-xs:    10px;
+  --fs-meta-xxs:   9px;
 
   /* Tracking */
-  --tracking-display: -0.025em;
+  --tracking-display: -0.028em;
   --tracking-h:       -0.015em;
   --tracking-tight:   -0.01em;
   --tracking-mono:     0.18em;
@@ -118,14 +153,20 @@
 
   /* Leading */
   --lh-display: 1.02;
-  --lh-h:       1.1;
+  --lh-h:       1.15;
   --lh-body:    1.55;
   --lh-tight:   1.25;
 
   /* Elevation */
-  --shadow-card: 0 1px 0 rgba(31,42,51,.04), 0 12px 32px -16px rgba(31,42,51,.18);
+  --shadow:      0 1px 0 rgba(14,26,46,.04), 0 12px 32px -16px rgba(14,26,46,.22);
+  --shadow-sm:   0 1px 2px rgba(14,26,46,.06);
+  --shadow-card: var(--shadow);
 
-  /* ===== Shadcn semantic mapping (point at Carta values) ===== */
+  /* Borders */
+  --bw:      1px;
+  --bw-emph: 3px;
+
+  /* ===== Shadcn semantic mapping (point at Glacier Lab values) ===== */
   --background:           var(--paper);
   --foreground:           var(--ink);
   --card:                 var(--paper-3);
@@ -133,7 +174,7 @@
   --popover:              var(--paper-3);
   --popover-foreground:   var(--ink);
   --primary:              var(--ink);
-  --primary-foreground:   var(--paper);
+  --primary-foreground:   var(--paper-3);
   --secondary:            var(--paper-2);
   --secondary-foreground: var(--ink);
   --muted:                var(--paper-2);
@@ -146,15 +187,15 @@
   --input:                var(--rule);
   --ring:                 var(--ink);
   --chart-1:              var(--ink);
-  --chart-2:              var(--contour);
+  --chart-2:              var(--ice);
   --chart-3:              var(--moss);
   --chart-4:              var(--crimson);
-  --chart-5:              var(--slate);
-  --sidebar:              var(--paper-3);
+  --chart-5:              var(--red);
+  --sidebar:              var(--paper-4);
   --sidebar-foreground:   var(--ink);
   --sidebar-primary:      var(--ink);
-  --sidebar-primary-foreground: var(--paper);
-  --sidebar-accent:       var(--paper-2);
+  --sidebar-primary-foreground: var(--paper-3);
+  --sidebar-accent:       var(--paper);
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border:       var(--rule);
   --sidebar-ring:         var(--ink);
@@ -176,76 +217,173 @@
   html {
     font-family: var(--font-sans);
   }
+  /* Glacier Lab display headings: Manrope 800 with looser tracking. */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: var(--tracking-tight);
+    font-weight: 800;
+    letter-spacing: var(--tracking-h);
     line-height: var(--lh-h);
   }
 }
 
 /* =========================================================================
-   Reusable Carta utility classes
+   Glacier Lab — Reusable utility classes
+   Component primitives lifted from design_handoff_glacier_lab/design/styles.css.
+   Legacy classes (.wordmark, .pill*, .carta-progress) are kept as aliases for
+   the new primitives so existing components render in the new style without
+   a class rename. Component sweeps will retire the aliases over later passes.
    ========================================================================= */
 
-/* Wordmark — bumped ~70% for header presence; emblem height is set inline by the component */
-.wordmark { display: flex; align-items: center; gap: 14px; }
-.wordmark .glyph { display: block; }
+/* ---------- Wordmark (.wm) — minimal 30x30 mark + Manrope 800 name + mono byline ---------- */
+.wm { display: inline-flex; align-items: center; gap: 10px; }
+.wm .mark { width: 30px; height: 30px; position: relative; flex-shrink: 0; }
+.wm .mark svg { display: block; width: 100%; height: 100%; }
+.wm .name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.wm .by {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: var(--tracking-mono-2);
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 4px;
+  line-height: 1;
+}
+/* Legacy .wordmark class — restyled to .wm so existing components don't need
+   to change their markup. Removed in pass 3 when the Wordmark component
+   is migrated to the new .wm class directly. */
+.wordmark { display: inline-flex; align-items: center; gap: 10px; }
+.wordmark .glyph { display: block; width: 30px; height: 30px; flex-shrink: 0; }
 .wordmark .name {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 29px;
-  line-height: 1;
-  letter-spacing: var(--tracking-tight);
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 .wordmark .by {
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 13px;
+  font-size: 9px;
   color: var(--ink-3);
   letter-spacing: var(--tracking-mono-2);
   text-transform: uppercase;
   margin-top: 4px;
+  line-height: 1;
 }
 
-/* Pills (mono caps eyebrow / status) */
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: var(--radius-xs);
+  font: 700 13px var(--font-body);
+  letter-spacing: 0.01em;
+  background: var(--ink);
+  color: var(--paper-3);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+.btn:hover { background: #1a2942; }
+.btn.red { background: var(--red); border-color: var(--red); }
+.btn.red:hover { background: var(--red-2); border-color: var(--red-2); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--rule-2); }
+.btn.ghost:hover { background: var(--paper-3); border-color: var(--ink); }
+.btn.sm { padding: 9px 14px; font-size: 12px; }
+.btn.block { width: 100%; }
+.btn[aria-disabled="true"], .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ---------- Tags / pills (square mono caps) ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  font: 600 10px var(--font-mono);
+  letter-spacing: var(--tracking-mono-2);
+  text-transform: uppercase;
+  background: var(--paper-3);
+  color: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xs);
+}
+.tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+.tag.red       { color: var(--red);    border-color: var(--red-line);  background: var(--red-bg); }
+.tag.ice       { color: var(--ice);    border-color: var(--ice-line);  background: var(--ice-bg); }
+.tag.moss      { color: var(--moss);   border-color: rgba(46,125,91,.4); background: var(--moss-bg); }
+.tag.amber     { color: var(--amber);  border-color: rgba(197,139,44,.4); background: rgba(197,139,44,.08); }
+.tag.crimson   { color: var(--crimson); border-color: rgba(163,59,42,.4); background: rgba(163,59,42,.08); }
+.tag.solid-red { color: var(--paper-3); background: var(--red);  border-color: var(--red); }
+.tag.solid-ink { color: var(--paper-3); background: var(--ink);  border-color: var(--ink); }
+
+/* Legacy .pill* — restyled to .tag* so existing components inherit the new
+   square-corner tag look. Removed in pass 3 when callers are migrated to
+   the new .tag class directly. */
 .pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: var(--tracking-mono-3);
+  padding: 4px 9px;
+  font: 600 10px var(--font-mono);
+  letter-spacing: var(--tracking-mono-2);
   text-transform: uppercase;
   background: var(--paper-3);
-  border: 1px solid var(--rule);
   color: var(--ink-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-xs);
 }
-.pill-contour { color: var(--contour); border-color: rgba(139,90,43,.3); background: rgba(139,90,43,.06); }
-.pill-moss    { color: var(--moss);    border-color: rgba(92,122,63,.35); background: rgba(92,122,63,.06); }
-.pill-amber   { color: var(--amber);   border-color: rgba(197,139,44,.35); background: rgba(197,139,44,.06); }
-.pill-crimson { color: var(--crimson); border-color: rgba(163,59,42,.35); background: rgba(163,59,42,.06); }
+.pill-contour { color: var(--ink-3); border-color: var(--rule); background: var(--paper-3); }
+.pill-moss    { color: var(--moss); border-color: rgba(46,125,91,.4); background: var(--moss-bg); }
+.pill-amber   { color: var(--amber); border-color: rgba(197,139,44,.4); background: rgba(197,139,44,.08); }
+.pill-crimson { color: var(--crimson); border-color: rgba(163,59,42,.4); background: rgba(163,59,42,.08); }
+.pill-red     { color: var(--red);  border-color: var(--red-line); background: var(--red-bg); }
+.pill-ice     { color: var(--ice);  border-color: var(--ice-line); background: var(--ice-bg); }
 
-/* Carta progress bar (4px track, contour fill) */
+/* ---------- Progress bar (.pbar) — 3 px track, red fill, optional ice / thick ---------- */
+.pbar {
+  height: 3px;
+  background: var(--rule);
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+.pbar > i { display: block; height: 100%; background: var(--red); }
+.pbar.ice > i { background: var(--ice); }
+.pbar.moss > i { background: var(--moss); }
+.pbar.thick { height: 6px; }
+
+/* Legacy .carta-progress — restyled to .pbar so existing usages adopt the
+   new track style. The brown contour fill becomes alpine-red; pass through
+   the per-screen sweep to pick ice / moss variants where in-progress or
+   success is the intended state. */
 .carta-progress {
-  height: 4px;
-  background: var(--paper-2);
-  border-radius: 2px;
+  height: 3px;
+  background: var(--rule);
+  border-radius: 0;
   overflow: hidden;
   position: relative;
 }
 .carta-progress > i {
   display: block;
   height: 100%;
-  background: var(--contour);
-  border-radius: 2px;
+  background: var(--red);
+  border-radius: 0;
 }
 
-/* Mono eyebrow (e.g. "WORKBOOK · 66 PAGES") */
+/* ---------- Eyebrow (mono caps) ---------- */
 .eyebrow {
   font-family: var(--font-mono);
   font-weight: 500;
@@ -254,7 +392,11 @@
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
 }
-.eyebrow-contour { color: var(--contour); }
+/* Legacy .eyebrow-contour — the brown accent is retired. Reads as plain
+   tertiary ink in Glacier Lab; semantically correct because eyebrows in
+   the new system are never accent-coloured. */
+.eyebrow-contour { color: var(--ink-3); }
+.eyebrow-red     { color: var(--red); }
 
 /* Page-code mono (e.g. "C2.1") */
 .page-code {
@@ -269,8 +411,96 @@
 .surface-card {
   background: var(--paper-3);
   border: 1px solid var(--rule);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
+
+/* ---------- Decorative motifs ---------- */
+/* Contour-line decoration. The container is positioned absolutely inside a
+   relative parent. Stroke colour is the deep navy ink at low opacity for
+   the cool, technical feel; consumers can override via inline style. */
+.contour-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 1;
+}
+.contour-bg svg { width: 100%; height: 100%; display: block; }
+
+/* Precision grid background (for hero panels needing a lab feel). */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(14, 26, 46, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 26, 46, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.grid-bg.dense {
+  background-size: 32px 32px;
+  background-image:
+    linear-gradient(rgba(14, 26, 46, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 26, 46, 0.05) 1px, transparent 1px);
+}
+
+/* ---------- Photo slot ---------- */
+.photo-slot {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--ink) 0%, #1a2942 100%);
+  color: var(--paper-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-slot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(135deg, transparent 0 24px, rgba(255, 255, 255, 0.04) 24px 26px, transparent 26px 50px);
+  background-size: 28px 28px;
+  opacity: 0.6;
+}
+.photo-slot .ps-label {
+  position: relative;
+  font: 600 10px var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  line-height: 1.6;
+  padding: 14px 22px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.18);
+}
+.photo-slot .ps-label small {
+  display: block;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+  margin-top: 4px;
+  letter-spacing: 0.18em;
+}
+.photo-slot.cool { background: linear-gradient(160deg, var(--ice) 0%, var(--ink) 70%); }
+.photo-slot.pale {
+  background: linear-gradient(180deg, #dde6ee 0%, #b5c2ce 100%);
+  color: var(--ink);
+}
+.photo-slot.pale .ps-label {
+  color: var(--ink-2);
+  border-color: rgba(14, 26, 46, 0.25);
+  background: rgba(255, 255, 255, 0.4);
+}
+.photo-slot.pale .ps-label small { color: var(--ink-3); }
+.photo-slot.has-img {
+  background-color: var(--ink);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.photo-slot.has-img::before { display: none; }
+.photo-slot.has-img .ps-label { display: none; }
 
 /* Status dot — used inline with text */
 .status-dot {
@@ -315,12 +545,15 @@
     --paper:   #ffffff;
     --paper-2: #f5f5f5;
     --paper-3: #ffffff;
-    --ink:     #1f2a33;
-    --ink-2:   #354553;
+    --paper-4: #ffffff;
+    --ink:     #0E1A2E;
+    --ink-2:   #3F4D63;
     --ink-3:   #555555;
+    --ink-4:   #888888;
     --rule:    #cccccc;
+    --rule-2:  #bbbbbb;
     --background: #ffffff;
-    --foreground: #1f2a33;
+    --foreground: #0E1A2E;
     --muted:      #f5f5f5;
     --muted-foreground: #555555;
     --border:     #cccccc;
@@ -329,7 +562,7 @@
 
   body {
     background: white !important;
-    color: #1f2a33 !important;
+    color: #0E1A2E !important;
   }
 
   a { color: inherit !important; text-decoration: underline; }

@@ -1,37 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useId } from "react";
 import { useProgress } from "@/lib/progress/provider";
 import { useSelfCheckContext } from "./self-check-context";
 
-interface SelfCheckCheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  /** Index assigned by the SelfCheckProvider counter. */
-  _idx?: number;
-}
+type SelfCheckCheckboxProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * MDX renders task-list items (`- [ ]`) as a checkbox. We override the
- * <input type="checkbox"> element so it reads/writes from the progress store.
+ * `<input type="checkbox">` element so each checkbox reads/writes from
+ * the progress store under a stable per-checkbox key.
  *
- * The checkbox's index within the page is assigned in render order via
- * the SelfCheckProvider counter; this is fragile to source-content changes
- * but matches the brief's `selfCheck: [bool, ...]` array shape.
+ * The key is `React.useId()`, which gives the same string on the server
+ * render and the client hydration pass, so the checkbox's identity is
+ * stable across SSR / CSR. This replaces the earlier render-time index
+ * counter, which caused a hydration mismatch warning.
  */
-export function SelfCheckCheckbox(props: SelfCheckCheckboxProps) {
+export function SelfCheckCheckbox(_props: SelfCheckCheckboxProps) {
   const ctx = useSelfCheckContext();
   const progress = useProgress();
-  const [idx] = useState(() => (ctx ? ctx.nextIndex() : -1));
+  const key = useId();
 
-  // Track the running total so toggle knows the array length to pad to.
-  useEffect(() => {
-    if (ctx) ctx.totalRef.current = Math.max(ctx.totalRef.current, idx + 1);
-  });
-
-  // Outside the SelfCheckProvider, render an inert disabled checkbox.
-  if (!ctx || idx < 0) {
+  // Outside the SelfCheckProvider, render an inert disabled checkbox so the
+  // MDX render still produces a valid DOM but the control is non-interactive.
+  if (!ctx) {
     return (
       <input
-        {...props}
         type="checkbox"
         disabled
         readOnly
@@ -41,17 +35,15 @@ export function SelfCheckCheckbox(props: SelfCheckCheckboxProps) {
   }
 
   const page = progress.getPage(ctx.pageId);
-  const checked = page.selfCheck[idx] ?? false;
+  const checked = page.selfCheck[key] ?? false;
 
   return (
     <input
       type="checkbox"
       checked={checked}
-      onChange={() =>
-        progress.toggleSelfCheck(ctx.pageId, idx, ctx.totalRef.current)
-      }
+      onChange={() => progress.toggleSelfCheck(ctx.pageId, key)}
       className="me-2 align-middle h-4 w-4 cursor-pointer accent-primary"
-      aria-label={`Self-check item ${idx + 1}`}
+      aria-label="Self-check item"
     />
   );
 }

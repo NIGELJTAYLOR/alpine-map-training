@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteHeader } from "@/components/site/site-header";
 import { DiagramCard } from "@/components/site/diagram-card";
 import { ZoomableImage } from "@/components/site/zoomable-image";
 import { getDiagramsForLevel } from "@/lib/content";
@@ -54,39 +53,41 @@ export default function DiagramsIndex() {
   );
 
   return (
-    <>
-      <SiteHeader />
-      <main id="main-content" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-10 sm:py-14 focus:outline-none">
-        <header className="mb-10">
-          <p className="eyebrow eyebrow-contour">Reference</p>
-          <h1 className="mt-3 font-display text-3xl font-medium tracking-[-0.015em] text-ink sm:text-[44px]">
-            Diagrams &amp; maps
-          </h1>
-          <p className="mt-3 font-sans text-base leading-relaxed text-ink-2">
-            Every visual reference in the app — {totalDiagrams} idealised
-            teaching diagrams plus {QUIZ_MAPS.length} OpenTopoMap extracts
-            for the closing quizzes. Click any image to open a fullscreen
-            zoom-pan view.
-          </p>
-        </header>
+    <main id="main-content" tabIndex={-1} className="focus:outline-none">
+      {/* Header band */}
+      <header className="border-b border-rule bg-paper-3 px-[22px] pb-5 pt-5 md:px-14 md:pt-10">
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+          Reference
+        </p>
+        <h1 className="mb-1.5 mt-2 font-display text-[28px] font-extrabold leading-[1.1] tracking-[-0.025em] text-ink md:text-[40px]">
+          Diagrams &amp; maps
+        </h1>
+        <p className="max-w-[62ch] text-[14px] leading-[1.55] text-ink-2 md:text-[15px]">
+          Every visual reference in the app — {totalDiagrams} idealised
+          teaching diagrams plus {QUIZ_MAPS.length} OpenTopoMap extracts for
+          the closing quizzes. Click any image to open a fullscreen zoom-pan
+          view.
+        </p>
+      </header>
 
+      <div className="px-[22px] pb-12 pt-5 md:mx-auto md:max-w-3xl md:px-14 md:pt-8">
         {/* ===== Quick jump strip ===== */}
         <nav
           aria-label="Sections"
-          className="surface-card mb-10 flex flex-wrap gap-1 p-3"
+          className="mb-8 flex flex-wrap gap-1 border border-rule bg-paper-3 p-2"
         >
           {LEVELS_WITH_DIAGRAMS.map((l) => (
             <a
               key={`jump-L${l}`}
               href={`#L${l}`}
-              className="rounded-[3px] px-2 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3 hover:bg-paper-2 hover:text-ink"
+              className="rounded-[2px] px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-3 no-underline hover:bg-paper hover:text-ink"
             >
               Level {l} diagrams
             </a>
           ))}
           <a
             href="#maps"
-            className="rounded-[3px] px-2 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3 hover:bg-paper-2 hover:text-ink"
+            className="rounded-[2px] px-2 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-3 no-underline hover:bg-paper hover:text-ink"
           >
             Quiz maps
           </a>
@@ -99,10 +100,10 @@ export default function DiagramsIndex() {
           return (
             <section key={level} id={`L${level}`} className="mb-12 scroll-mt-20">
               <div className="flex items-baseline justify-between gap-3">
-                <h2 className="font-display text-2xl font-medium tracking-[-0.01em] text-ink">
+                <h2 className="font-display text-[24px] font-extrabold tracking-[-0.02em] text-ink md:text-[28px]">
                   Level {level} — schematic diagrams
                 </h2>
-                <span className="eyebrow eyebrow-contour">
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
                   {diagrams.length} {diagrams.length === 1 ? "plate" : "plates"}
                 </span>
               </div>
@@ -116,7 +117,7 @@ export default function DiagramsIndex() {
                         <span key={ref}>
                           <Link
                             href={`/levels/${level}/${ref}`}
-                            className="text-contour hover:text-ink"
+                            className="text-red hover:text-ink"
                           >
                             {ref}
                           </Link>
@@ -132,16 +133,16 @@ export default function DiagramsIndex() {
         })}
 
         {/* ===== Quiz map extracts ===== */}
-        <section id="maps" className="mb-12 scroll-mt-20 border-t border-rule pt-12">
+        <section id="maps" className="mb-12 scroll-mt-20 border-t border-rule pt-10">
           <div className="flex items-baseline justify-between gap-3">
-            <h2 className="font-display text-2xl font-medium tracking-[-0.01em] text-ink">
+            <h2 className="font-display text-[24px] font-extrabold tracking-[-0.02em] text-ink md:text-[28px]">
               Quiz map extracts
             </h2>
-            <span className="eyebrow eyebrow-contour">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
               {QUIZ_MAPS.length} OpenTopoMap composites
             </span>
           </div>
-          <p className="mt-2 mb-6 font-sans text-[14px] leading-relaxed text-ink-2">
+          <p className="mt-2 mb-6 text-[14px] leading-[1.55] text-ink-2">
             Real Courchevel-area renderings drawn from OpenStreetMap data via
             OpenTopoMap, with quiz markers overlaid. These accompany the
             mixed-quiz pages but live here as a study reference too. Pinch /
@@ -168,7 +169,7 @@ export default function DiagramsIndex() {
                     <span key={`${r.level}-${r.page}`}>
                       <Link
                         href={`/levels/${r.level}/${r.page}`}
-                        className="text-contour hover:text-ink"
+                        className="text-red hover:text-ink"
                       >
                         {r.page}
                       </Link>
@@ -184,7 +185,7 @@ export default function DiagramsIndex() {
             Map data © OpenStreetMap contributors · rendering © OpenTopoMap (CC-BY-SA)
           </p>
         </section>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

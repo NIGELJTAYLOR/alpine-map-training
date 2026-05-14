@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flashcard · Carta · Glacier Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* MOBILE — Flashcard study session */
+.fc-frame { padding: 22px; }
+.fc-meta { display: flex; align-items: center; justify-content: space-between; font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.14em; margin-bottom: 14px; text-transform: uppercase; }
+.fc-meta .progress-mini { display: flex; align-items: center; gap: 8px; }
+.fc-meta .progress-mini .pbar { width: 80px; height: 3px; }
+.fc-card {
+  background: var(--paper-3); border: 1px solid var(--rule);
+  padding: 28px 22px; min-height: 420px;
+  display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden;
+}
+.fc-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); }
+.fc-q-label { font: 600 10px var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
+.fc-q { font-family: var(--font-display); font-weight: 800; font-size: 24px; line-height: 1.25; letter-spacing: -0.02em; }
+.fc-a-label { font: 600 10px var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); padding-top: 14px; border-top: 1px solid var(--rule); }
+.fc-a { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+.fc-a strong { color: var(--ink); font-weight: 700; }
+.fc-source { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; }
+.fc-source a { color: var(--red); text-decoration: none; }
+
+.fc-show { padding: 16px 22px 0; }
+.fc-rate { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 16px 22px 22px; }
+.fc-rate button {
+  padding: 14px 6px; border-radius: 2px; border: 1px solid var(--rule); background: var(--paper-3);
+  font: 700 12px var(--font-body); color: var(--ink); cursor: pointer; display: flex; flex-direction: column; gap: 4px; align-items: center;
+}
+.fc-rate button .key { font: 600 9px var(--font-mono); color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; }
+.fc-rate button .interval { font: 600 9px var(--font-mono); color: var(--ink-3); letter-spacing: 0.08em; }
+.fc-rate button.again { color: var(--crimson); border-color: rgba(163,59,42,.4); }
+.fc-rate button.hard { color: var(--amber); border-color: rgba(197,139,44,.4); }
+.fc-rate button.good { color: var(--moss); border-color: rgba(46,125,91,.4); }
+.fc-rate button.easy { color: var(--ice); border-color: rgba(36,128,181,.4); }
+
+/* DESKTOP */
+.d-grid { display: grid; grid-template-columns: 240px 1fr; min-height: 760px; }
+.fc-d-stage { padding: 48px 64px; display: grid; grid-template-columns: 220px 1fr 220px; gap: 40px; align-items: start; }
+.fc-d-side h5 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; font-weight: 600; }
+.fc-d-side .stat { padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-2); }
+.fc-d-side .stat b { color: var(--ink); font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
+.fc-d-side .stat:last-child { border-bottom: 0; }
+
+.fc-d-main .fc-meta { margin-bottom: 18px; font-size: 11px; }
+.fc-d-main .fc-meta .progress-mini .pbar { width: 200px; }
+.fc-d-main .fc-card { min-height: 380px; padding: 48px 56px; }
+.fc-d-main .fc-q { font-size: 38px; line-height: 1.15; }
+.fc-d-main .fc-a { font-size: 17px; }
+.fc-d-main .fc-rate { padding: 18px 0 0; }
+.fc-d-main .fc-rate button { padding: 18px 6px; }
+.fc-d-main .fc-rate button .interval { font-size: 10px; }
+
+.fc-d-history { background: var(--paper-3); border: 1px solid var(--rule); padding: 14px; }
+.fc-d-history h5 { margin: 0 0 12px; }
+.fc-d-history ul { list-style: none; padding: 0; margin: 0; }
+.fc-d-history li { display: grid; grid-template-columns: 14px 1fr auto; gap: 10px; padding: 7px 0; font-size: 12px; color: var(--ink-2); border-top: 1px solid var(--rule); align-items: center; }
+.fc-d-history li:first-child { border-top: 0; }
+.fc-d-history li .pill-mini { width: 8px; height: 8px; border-radius: 50%; }
+.fc-d-history li .pill-mini.good { background: var(--moss); }
+.fc-d-history li .pill-mini.hard { background: var(--amber); }
+.fc-d-history li .pill-mini.again { background: var(--crimson); }
+.fc-d-history li .pill-mini.easy { background: var(--ice); }
+.fc-d-history li time { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+<div class="std">
+  <div class="std-head">
+    <div>
+      <div class="std-eyebrow">Glacier Lab · Direction 02 · Screen 05</div>
+      <h1 class="std-title">Flashcard</h1>
+      <p class="std-sub">SRS study session — show the question, reveal the answer, rate recall.</p>
+    </div>
+    <div class="std-nav">
+      <a href="home.html">01 Home</a>
+      <a href="level-index.html">02 Level</a>
+      <a href="workbook.html">03 Workbook</a>
+      <a href="quiz.html">04 Quiz</a>
+      <a class="active" href="flashcard.html">05 Card</a>
+      <a href="dashboard.html">06 Stats</a>
+      <a href="settings.html">07 Settings</a>
+      <a href="onboarding.html">08 Onboarding</a>
+      <a href="level-complete.html">09 Complete</a>
+      <a href="index.html">All screens →</a>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <symbol id="wm-glyph" viewBox="0 0 30 30"><rect width="30" height="30" fill="#0E1A2E"/><path d="M4 22 L11 12 L16 18 L21 10 L26 16" stroke="#FFFFFF" stroke-width="1.5" fill="none"/><circle cx="24" cy="8" r="2.5" fill="#D7263D"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v11H3z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="9" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="mocks pair">
+    <!-- MOBILE -->
+    <div>
+      <div class="mock-label">Mobile · 375</div>
+      <div class="phone">
+        <div class="ios-bar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="9" width="3" height="3"/><rect x="4" y="6" width="3" height="6"/><rect x="8" y="3" width="3" height="9"/><rect x="12" y="0" width="3" height="12"/></svg>
+            <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5 Q8 -2 15 5"/><path d="M3 7 Q8 2 13 7"/><path d="M5 9 Q8 6 11 9"/></svg>
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="14" height="6" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="fc-frame">
+          <div class="fc-meta">
+            <span>Session · 8 / 24</span>
+            <div class="progress-mini">
+              <div class="pbar"><i style="width:33%"></i></div>
+            </div>
+          </div>
+
+          <div class="fc-card">
+            <div class="fc-q-label">Question</div>
+            <div class="fc-q">What does tightening contour spacing toward a summit tell you about the aspect's slope angle?</div>
+            <div class="fc-a-label">Answer</div>
+            <div class="fc-a">That aspect is the <strong>steepest line</strong> from the summit. The closer the rings compress, the more vertical metres are packed into the same horizontal distance — the steeper the descent on that side.</div>
+            <div class="fc-source">
+              <span>C2.1 · Summit shapes</span>
+              <a href="workbook.html">Open page →</a>
+            </div>
+          </div>
+
+          <div class="fc-rate">
+            <button class="again"><span>Again</span><span class="key">1</span><span class="interval">&lt;10 m</span></button>
+            <button class="hard"><span>Hard</span><span class="key">2</span><span class="interval">1 d</span></button>
+            <button class="good"><span>Good</span><span class="key">3</span><span class="interval">4 d</span></button>
+            <button class="easy"><span>Easy</span><span class="key">4</span><span class="interval">9 d</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div>
+      <div class="mock-label">Desktop · 1200</div>
+      <div class="desktop">
+        <div class="browser-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="url">alpinemaptraining.app / cards / session-1842</div>
+        </div>
+        <div class="d-grid">
+          <div class="sb">
+            <div class="wm">
+              <div class="mark"><svg><use href="#wm-glyph"/></svg></div>
+              <div>
+                <div class="name">Alpine Map Training</div>
+                <div class="by">By PerformOS</div>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Home</div>
+              <div class="sb-nav">
+                <a href="home.html"><svg><use href="#i-home"/></svg>Overview</a>
+                <a href="dashboard.html"><svg><use href="#i-clock"/></svg>Statistics</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Workbook</div>
+              <div class="sb-nav">
+                <a href="level-index.html"><span class="code">L1</span>Map literacy</a>
+                <a href="level-index.html"><span class="code">L2</span>Terrain reading</a>
+                <a href="level-index.html"><span class="code">L3</span>Nav toolkit</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Reference</div>
+              <div class="sb-nav">
+                <a class="active"><svg><use href="#i-cards"/></svg>Flashcards <span class="badge">24</span></a>
+                <a><svg><use href="#i-book"/></svg>Diagrams</a>
+                <a><svg><use href="#i-book"/></svg>Templates</a>
+              </div>
+            </div>
+            <div class="sb-stat">
+              <div class="l">Session</div>
+              <div class="v">8 / 24</div>
+              <div class="sub">16 cards remaining</div>
+            </div>
+          </div>
+
+          <div class="fc-d-stage">
+            <div class="fc-d-side">
+              <h5>This session</h5>
+              <div class="stat"><span>Reviewed</span><b>8</b></div>
+              <div class="stat"><span>Again</span><b style="color:var(--crimson)">1</b></div>
+              <div class="stat"><span>Hard</span><b style="color:var(--amber)">2</b></div>
+              <div class="stat"><span>Good</span><b style="color:var(--moss)">4</b></div>
+              <div class="stat"><span>Easy</span><b style="color:var(--ice)">1</b></div>
+
+              <h5 style="margin-top:24px">Topic</h5>
+              <div class="stat"><span>Level</span><b style="font-family:var(--font-mono);font-size:13px;font-weight:600;">L2</b></div>
+              <div class="stat"><span>Page</span><b style="font-family:var(--font-mono);font-size:13px;font-weight:600;">C2.1</b></div>
+              <div class="stat"><span>Topic</span><b style="font-size:13px;font-family:var(--font-body);">Summit shapes</b></div>
+            </div>
+
+            <div class="fc-d-main">
+              <div class="fc-meta">
+                <span>Card 8 / 24 · L2 · C2.1 Summit shapes</span>
+                <div class="progress-mini">
+                  <span>33%</span>
+                  <div class="pbar"><i style="width:33%"></i></div>
+                </div>
+              </div>
+
+              <div class="fc-card">
+                <div class="fc-q-label">Question</div>
+                <div class="fc-q">What does tightening contour spacing toward a summit tell you about the aspect's slope angle?</div>
+                <div class="fc-a-label">Answer</div>
+                <div class="fc-a">That aspect is the <strong>steepest line</strong> from the summit. The closer the rings compress, the more vertical metres are packed into the same horizontal distance — the steeper the descent on that side. In poor visibility, this is your most reliable cue for picking a descent before you can see snow.</div>
+                <div class="fc-source">
+                  <span>Source · C2.1 · Summit shapes</span>
+                  <a href="workbook.html">Open page →</a>
+                </div>
+              </div>
+
+              <div class="fc-rate">
+                <button class="again"><span>Again</span><span class="key">[ 1 ]</span><span class="interval">&lt; 10 min</span></button>
+                <button class="hard"><span>Hard</span><span class="key">[ 2 ]</span><span class="interval">1 d</span></button>
+                <button class="good"><span>Good</span><span class="key">[ 3 ]</span><span class="interval">4 d</span></button>
+                <button class="easy"><span>Easy</span><span class="key">[ 4 ]</span><span class="interval">9 d</span></button>
+              </div>
+            </div>
+
+            <div class="fc-d-side">
+              <div class="fc-d-history">
+                <h5>Recent answers</h5>
+                <ul>
+                  <li><span class="pill-mini good"></span><span>Aspect — slope risk relation</span><time>2 m</time></li>
+                  <li><span class="pill-mini good"></span><span>Gully vs couloir</span><time>3 m</time></li>
+                  <li><span class="pill-mini hard"></span><span>Ridge anatomy — flanks</span><time>4 m</time></li>
+                  <li><span class="pill-mini again"></span><span>Re-entrant signature</span><time>6 m</time></li>
+                  <li><span class="pill-mini good"></span><span>Spot height symbology</span><time>8 m</time></li>
+                  <li><span class="pill-mini easy"></span><span>Grid letter prefix UK</span><time>10 m</time></li>
+                  <li><span class="pill-mini good"></span><span>Convex roll definition</span><time>12 m</time></li>
+                  <li><span class="pill-mini hard"></span><span>Cardinal &amp; ordinal bearings</span><time>14 m</time></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

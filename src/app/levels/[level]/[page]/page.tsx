@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteHeader } from "@/components/site/site-header";
 import { PageShell } from "@/components/site/page-shell";
 import { AnswerToggle } from "@/components/site/answer-toggle";
 import { DiagramCard } from "@/components/site/diagram-card";
@@ -12,6 +11,7 @@ import { TrainerNotesPanel } from "@/components/site/trainer-notes-panel";
 import { ReadinessCheckInput } from "@/components/site/readiness-check-input";
 import { SeeAlso } from "@/components/site/see-also";
 import { MapExtract } from "@/components/site/map-extract";
+import { ExerciseResponses } from "@/components/site/exercise-responses";
 import {
   getPage,
   getPages,
@@ -140,8 +140,12 @@ export default async function PageRoute({ params }: PageProps) {
 
   return (
     <>
-      <SiteHeader />
-      <PageShell page={page} prev={neighbours.prev} next={neighbours.next}>
+      <PageShell
+        page={page}
+        prev={neighbours.prev}
+        next={neighbours.next}
+        linkedCards={relatedFlashcards}
+      >
         {quiz ? (
           <aside className="mb-8 rounded-md border border-rule bg-paper-3 p-5">
             <p className="eyebrow eyebrow-contour">Interactive quiz available</p>
@@ -170,7 +174,7 @@ export default async function PageRoute({ params }: PageProps) {
           />
         ) : null}
 
-        {diagrams.length > 0 ? (
+        {diagrams.length > 0 && !page.hasInlineDiagrams ? (
           <section className="mt-12">
             <h2 className="font-display text-xl font-medium tracking-[-0.01em] text-ink">
               Schematic diagrams for this page
@@ -180,6 +184,12 @@ export default async function PageRoute({ params }: PageProps) {
             ))}
           </section>
         ) : null}
+
+        <ExerciseResponses
+          pageId={page.id}
+          body={page.rawBody}
+          answerKeyBody={answerKey?.rawBody}
+        />
 
         {answerKey ? (
           <AnswerToggle>

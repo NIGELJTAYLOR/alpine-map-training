@@ -25,7 +25,16 @@ const pages = defineCollection({
       exerciseCount: s.number().int().default(0),
       selfCheckCount: s.number().int().default(0),
       sourceFile: s.string().optional(),
+      // When true, the lesson MDX positions diagrams inline via <Diagram fig="..." />
+      // and the page renderer suppresses the bottom-of-page "Schematic diagrams"
+      // section. Default false preserves the legacy bottom rendering for any page
+      // that has not yet been migrated to inline placement.
+      hasInlineDiagrams: s.boolean().default(false),
       body: s.mdx(),
+      // Raw markdown body, alongside the compiled MDX. Used by the
+      // exercise parser (and the AI grader) which look for "### Exercise N"
+      // headings — those don't survive MDX compilation as text.
+      rawBody: s.raw(),
     })
     .transform((data) => ({
       ...data,
@@ -47,6 +56,9 @@ const answerKeys = defineCollection({
     kind: pageKind.default("page"),
     sourceFile: s.string().optional(),
     body: s.mdx(),
+    // Raw markdown body — used by the AI grader to extract per-exercise
+    // model answers via the same "### Exercise N" heading convention.
+    rawBody: s.raw(),
   }),
 });
 

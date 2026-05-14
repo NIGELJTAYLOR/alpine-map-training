@@ -1,0 +1,131 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">The four-step procedure for taking a bearing from the map</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Drill this until it is automatic. The most common error is step 1 reversed; cross-check with cardinal direction after step 4.</text>
+
+  <!-- Step 1: place baseplate -->
+  <g transform="translate(30,75)">
+    <rect width="160" height="200" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <circle cx="22" cy="22" r="13" fill="#d32f2f"/>
+    <text x="22" y="27" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">1</text>
+    <text x="42" y="27" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000">Place baseplate</text>
+    <!-- map background with grid -->
+    <rect x="15" y="50" width="130" height="135" fill="#fcf6e8"/>
+    <line x1="15" y1="80" x2="145" y2="80" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="15" y1="115" x2="145" y2="115" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="15" y1="150" x2="145" y2="150" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="50" y1="50" x2="50" y2="185" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="85" y1="50" x2="85" y2="185" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="120" y1="50" x2="120" y2="185" stroke="#3a78a4" stroke-width="0.4"/>
+    <!-- start (A) and destination (B) -->
+    <circle cx="40" cy="160" r="3" fill="#1a8a3a"/>
+    <text x="40" y="178" font-family="Arial, sans-serif" font-size="7" fill="#1a8a3a" font-weight="bold" text-anchor="middle">start</text>
+    <circle cx="115" cy="70" r="3" fill="#1a8a3a"/>
+    <text x="115" y="65" font-family="Arial, sans-serif" font-size="7" fill="#1a8a3a" font-weight="bold" text-anchor="middle">dest.</text>
+    <!-- baseplate rectangle along the line -->
+    <g transform="translate(77,115) rotate(-45)">
+      <rect x="-45" y="-15" width="90" height="30" fill="#eef2f3" stroke="#666" stroke-width="0.8" opacity="0.85"/>
+      <line x1="-45" y1="-15" x2="45" y2="-15" stroke="#1a1a1a" stroke-width="1.2"/>
+      <line x1="38" y1="-7" x2="48" y2="-15" stroke="#d32f2f" stroke-width="1.6"/>
+      <polygon points="44,-19 50,-15 44,-11" fill="#d32f2f"/>
+      <circle r="9" fill="#fff" stroke="#666" stroke-width="0.7"/>
+    </g>
+    <text x="80" y="195" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle">arrow points start &#8594; destination</text>
+  </g>
+
+  <!-- Step 2: rotate bezel -->
+  <g transform="translate(200,75)">
+    <rect width="160" height="200" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <circle cx="22" cy="22" r="13" fill="#d32f2f"/>
+    <text x="22" y="27" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">2</text>
+    <text x="42" y="27" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000">Rotate bezel</text>
+    <rect x="15" y="50" width="130" height="135" fill="#fcf6e8"/>
+    <line x1="15" y1="80" x2="145" y2="80" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="15" y1="115" x2="145" y2="115" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="15" y1="150" x2="145" y2="150" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="50" y1="50" x2="50" y2="185" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="85" y1="50" x2="85" y2="185" stroke="#3a78a4" stroke-width="0.4"/>
+    <line x1="120" y1="50" x2="120" y2="185" stroke="#3a78a4" stroke-width="0.4"/>
+    <!-- baseplate still in place -->
+    <g transform="translate(77,115) rotate(-45)">
+      <rect x="-45" y="-15" width="90" height="30" fill="#eef2f3" stroke="#666" stroke-width="0.8" opacity="0.85"/>
+      <line x1="38" y1="-7" x2="48" y2="-15" stroke="#666" stroke-width="1.4"/>
+      <polygon points="44,-19 50,-15 44,-11" fill="#666"/>
+      <!-- bezel circle, rotated so N points up the map (i.e., +45 to counter the -45) -->
+      <g transform="rotate(45)">
+        <circle r="11" fill="#fff" stroke="#666" stroke-width="0.7"/>
+        <polygon points="-2,-3 2,-3 0,-9" fill="#d32f2f"/>
+        <line x1="-3" y1="-3" x2="-3" y2="6" stroke="#d32f2f" stroke-width="0.7"/>
+        <line x1="3" y1="-3" x2="3" y2="6" stroke="#d32f2f" stroke-width="0.7"/>
+        <text x="0" y="-12" font-family="Arial, sans-serif" font-size="5" fill="#000" text-anchor="middle">N</text>
+      </g>
+    </g>
+    <text x="80" y="195" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle">orienting lines parallel to grid lines</text>
+  </g>
+
+  <!-- Step 3: lift -->
+  <g transform="translate(370,75)">
+    <rect width="160" height="200" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <circle cx="22" cy="22" r="13" fill="#d32f2f"/>
+    <text x="22" y="27" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">3</text>
+    <text x="42" y="27" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000">Lift off the map</text>
+    <rect x="15" y="50" width="130" height="135" fill="#fcf6e8" opacity="0.5"/>
+    <line x1="15" y1="80" x2="145" y2="80" stroke="#3a78a4" stroke-width="0.4" opacity="0.5"/>
+    <line x1="15" y1="115" x2="145" y2="115" stroke="#3a78a4" stroke-width="0.4" opacity="0.5"/>
+    <line x1="15" y1="150" x2="145" y2="150" stroke="#3a78a4" stroke-width="0.4" opacity="0.5"/>
+    <!-- compass lifted off, shown above the map -->
+    <g transform="translate(80,110)">
+      <rect x="-45" y="-25" width="90" height="50" fill="#eef2f3" stroke="#666" stroke-width="0.9"/>
+      <line x1="0" y1="-25" x2="0" y2="0" stroke="#d32f2f" stroke-width="2"/>
+      <polygon points="-4,-22 0,-28 4,-22" fill="#d32f2f"/>
+      <circle r="15" fill="#fff" stroke="#666" stroke-width="0.9"/>
+      <polygon points="-2,-3 2,-3 0,-10" fill="#d32f2f"/>
+      <line x1="-3" y1="-3" x2="-3" y2="9" stroke="#d32f2f" stroke-width="0.8"/>
+      <line x1="3" y1="-3" x2="3" y2="9" stroke="#d32f2f" stroke-width="0.8"/>
+      <text x="0" y="-14" font-family="Arial, sans-serif" font-size="6" fill="#000" text-anchor="middle">N</text>
+    </g>
+    <text x="80" y="195" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle">don&#8217;t move the bezel</text>
+  </g>
+
+  <!-- Step 4: read -->
+  <g transform="translate(540,75)">
+    <rect width="130" height="200" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <circle cx="22" cy="22" r="13" fill="#d32f2f"/>
+    <text x="22" y="27" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">4</text>
+    <text x="42" y="27" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000">Read bearing</text>
+    <g transform="translate(65,115)">
+      <rect x="-55" y="-50" width="110" height="100" fill="#eef2f3" stroke="#666" stroke-width="1"/>
+      <!-- index mark at top -->
+      <text x="0" y="-30" font-family="Arial, sans-serif" font-size="8" fill="#000" text-anchor="middle">218&#176;</text>
+      <line x1="0" y1="-44" x2="0" y2="-22" stroke="#d32f2f" stroke-width="2.2"/>
+      <polygon points="-5,-40 0,-50 5,-40" fill="#d32f2f"/>
+      <circle r="28" fill="#fff" stroke="#666" stroke-width="1"/>
+      <text x="0" y="-32" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle" transform="rotate(218) translate(0,-22)">218</text>
+      <polygon points="-3,-7 3,-7 0,-18" fill="#d32f2f"/>
+      <line x1="-4" y1="-7" x2="-4" y2="13" stroke="#d32f2f" stroke-width="0.9"/>
+      <line x1="4" y1="-7" x2="4" y2="13" stroke="#d32f2f" stroke-width="0.9"/>
+    </g>
+    <text x="65" y="195" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle">grid bearing 218&#176;</text>
+  </g>
+
+  <!-- Step descriptions -->
+  <text x="30" y="305" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Step 1.</text>
+  <text x="80" y="305" font-family="Arial, sans-serif" font-size="9" fill="#444">Lay baseplate edge along the line from your start to your destination.</text>
+  <text x="80" y="318" font-family="Arial, sans-serif" font-size="9" fill="#444">Make sure the direction-of-travel arrow points TO the destination.</text>
+
+  <text x="30" y="340" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Step 2.</text>
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="9" fill="#444">Hold the baseplate still. Rotate the bezel until the parallel orienting lines</text>
+  <text x="80" y="353" font-family="Arial, sans-serif" font-size="9" fill="#444">align with the grid lines on the map, and the N on the bezel points to the top of the sheet.</text>
+
+  <text x="30" y="375" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Step 3.</text>
+  <text x="80" y="375" font-family="Arial, sans-serif" font-size="9" fill="#444">Lift the compass off the map without touching the bezel.</text>
+  <text x="80" y="388" font-family="Arial, sans-serif" font-size="9" fill="#444">The bearing is now stored on the dial.</text>
+
+  <text x="30" y="410" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Step 4.</text>
+  <text x="80" y="410" font-family="Arial, sans-serif" font-size="9" fill="#444">Read the bearing where the direction-of-travel arrow meets the bezel scale.</text>
+  <text x="80" y="423" font-family="Arial, sans-serif" font-size="9" fill="#444">This is the GRID bearing; conversion to magnetic happens at D2.2.</text>
+
+  <!-- Footer -->
+  <text x="350" y="455" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#d32f2f" text-anchor="middle">Cross-check with a cardinal direction before you walk on it.</text>
+  <text x="350" y="470" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">A reading that does not match the obvious side of the map is almost always step 1 reversed.</text>
+</svg>

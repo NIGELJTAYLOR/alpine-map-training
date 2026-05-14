@@ -1,0 +1,79 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Annotated route-card entry: one leg, eleven fields</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">A complete IMS Nav Programme leg entry. Highlighted fields are the two most commonly under-described.</text>
+
+  <!-- Card outline -->
+  <rect x="30" y="65" width="640" height="375" fill="#ffffff" stroke="#1a1a1a" stroke-width="1.2"/>
+
+  <!-- Header bar -->
+  <rect x="30" y="65" width="640" height="22" fill="#2b4a6b"/>
+  <text x="42" y="81" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff">ROUTE CARD &#183; Leg 2 of 6</text>
+  <text x="658" y="81" font-family="Arial, sans-serif" font-size="9" fill="#fff" text-anchor="end">Tour date: example only</text>
+
+  <!-- Field rows -->
+  <g font-family="Arial, sans-serif" font-size="9">
+    <line x1="30" y1="112" x2="670" y2="112" stroke="#dcdcdc" stroke-width="0.7"/>
+    <line x1="200" y1="87" x2="200" y2="440" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="105" font-weight="bold" fill="#000">Leg number</text>
+    <text x="210" y="105" fill="#444">Leg 2 of 6</text>
+
+    <text x="42" y="130" font-weight="bold" fill="#000">Start point + altitude</text>
+    <text x="210" y="130" fill="#444">Refuge des Ecrins, 2,340 m</text>
+    <line x1="30" y1="137" x2="670" y2="137" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="155" font-weight="bold" fill="#000">End point + altitude</text>
+    <text x="210" y="155" fill="#444">Col du Grand Plan, 2,720 m</text>
+    <line x1="30" y1="162" x2="670" y2="162" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="180" font-weight="bold" fill="#000">Compass bearing (mag)</text>
+    <text x="210" y="180" fill="#444">047&#176; (grid 045&#176;, variation +2 east)</text>
+    <line x1="30" y1="187" x2="670" y2="187" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="205" font-weight="bold" fill="#000">Distance (map)</text>
+    <text x="210" y="205" fill="#444">1.4 km</text>
+    <line x1="30" y1="212" x2="670" y2="212" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="230" font-weight="bold" fill="#000">Estimated time</text>
+    <text x="210" y="230" fill="#444">60 minutes (400 m ascent / h)</text>
+    <line x1="30" y1="237" x2="670" y2="237" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="255" font-weight="bold" fill="#000">Altimeter trigger</text>
+    <text x="210" y="255" fill="#444">2,720 m at col (target altitude)</text>
+    <line x1="30" y1="262" x2="670" y2="262" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <!-- Highlighted row: Key terrain features -->
+    <rect x="30" y="262" width="640" height="40" fill="#fff4d6"/>
+    <text x="42" y="280" font-weight="bold" fill="#d32f2f">Key terrain features &#9650;</text>
+    <text x="210" y="278" fill="#000">Stream crossing 2,400 m; slope steepens past 2,540 m;</text>
+    <text x="210" y="290" fill="#000">bench at 2,610 m; col saddle visible from 2,700 m</text>
+    <line x1="30" y1="302" x2="670" y2="302" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <!-- Highlighted row: Avalanche assessment -->
+    <rect x="30" y="302" width="640" height="48" fill="#fff4d6"/>
+    <text x="42" y="320" font-weight="bold" fill="#d32f2f">Avalanche assessment &#9650;</text>
+    <text x="210" y="318" fill="#000">NW-facing slope; angle 22&#8211;25&#176; lower, 28&#8211;32&#176; from 2,540 m;</text>
+    <text x="210" y="330" fill="#000">danger Considerable; stay on ridge crest above 2,600 m</text>
+    <text x="210" y="342" fill="#000">to avoid the bowl on the left.</text>
+    <line x1="30" y1="350" x2="670" y2="350" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="370" font-weight="bold" fill="#000">Decision point criteria</text>
+    <text x="210" y="370" fill="#444">If bench is full slab on probe, retreat to refuge (D9.3 detail).</text>
+    <line x1="30" y1="377" x2="670" y2="377" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="395" font-weight="bold" fill="#000">Escape route</text>
+    <text x="210" y="395" fill="#444">Back down ridge to refuge; alternate descent via ENE gully if safe.</text>
+    <line x1="30" y1="402" x2="670" y2="402" stroke="#dcdcdc" stroke-width="0.7"/>
+
+    <text x="42" y="423" font-weight="bold" fill="#000">Cardinal cross-check</text>
+    <text x="210" y="423" fill="#444">47&#176; = NE. Col sits NE of refuge. Bearing plausible.</text>
+  </g>
+
+  <!-- Callout: under-described warning -->
+  <text x="448" y="280" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" font-weight="bold" font-style="italic" text-anchor="end">most under-described</text>
+  <text x="448" y="320" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" font-weight="bold" font-style="italic" text-anchor="end">most under-described</text>
+
+  <!-- Footer -->
+  <text x="350" y="466" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Six rows like this make a complete six-leg card. Target writing time: 20 minutes.</text>
+</svg>

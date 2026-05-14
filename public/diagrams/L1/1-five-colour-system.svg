@@ -1,0 +1,39 @@
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="300" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">The five-colour system on a typical alpine topographic map</text>
+
+  <rect x="30" y="60" width="100" height="80" fill="#B5651D" stroke="#444" stroke-width="0.8"/>
+  <text x="80" y="158" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Brown</text>
+  <text x="80" y="175" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Contour lines,</text>
+  <text x="80" y="188" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">terrain shape,</text>
+  <text x="80" y="201" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">height information</text>
+
+  <rect x="145" y="60" width="100" height="80" fill="#1e88e5" stroke="#444" stroke-width="0.8"/>
+  <text x="195" y="158" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Blue</text>
+  <text x="195" y="175" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Rivers, lakes,</text>
+  <text x="195" y="188" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">streams, marshes,</text>
+  <text x="195" y="201" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">glaciers</text>
+
+  <rect x="260" y="60" width="100" height="80" fill="#1a1a1a" stroke="#444" stroke-width="0.8"/>
+  <text x="310" y="158" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Black</text>
+  <text x="310" y="175" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Buildings, roads,</text>
+  <text x="310" y="188" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">railways, walls,</text>
+  <text x="310" y="201" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">man-made features</text>
+
+  <rect x="375" y="60" width="100" height="80" fill="#3f8a3a" stroke="#444" stroke-width="0.8"/>
+  <text x="425" y="158" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Green</text>
+  <text x="425" y="175" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Forest, woodland,</text>
+  <text x="425" y="188" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">scrub, dense</text>
+  <text x="425" y="201" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">vegetation</text>
+
+  <rect x="490" y="60" width="100" height="80" fill="#fafaf5" stroke="#444" stroke-width="0.8"/>
+  <text x="540" y="158" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">White</text>
+  <text x="540" y="175" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Open or less</text>
+  <text x="540" y="188" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">vegetated land,</text>
+  <text x="540" y="201" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">often easier ground</text>
+
+  <text x="20" y="240" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">How to use:</text>
+  <text x="20" y="258" font-family="Arial, sans-serif" font-size="10" fill="#444">Use colour as a fast first reading of an unfamiliar map. The pattern above is broadly consistent across</text>
+  <text x="20" y="271" font-family="Arial, sans-serif" font-size="10" fill="#444">national alpine series, but always confirm exact meanings against the legend on the specific sheet you are using.</text>
+  <text x="20" y="290" font-family="Arial, sans-serif" font-size="9" fill="#777" font-style="italic">Indicative colours; precise shades vary by publisher and printing.</text>
+</svg>

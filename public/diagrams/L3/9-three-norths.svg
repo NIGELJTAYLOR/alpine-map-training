@@ -1,0 +1,72 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">True north, grid north and magnetic north</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Three references; small angular differences. Aspect work ignores them; walking on a bearing requires the magnetic conversion.</text>
+
+  <!-- Central diagram: three norths fanning out from a point -->
+  <g transform="translate(280,300)">
+    <circle r="6" fill="#1a1a1a"/>
+    <text x="0" y="22" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">your position</text>
+
+    <!-- True north (straight up) -->
+    <line x1="0" y1="0" x2="0" y2="-220" stroke="#1a8a3a" stroke-width="2.4"/>
+    <polygon points="-7,-208 0,-225 7,-208" fill="#1a8a3a"/>
+    <text x="0" y="-235" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1a8a3a" text-anchor="middle">True N</text>
+    <text x="0" y="-249" font-family="Arial, sans-serif" font-size="8" fill="#1a8a3a" text-anchor="middle">geographic North Pole</text>
+
+    <!-- Grid north: about 1° west of true (small offset to left) -->
+    <line x1="0" y1="0" x2="-12" y2="-220" stroke="#3a78a4" stroke-width="2.2"/>
+    <polygon points="-19,-209 -12,-224 -5,-210" fill="#3a78a4"/>
+    <text x="-65" y="-205" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#3a78a4" text-anchor="middle">Grid N</text>
+    <text x="-65" y="-191" font-family="Arial, sans-serif" font-size="8" fill="#3a78a4" text-anchor="middle">map&#8217;s grid</text>
+    <text x="-65" y="-180" font-family="Arial, sans-serif" font-size="8" fill="#3a78a4" text-anchor="middle">vertical</text>
+
+    <!-- Magnetic north: about 2° east of true (offset to right) -->
+    <line x1="0" y1="0" x2="24" y2="-218" stroke="#d32f2f" stroke-width="2.4"/>
+    <polygon points="17,-207 24,-222 32,-209" fill="#d32f2f"/>
+    <text x="80" y="-205" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#d32f2f" text-anchor="middle">Magnetic N</text>
+    <text x="80" y="-191" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">compass needle</text>
+    <text x="80" y="-180" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">points here</text>
+
+    <!-- Angular arcs / gaps -->
+    <path d="M -10 -180 A 180 180 0 0 1 0 -180" fill="none" stroke="#3a78a4" stroke-width="0.9"/>
+    <text x="-8" y="-167" font-family="Arial, sans-serif" font-size="8" fill="#3a78a4" text-anchor="middle">~1&#176;</text>
+    <text x="-8" y="-156" font-family="Arial, sans-serif" font-size="7" fill="#3a78a4" text-anchor="middle">(true&#8211;grid)</text>
+
+    <path d="M 0 -180 A 180 180 0 0 1 20 -178" fill="none" stroke="#d32f2f" stroke-width="0.9"/>
+    <text x="14" y="-167" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">~2&#176;</text>
+    <text x="14" y="-156" font-family="Arial, sans-serif" font-size="7" fill="#d32f2f" text-anchor="middle">(true&#8211;mag)</text>
+  </g>
+
+  <!-- Right-hand panel: the variation rule -->
+  <rect x="450" y="80" width="230" height="380" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+  <text x="565" y="100" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Magnetic variation</text>
+
+  <text x="465" y="125" font-family="Arial, sans-serif" font-size="9" fill="#444">The angular difference between</text>
+  <text x="465" y="138" font-family="Arial, sans-serif" font-size="9" fill="#444">magnetic north and grid (or true)</text>
+  <text x="465" y="151" font-family="Arial, sans-serif" font-size="9" fill="#444">north. Changes by location and</text>
+  <text x="465" y="164" font-family="Arial, sans-serif" font-size="9" fill="#444">over time.</text>
+
+  <text x="465" y="190" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Typical Alps:</text>
+  <text x="465" y="206" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f">~1 to 3&#176; east of grid</text>
+  <text x="465" y="219" font-family="Arial, sans-serif" font-size="9" fill="#444">(positive variation: add)</text>
+
+  <text x="465" y="245" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">Typical UK:</text>
+  <text x="465" y="261" font-family="Arial, sans-serif" font-size="9" fill="#d32f2f">~0 to 1&#176; west of grid</text>
+  <text x="465" y="274" font-family="Arial, sans-serif" font-size="9" fill="#444">(negative variation: subtract)</text>
+
+  <rect x="465" y="295" width="200" height="60" fill="#fff4d6" stroke="#d4a23a" stroke-width="0.9"/>
+  <text x="565" y="315" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000" text-anchor="middle">Conversion rule</text>
+  <text x="565" y="332" font-family="Arial, sans-serif" font-size="9" fill="#000" text-anchor="middle">Grid bearing + east variation</text>
+  <text x="565" y="345" font-family="Arial, sans-serif" font-size="9" fill="#000" text-anchor="middle">= magnetic bearing.</text>
+
+  <text x="465" y="380" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000">Check current variation:</text>
+  <text x="465" y="395" font-family="Arial, sans-serif" font-size="8" fill="#444">BGS World Magnetic Model, or</text>
+  <text x="465" y="408" font-family="Arial, sans-serif" font-size="8" fill="#444">NOAA / NCEI calculator, or</text>
+  <text x="465" y="421" font-family="Arial, sans-serif" font-size="8" fill="#444">swisstopo declination service.</text>
+  <text x="465" y="438" font-family="Arial, sans-serif" font-size="8" fill="#777" font-style="italic">Don&#8217;t use the map margin figure</text>
+  <text x="465" y="451" font-family="Arial, sans-serif" font-size="8" fill="#777" font-style="italic">if the sheet is more than 5 years old.</text>
+
+  <!-- Footer -->
+  <text x="270" y="455" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Angles in the diagram are illustrative; check the current figure for your map area before any tour.</text>
+</svg>

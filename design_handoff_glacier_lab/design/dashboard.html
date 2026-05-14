@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Progress · Carta · Glacier Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* MOBILE — Dashboard */
+.dash-head { padding: 24px 22px 18px; }
+.dash-h1 { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.022em; margin: 0 0 4px; }
+.dash-sub { color: var(--ink-2); font-size: 14px; }
+
+.dash-overall { padding: 20px 22px; background: var(--paper-3); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.dash-overall .lbl { font: 600 9px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.dash-overall .pct-big { font-family: var(--font-display); font-weight: 800; font-size: 56px; line-height: 0.9; letter-spacing: -0.028em; color: var(--ink); margin-top: 4px; }
+.dash-overall .pct-big small { font-size: 22px; color: var(--ink-3); font-weight: 700; }
+.dash-overall .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.dash-overall .row .meta { font: 600 11px var(--font-mono); color: var(--moss); letter-spacing: 0.08em; padding-bottom: 6px; text-transform: uppercase; }
+.dash-overall .pbar { margin-top: 14px; height: 6px; }
+
+.dash-section { padding: 20px 22px; border-bottom: 1px solid var(--rule); background: var(--paper-3); }
+.dash-section h3 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; font-weight: 600; }
+.lvl-stat { display: grid; grid-template-columns: 1fr 70px 60px; gap: 10px; align-items: center; padding: 12px 0; font-size: 14px; border-top: 1px solid var(--rule); }
+.lvl-stat:first-of-type { border-top: 0; padding-top: 0; }
+.lvl-stat .nm { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; }
+.lvl-stat .nm small { display: block; font: 600 9px var(--font-mono); color: var(--ink-3); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; margin-top: 2px; }
+.lvl-stat .pbar { height: 4px; }
+.lvl-stat .pct { font: 700 12px var(--font-mono); text-align: right; }
+
+.check-row { display: flex; justify-content: space-between; padding: 11px 0; font-size: 14px; border-top: 1px solid var(--rule); }
+.check-row:first-of-type { border-top: 0; }
+.check-row .check { display: flex; align-items: center; gap: 8px; color: var(--ink-2); }
+.check-row .check svg { width: 14px; height: 14px; }
+.check-row .yes { color: var(--moss); font-weight: 700; }
+.check-row .no { color: var(--ink-3); }
+.check-row .val { font: 700 12px var(--font-mono); color: var(--ink); letter-spacing: 0.06em; }
+
+/* Heatmap */
+.heatmap { display: grid; grid-template-columns: repeat(14, 1fr); gap: 3px; margin-top: 10px; }
+.heatmap .day { aspect-ratio: 1; background: var(--rule); border-radius: 1px; }
+.heatmap .day.lvl1 { background: rgba(36,128,181,.25); }
+.heatmap .day.lvl2 { background: rgba(36,128,181,.5); }
+.heatmap .day.lvl3 { background: rgba(36,128,181,.75); }
+.heatmap .day.lvl4 { background: var(--ice); }
+.heatmap-legend { display: flex; gap: 4px; align-items: center; margin-top: 10px; font: 600 9px var(--font-mono); color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; }
+.heatmap-legend .day { width: 10px; height: 10px; border-radius: 1px; display: inline-block; }
+
+/* DESKTOP */
+.d-grid { display: grid; grid-template-columns: 240px 1fr; min-height: 760px; }
+.d-dash { padding: 48px 64px; }
+.d-dash h1 { font-family: var(--font-display); font-weight: 800; font-size: 40px; letter-spacing: -0.025em; margin: 0 0 6px; }
+.d-dash .sub { color: var(--ink-2); font-size: 15px; }
+
+.d-overall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 32px 0; }
+.d-overall .cell { background: var(--paper-3); padding: 22px 24px; }
+.d-overall .cell .lbl { font: 600 9px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.d-overall .cell .v { font-family: var(--font-display); font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -0.025em; margin: 8px 0 6px; }
+.d-overall .cell .v small { font-size: 18px; color: var(--ink-3); font-weight: 700; }
+.d-overall .cell .delta { font: 600 10px var(--font-mono); letter-spacing: 0.1em; color: var(--moss); text-transform: uppercase; }
+.d-overall .cell .delta.red { color: var(--red); }
+
+.d-cols { display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px; }
+.d-card { background: var(--paper-3); border: 1px solid var(--rule); padding: 22px 24px; }
+.d-card h3 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 18px; font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; }
+.d-card h3 .meta { font: 600 11px var(--font-body); color: var(--ink-2); letter-spacing: 0; text-transform: none; }
+
+.d-lvl-stat { display: grid; grid-template-columns: 1fr 1fr 80px 60px; gap: 14px; align-items: center; padding: 14px 0; font-size: 14px; border-top: 1px solid var(--rule); }
+.d-lvl-stat:first-of-type { border-top: 0; padding-top: 0; }
+.d-lvl-stat .nm { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.012em; }
+.d-lvl-stat .nm small { display: block; font: 600 9px var(--font-mono); color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; font-weight: 600; }
+.d-lvl-stat .cards { font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; }
+.d-lvl-stat .pbar { height: 4px; }
+.d-lvl-stat .pct { font: 700 13px var(--font-mono); text-align: right; }
+
+.d-heatmap { display: grid; grid-template-columns: repeat(26, 1fr); gap: 3px; margin-top: 16px; }
+.d-heatmap .day { aspect-ratio: 1; background: var(--rule); border-radius: 1px; }
+.d-heatmap .day.lvl1 { background: rgba(36,128,181,.25); }
+.d-heatmap .day.lvl2 { background: rgba(36,128,181,.5); }
+.d-heatmap .day.lvl3 { background: rgba(36,128,181,.75); }
+.d-heatmap .day.lvl4 { background: var(--ice); }
+</style>
+</head>
+<body>
+<div class="std">
+  <div class="std-head">
+    <div>
+      <div class="std-eyebrow">Glacier Lab · Direction 02 · Screen 06</div>
+      <h1 class="std-title">Progress dashboard</h1>
+      <p class="std-sub">Where the learner stands: overall pathway, per-level breakdown, readiness checks, study cadence.</p>
+    </div>
+    <div class="std-nav">
+      <a href="home.html">01 Home</a>
+      <a href="level-index.html">02 Level</a>
+      <a href="workbook.html">03 Workbook</a>
+      <a href="quiz.html">04 Quiz</a>
+      <a href="flashcard.html">05 Card</a>
+      <a class="active" href="dashboard.html">06 Stats</a>
+      <a href="settings.html">07 Settings</a>
+      <a href="onboarding.html">08 Onboarding</a>
+      <a href="level-complete.html">09 Complete</a>
+      <a href="index.html">All screens →</a>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <symbol id="wm-glyph" viewBox="0 0 30 30"><rect width="30" height="30" fill="#0E1A2E"/><path d="M4 22 L11 12 L16 18 L21 10 L26 16" stroke="#FFFFFF" stroke-width="1.5" fill="none"/><circle cx="24" cy="8" r="2.5" fill="#D7263D"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v11H3z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="9" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-check" viewBox="0 0 14 14"><path d="M3 7l3 3 5-7" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
+      <symbol id="i-circle" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="mocks pair">
+    <!-- MOBILE -->
+    <div>
+      <div class="mock-label">Mobile · 375</div>
+      <div class="phone">
+        <div class="ios-bar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="9" width="3" height="3"/><rect x="4" y="6" width="3" height="6"/><rect x="8" y="3" width="3" height="9"/><rect x="12" y="0" width="3" height="12"/></svg>
+            <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5 Q8 -2 15 5"/><path d="M3 7 Q8 2 13 7"/></svg>
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="14" height="6" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="dash-head">
+          <h1 class="dash-h1">Your pathway</h1>
+          <p class="dash-sub">Where you stand against the BASI L4 ISTD navigation framework.</p>
+        </div>
+
+        <div class="dash-overall">
+          <div class="lbl">Overall · 66 pages</div>
+          <div class="row">
+            <div class="pct-big">28<small>%</small></div>
+            <div class="meta">↑ 4% this week</div>
+          </div>
+          <div class="pbar"><i style="width:28%"></i></div>
+        </div>
+
+        <div class="dash-section">
+          <h3>By level</h3>
+          <div class="lvl-stat">
+            <div class="nm">Map literacy<small>Level 1 · 19 pages</small></div>
+            <div class="pbar"><i style="width:63%"></i></div>
+            <span class="pct">63%</span>
+          </div>
+          <div class="lvl-stat">
+            <div class="nm">Terrain interpretation<small>Level 2 · 18 pages</small></div>
+            <div class="pbar ice"><i style="width:22%"></i></div>
+            <span class="pct">22%</span>
+          </div>
+          <div class="lvl-stat">
+            <div class="nm">Navigation toolkit<small>Level 3 · 29 pages</small></div>
+            <div class="pbar"><i style="width:0%"></i></div>
+            <span class="pct">0%</span>
+          </div>
+        </div>
+
+        <div class="dash-section">
+          <h3>Readiness · Level 1</h3>
+          <div class="check-row"><span class="check yes"><svg><use href="#i-check"/></svg>All pages read</span><span class="no">12 / 19</span></div>
+          <div class="check-row"><span class="check yes"><svg><use href="#i-check"/></svg>50% cards mastered</span><span class="val" style="color:var(--moss)">38 / 54</span></div>
+          <div class="check-row"><span class="check"><svg><use href="#i-circle"/></svg>Mock quiz ≥ 80%</span><span class="val">82%</span></div>
+          <div class="check-row"><span class="check"><svg><use href="#i-circle"/></svg>No card overdue &gt; 7d</span><span class="val" style="color:var(--moss)">All good</span></div>
+        </div>
+
+        <div class="dash-section">
+          <h3>Study cadence · 28 days</h3>
+          <div class="heatmap">
+            <span class="day"></span><span class="day lvl1"></span><span class="day lvl2"></span><span class="day lvl1"></span><span class="day lvl3"></span><span class="day lvl2"></span><span class="day"></span>
+            <span class="day lvl1"></span><span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl2"></span><span class="day"></span>
+            <span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl4"></span><span class="day lvl3"></span><span class="day lvl1"></span>
+            <span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl3"></span><span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl2"></span>
+          </div>
+          <div class="heatmap-legend">
+            <span>Less</span>
+            <span class="day"></span>
+            <span class="day lvl1"></span>
+            <span class="day lvl2"></span>
+            <span class="day lvl3"></span>
+            <span class="day lvl4"></span>
+            <span>More</span>
+            <span style="margin-left:auto;">14-day streak ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div>
+      <div class="mock-label">Desktop · 1200</div>
+      <div class="desktop">
+        <div class="browser-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="url">alpinemaptraining.app / stats</div>
+        </div>
+        <div class="d-grid">
+          <div class="sb">
+            <div class="wm">
+              <div class="mark"><svg><use href="#wm-glyph"/></svg></div>
+              <div>
+                <div class="name">Alpine Map Training</div>
+                <div class="by">By PerformOS</div>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Home</div>
+              <div class="sb-nav">
+                <a href="home.html"><svg><use href="#i-home"/></svg>Overview</a>
+                <a class="active"><svg><use href="#i-clock"/></svg>Statistics</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Workbook</div>
+              <div class="sb-nav">
+                <a href="level-index.html"><span class="code">L1</span>Map literacy</a>
+                <a><span class="code">L2</span>Terrain reading</a>
+                <a><span class="code">L3</span>Nav toolkit</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Reference</div>
+              <div class="sb-nav">
+                <a href="flashcard.html"><svg><use href="#i-cards"/></svg>Flashcards <span class="badge">24</span></a>
+                <a>Diagrams</a>
+                <a>Templates</a>
+              </div>
+            </div>
+            <div class="sb-stat">
+              <div class="l">Streak</div>
+              <div class="v">14 <small>days</small></div>
+              <div class="sub">Personal best</div>
+            </div>
+          </div>
+
+          <div class="d-dash">
+            <h1>Your pathway</h1>
+            <p class="sub">Where you stand against the BASI Alpine L4 ISTD navigation framework.</p>
+
+            <div class="d-overall">
+              <div class="cell">
+                <div class="lbl">Overall</div>
+                <div class="v">28<small>%</small></div>
+                <div class="delta">↑ 4% this week</div>
+              </div>
+              <div class="cell">
+                <div class="lbl">Cards due today</div>
+                <div class="v">24</div>
+                <div class="delta red">Review now</div>
+              </div>
+              <div class="cell">
+                <div class="lbl">Streak</div>
+                <div class="v">14<small> d</small></div>
+                <div class="delta">Personal best</div>
+              </div>
+              <div class="cell">
+                <div class="lbl">Mock quiz · L1</div>
+                <div class="v">82<small> %</small></div>
+                <div class="delta">L1 ready ✓</div>
+              </div>
+            </div>
+
+            <div class="d-cols">
+              <div class="d-card">
+                <h3>By level <span class="meta">3 levels · 66 pages</span></h3>
+                <div class="d-lvl-stat">
+                  <div class="nm">Map literacy<small>Level 1 · 19 pages · 54 cards</small></div>
+                  <div class="cards">12 / 19 pp · 38 / 54 cards</div>
+                  <div class="pbar"><i style="width:63%"></i></div>
+                  <span class="pct">63%</span>
+                </div>
+                <div class="d-lvl-stat">
+                  <div class="nm">Terrain interpretation<small>Level 2 · 18 pages · 51 cards</small></div>
+                  <div class="cards">4 / 18 pp · 11 / 51 cards</div>
+                  <div class="pbar ice"><i style="width:22%"></i></div>
+                  <span class="pct">22%</span>
+                </div>
+                <div class="d-lvl-stat">
+                  <div class="nm">Navigation toolkit<small>Level 3 · 29 pages · 55 cards</small></div>
+                  <div class="cards">0 / 29 pp · 0 / 55 cards</div>
+                  <div class="pbar"><i style="width:0%"></i></div>
+                  <span class="pct">0%</span>
+                </div>
+              </div>
+
+              <div class="d-card">
+                <h3>Level 1 readiness <span class="meta">3 / 4 criteria met</span></h3>
+                <div class="check-row"><span class="check yes"><svg><use href="#i-check"/></svg>All pages read</span><span class="val">12 / 19</span></div>
+                <div class="check-row"><span class="check yes"><svg><use href="#i-check"/></svg>50% cards mastered</span><span class="val" style="color:var(--moss)">38 / 54</span></div>
+                <div class="check-row"><span class="check yes"><svg><use href="#i-check"/></svg>Mock quiz ≥ 80%</span><span class="val" style="color:var(--moss)">82%</span></div>
+                <div class="check-row"><span class="check"><svg><use href="#i-circle"/></svg>Finish C1.13–C1.19</span><span class="val">7 to go</span></div>
+              </div>
+            </div>
+
+            <div class="d-card" style="margin-top:32px;">
+              <h3>Study cadence <span class="meta">Last 6 months · 14-day streak</span></h3>
+              <div class="d-heatmap">
+                <!-- 26 weeks × 1 day (compressed) -->
+                <span class="day"></span><span class="day lvl1"></span><span class="day"></span><span class="day lvl2"></span><span class="day lvl1"></span><span class="day lvl3"></span><span class="day lvl1"></span>
+                <span class="day"></span><span class="day lvl2"></span><span class="day lvl1"></span><span class="day lvl3"></span><span class="day lvl2"></span><span class="day"></span><span class="day lvl1"></span>
+                <span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl1"></span><span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl3"></span>
+                <span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl4"></span><span class="day lvl4"></span>
+                <span class="day"></span><span class="day lvl1"></span><span class="day"></span><span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl2"></span><span class="day lvl1"></span>
+                <span class="day"></span><span class="day lvl2"></span><span class="day lvl1"></span><span class="day lvl3"></span><span class="day lvl2"></span><span class="day"></span><span class="day lvl3"></span>
+                <span class="day lvl3"></span><span class="day lvl2"></span><span class="day lvl1"></span><span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl4"></span>
+                <span class="day lvl3"></span><span class="day lvl4"></span><span class="day lvl4"></span><span class="day lvl4"></span><span class="day lvl3"></span>
+              </div>
+              <div class="heatmap-legend" style="margin-top:14px;font-size:10px;">
+                <span>Less</span><span class="day"></span><span class="day lvl1"></span><span class="day lvl2"></span><span class="day lvl3"></span><span class="day lvl4"></span><span>More</span>
+                <span style="margin-left:auto;">Avg session 24 min · 5.2 sessions / week</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

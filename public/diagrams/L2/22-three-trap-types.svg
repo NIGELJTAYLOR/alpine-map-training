@@ -1,0 +1,103 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Three classic terrain trap configurations</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Features where a small avalanche or fall produces disproportionate consequences. Read these from the contour pattern before you commit.</text>
+
+  <!-- Panel 1: narrow gully -->
+  <g transform="translate(30,75)">
+    <rect width="210" height="340" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <text x="105" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Narrow gully</text>
+
+    <!-- Contour V's pointing uphill, tight in the gully -->
+    <path d="M 20 60 Q 80 80 105 110 Q 130 80 190 60" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 20 90 Q 80 110 105 140 Q 130 110 190 90" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 20 120 Q 80 140 105 170 Q 130 140 190 120" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 20 150 Q 80 170 105 200 Q 130 170 190 150" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 20 180 Q 80 200 105 230 Q 130 200 190 180" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 20 210 Q 80 230 105 260 Q 130 230 190 210" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 20 240 Q 80 260 105 285 Q 130 260 190 240" fill="none" stroke="#B5651D" stroke-width="1"/>
+
+    <!-- rock symbology at narrowing -->
+    <text x="80" y="200" font-family="Arial, sans-serif" font-size="14" fill="#1a1a1a">&#9698;</text>
+    <text x="125" y="200" font-family="Arial, sans-serif" font-size="14" fill="#1a1a1a">&#9698;</text>
+
+    <!-- Fall-line arrow concentrated in centre -->
+    <line x1="105" y1="80" x2="105" y2="295" stroke="#d32f2f" stroke-width="2.5"/>
+    <polygon points="100,290 105,304 110,290" fill="#d32f2f"/>
+
+    <text x="105" y="315" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">slide path</text>
+    <text x="105" y="326" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">funnels through gully</text>
+  </g>
+  <text x="135" y="430" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000" text-anchor="middle">Narrow gully</text>
+  <text x="135" y="443" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">Channel concentrates moving</text>
+  <text x="135" y="455" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">snow; rock walls below.</text>
+  <text x="135" y="467" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">Small slide, big consequence.</text>
+
+  <!-- Panel 2: bowl with single exit -->
+  <g transform="translate(255,75)">
+    <rect width="210" height="340" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <text x="105" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Bowl with a single exit</text>
+
+    <!-- Bowl contours: closed C's opening downward at the mouth -->
+    <path d="M 30 60 Q 60 30 105 30 Q 150 30 180 60" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 35 95 Q 65 60 105 60 Q 145 60 175 95" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 40 125 Q 70 90 105 90 Q 140 90 170 125" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 45 155 Q 75 120 105 120 Q 135 120 165 155" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 50 185 Q 80 150 105 150 Q 130 150 160 185" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <!-- the mouth: contours close, leaving narrow opening -->
+    <path d="M 60 215 L 90 215 M 120 215 L 150 215" fill="none" stroke="#B5651D" stroke-width="1"/>
+    <path d="M 70 245 L 95 245 M 115 245 L 140 245" fill="none" stroke="#B5651D" stroke-width="1"/>
+
+    <!-- rock symbology at mouth -->
+    <text x="80" y="252" font-family="Arial, sans-serif" font-size="14" fill="#1a1a1a">&#9698;</text>
+    <text x="125" y="252" font-family="Arial, sans-serif" font-size="14" fill="#1a1a1a">&#9698;</text>
+
+    <!-- Fall-line arrows converging -->
+    <g stroke="#d32f2f" stroke-width="2" fill="#d32f2f">
+      <line x1="60" y1="80" x2="100" y2="265" stroke-width="2"/>
+      <line x1="150" y1="80" x2="110" y2="265" stroke-width="2"/>
+      <line x1="105" y1="60" x2="105" y2="265" stroke-width="2"/>
+      <polygon points="100,260 105,275 110,260"/>
+    </g>
+
+    <text x="105" y="295" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">everything funnels</text>
+    <text x="105" y="307" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">to the constricted mouth</text>
+  </g>
+  <text x="360" y="430" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000" text-anchor="middle">Bowl with single exit</text>
+  <text x="360" y="443" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">All possible slides converge</text>
+  <text x="360" y="455" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">on the mouth. Once entered,</text>
+  <text x="360" y="467" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">the mouth is the only exit.</text>
+
+  <!-- Panel 3: slope above cliff band -->
+  <g transform="translate(480,75)">
+    <rect width="210" height="340" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <text x="105" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Slope above a cliff band</text>
+
+    <!-- Slope contours, evenly spaced (steep) -->
+    <line x1="15" y1="60" x2="195" y2="60" stroke="#B5651D" stroke-width="1"/>
+    <line x1="15" y1="90" x2="195" y2="90" stroke="#B5651D" stroke-width="1"/>
+    <line x1="15" y1="120" x2="195" y2="120" stroke="#B5651D" stroke-width="1"/>
+    <line x1="15" y1="150" x2="195" y2="150" stroke="#B5651D" stroke-width="1"/>
+    <line x1="15" y1="180" x2="195" y2="180" stroke="#B5651D" stroke-width="1"/>
+    <!-- merged contours at the cliff (very tight) -->
+    <rect x="15" y="200" width="180" height="14" fill="#B5651D" opacity="0.55"/>
+    <!-- rock symbology on cliff -->
+    <text x="40" y="213" font-family="Arial, sans-serif" font-size="14" fill="#1a1a1a">&#9698;&#9698;&#9698;</text>
+    <text x="120" y="213" font-family="Arial, sans-serif" font-size="14" fill="#1a1a1a">&#9698;&#9698;&#9698;</text>
+    <!-- below the cliff -->
+    <line x1="15" y1="245" x2="195" y2="245" stroke="#B5651D" stroke-width="1"/>
+    <line x1="15" y1="275" x2="195" y2="275" stroke="#B5651D" stroke-width="1"/>
+
+    <!-- Fall-line down to cliff -->
+    <line x1="105" y1="50" x2="105" y2="200" stroke="#d32f2f" stroke-width="2.5"/>
+    <line x1="105" y1="200" x2="105" y2="220" stroke="#d32f2f" stroke-width="2.5" stroke-dasharray="3,2"/>
+    <polygon points="100,217 105,231 110,217" fill="#d32f2f"/>
+
+    <text x="105" y="295" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">no walk-back from the slope:</text>
+    <text x="105" y="307" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">the cliff is below.</text>
+  </g>
+  <text x="585" y="430" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#000" text-anchor="middle">Slope above cliff band</text>
+  <text x="585" y="443" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">A slide cannot run out gently;</text>
+  <text x="585" y="455" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">a fall is committing.</text>
+  <text x="585" y="467" font-family="Arial, sans-serif" font-size="8" fill="#444" text-anchor="middle">Merged contours + rock symbol.</text>
+</svg>

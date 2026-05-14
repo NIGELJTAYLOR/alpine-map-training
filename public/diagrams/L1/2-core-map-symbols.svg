@@ -1,0 +1,77 @@
+<svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="520" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Core map symbols at 1:25,000 (stylised reference)</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Symbols vary by national series. Always confirm meanings against your map's legend before relying on them.</text>
+
+  <line x1="20" y1="60" x2="680" y2="60" stroke="#444" stroke-width="0.8"/>
+  <text x="30" y="78" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Feature</text>
+  <text x="200" y="78" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Typical symbol</text>
+  <text x="380" y="78" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Notes</text>
+  <line x1="20" y1="86" x2="680" y2="86" stroke="#444" stroke-width="0.8"/>
+
+  <text x="30" y="113" font-family="Arial, sans-serif" font-size="11" fill="#000">Building / hut</text>
+  <rect x="220" y="100" width="14" height="10" fill="#1a1a1a"/>
+  <text x="380" y="113" font-family="Arial, sans-serif" font-size="10" fill="#444">Solid black rectangle. Refuges often labelled.</text>
+
+  <text x="30" y="143" font-family="Arial, sans-serif" font-size="11" fill="#000">Footpath / route</text>
+  <line x1="210" y1="138" x2="260" y2="138" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="4,2"/>
+  <text x="380" y="143" font-family="Arial, sans-serif" font-size="10" fill="#444">Dashed black or red. Style varies by series.</text>
+
+  <text x="30" y="173" font-family="Arial, sans-serif" font-size="11" fill="#000">Track / unsealed road</text>
+  <line x1="210" y1="168" x2="260" y2="168" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="210" y1="172" x2="260" y2="172" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="380" y="173" font-family="Arial, sans-serif" font-size="10" fill="#444">Parallel black lines.</text>
+
+  <text x="30" y="203" font-family="Arial, sans-serif" font-size="11" fill="#000">Sealed road</text>
+  <rect x="210" y="195" width="50" height="6" fill="#e87b3a" stroke="#1a1a1a" stroke-width="0.5"/>
+  <text x="380" y="203" font-family="Arial, sans-serif" font-size="10" fill="#444">Often filled colour (orange or yellow).</text>
+
+  <text x="30" y="233" font-family="Arial, sans-serif" font-size="11" fill="#000">Stream</text>
+  <path d="M 210 228 Q 220 224 232 228 Q 244 232 256 228" fill="none" stroke="#1e88e5" stroke-width="1.4"/>
+  <text x="380" y="233" font-family="Arial, sans-serif" font-size="10" fill="#444">Thin blue line, often wavy.</text>
+
+  <text x="30" y="263" font-family="Arial, sans-serif" font-size="11" fill="#000">River</text>
+  <path d="M 210 257 Q 220 253 232 257 Q 244 261 256 257" fill="none" stroke="#1e88e5" stroke-width="3"/>
+  <text x="380" y="263" font-family="Arial, sans-serif" font-size="10" fill="#444">Thicker blue line, sometimes filled.</text>
+
+  <text x="30" y="293" font-family="Arial, sans-serif" font-size="11" fill="#000">Bridge</text>
+  <line x1="210" y1="288" x2="260" y2="288" stroke="#1e88e5" stroke-width="1.4"/>
+  <line x1="225" y1="282" x2="225" y2="294" stroke="#1a1a1a" stroke-width="1.5"/>
+  <line x1="245" y1="282" x2="245" y2="294" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="380" y="293" font-family="Arial, sans-serif" font-size="10" fill="#444">Two short black bars across a watercourse.</text>
+
+  <text x="30" y="323" font-family="Arial, sans-serif" font-size="11" fill="#000">Woodland</text>
+  <rect x="208" y="312" width="58" height="14" fill="#3f8a3a" opacity="0.8"/>
+  <text x="380" y="323" font-family="Arial, sans-serif" font-size="10" fill="#444">Solid green fill, sometimes with tree symbols.</text>
+
+  <text x="30" y="353" font-family="Arial, sans-serif" font-size="11" fill="#000">Cliff / very steep ground</text>
+  <line x1="210" y1="348" x2="260" y2="348" stroke="#1a1a1a" stroke-width="2.5"/>
+  <line x1="214" y1="348" x2="214" y2="354" stroke="#1a1a1a" stroke-width="0.8"/>
+  <line x1="222" y1="348" x2="222" y2="354" stroke="#1a1a1a" stroke-width="0.8"/>
+  <line x1="230" y1="348" x2="230" y2="354" stroke="#1a1a1a" stroke-width="0.8"/>
+  <line x1="238" y1="348" x2="238" y2="354" stroke="#1a1a1a" stroke-width="0.8"/>
+  <line x1="246" y1="348" x2="246" y2="354" stroke="#1a1a1a" stroke-width="0.8"/>
+  <line x1="254" y1="348" x2="254" y2="354" stroke="#1a1a1a" stroke-width="0.8"/>
+  <text x="380" y="353" font-family="Arial, sans-serif" font-size="10" fill="#444">Heavy line with short hatch teeth pointing downhill.</text>
+
+  <text x="30" y="383" font-family="Arial, sans-serif" font-size="11" fill="#000">Contour line</text>
+  <path d="M 210 378 Q 230 374 250 378" fill="none" stroke="#B5651D" stroke-width="1.2"/>
+  <text x="380" y="383" font-family="Arial, sans-serif" font-size="10" fill="#444">Brown line of equal height; check interval in legend.</text>
+
+  <text x="30" y="413" font-family="Arial, sans-serif" font-size="11" fill="#000">Spot height</text>
+  <polygon points="234,406 230,414 238,414" fill="#000"/>
+  <text x="245" y="416" font-family="Arial, sans-serif" font-size="9" fill="#000">2,847</text>
+  <text x="380" y="413" font-family="Arial, sans-serif" font-size="10" fill="#444">Small dot or triangle plus an exact elevation.</text>
+
+  <text x="30" y="443" font-family="Arial, sans-serif" font-size="11" fill="#000">Lift / cable car</text>
+  <line x1="210" y1="438" x2="260" y2="438" stroke="#1a1a1a" stroke-width="1"/>
+  <circle cx="220" cy="438" r="2" fill="#1a1a1a"/>
+  <circle cx="235" cy="438" r="2" fill="#1a1a1a"/>
+  <circle cx="250" cy="438" r="2" fill="#1a1a1a"/>
+  <text x="380" y="443" font-family="Arial, sans-serif" font-size="10" fill="#444">Thin line with regularly spaced dots or T-marks.</text>
+
+  <line x1="20" y1="465" x2="680" y2="465" stroke="#444" stroke-width="0.8"/>
+  <text x="20" y="488" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">When the map's legend differs from this reference, the map's legend is right.</text>
+  <text x="20" y="503" font-family="Arial, sans-serif" font-size="10" fill="#444">National series in common alpine use: IGN TOP25 (France), Swisstopo (Switzerland), Alpenvereinskarte (Austria), IGM (Italy).</text>
+  <text x="20" y="516" font-family="Arial, sans-serif" font-size="9" fill="#777" font-style="italic">Stylised symbols above are illustrative. Always check the legend on the actual map sheet.</text>
+</svg>

@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Home · Carta · Glacier Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Screen-specific styles only. */
+
+/* ============================================================
+   MOBILE — Home
+   ============================================================ */
+.m-hero { position: relative; padding: 28px 22px 24px; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.m-hero .grid-bg { background-size: 40px 40px; }
+.m-hero > * { position: relative; }
+.m-hero .id-row { display: flex; align-items: center; gap: 8px; font: 600 9px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin-top: 18px; }
+.m-hero .id-row .dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+.m-hero h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-display-s); line-height: 1.04; letter-spacing: -0.028em; margin: 12px 0 12px; }
+.m-hero h1 .red { color: var(--red); }
+.m-hero .vp { color: var(--ink-2); font-size: 14px; line-height: 1.55; max-width: 30ch; }
+.m-hero .tags { display: flex; gap: 6px; margin-top: 18px; flex-wrap: wrap; }
+
+.m-photo { height: 180px; margin: 0; }
+.m-photo .ps-label { font-size: 9px; }
+
+.m-stripe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-bottom: 1px solid var(--rule); }
+.m-stripe .cell { background: var(--paper-3); padding: 14px 14px 12px; }
+.m-stripe .l { font: 600 9px var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.m-stripe .v { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1; letter-spacing: -0.015em; margin-top: 6px; }
+.m-stripe .v small { font-weight: 600; font-size: 11px; color: var(--ink-3); }
+
+.m-section-h { padding: 22px 22px 12px; display: flex; justify-content: space-between; align-items: baseline; }
+.m-section-h h3 { font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: -0.012em; margin: 0; }
+.m-section-h .sub { font: 600 10px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+
+.m-level { background: var(--paper-3); margin: 0 22px 8px; border: 1px solid var(--rule); padding: 16px; display: grid; grid-template-columns: 56px 1fr 16px; gap: 14px; align-items: center; text-decoration: none; color: inherit; }
+.m-level.active { border-left: 3px solid var(--red); padding-left: 14px; }
+.m-level .badge { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+.m-level.active .badge { background: var(--red); color: var(--paper-3); border-color: var(--red); }
+.m-level.locked .badge { color: var(--ink-4); }
+.m-level .lbl { font: 600 9px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 3px; }
+.m-level .ttl { font-family: var(--font-display); font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.01em; }
+.m-level .meta-row { display: flex; align-items: center; gap: 10px; font: 600 10px var(--font-mono); letter-spacing: 0.08em; color: var(--ink-3); }
+.m-level .meta-row .pbar { flex: 1; max-width: 100px; }
+.m-level .arr { color: var(--ink-3); }
+
+.m-cta { padding: 16px 22px 8px; }
+
+.m-refs { padding: 20px 22px 24px; }
+.m-refs .lbl { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+.m-refs .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.m-refs .card { background: var(--paper-3); border: 1px solid var(--rule); padding: 14px 12px; display: flex; flex-direction: column; gap: 6px; min-height: 100px; text-decoration: none; color: inherit; }
+.m-refs .card .nm { font-family: var(--font-display); font-weight: 700; font-size: 13px; line-height: 1.2; letter-spacing: -0.01em; }
+.m-refs .card .cnt { margin-top: auto; font: 600 9px var(--font-mono); letter-spacing: 0.1em; color: var(--ink-3); text-transform: uppercase; }
+
+/* ============================================================
+   DESKTOP — Home
+   ============================================================ */
+.d-grid { display: grid; grid-template-columns: 240px 1fr; min-height: 760px; }
+
+.d-hero { position: relative; padding: 56px 64px 48px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; overflow: hidden; }
+.d-hero > * { position: relative; }
+.d-hero .id-row { display: flex; align-items: center; gap: 10px; font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 16px; }
+.d-hero .id-row .dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+.d-hero h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-display-l); line-height: 1.0; letter-spacing: var(--tracking-display); margin: 0 0 18px; }
+.d-hero h1 .red { color: var(--red); }
+.d-hero .vp { color: var(--ink-2); font-size: 16px; line-height: 1.55; max-width: 52ch; margin-bottom: 24px; }
+.d-hero .ctas { display: flex; gap: 10px; align-items: center; }
+.d-hero .ctas .keyhint { font: 500 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.08em; margin-left: 6px; }
+.d-hero .ctas .keyhint kbd { display: inline-block; padding: 2px 6px; border: 1px solid var(--rule); border-radius: 3px; background: var(--paper-3); color: var(--ink-2); font-family: var(--font-mono); font-weight: 600; font-size: 10px; margin: 0 2px; }
+.d-hero .photo-slot { height: 340px; border-radius: 4px; }
+
+.d-stripe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border-bottom: 1px solid var(--rule); }
+.d-stripe .cell { background: var(--paper-3); padding: 18px 24px; }
+.d-stripe .l { font: 600 9px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.d-stripe .v { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1; margin-top: 6px; letter-spacing: -0.018em; }
+.d-stripe .v small { font-weight: 600; font-size: 13px; color: var(--ink-3); margin-left: 2px; }
+.d-stripe .delta { font: 600 10px var(--font-mono); color: var(--moss); margin-top: 6px; letter-spacing: 0.08em; }
+
+.d-sec { padding: 48px 64px; border-bottom: 1px solid var(--rule); }
+.d-sec:last-child { border-bottom: 0; }
+.d-sec .head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; gap: 24px; }
+.d-sec h2 { font-family: var(--font-display); font-weight: 800; font-size: 32px; letter-spacing: -0.02em; margin: 0; line-height: 1; }
+.d-sec .head .sub { font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.18em; text-transform: uppercase; }
+.d-sec .head .sub b { color: var(--ink); font-weight: 700; }
+
+.d-levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.d-level { background: var(--paper-3); padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; position: relative; min-height: 260px; text-decoration: none; color: inherit; }
+.d-level:hover { background: var(--paper-4); }
+.d-level .hdr { display: flex; align-items: center; gap: 14px; }
+.d-level .badge { width: 56px; height: 56px; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 26px; letter-spacing: -0.02em; }
+.d-level.active .badge { background: var(--red); color: var(--paper-3); border-color: var(--red); }
+.d-level.locked .badge { color: var(--ink-4); }
+.d-level .hdr .lbl { font: 600 10px var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.d-level .hdr .ttl { font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.015em; line-height: 1.2; margin-top: 4px; }
+.d-level .desc { color: var(--ink-2); font-size: 13px; line-height: 1.55; flex: 1; }
+.d-level .foot { display: flex; align-items: center; gap: 12px; }
+.d-level .foot .pbar { flex: 1; }
+.d-level .foot .pct { font: 700 12px var(--font-mono); letter-spacing: 0.06em; }
+
+.d-refs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.d-refs .card { background: var(--paper-3); border: 1px solid var(--rule); padding: 22px; display: grid; grid-template-columns: 32px 1fr auto; gap: 14px; align-items: center; text-decoration: none; color: inherit; }
+.d-refs .card:hover { border-color: var(--rule-2); }
+.d-refs .card .ic { width: 26px; height: 26px; color: var(--red); }
+.d-refs .card .nm { font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: -0.012em; }
+.d-refs .card .cnt { font: 600 10px var(--font-mono); letter-spacing: 0.1em; color: var(--ink-3); text-transform: uppercase; margin-top: 4px; }
+.d-refs .card .arr { color: var(--ink-3); font-family: var(--font-mono); }
+
+/* Up-next strip: a single highlighted "continue here" panel */
+.up-next { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; padding: 22px 24px; background: var(--ink); color: var(--paper-3); border-radius: 4px; }
+.up-next .lbl { font: 600 9px var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.up-next .ttl { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.015em; margin-top: 4px; }
+.up-next .code { font: 700 11px var(--font-mono); color: var(--red); letter-spacing: 0.08em; padding: 6px 10px; border: 1px solid rgba(215,38,61,.5); border-radius: 2px; background: rgba(215,38,61,.12); }
+.up-next .btn { background: var(--red); border-color: var(--red); }
+.up-next .btn:hover { background: var(--red-2); }
+</style>
+</head>
+<body>
+<div class="std">
+  <div class="std-head">
+    <div>
+      <div class="std-eyebrow">Glacier Lab · Direction 02 · Screen 01</div>
+      <h1 class="std-title">Home</h1>
+      <p class="std-sub">Mobile (375) and desktop (1200) at the same fidelity. Tokens loaded from <span class="mono">tokens.css</span>; shared primitives from <span class="mono">styles.css</span>.</p>
+    </div>
+    <div class="std-nav">
+      <a class="active" href="home.html">01 Home</a>
+      <a href="level-index.html">02 Level</a>
+      <a href="workbook.html">03 Workbook</a>
+      <a href="quiz.html">04 Quiz</a>
+      <a href="flashcard.html">05 Card</a>
+      <a href="dashboard.html">06 Stats</a>
+      <a href="settings.html">07 Settings</a>
+      <a href="onboarding.html">08 Onboarding</a>
+      <a href="level-complete.html">09 Complete</a>
+      <a href="index.html">All screens →</a>
+    </div>
+  </div>
+
+  <!-- Shared SVG sprite (used across screens) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="wm-glyph" viewBox="0 0 30 30">
+        <rect width="30" height="30" fill="#0E1A2E"/>
+        <path d="M4 22 L11 12 L16 18 L21 10 L26 16" stroke="#FFFFFF" stroke-width="1.5" fill="none"/>
+        <circle cx="24" cy="8" r="2.5" fill="#D7263D"/>
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v11H3z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="9" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-quiz" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 9a3 3 0 1 1 4 2.7c-.7.4-1 1-1 1.8V14M12 17h.01" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-diagram" viewBox="0 0 24 24"><path d="M3 18 Q 8 8, 13 12 T 21 6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 14 Q 8 4, 13 8 T 21 2" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+      <symbol id="i-printer" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 9V4h10v5M7 18v3h10v-3" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M19 12a7 7 0 0 0-.1-1.1l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14 3.4h-4l-.6 2.3a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.1l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2L10 20.6h4l.6-2.3a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5z" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="mocks pair">
+    <!-- ========================= MOBILE ========================= -->
+    <div>
+      <div class="mock-label">Mobile · 375</div>
+      <div class="phone">
+        <div class="ios-bar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="9" width="3" height="3"/><rect x="4" y="6" width="3" height="6"/><rect x="8" y="3" width="3" height="9"/><rect x="12" y="0" width="3" height="12"/></svg>
+            <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5 Q8 -2 15 5"/><path d="M3 7 Q8 2 13 7"/><path d="M5 9 Q8 6 11 9"/><circle cx="8" cy="11" r=".8" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="14" height="6" fill="currentColor"/><path d="M22 4v4" stroke-width="1.5"/></svg>
+          </span>
+        </div>
+
+        <div class="m-hero">
+          <div class="grid-bg"></div>
+          <div class="wm">
+            <div class="mark"><svg><use href="#wm-glyph"/></svg></div>
+            <div>
+              <div class="name">Alpine Map Training</div>
+              <div class="by">By PerformOS</div>
+            </div>
+          </div>
+          <div class="id-row"><span class="dot"></span><span>Carta · BASI L4 ISTD · Nav</span></div>
+          <h1>Read the<br>mountain<br>before you <span class="red">ski</span> it.</h1>
+          <p class="vp">The digital companion to your BASI Alpine Level 4 ISTD navigation workbook.</p>
+          <div class="tags">
+            <span class="tag red"><span class="dot"></span>Level 1 active</span>
+            <span class="tag">Offline</span>
+          </div>
+        </div>
+
+        <div class="photo-slot m-photo has-img" style="background-image:url(img/skier-beanie-closeup.png); background-position: 60% center;"></div>
+
+        <div class="m-stripe">
+          <div class="cell"><div class="l">Pathway</div><div class="v">28<small>%</small></div></div>
+          <div class="cell"><div class="l">Due</div><div class="v">24<small> cards</small></div></div>
+          <div class="cell"><div class="l">Streak</div><div class="v">14<small> d</small></div></div>
+        </div>
+
+        <div class="m-section-h">
+          <h3>Pathway</h3>
+          <span class="sub">03 levels</span>
+        </div>
+        <a class="m-level active" href="level-index.html">
+          <div class="badge">01</div>
+          <div>
+            <div class="lbl">Level one · 19 pages</div>
+            <div class="ttl">Map literacy</div>
+            <div class="meta-row">
+              <div class="pbar"><i style="width:63%"></i></div>
+              <span>12 / 19</span>
+            </div>
+          </div>
+          <span class="arr">›</span>
+        </a>
+        <a class="m-level" href="level-index.html">
+          <div class="badge">02</div>
+          <div>
+            <div class="lbl">Level two · 18 pages</div>
+            <div class="ttl">Terrain interpretation</div>
+            <div class="meta-row">
+              <div class="pbar ice"><i style="width:22%"></i></div>
+              <span>4 / 18</span>
+            </div>
+          </div>
+          <span class="arr">›</span>
+        </a>
+        <a class="m-level locked" href="level-index.html">
+          <div class="badge">03</div>
+          <div>
+            <div class="lbl">Level three · 29 pages</div>
+            <div class="ttl">Navigation toolkit</div>
+            <div class="meta-row">
+              <div class="pbar"><i style="width:0%"></i></div>
+              <span>0 / 29</span>
+            </div>
+          </div>
+          <span class="arr">›</span>
+        </a>
+
+        <div class="m-cta">
+          <a class="btn red block" href="workbook.html">
+            Resume C1.13 · Grid references
+            <svg width="14" height="14"><use href="#i-arrow-r"/></svg>
+          </a>
+        </div>
+
+        <div class="m-refs">
+          <div class="lbl">Reference shelf</div>
+          <div class="grid">
+            <a class="card" href="flashcard.html">
+              <svg class="ic" width="20" height="20"><use href="#i-cards"/></svg>
+              <div class="nm">Flashcards</div>
+              <div class="cnt">160 · 24 due</div>
+            </a>
+            <a class="card" href="#">
+              <svg class="ic" width="20" height="20"><use href="#i-diagram"/></svg>
+              <div class="nm">Diagrams</div>
+              <div class="cnt">20 plates</div>
+            </a>
+            <a class="card" href="#">
+              <svg class="ic" width="20" height="20"><use href="#i-printer"/></svg>
+              <div class="nm">Templates</div>
+              <div class="cnt">9 printable</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="tabbar">
+          <a class="active"><svg><use href="#i-home"/></svg><span>Home</span></a>
+          <a href="workbook.html"><svg><use href="#i-book"/></svg><span>Workbook</span></a>
+          <a href="flashcard.html"><svg><use href="#i-cards"/></svg><span>Cards</span></a>
+          <a href="dashboard.html"><svg><use href="#i-clock"/></svg><span>Stats</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= DESKTOP ========================= -->
+    <div>
+      <div class="mock-label">Desktop · 1200</div>
+      <div class="desktop">
+        <div class="browser-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="url">alpinemaptraining.app /</div>
+        </div>
+        <div class="d-grid">
+          <div class="sb">
+            <div class="wm">
+              <div class="mark"><svg><use href="#wm-glyph"/></svg></div>
+              <div>
+                <div class="name">Alpine Map Training</div>
+                <div class="by">By PerformOS</div>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Home</div>
+              <div class="sb-nav">
+                <a class="active"><svg><use href="#i-home"/></svg>Overview</a>
+                <a href="dashboard.html"><svg><use href="#i-clock"/></svg>Statistics</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Workbook</div>
+              <div class="sb-nav">
+                <a href="level-index.html"><span class="code">L1</span>Map literacy</a>
+                <a href="level-index.html"><span class="code">L2</span>Terrain reading</a>
+                <a href="level-index.html"><span class="code">L3</span>Nav toolkit</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Reference</div>
+              <div class="sb-nav">
+                <a href="flashcard.html"><svg><use href="#i-cards"/></svg>Flashcards <span class="badge">24</span></a>
+                <a><svg><use href="#i-diagram"/></svg>Diagrams</a>
+                <a><svg><use href="#i-printer"/></svg>Templates</a>
+              </div>
+            </div>
+            <div class="sb-stat">
+              <div class="l">Streak</div>
+              <div class="v">14 <small>days</small></div>
+              <div class="sub">Reviews on track</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="d-hero">
+              <div class="grid-bg"></div>
+              <div>
+                <div class="id-row"><span class="dot"></span><span>BASI Alpine L4 · ISTD navigation · Carta</span></div>
+                <h1>Read the mountain<br>before you <span class="red">ski</span> it.</h1>
+                <p class="vp">The digital companion to your BASI Alpine Level 4 ISTD navigation workbook. Sixty-six pages, one hundred and sixty flashcards, two graded quizzes — built for cold huts, lift queues, and quiet evenings.</p>
+                <div class="ctas">
+                  <a class="btn red" href="workbook.html">Resume C1.13 <svg width="14" height="14"><use href="#i-arrow-r"/></svg></a>
+                  <a class="btn ghost" href="dashboard.html">Open statistics</a>
+                  <span class="keyhint"><kbd>R</kbd> resume</span>
+                </div>
+              </div>
+              <div class="photo-slot has-img" style="background-image:url(img/lone-skier-navy.jpg); background-position: 35% center;"></div>
+            </div>
+
+            <div class="d-stripe">
+              <div class="cell"><div class="l">Pathway</div><div class="v">28<small>%</small></div><div class="delta">↑ 4% this week</div></div>
+              <div class="cell"><div class="l">Due today</div><div class="v">24<small> cards</small></div><div class="delta" style="color:var(--red)">Review now</div></div>
+              <div class="cell"><div class="l">Streak</div><div class="v">14<small> days</small></div><div class="delta">Personal best</div></div>
+              <div class="cell"><div class="l">Mock quiz</div><div class="v">82<small> %</small></div><div class="delta">L1 ready ✓</div></div>
+            </div>
+
+            <div class="d-sec">
+              <div class="head">
+                <h2>The pathway</h2>
+                <span class="sub">03 levels · <b>66</b> pages · <b>160</b> cards</span>
+              </div>
+              <div class="d-levels">
+                <a class="d-level active" href="level-index.html">
+                  <div class="hdr">
+                    <div class="badge">01</div>
+                    <div>
+                      <div class="lbl">Level one · 19 pages</div>
+                      <div class="ttl">Map literacy</div>
+                    </div>
+                  </div>
+                  <div class="desc">Scale, grid references, contour reading, symbol recognition. The fundamentals — finished here, the rest is craft.</div>
+                  <div class="foot"><div class="pbar"><i style="width:63%"></i></div><span class="pct">63%</span></div>
+                </a>
+                <a class="d-level" href="level-index.html">
+                  <div class="hdr">
+                    <div class="badge">02</div>
+                    <div>
+                      <div class="lbl">Level two · 18 pages</div>
+                      <div class="ttl">Terrain interpretation</div>
+                    </div>
+                  </div>
+                  <div class="desc">Reading shape before steepness. Summit forms, ridges, gullies, aspect, slope angle, terrain traps.</div>
+                  <div class="foot"><div class="pbar ice"><i style="width:22%"></i></div><span class="pct">22%</span></div>
+                </a>
+                <a class="d-level locked" href="level-index.html">
+                  <div class="hdr">
+                    <div class="badge">03</div>
+                    <div>
+                      <div class="lbl">Level three · 29 pages</div>
+                      <div class="ttl">Navigation toolkit</div>
+                    </div>
+                  </div>
+                  <div class="desc">Compass, altimeter, route cards, pacing, timing, attack points, and poor-vis techniques.</div>
+                  <div class="foot"><div class="pbar"><i style="width:0%"></i></div><span class="pct">0%</span></div>
+                </a>
+              </div>
+            </div>
+
+            <div class="d-sec">
+              <div class="head">
+                <h2>Pick up where you left off</h2>
+                <span class="sub">Last opened · Tue 14:22</span>
+              </div>
+              <div class="up-next">
+                <span class="code">C1.13</span>
+                <div>
+                  <div class="lbl">Resume reading</div>
+                  <div class="ttl">Grid references — six-figure precision</div>
+                </div>
+                <a class="btn" href="workbook.html">Open <svg width="14" height="14"><use href="#i-arrow-r"/></svg></a>
+              </div>
+            </div>
+
+            <div class="d-sec">
+              <div class="head">
+                <h2>Reference shelf</h2>
+                <span class="sub">Always offline</span>
+              </div>
+              <div class="d-refs">
+                <a class="card" href="flashcard.html">
+                  <svg class="ic"><use href="#i-cards"/></svg>
+                  <div>
+                    <div class="nm">Flashcards</div>
+                    <div class="cnt">160 cards · 24 due today</div>
+                  </div>
+                  <span class="arr">›</span>
+                </a>
+                <a class="card" href="#">
+                  <svg class="ic"><use href="#i-diagram"/></svg>
+                  <div>
+                    <div class="nm">Schematic diagrams</div>
+                    <div class="cnt">20 plates · contours, slopes</div>
+                  </div>
+                  <span class="arr">›</span>
+                </a>
+                <a class="card" href="#">
+                  <svg class="ic"><use href="#i-printer"/></svg>
+                  <div>
+                    <div class="nm">Printable templates</div>
+                    <div class="cnt">9 sheets · A4 print-ready</div>
+                  </div>
+                  <span class="arr">›</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteHeader } from "@/components/site/site-header";
-import { ContourBackground } from "@/components/site/carta/contour-bg";
 
 export const metadata: Metadata = {
   title: "About",
@@ -76,25 +74,27 @@ const SESSIONS: SessionEntry[] = [
 export default function AboutPage() {
   return (
     <>
-      <SiteHeader />
       <main
         id="main-content"
         tabIndex={-1}
         className="focus:outline-none"
       >
         {/* Hero */}
-        <section className="relative overflow-hidden border-b border-rule bg-paper-3">
-          <ContourBackground opacity={0.28} />
-          <div className="relative mx-auto max-w-3xl px-6 py-16 sm:py-20">
-            <p className="eyebrow eyebrow-contour">About this build</p>
-            <h1 className="mt-4 font-display text-4xl font-medium leading-[1.05] tracking-[-0.02em] text-ink sm:text-[56px]">
-              A workbook,<br />a conversation,<br />a working app.
+        <section className="relative overflow-hidden border-b border-rule bg-paper">
+          <div className="grid-bg" />
+          <div className="relative px-[22px] pb-7 pt-7 md:mx-auto md:max-w-3xl md:px-14 md:pb-12 md:pt-14">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+              About this build
+            </p>
+            <h1 className="mt-2 font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.025em] text-ink md:text-[56px]">
+              A workbook,
+              <br />a conversation,
+              <br />a working app.
             </h1>
-            <p className="mt-6 max-w-[55ch] font-sans text-base leading-relaxed text-ink-2 sm:text-[17px]">
-              This Progressive Web App was built across eleven conversations
-              with Claude — about thirty hours of work — starting from a
-              written brief in March 2026 and ending with the build you're
-              reading right now.
+            <p className="mt-5 max-w-[55ch] text-[14px] leading-[1.55] text-ink-2 md:text-[17px]">
+              This Progressive Web App was built across multiple conversations
+              with Claude — starting from a written brief in March 2026 and
+              ending with the build you&rsquo;re reading right now.
             </p>
           </div>
         </section>
@@ -130,21 +130,22 @@ export default function AboutPage() {
               extended prompting.
             </p>
             <p className="mt-3 font-sans text-base leading-relaxed text-ink-2">
-              The visual identity (codename: <em>Carta</em>) was designed in
-              Anthropic&rsquo;s Claude Design tool — three brand directions,
-              one chosen, exported as HTML and design tokens, then ported to
-              the codebase. The decorative motif is a hand-drawn contour
-              curve; the headline face is{" "}
+              The visual identity (codename: <em>Glacier Lab</em>) was designed in
+              Anthropic&rsquo;s Claude Design tool and ported to the codebase
+              as design tokens. The system pairs a pale glacier-grey paper
+              with deep navy ink, a single alpine-red accent for primary
+              actions, and glacier blue for in-progress state. The headline
+              and body face is{" "}
               <a
-                href="https://fonts.google.com/specimen/Fraunces"
-                className="text-contour underline underline-offset-4 hover:text-ink"
+                href="https://fonts.google.com/specimen/Manrope"
+                className="text-ink-3 underline underline-offset-4 hover:text-ink"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Fraunces
+                Manrope
               </a>
-              ; the body face is Inter; the cream paper background is
-              <span className="mono"> #F4ECD8</span>.
+              ; machine codes use IBM Plex Mono; the paper background is
+              <span className="mono"> #EEF1F4</span>.
             </p>
           </section>
 
@@ -292,7 +293,7 @@ export default function AboutPage() {
               Built by Claude · Conversations directed by Nigel Taylor ·
               PerformOS · 2026
             </p>
-          </section>
+            </section>
         </article>
       </main>
     </>

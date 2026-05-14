@@ -1,11 +1,56 @@
-export const PROGRESS_VERSION = 1;
+export const PROGRESS_VERSION = 5;
 export const STORAGE_KEY = "alpine-map-training:progress";
 
 export type PageStatus = "not-started" | "in-progress" | "completed";
 
+/**
+ * Rubric score returned by the AI grader for a single exercise answer.
+ *   - "met"     — covers the model answer's key points correctly
+ *   - "nearly"  — on the right track but missing detail or with a minor error
+ *   - "not-yet" — misses the core point, contains a significant error, or is
+ *                 essentially absent
+ */
+export type GradeScore = "met" | "nearly" | "not-yet";
+
+export interface ExerciseGrade {
+  /** Two to three sentence trainer-style paragraph addressed to the candidate. */
+  feedback: string;
+  /** Rubric judgement. */
+  score: GradeScore;
+  /** Two to three concise positives. */
+  strengths: string[];
+  /** Two to three concise improvement points. */
+  improvements: string[];
+  /** Anthropic model id used to produce this grade. */
+  model: string;
+  /** ISO timestamp when the grader returned. */
+  gradedAt: string;
+  /**
+   * Cheap fingerprint of the candidate's answer at grading time. Lets the UI
+   * flag grades as stale when the candidate edits their answer afterwards.
+   */
+  answerHash?: string;
+}
+
 export interface PageProgress {
   status: PageStatus;
-  selfCheck: boolean[];
+  /**
+   * Map from a per-checkbox stable id (React.useId()) to its checked state.
+   * Replaced the legacy boolean[] in v2 to eliminate render-order dependence
+   * and the hydration mismatch that came with it.
+   */
+  selfCheck: Record<string, boolean>;
+  /**
+   * Per-exercise free-text responses. Keys are stable input ids (typically
+   * `ex-<n>` from the position of the corresponding "### Exercise N" heading
+   * in the MDX body). Added in v4.
+   */
+  inputs?: Record<string, string>;
+  /**
+   * Per-exercise AI grades, keyed by the same `ex-<n>` ids as `inputs`.
+   * Added in v5. Absent = not yet graded.
+   */
+  grades?: Record<string, ExerciseGrade>;
   lastViewed: string;
 }
 
@@ -44,8 +89,28 @@ export interface ReadinessCheck {
   updatedAt: string;
 }
 
+export type StartingLevel = 1 | 2 | 3;
+
 export interface AppSettings {
   trainerMode: boolean;
+  /** Set true once the onboarding wizard has completed. */
+  onboardingComplete?: boolean;
+  /** Captured during onboarding: which level the user is starting from. */
+  startingLevel?: StartingLevel;
+  /** Captured during onboarding: target session length in minutes. */
+  sessionMinutes?: number;
+  /** Captured during onboarding: target study days per week. */
+  studyDaysPerWeek?: number;
+  /** Captured during onboarding (v4+): the candidate's display name. */
+  profileName?: string;
+  /** Captured during onboarding (v4+): the candidate's contact email. */
+  profileEmail?: string;
+}
+
+export interface OnboardingPrefs {
+  startingLevel: StartingLevel;
+  sessionMinutes: number;
+  studyDaysPerWeek: number;
 }
 
 /**

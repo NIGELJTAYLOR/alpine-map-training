@@ -1,0 +1,82 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Reading the fall line from contour values</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">The fall line is perpendicular to the contour, pointing from higher values to lower values.</text>
+  <text x="20" y="60" font-family="Arial, sans-serif" font-size="10" fill="#444">On a uniform slope every fall line is parallel; on a curving slope it changes across the slope.</text>
+
+  <!-- Left panel: uniform slope -->
+  <rect x="30" y="80" width="310" height="340" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+  <text x="185" y="98" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Uniform slope</text>
+  <text x="185" y="113" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Parallel contours; one consistent fall-line direction.</text>
+
+  <!-- Contours, parallel horizontal -->
+  <path d="M 50 145 L 320 145" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 50 200 L 320 200" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 50 255 L 320 255" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 50 310 L 320 310" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 50 365 L 320 365" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+
+  <text x="55" y="142" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,500</text>
+  <text x="55" y="197" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,490</text>
+  <text x="55" y="252" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,480</text>
+  <text x="55" y="307" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,470</text>
+  <text x="55" y="362" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,460</text>
+
+  <!-- Fall-line arrows: all perpendicular, pointing down -->
+  <g stroke="#d32f2f" stroke-width="2" fill="#d32f2f">
+    <line x1="130" y1="160" x2="130" y2="350" stroke-width="2"/>
+    <polygon points="125,345 130,360 135,345"/>
+    <line x1="200" y1="160" x2="200" y2="350" stroke-width="2"/>
+    <polygon points="195,345 200,360 205,345"/>
+    <line x1="270" y1="160" x2="270" y2="350" stroke-width="2"/>
+    <polygon points="265,345 270,360 275,345"/>
+  </g>
+
+  <!-- 90° marker at top of one arrow -->
+  <rect x="195" y="160" width="9" height="9" fill="none" stroke="#d32f2f" stroke-width="0.7"/>
+  <text x="208" y="172" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f">90&#176;</text>
+
+  <text x="185" y="395" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#d32f2f" text-anchor="middle">all fall lines parallel: same aspect across the slope</text>
+
+  <!-- Right panel: curving slope -->
+  <rect x="370" y="80" width="300" height="340" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+  <text x="520" y="98" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Curving slope (a spur or ridge front)</text>
+  <text x="520" y="113" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Contours curve; fall-line direction changes across the slope.</text>
+
+  <!-- Contours forming convex curve (rounded high to right) -->
+  <path d="M 390 145 Q 480 165 540 175 Q 590 185 660 205" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 390 195 Q 480 215 540 225 Q 590 235 660 255" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 390 245 Q 480 265 540 275 Q 590 285 660 305" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 390 295 Q 480 315 540 325 Q 590 335 660 355" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <path d="M 390 345 Q 480 365 540 375 Q 590 385 660 405" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+
+  <text x="395" y="142" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,500</text>
+  <text x="395" y="192" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,490</text>
+  <text x="395" y="242" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,480</text>
+  <text x="395" y="292" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,470</text>
+  <text x="395" y="342" font-family="Arial, sans-serif" font-size="8" fill="#B5651D">2,460</text>
+
+  <!-- Fall-line arrows: perpendicular to local contour, fanning out -->
+  <g stroke="#d32f2f" stroke-width="2" fill="#d32f2f">
+    <!-- left arrow: nearly vertical -->
+    <line x1="440" y1="170" x2="440" y2="370" stroke-width="2"/>
+    <polygon points="435,365 440,380 445,365"/>
+    <!-- middle arrow: slightly tilted right -->
+    <line x1="520" y1="175" x2="540" y2="375" stroke-width="2"/>
+    <polygon points="535,370 540,385 545,368"/>
+    <!-- right arrow: more tilted right -->
+    <line x1="600" y1="195" x2="640" y2="385" stroke-width="2"/>
+    <polygon points="634,378 642,392 646,376"/>
+  </g>
+
+  <!-- Labels -->
+  <text x="440" y="395" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">aspect = S</text>
+  <text x="540" y="397" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">aspect = SSE</text>
+  <text x="645" y="403" font-family="Arial, sans-serif" font-size="8" fill="#d32f2f" text-anchor="middle">aspect = SE</text>
+
+  <text x="520" y="420" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#d32f2f" text-anchor="middle">fall line changes; three different aspects across one slope</text>
+
+  <!-- Footer -->
+  <text x="350" y="448" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000" text-anchor="middle">To find the fall line: pick a point, find the contour through it, draw the perpendicular pointing to the lower contour.</text>
+  <text x="350" y="465" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Eye-balling works on simple slopes; on curving slopes, always draw the perpendicular.</text>
+</svg>

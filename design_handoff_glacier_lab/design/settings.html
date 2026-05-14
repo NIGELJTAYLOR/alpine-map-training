@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Settings · Carta · Glacier Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* MOBILE — Settings */
+.set-head { padding: 24px 22px 16px; }
+.set-h1 { font-family: var(--font-display); font-weight: 800; font-size: 28px; margin: 0 0 4px; letter-spacing: -0.022em; }
+.set-sub { color: var(--ink-2); font-size: 14px; }
+
+.set-section { padding: 16px 22px; background: var(--paper-3); border-top: 1px solid var(--rule); }
+.set-section h3 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; font-weight: 600; }
+.set-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; gap: 12px; border-top: 1px solid var(--rule); }
+.set-row:first-of-type { border-top: 0; }
+.set-row .lbl-l { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+.set-row .lbl-l small { display: block; font: 400 12px var(--font-body); color: var(--ink-2); margin-top: 2px; letter-spacing: 0; font-family: var(--font-body); text-transform: none; }
+.set-row .val { font: 700 13px var(--font-body); color: var(--ink); }
+.set-row .val .mono { font-family: var(--font-mono); font-weight: 600; font-size: 12px; color: var(--ink-2); }
+
+.toggle { width: 42px; height: 24px; background: var(--paper); border: 1px solid var(--rule-2); border-radius: 999px; position: relative; cursor: pointer; flex-shrink: 0; }
+.toggle::after { content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--paper-3); box-shadow: 0 1px 2px rgba(14,26,46,.15); transition: transform .2s; }
+.toggle.on { background: var(--red); border-color: var(--red); }
+.toggle.on::after { transform: translateX(18px); }
+
+.storage-bar { height: 6px; background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; margin: 10px 0 8px; }
+.storage-bar i { display: block; height: 100%; background: var(--ice); }
+.storage-legend { display: flex; gap: 14px; font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; }
+.storage-legend .dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 5px; vertical-align: middle; }
+
+.segmented { display: inline-flex; border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
+.segmented a { padding: 6px 12px; font: 700 11px var(--font-mono); color: var(--ink-2); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; background: var(--paper); border-right: 1px solid var(--rule); }
+.segmented a:last-child { border-right: 0; }
+.segmented a.active { background: var(--ink); color: var(--paper-3); }
+
+.danger { padding: 16px 22px; border-top: 1px solid var(--rule); }
+.danger .row { padding: 12px 0; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+.danger .row:first-child { border-top: 0; }
+.danger .row .l { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--crimson); letter-spacing: -0.01em; }
+
+.about { padding: 16px 22px 28px; background: var(--paper-3); }
+.about .row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--rule); }
+.about .row:first-of-type { border-top: 0; }
+.about .row b { color: var(--ink); font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; }
+
+/* DESKTOP */
+.d-grid { display: grid; grid-template-columns: 240px 1fr; min-height: 760px; }
+.d-set { padding: 48px 64px; max-width: 880px; }
+.d-set h1 { font-family: var(--font-display); font-weight: 800; font-size: 40px; letter-spacing: -0.025em; margin: 0 0 6px; }
+.d-set .sub { color: var(--ink-2); font-size: 15px; margin-bottom: 36px; }
+
+.d-set-section { background: var(--paper-3); border: 1px solid var(--rule); margin-bottom: 18px; }
+.d-set-section .sec-head { padding: 18px 24px; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: baseline; }
+.d-set-section .sec-head h3 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0; font-weight: 600; }
+.d-set-section .sec-head .meta { font: 500 12px var(--font-body); color: var(--ink-3); }
+.d-set-section .body { padding: 6px 24px 14px; }
+.d-set-section .body .set-row { padding: 16px 0; }
+</style>
+</head>
+<body>
+<div class="std">
+  <div class="std-head">
+    <div>
+      <div class="std-eyebrow">Glacier Lab · Direction 02 · Screen 07</div>
+      <h1 class="std-title">Settings</h1>
+      <p class="std-sub">Study preferences, offline storage, notifications, account.</p>
+    </div>
+    <div class="std-nav">
+      <a href="home.html">01 Home</a>
+      <a href="level-index.html">02 Level</a>
+      <a href="workbook.html">03 Workbook</a>
+      <a href="quiz.html">04 Quiz</a>
+      <a href="flashcard.html">05 Card</a>
+      <a href="dashboard.html">06 Stats</a>
+      <a class="active" href="settings.html">07 Settings</a>
+      <a href="onboarding.html">08 Onboarding</a>
+      <a href="level-complete.html">09 Complete</a>
+      <a href="index.html">All screens →</a>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <symbol id="wm-glyph" viewBox="0 0 30 30"><rect width="30" height="30" fill="#0E1A2E"/><path d="M4 22 L11 12 L16 18 L21 10 L26 16" stroke="#FFFFFF" stroke-width="1.5" fill="none"/><circle cx="24" cy="8" r="2.5" fill="#D7263D"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v11H3z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="9" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M19 12a7 7 0 0 0-.1-1.1l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14 3.4h-4l-.6 2.3a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.1l-2 1.5 2 3.4 2.3-.9a7 7 0 0 0 2 1.2L10 20.6h4l.6-2.3a7 7 0 0 0 2-1.2l2.3.9 2-3.4-2-1.5z" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="mocks pair">
+    <!-- MOBILE -->
+    <div>
+      <div class="mock-label">Mobile · 375</div>
+      <div class="phone">
+        <div class="ios-bar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="9" width="3" height="3"/><rect x="4" y="6" width="3" height="6"/><rect x="8" y="3" width="3" height="9"/><rect x="12" y="0" width="3" height="12"/></svg>
+            <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5 Q8 -2 15 5"/><path d="M3 7 Q8 2 13 7"/></svg>
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="14" height="6" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="set-head">
+          <h1 class="set-h1">Settings</h1>
+          <p class="set-sub">Mara Larsen · BASI L4 ISTD candidate</p>
+        </div>
+
+        <div class="set-section">
+          <h3>Study</h3>
+          <div class="set-row">
+            <div class="lbl-l">Daily review goal<small>Cards per day target</small></div>
+            <div class="segmented"><a>10</a><a class="active">20</a><a>30</a></div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">SRS algorithm<small>FSRS-5 with default retention 0.9</small></div>
+            <div class="val"><span class="mono">FSRS · 0.9</span></div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">Auto-advance after rate<small>Skip the "next" tap when rating cards</small></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">Show keyboard hints<small>Numeric 1-4 for ratings</small></div>
+            <div class="toggle on"></div>
+          </div>
+        </div>
+
+        <div class="set-section">
+          <h3>Notifications</h3>
+          <div class="set-row">
+            <div class="lbl-l">Daily reminder<small>At 19:30 — when cards are due</small></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">Weekly digest<small>Sunday — cadence summary</small></div>
+            <div class="toggle"></div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">Quiz unlock alerts<small>When you become exam-ready</small></div>
+            <div class="toggle on"></div>
+          </div>
+        </div>
+
+        <div class="set-section">
+          <h3>Offline &amp; storage</h3>
+          <div class="set-row" style="display:block;border-top:0;">
+            <div class="lbl-l" style="margin-bottom:4px;">Downloaded content<small>Available without connection</small></div>
+            <div class="storage-bar"><i style="width:48%"></i></div>
+            <div class="storage-legend">
+              <span><span class="dot" style="background:var(--ice)"></span>Used 124 MB</span>
+              <span><span class="dot" style="background:var(--paper)"></span>Free 1.7 GB</span>
+            </div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">Download diagrams<small>20 plates · 64 MB</small></div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">Download printable templates<small>9 sheets · 12 MB</small></div>
+            <div class="toggle on"></div>
+          </div>
+        </div>
+
+        <div class="set-section">
+          <h3>Appearance</h3>
+          <div class="set-row">
+            <div class="lbl-l">Theme<small>Auto follows device setting</small></div>
+            <div class="segmented"><a>Light</a><a>Dark</a><a class="active">Auto</a></div>
+          </div>
+          <div class="set-row">
+            <div class="lbl-l">Reduce motion<small>Disable card-flip animation</small></div>
+            <div class="toggle"></div>
+          </div>
+        </div>
+
+        <div class="danger">
+          <div class="row"><div class="l">Reset SRS schedule</div><a class="btn ghost sm" style="color:var(--crimson);border-color:rgba(163,59,42,.4)" href="#">Reset</a></div>
+          <div class="row"><div class="l">Delete all local data</div><a class="btn ghost sm" style="color:var(--crimson);border-color:rgba(163,59,42,.4)" href="#">Delete</a></div>
+          <div class="row"><div class="l">Sign out</div><a class="btn ghost sm" href="#">Sign out</a></div>
+        </div>
+
+        <div class="about">
+          <div class="row"><span>Carta version</span><b>0.9.0 (build 412)</b></div>
+          <div class="row"><span>Workbook revision</span><b>BASI · Aug 2025</b></div>
+          <div class="row"><span>Last sync</span><b>13 May, 09:41</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div>
+      <div class="mock-label">Desktop · 1200</div>
+      <div class="desktop">
+        <div class="browser-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="url">alpinemaptraining.app / settings</div>
+        </div>
+        <div class="d-grid">
+          <div class="sb">
+            <div class="wm">
+              <div class="mark"><svg><use href="#wm-glyph"/></svg></div>
+              <div>
+                <div class="name">Alpine Map Training</div>
+                <div class="by">By PerformOS</div>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Home</div>
+              <div class="sb-nav">
+                <a href="home.html"><svg><use href="#i-home"/></svg>Overview</a>
+                <a href="dashboard.html"><svg><use href="#i-clock"/></svg>Statistics</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Workbook</div>
+              <div class="sb-nav">
+                <a href="level-index.html"><span class="code">L1</span>Map literacy</a>
+                <a><span class="code">L2</span>Terrain reading</a>
+                <a><span class="code">L3</span>Nav toolkit</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Account</div>
+              <div class="sb-nav">
+                <a class="active"><svg><use href="#i-settings"/></svg>Settings</a>
+              </div>
+            </div>
+            <div class="sb-stat">
+              <div class="l">Mara Larsen</div>
+              <div class="v" style="font-size:17px;letter-spacing:-0.01em;">BASI L4 ISTD<br><small>Candidate</small></div>
+              <div class="sub">Member since Oct 2024</div>
+            </div>
+          </div>
+
+          <div class="d-set">
+            <h1>Settings</h1>
+            <p class="sub">Tune your study cadence, notifications, offline storage, appearance.</p>
+
+            <div class="d-set-section">
+              <div class="sec-head"><h3>Study</h3><span class="meta">FSRS-5 · default retention 0.9</span></div>
+              <div class="body">
+                <div class="set-row">
+                  <div class="lbl-l">Daily review goal<small>How many cards you want to clear each day</small></div>
+                  <div class="segmented"><a>10</a><a class="active">20</a><a>30</a><a>50</a></div>
+                </div>
+                <div class="set-row">
+                  <div class="lbl-l">Auto-advance after rating<small>Skip the explicit "next" tap when rating a card</small></div>
+                  <div class="toggle on"></div>
+                </div>
+                <div class="set-row">
+                  <div class="lbl-l">Keyboard shortcuts<small>Use 1-4 to rate, J/K to navigate, Space to flip</small></div>
+                  <div class="toggle on"></div>
+                </div>
+                <div class="set-row">
+                  <div class="lbl-l">Daily quiz unlock<small>Generate a fresh 5-question mini-quiz each day</small></div>
+                  <div class="toggle"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-set-section">
+              <div class="sec-head"><h3>Notifications</h3><span class="meta">Push + email</span></div>
+              <div class="body">
+                <div class="set-row"><div class="lbl-l">Daily reminder<small>19:30 — only when cards are due</small></div><div class="toggle on"></div></div>
+                <div class="set-row"><div class="lbl-l">Weekly digest<small>Sunday morning — cadence summary &amp; goals</small></div><div class="toggle"></div></div>
+                <div class="set-row"><div class="lbl-l">Quiz unlock alerts<small>When you become ready for the mock quiz</small></div><div class="toggle on"></div></div>
+                <div class="set-row"><div class="lbl-l">Streak risk warning<small>Ping when your streak is about to break</small></div><div class="toggle on"></div></div>
+              </div>
+            </div>
+
+            <div class="d-set-section">
+              <div class="sec-head"><h3>Offline &amp; storage</h3><span class="meta">124 MB used · 1.7 GB available</span></div>
+              <div class="body">
+                <div class="set-row" style="display:block;">
+                  <div class="lbl-l" style="margin-bottom:6px;">Local cache<small>Pages, cards, and diagrams stored on device</small></div>
+                  <div class="storage-bar"><i style="width:48%"></i></div>
+                  <div class="storage-legend">
+                    <span><span class="dot" style="background:var(--ice)"></span>Workbook 64 MB</span>
+                    <span><span class="dot" style="background:rgba(36,128,181,.5)"></span>Diagrams 38 MB</span>
+                    <span><span class="dot" style="background:rgba(36,128,181,.25)"></span>Cards 22 MB</span>
+                    <span><span class="dot" style="background:var(--paper)"></span>Free 1.7 GB</span>
+                  </div>
+                </div>
+                <div class="set-row"><div class="lbl-l">Auto-download new revisions<small>When BASI publishes workbook updates</small></div><div class="toggle on"></div></div>
+                <div class="set-row"><div class="lbl-l">Download printable templates<small>9 sheets · 12 MB · A4 / Letter</small></div><div class="toggle on"></div></div>
+              </div>
+            </div>
+
+            <div class="d-set-section">
+              <div class="sec-head"><h3>Appearance</h3><span class="meta">Currently auto · light</span></div>
+              <div class="body">
+                <div class="set-row"><div class="lbl-l">Theme<small>Light, dark, or follow device setting</small></div><div class="segmented"><a>Light</a><a>Dark</a><a class="active">Auto</a></div></div>
+                <div class="set-row"><div class="lbl-l">Density<small>Page line height &amp; spacing</small></div><div class="segmented"><a>Compact</a><a class="active">Comfort</a><a>Roomy</a></div></div>
+                <div class="set-row"><div class="lbl-l">Reduce motion<small>Disable card-flip and page transitions</small></div><div class="toggle"></div></div>
+              </div>
+            </div>
+
+            <div class="d-set-section" style="border-color:rgba(163,59,42,.3);">
+              <div class="sec-head"><h3 style="color:var(--crimson)">Danger zone</h3><span class="meta">These actions are not undoable</span></div>
+              <div class="body">
+                <div class="set-row"><div class="lbl-l" style="color:var(--crimson)">Reset SRS schedule<small style="color:var(--ink-2)">Card history retained; intervals reset to new</small></div><a class="btn ghost sm" style="color:var(--crimson);border-color:rgba(163,59,42,.4)" href="#">Reset schedule</a></div>
+                <div class="set-row"><div class="lbl-l" style="color:var(--crimson)">Delete all local data<small style="color:var(--ink-2)">Re-download required to study offline</small></div><a class="btn ghost sm" style="color:var(--crimson);border-color:rgba(163,59,42,.4)" href="#">Delete data</a></div>
+                <div class="set-row"><div class="lbl-l" style="color:var(--crimson)">Sign out</div><a class="btn ghost sm" href="#">Sign out</a></div>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;color:var(--ink-3);font:600 11px var(--font-mono);letter-spacing:0.08em;padding:20px 0;">
+              <span>Carta 0.9.0 (build 412)</span>
+              <span>BASI workbook revision · Aug 2025</span>
+              <span>Last sync · 13 May 09:41</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="480" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Three views of the same area</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">A valley with a hamlet, a road, a stream and a refuge below a peak, shown three ways.</text>
+  <text x="20" y="60" font-family="Arial, sans-serif" font-size="10" fill="#444">Each view shows different information. The topographic view is the one that tells you the shape of the land.</text>
+
+  <!-- Panel A: road map -->
+  <rect x="30" y="80" width="200" height="270" fill="#fcf6e8" stroke="#444" stroke-width="0.8"/>
+  <path d="M 30 250 Q 70 240 110 252 Q 140 260 180 252 Q 200 248 230 250" fill="none" stroke="#d32f2f" stroke-width="3.4"/>
+  <path d="M 30 250 Q 70 240 110 252 Q 140 260 180 252 Q 200 248 230 250" fill="none" stroke="#fff" stroke-width="0.7" stroke-dasharray="4,4"/>
+  <circle cx="120" cy="252" r="5" fill="#888"/>
+  <text x="120" y="232" font-family="Arial, sans-serif" font-size="9" fill="#000" text-anchor="middle">Le Praz</text>
+  <path d="M 130 95 Q 140 175 150 248" fill="none" stroke="#7eb8c8" stroke-width="1.4"/>
+  <text x="190" y="120" font-family="Arial, sans-serif" font-size="8" fill="#888">D 91</text>
+  <text x="60" y="280" font-family="Arial, sans-serif" font-size="8" fill="#888">to Moutiers</text>
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="8" fill="#888">to Bozel</text>
+
+  <!-- Panel B: satellite -->
+  <rect x="250" y="80" width="200" height="270" fill="#5a6b3a" stroke="#444" stroke-width="0.8"/>
+  <path d="M 250 90 Q 290 105 320 95 Q 360 88 400 105 Q 430 95 450 100" fill="none" stroke="#3e5028" stroke-width="0.6"/>
+  <path d="M 250 130 Q 280 145 320 135 Q 360 125 400 145 Q 430 135 450 145" fill="none" stroke="#3e5028" stroke-width="0.6"/>
+  <path d="M 250 175 Q 290 188 330 180 Q 370 172 410 192 Q 435 182 450 188" fill="none" stroke="#3e5028" stroke-width="0.6"/>
+  <path d="M 250 215 Q 290 225 330 220 Q 370 212 410 230 Q 435 220 450 230" fill="none" stroke="#3e5028" stroke-width="0.6"/>
+  <ellipse cx="345" cy="105" rx="28" ry="10" fill="#e8e6d8" opacity="0.55"/>
+  <ellipse cx="320" cy="115" rx="14" ry="5" fill="#e8e6d8" opacity="0.4"/>
+  <path d="M 350 95 Q 358 175 365 250" fill="none" stroke="#3a4a5a" stroke-width="1.4"/>
+  <ellipse cx="295" cy="270" rx="40" ry="16" fill="#8a7a5a" opacity="0.5"/>
+  <ellipse cx="405" cy="285" rx="32" ry="12" fill="#8a7a5a" opacity="0.5"/>
+  <path d="M 250 300 Q 290 305 320 308 Q 360 312 400 305 Q 430 302 450 305" fill="none" stroke="#3e5028" stroke-width="0.6"/>
+  <path d="M 250 325 Q 290 330 320 332 Q 360 335 400 328 Q 430 326 450 328" fill="none" stroke="#3e5028" stroke-width="0.6"/>
+
+  <!-- Panel C: topographic -->
+  <rect x="470" y="80" width="200" height="270" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+  <ellipse cx="555" cy="155" rx="70" ry="42" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <ellipse cx="555" cy="155" rx="55" ry="32" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <ellipse cx="555" cy="155" rx="40" ry="22" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <ellipse cx="555" cy="155" rx="24" ry="13" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <ellipse cx="555" cy="155" rx="10" ry="5" fill="none" stroke="#B5651D" stroke-width="1.1"/>
+  <polygon points="551,158 555,148 559,158" fill="#B5651D"/>
+  <text x="555" y="170" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle" font-weight="bold">2,548</text>
+  <path d="M 555 200 Q 575 240 590 280 Q 595 310 600 340" fill="none" stroke="#3a78a4" stroke-width="1.4"/>
+  <rect x="580" y="250" width="6" height="5" fill="#000"/>
+  <text x="595" y="255" font-family="Arial, sans-serif" font-size="7" fill="#000">Refuge</text>
+  <path d="M 480 295 Q 530 287 580 297 Q 620 305 660 298" fill="none" stroke="#d32f2f" stroke-width="0.9"/>
+  <circle cx="515" cy="293" r="3.5" fill="#888"/>
+  <text x="515" y="285" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">Le Praz</text>
+  <rect x="490" y="332" width="30" height="2" fill="#000"/>
+  <text x="505" y="344" font-family="Arial, sans-serif" font-size="6.5" fill="#000" text-anchor="middle">500 m</text>
+  <text x="640" y="340" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="end" font-weight="bold">N ↑</text>
+
+  <!-- Panel captions -->
+  <text x="130" y="372" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Road map</text>
+  <text x="130" y="388" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Roads, towns, distances.</text>
+  <text x="130" y="402" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">No terrain shape.</text>
+  <text x="130" y="416" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Good for driving in.</text>
+
+  <text x="350" y="372" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Satellite image</text>
+  <text x="350" y="388" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Real surfaces: trees,</text>
+  <text x="350" y="402" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">rock, snow, water.</text>
+  <text x="350" y="416" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Shape is hard to judge.</text>
+
+  <text x="570" y="372" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000" text-anchor="middle">Topographic map</text>
+  <text x="570" y="388" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Contours show shape.</text>
+  <text x="570" y="402" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Roads, water, features.</text>
+  <text x="570" y="416" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">Symbols, scale, north.</text>
+
+  <!-- Footer note -->
+  <text x="350" y="448" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#d32f2f" text-anchor="middle">For mountain navigation, the topographic view is the one to read.</text>
+  <text x="350" y="465" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">The other two are useful at the start and end of a tour; in the mountains, contours decide the line.</text>
+</svg>

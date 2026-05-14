@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Level index · Carta · Glacier Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* MOBILE — Level index */
+.lvl-band { padding: 28px 22px 20px; border-bottom: 1px solid var(--rule); position: relative; overflow: hidden; background: var(--paper-3); }
+.lvl-band .grid-bg { background-size: 40px 40px; }
+.lvl-band > * { position: relative; }
+.lvl-band .crumb { font: 600 10px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.lvl-band .crumb b { color: var(--ink); font-weight: 700; }
+.lvl-band .crumb svg { width: 8px; height: 8px; }
+.lvl-band .row { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: end; }
+.lvl-band .num-big { font-family: var(--font-display); font-weight: 800; font-size: 96px; line-height: 0.85; color: var(--ink); letter-spacing: -0.045em; }
+.lvl-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -0.02em; margin: 10px 0 6px; }
+.lvl-band .desc { color: var(--ink-2); font-size: 14px; margin-bottom: 16px; max-width: 28ch; }
+.lvl-band .lvl-prog { display: flex; align-items: center; gap: 10px; font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.08em; }
+.lvl-band .lvl-prog .pbar { flex: 1; height: 6px; }
+.lvl-band .pin { width: 92px; height: 92px; border-radius: 2px; background: var(--paper); border: 1px solid var(--rule); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.lvl-band .pin .l { font: 600 8px var(--font-mono); letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; }
+.lvl-band .pin .v { font-family: var(--font-display); font-weight: 800; font-size: 32px; letter-spacing: -0.02em; line-height: 1; margin-top: 4px; }
+.lvl-band .pin .s { font: 600 8px var(--font-mono); letter-spacing: 0.18em; color: var(--ink-3); text-transform: uppercase; margin-top: 6px; }
+
+.pages { padding: 8px 0 16px; background: var(--paper); }
+.page-row { display: grid; grid-template-columns: 22px 56px 1fr 60px 16px; gap: 12px; padding: 14px 22px; border-bottom: 1px solid var(--rule); align-items: center; text-decoration: none; color: var(--ink); background: var(--paper-3); }
+.page-row:hover { background: var(--paper-4); }
+.page-row .stat { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--rule-2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.page-row .stat.done { background: var(--moss); border-color: var(--moss); }
+.page-row .stat.done::after { content: ""; width: 6px; height: 6px; background: var(--paper-3); border-radius: 50%; }
+.page-row .stat.partial { background: var(--amber); border-color: var(--amber); }
+.page-row .stat.partial::after { content: ""; width: 8px; height: 8px; background: var(--paper-3); border-radius: 50%; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
+.page-row .code { font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.08em; }
+.page-row .title { font-family: var(--font-display); font-weight: 700; font-size: 14px; line-height: 1.25; letter-spacing: -0.01em; }
+.page-row .meta { font: 500 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.06em; text-align: right; text-transform: uppercase; }
+.page-row .arr { color: var(--ink-3); }
+.page-row.next { border-left: 3px solid var(--red); padding-left: 19px; }
+
+.lvl-toolbar { padding: 14px 22px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--paper); }
+.lvl-toolbar .meta-l { font: 600 10px var(--font-mono); letter-spacing: 0.14em; color: var(--ink-3); text-transform: uppercase; }
+.filter-chips { display: flex; gap: 4px; }
+.filter-chips a { font: 600 10px var(--font-mono); letter-spacing: 0.08em; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 2px; color: var(--ink-2); text-decoration: none; background: var(--paper-3); text-transform: uppercase; }
+.filter-chips a.active { background: var(--ink); color: var(--paper-3); border-color: var(--ink); }
+
+.lvl-foot { padding: 18px 22px; display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--rule); background: var(--paper-3); }
+
+/* DESKTOP */
+.d-grid { display: grid; grid-template-columns: 240px 1fr; min-height: 760px; }
+.d-lvl-hero { padding: 56px 64px 40px; position: relative; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.d-lvl-hero .grid-bg { background-size: 64px 64px; }
+.d-lvl-hero > * { position: relative; }
+.d-lvl-hero .crumb { font: 600 10px var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 8px; margin-bottom: 22px; }
+.d-lvl-hero .crumb b { color: var(--ink); font-weight: 700; }
+.d-lvl-hero .body { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: end; }
+.d-lvl-hero .num-big { font-family: var(--font-display); font-weight: 800; font-size: 160px; line-height: 0.82; color: var(--ink); letter-spacing: -0.05em; margin-bottom: 16px; }
+.d-lvl-hero h2 { font-family: var(--font-display); font-weight: 800; font-size: 44px; line-height: 1.0; letter-spacing: -0.025em; margin: 0 0 14px; }
+.d-lvl-hero .desc { color: var(--ink-2); font-size: 16px; line-height: 1.55; max-width: 56ch; margin-bottom: 22px; }
+.d-lvl-hero .ctas { display: flex; gap: 10px; }
+.d-lvl-hero .stat-card { background: var(--paper-3); border: 1px solid var(--rule); padding: 22px; border-radius: 4px; }
+.d-lvl-hero .stat-card h4 { font: 600 9px var(--font-mono); letter-spacing: 0.2em; color: var(--ink-3); text-transform: uppercase; margin: 0 0 16px; font-weight: 600; }
+.d-lvl-hero .stat-card .stat { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--rule); font-size: 13px; color: var(--ink-2); }
+.d-lvl-hero .stat-card .stat:first-of-type { border-top: 0; }
+.d-lvl-hero .stat-card .stat b { color: var(--ink); font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
+.d-lvl-hero .stat-card .pbar { margin-top: 12px; }
+
+.d-pages-head { display: flex; justify-content: space-between; align-items: baseline; padding: 28px 64px 14px; }
+.d-pages-head h3 { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; margin: 0; }
+.d-pages-head .sub { font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.18em; text-transform: uppercase; }
+
+.d-pages { padding: 0 64px 56px; }
+.d-page-row { display: grid; grid-template-columns: 22px 70px 1fr 110px 100px 16px; gap: 16px; padding: 16px 20px; align-items: center; text-decoration: none; color: var(--ink); background: var(--paper-3); border: 1px solid var(--rule); border-top: 0; }
+.d-page-row:first-of-type { border-top: 1px solid var(--rule); }
+.d-page-row:hover { background: var(--paper-4); }
+.d-page-row .stat { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--rule-2); flex-shrink: 0; }
+.d-page-row .stat.done { background: var(--moss); border-color: var(--moss); position: relative; }
+.d-page-row .stat.done::after { content: ""; position: absolute; inset: 4px; background: var(--paper-3); border-radius: 50%; }
+.d-page-row .stat.partial { background: var(--amber); border-color: var(--amber); }
+.d-page-row .code { font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.08em; }
+.d-page-row .title { font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: -0.012em; }
+.d-page-row .cards { font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.06em; text-align: right; }
+.d-page-row .meta { font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.06em; text-align: right; text-transform: uppercase; }
+.d-page-row .arr { color: var(--ink-3); font-family: var(--font-mono); }
+.d-page-row.next { border-left: 3px solid var(--red); }
+.d-page-row.next .title::after { content: " · NEXT"; color: var(--red); font: 600 10px var(--font-mono); letter-spacing: 0.14em; }
+</style>
+</head>
+<body>
+<div class="std">
+  <div class="std-head">
+    <div>
+      <div class="std-eyebrow">Glacier Lab · Direction 02 · Screen 02</div>
+      <h1 class="std-title">Level index</h1>
+      <p class="std-sub">Browse every page within a level. Status chip, page code, title, cards-due, ETA.</p>
+    </div>
+    <div class="std-nav">
+      <a href="home.html">01 Home</a>
+      <a class="active" href="level-index.html">02 Level</a>
+      <a href="workbook.html">03 Workbook</a>
+      <a href="quiz.html">04 Quiz</a>
+      <a href="flashcard.html">05 Card</a>
+      <a href="dashboard.html">06 Stats</a>
+      <a href="settings.html">07 Settings</a>
+      <a href="onboarding.html">08 Onboarding</a>
+      <a href="level-complete.html">09 Complete</a>
+      <a href="index.html">All screens →</a>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <symbol id="wm-glyph" viewBox="0 0 30 30"><rect width="30" height="30" fill="#0E1A2E"/><path d="M4 22 L11 12 L16 18 L21 10 L26 16" stroke="#FFFFFF" stroke-width="1.5" fill="none"/><circle cx="24" cy="8" r="2.5" fill="#D7263D"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v11H3z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="7" y="9" width="14" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+      <symbol id="i-caret" viewBox="0 0 8 8"><path d="M3 1l3 3-3 3" stroke="currentColor" stroke-width="1.2" fill="none"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="mocks pair">
+    <!-- MOBILE -->
+    <div>
+      <div class="mock-label">Mobile · 375</div>
+      <div class="phone">
+        <div class="ios-bar">
+          <span>9:41</span>
+          <span class="icons">
+            <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="9" width="3" height="3"/><rect x="4" y="6" width="3" height="6"/><rect x="8" y="3" width="3" height="9"/><rect x="12" y="0" width="3" height="12"/></svg>
+            <svg viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 5 Q8 -2 15 5"/><path d="M3 7 Q8 2 13 7"/><path d="M5 9 Q8 6 11 9"/></svg>
+            <svg viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="1" y="1" width="20" height="10" rx="2"/><rect x="3" y="3" width="14" height="6" fill="currentColor"/></svg>
+          </span>
+        </div>
+
+        <div class="lvl-band">
+          <div class="grid-bg"></div>
+          <div class="crumb">Workbook<svg><use href="#i-caret"/></svg> <b>Level 1</b></div>
+          <div class="row">
+            <div>
+              <div class="num-big">01</div>
+              <h2>Map literacy</h2>
+              <p class="desc">Scale, grid, contour, symbols. Earn the foundation before terrain.</p>
+              <div class="lvl-prog">
+                <div class="pbar"><i style="width:63%"></i></div>
+                <span>12 / 19 · 63%</span>
+              </div>
+            </div>
+            <div class="pin">
+              <div class="l">Level</div>
+              <div class="v">01</div>
+              <div class="s">19 pp</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lvl-toolbar">
+          <span class="meta-l">19 pages</span>
+          <div class="filter-chips">
+            <a class="active">All</a>
+            <a>Open</a>
+            <a>Done</a>
+          </div>
+        </div>
+
+        <div class="pages">
+          <a class="page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.01</span><span class="title">Map types &amp; scale</span><span class="meta">8 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.02</span><span class="title">North arrow conventions</span><span class="meta">6 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.03</span><span class="title">Bearings &amp; azimuth</span><span class="meta">12 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.04</span><span class="title">Linear scale &amp; ground distance</span><span class="meta">10 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.05</span><span class="title">Contour interval</span><span class="meta">9 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.10</span><span class="title">Convex vs concave slope reading</span><span class="meta">11 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat partial"></span><span class="code">C1.12</span><span class="title">Spot heights &amp; trig points</span><span class="meta">7 min</span><span class="arr">›</span></a>
+          <a class="page-row next" href="workbook.html"><span class="stat"></span><span class="code">C1.13</span><span class="title">Grid references — six-figure</span><span class="meta">14 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.14</span><span class="title">Map symbology — alpine set</span><span class="meta">10 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.15</span><span class="title">Hazard symbols &amp; pictograms</span><span class="meta">8 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.16</span><span class="title">Reading thick &amp; thin contours</span><span class="meta">11 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.18</span><span class="title">Re-entrants &amp; spur identification</span><span class="meta">12 min</span><span class="arr">›</span></a>
+          <a class="page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.19</span><span class="title">Level 1 mock quiz</span><span class="meta">20 min</span><span class="arr">›</span></a>
+        </div>
+
+        <div class="lvl-foot">
+          <a class="btn ghost sm" href="home.html">← Back</a>
+          <a class="btn red sm" href="workbook.html">Resume C1.13 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div>
+      <div class="mock-label">Desktop · 1200</div>
+      <div class="desktop">
+        <div class="browser-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <div class="url">alpinemaptraining.app / level / 1</div>
+        </div>
+        <div class="d-grid">
+          <div class="sb">
+            <div class="wm">
+              <div class="mark"><svg><use href="#wm-glyph"/></svg></div>
+              <div>
+                <div class="name">Alpine Map Training</div>
+                <div class="by">By PerformOS</div>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Home</div>
+              <div class="sb-nav">
+                <a href="home.html"><svg><use href="#i-home"/></svg>Overview</a>
+                <a href="dashboard.html"><svg><use href="#i-clock"/></svg>Statistics</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Workbook</div>
+              <div class="sb-nav">
+                <a class="active"><span class="code">L1</span>Map literacy</a>
+                <a><span class="code">L2</span>Terrain reading</a>
+                <a><span class="code">L3</span>Nav toolkit</a>
+              </div>
+            </div>
+            <div>
+              <div class="sb-section">Reference</div>
+              <div class="sb-nav">
+                <a href="flashcard.html"><svg><use href="#i-cards"/></svg>Flashcards <span class="badge">24</span></a>
+                <a><svg><use href="#i-book"/></svg>Diagrams</a>
+                <a><svg><use href="#i-book"/></svg>Templates</a>
+              </div>
+            </div>
+            <div class="sb-stat">
+              <div class="l">Level 1 progress</div>
+              <div class="v">63<small>%</small></div>
+              <div class="sub">7 pages remain</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="d-lvl-hero">
+              <div class="grid-bg"></div>
+              <div class="crumb">Workbook<svg><use href="#i-caret"/></svg> <b>Level 1 — Map literacy</b></div>
+              <div class="body">
+                <div>
+                  <div class="num-big">01</div>
+                  <h2>Map literacy</h2>
+                  <p class="desc">Scale, grid references, contour reading, symbol recognition. The fundamentals — finished here, the rest is craft. The Level 1 mock quiz unlocks once C1.19 is complete.</p>
+                  <div class="ctas">
+                    <a class="btn red" href="workbook.html">Resume C1.13 → Grid references</a>
+                    <a class="btn ghost" href="quiz.html">Try the mock quiz</a>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <h4>Level 1 statistics</h4>
+                  <div class="stat"><span>Pages complete</span><b>12 / 19</b></div>
+                  <div class="stat"><span>Cards mastered</span><b>38 / 54</b></div>
+                  <div class="stat"><span>Avg quiz score</span><b>82 %</b></div>
+                  <div class="stat"><span>Estimated time</span><b>2 h 40 m</b></div>
+                  <div class="pbar"><i style="width:63%"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-pages-head">
+              <h3>19 pages</h3>
+              <div style="display:flex;gap:10px;align-items:center;">
+                <span class="sub">Status</span>
+                <div class="filter-chips">
+                  <a class="active">All</a>
+                  <a>Open</a>
+                  <a>Done</a>
+                  <a>Cards due</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-pages">
+              <a class="d-page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.01</span><span class="title">Map types &amp; scale</span><span class="cards">3 cards</span><span class="meta">8 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.02</span><span class="title">North arrow conventions — true, grid, magnetic</span><span class="cards">2 cards</span><span class="meta">6 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.03</span><span class="title">Bearings &amp; azimuth</span><span class="cards">4 cards</span><span class="meta">12 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.04</span><span class="title">Linear scale &amp; ground distance</span><span class="cards">3 cards</span><span class="meta">10 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.05</span><span class="title">Contour interval — index &amp; intermediate</span><span class="cards">5 cards</span><span class="meta">9 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat done"></span><span class="code">C1.10</span><span class="title">Convex vs concave slope reading</span><span class="cards">4 cards</span><span class="meta">11 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat partial"></span><span class="code">C1.12</span><span class="title">Spot heights &amp; trig points</span><span class="cards">3 cards</span><span class="meta">7 min</span><span class="arr">›</span></a>
+              <a class="d-page-row next" href="workbook.html"><span class="stat"></span><span class="code">C1.13</span><span class="title">Grid references — six-figure precision</span><span class="cards">4 cards</span><span class="meta">14 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.14</span><span class="title">Map symbology — alpine set</span><span class="cards">6 cards</span><span class="meta">10 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.15</span><span class="title">Hazard symbols &amp; pictograms</span><span class="cards">5 cards</span><span class="meta">8 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.16</span><span class="title">Reading thick &amp; thin contours</span><span class="cards">3 cards</span><span class="meta">11 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="workbook.html"><span class="stat"></span><span class="code">C1.18</span><span class="title">Re-entrants &amp; spur identification</span><span class="cards">4 cards</span><span class="meta">12 min</span><span class="arr">›</span></a>
+              <a class="d-page-row" href="quiz.html"><span class="stat"></span><span class="code">C1.19</span><span class="title">Level 1 mock quiz</span><span class="cards">— quiz —</span><span class="meta">20 min</span><span class="arr">›</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="360" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">C7.1 quiz snippet sheet</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Three 1:25,000 patterns (10 m contours) lettered A, B and C. Name the feature for each in the relevant quiz answer box.</text>
+
+  <!-- Snippet A: spur (V-down) -->
+  <g transform="translate(30,75)">
+    <rect width="200" height="220" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <text x="10" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">A</text>
+    <!-- ridge top, spur projecting down -->
+    <path d="M 10 40 Q 60 45 100 45 Q 140 45 190 40" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 10 70 Q 55 82 100 95 Q 145 82 190 70" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 10 100 Q 55 115 100 135 Q 145 115 190 100" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 10 130 Q 55 150 100 175 Q 145 150 190 130" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 10 160 Q 55 182 100 205 Q 145 182 190 160" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <text x="190" y="38" font-family="Arial, sans-serif" font-size="7" fill="#B5651D" text-anchor="end">2,640</text>
+    <text x="190" y="207" font-family="Arial, sans-serif" font-size="7" fill="#B5651D" text-anchor="end">2,500</text>
+    <rect x="0" y="200" width="20" height="3" fill="#000"/>
+    <text x="10" y="215" font-family="Arial, sans-serif" font-size="6.5" fill="#000" text-anchor="middle">500 m</text>
+  </g>
+
+  <!-- Snippet B: bowl -->
+  <g transform="translate(250,75)">
+    <rect width="200" height="220" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <text x="10" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">B</text>
+    <!-- U-shape opening downward -->
+    <path d="M 25 60 Q 55 30 100 30 Q 145 30 175 60" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 30 85 Q 60 55 100 55 Q 140 55 170 85" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 35 110 Q 65 80 100 80 Q 135 80 165 110" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 40 135 Q 70 105 100 105 Q 130 105 160 135" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 45 160 Q 75 130 100 130 Q 125 130 155 160" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 55 185 L 145 185" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <text x="100" y="22" font-family="Arial, sans-serif" font-size="7" fill="#B5651D" text-anchor="middle">2,820 (headwall)</text>
+    <rect x="0" y="200" width="20" height="3" fill="#000"/>
+    <text x="10" y="215" font-family="Arial, sans-serif" font-size="6.5" fill="#000" text-anchor="middle">500 m</text>
+  </g>
+
+  <!-- Snippet C: plateau -->
+  <g transform="translate(470,75)">
+    <rect width="200" height="220" fill="#ffffff" stroke="#444" stroke-width="0.8"/>
+    <text x="10" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">C</text>
+    <!-- broad flat top, single outer contour, contour-free centre -->
+    <ellipse cx="100" cy="100" rx="80" ry="58" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <text x="100" y="103" font-family="Arial, sans-serif" font-size="7" fill="#000" text-anchor="middle">spot 2,180</text>
+    <!-- bounding slope close contours outside -->
+    <path d="M 10 175 Q 100 175 190 175" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <path d="M 10 192 Q 100 192 190 192" fill="none" stroke="#B5651D" stroke-width="0.9"/>
+    <rect x="0" y="200" width="20" height="3" fill="#000"/>
+    <text x="10" y="215" font-family="Arial, sans-serif" font-size="6.5" fill="#000" text-anchor="middle">500 m</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="350" y="335" font-family="Arial, sans-serif" font-size="9" fill="#777" text-anchor="middle" font-style="italic">Questions 3, 4 and 5 of the C7.1 quiz ask you to name the feature for snippets A, B and C respectively.</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="460" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Section C2.4 side-view sketches</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Each sketch shows the feature as it would appear from a position roughly 1 km away on the ground. Match each to a contour snippet (1 to 8).</text>
+  <rect x="20" y="60" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="100" y="78" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">A</text>
+  <line x1="30" y1="195" x2="170" y2="195" stroke="#888" stroke-width="0.5"/>
+  <path d="M 30 195 L 70 165 L 95 175 L 125 165 L 170 195" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <line x1="100" y1="173" x2="100" y2="195" stroke="#1e88e5" stroke-width="1.4"/>
+  <text x="100" y="212" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <rect x="195" y="60" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="275" y="78" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">B</text>
+  <line x1="205" y1="195" x2="345" y2="195" stroke="#888" stroke-width="0.5"/>
+  <path d="M 205 195 L 230 150 L 255 130 L 285 122 L 315 130 L 340 145 L 345 195 Z" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <text x="275" y="212" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <rect x="370" y="60" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="450" y="78" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">C</text>
+  <line x1="380" y1="195" x2="520" y2="195" stroke="#888" stroke-width="0.5"/>
+  <path d="M 380 195 L 425 145 L 450 105 L 475 145 L 520 195 Z" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <polygon points="448,108 444,117 452,117" fill="#000"/>
+  <text x="450" y="212" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <rect x="545" y="60" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="625" y="78" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">D</text>
+  <line x1="555" y1="195" x2="695" y2="195" stroke="#888" stroke-width="0.5"/>
+  <path d="M 555 195 L 555 130 L 575 120 L 600 115 L 615 130 L 625 165 L 640 130 L 660 115 L 685 120 L 695 130 L 695 195 Z" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <text x="625" y="212" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <rect x="20" y="240" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="100" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">E</text>
+  <line x1="30" y1="375" x2="170" y2="375" stroke="#888" stroke-width="0.5"/>
+  <path d="M 30 375 Q 65 350 100 305 Q 135 350 170 375" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <text x="100" y="392" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <rect x="195" y="240" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="275" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">F</text>
+  <line x1="205" y1="375" x2="345" y2="375" stroke="#888" stroke-width="0.5"/>
+  <path d="M 205 375 L 220 290 L 250 270 L 275 285 L 305 320 L 330 360 L 345 375 Z" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <polygon points="248,272 244,280 252,280" fill="#000"/>
+  <text x="220" y="295" font-family="Arial, sans-serif" font-size="8" fill="#444">parent peak</text>
+  <text x="318" y="368" font-family="Arial, sans-serif" font-size="8" fill="#444">low end</text>
+  <text x="275" y="392" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <rect x="370" y="240" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="450" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">G</text>
+  <line x1="380" y1="375" x2="520" y2="375" stroke="#888" stroke-width="0.5"/>
+  <path d="M 380 375 L 405 320 L 415 305 L 485 305 L 495 320 L 520 375 Z" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <line x1="415" y1="305" x2="485" y2="305" stroke="#9e7e3a" stroke-width="1.4"/>
+  <polygon points="450,303 447,310 453,310" fill="#000"/>
+  <text x="450" y="392" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <rect x="545" y="240" width="160" height="160" fill="#fff" stroke="#888" stroke-width="0.6"/>
+  <text x="625" y="258" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#000" text-anchor="middle">H</text>
+  <line x1="555" y1="375" x2="695" y2="375" stroke="#888" stroke-width="0.5"/>
+  <path d="M 555 375 L 590 290 L 620 320 L 625 335 L 630 320 L 660 290 L 695 375 Z" fill="#e7d6b0" stroke="#9e7e3a" stroke-width="1.2"/>
+  <line x1="625" y1="335" x2="625" y2="375" stroke="#1e88e5" stroke-width="1.2"/>
+  <text x="625" y="392" font-family="Arial, sans-serif" font-size="9" fill="#444" text-anchor="middle">snippet ___</text>
+  <text x="20" y="430" font-family="Arial, sans-serif" font-size="10" fill="#444">Sketches deliberately stylised. The pedagogical point is the family of feature, not photographic accuracy.</text>
+  <text x="20" y="445" font-family="Arial, sans-serif" font-size="9" fill="#777" font-style="italic">Pairings (held by trainer): see C2.4 answer key.</text>
+</svg>

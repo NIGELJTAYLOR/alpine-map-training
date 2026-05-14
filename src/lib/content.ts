@@ -63,6 +63,22 @@ export function getDiagramsForPage(level: number, page: string): Diagram[] {
   return allDiagrams.filter((d) => d.level === level && d.pageRefs.includes(page));
 }
 
+/**
+ * Look up a diagram by short reference like "L2.14" or "L3.1a".
+ * Used by the inline <Diagram fig="L2.14" /> MDX component to embed
+ * a schematic at the exact point of reference inside lesson MDX.
+ */
+export function getDiagramByRef(fig: string): Diagram | undefined {
+  const m = fig.match(/^L(\d+)\.(\d+)([a-z]*)$/i);
+  if (!m) return undefined;
+  const level = Number(m[1]);
+  const number = Number(m[2]);
+  const sub = m[3].toLowerCase();
+  return allDiagrams.find(
+    (d) => d.level === level && d.number === number && (d.sub || "") === sub,
+  );
+}
+
 export function getAllTemplates(): Template[] {
   return [...allTemplates].sort((a, b) => a.number - b.number);
 }

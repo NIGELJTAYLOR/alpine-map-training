@@ -1,33 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
+import { Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { ProgressProvider } from "@/lib/progress/provider";
 import { SwRegister } from "@/components/site/sw-register";
 import { InstallPrompt } from "@/components/site/install-prompt";
 import { OfflineIndicator } from "@/components/site/offline-indicator";
 import { IntroSplash } from "@/components/site/intro-splash";
+import { SiteChrome } from "@/components/site/site-chrome";
 
-// Carta typography stack — Direction 1
-const inter = Inter({
-  variable: "--font-inter",
+// Glacier Lab typography stack — Direction 2
+// Manrope is the single sans family for both display and body.
+// IBM Plex Mono is the machine-code mono.
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  // Fraunces is a variable font — `axes` requires `weight` to be omitted
-  // (or set to "variable"), so all weights are available via font-weight.
-  axes: ["opsz"],
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -48,8 +42,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // Carta paper background — keeps the system UI consistent with the page.
-  themeColor: "#F4ECD8",
+  // Glacier Lab paper background — keeps the system UI consistent with the page.
+  themeColor: "#EEF1F4",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -63,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${manrope.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <a
@@ -75,7 +69,7 @@ export default function RootLayout({
         <ProgressProvider>
           <IntroSplash />
           <OfflineIndicator />
-          {children}
+          <SiteChrome>{children}</SiteChrome>
           <InstallPrompt />
           <SwRegister />
         </ProgressProvider>

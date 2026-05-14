@@ -1,0 +1,52 @@
+<svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="320" fill="#fafaf5"/>
+  <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">Contour interval varies by national series</text>
+  <text x="20" y="45" font-family="Arial, sans-serif" font-size="10" fill="#444">Always check the contour interval in the map margin before judging steepness or estimating ascent.</text>
+
+  <rect x="30" y="65" width="170" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="115" y="87" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">IGN TOP25 (France)</text>
+  <text x="115" y="104" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Standard alpine 1:25,000</text>
+
+  <line x1="50" y1="125" x2="180" y2="125" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="138" x2="180" y2="138" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="151" x2="180" y2="151" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="164" x2="180" y2="164" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="177" x2="180" y2="177" stroke="#B5651D" stroke-width="2"/>
+  <text x="183" y="180" font-family="Arial, sans-serif" font-size="9" fill="#444">index</text>
+  <line x1="50" y1="190" x2="180" y2="190" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="203" x2="180" y2="203" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="50" y1="216" x2="180" y2="216" stroke="#B5651D" stroke-width="1.2"/>
+
+  <text x="115" y="235" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">10 m</text>
+
+  <rect x="215" y="65" width="170" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="300" y="87" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Swisstopo (Switzerland)</text>
+  <text x="300" y="104" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Standard alpine 1:25,000</text>
+
+  <line x1="235" y1="125" x2="365" y2="125" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="235" y1="146" x2="365" y2="146" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="235" y1="167" x2="365" y2="167" stroke="#B5651D" stroke-width="2"/>
+  <text x="368" y="170" font-family="Arial, sans-serif" font-size="9" fill="#444">index</text>
+  <line x1="235" y1="188" x2="365" y2="188" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="235" y1="209" x2="365" y2="209" stroke="#B5651D" stroke-width="1.2"/>
+
+  <text x="300" y="235" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">20 m (typical)</text>
+
+  <rect x="400" y="65" width="170" height="180" fill="#fff" stroke="#888" stroke-width="0.6" rx="4"/>
+  <text x="485" y="87" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#000" text-anchor="middle">Alpenvereinskarte (Austria)</text>
+  <text x="485" y="104" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="middle">Various alpine sheets</text>
+
+  <line x1="420" y1="125" x2="550" y2="125" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="420" y1="143" x2="550" y2="143" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="420" y1="161" x2="550" y2="161" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="420" y1="179" x2="550" y2="179" stroke="#B5651D" stroke-width="2"/>
+  <text x="553" y="182" font-family="Arial, sans-serif" font-size="9" fill="#444">index</text>
+  <line x1="420" y1="197" x2="550" y2="197" stroke="#B5651D" stroke-width="1.2"/>
+  <line x1="420" y1="215" x2="550" y2="215" stroke="#B5651D" stroke-width="1.2"/>
+
+  <text x="485" y="235" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">Varies by sheet</text>
+
+  <text x="20" y="275" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#000">Where to find it on the map:</text>
+  <text x="20" y="293" font-family="Arial, sans-serif" font-size="10" fill="#444">The contour interval is printed in the map margin or legend, usually near the scale statement. On IGN TOP25 it is labelled</text>
+  <text x="20" y="306" font-family="Arial, sans-serif" font-size="10" fill="#444">"Equidistance des courbes". On Swisstopo it is "Aquidistanz". On Alpenvereinskarte the interval is stated explicitly per sheet.</text>
+</svg>

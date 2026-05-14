@@ -1,5 +1,32 @@
 "use client";
 
+/**
+ * Progress provider.
+ *
+ * Today this is single-profile per browser: one ProgressStore lives at
+ * localStorage key "alpine-map-training:progress". The Settings panel exposes
+ * a destructive "Start fresh / new user" action that calls `reset()` and
+ * re-fires onboarding.
+ *
+ * TODO(multi-profile, v5 schema): when ready, lift to true multi-tenant on
+ * the device:
+ *   1. Storage — write per-profile keys "alpine-map-training:profile:<id>",
+ *      plus an index "alpine-map-training:profiles" containing
+ *      { profiles: ProfileMeta[], currentProfileId: string } where
+ *      ProfileMeta = { id, name, email, createdAt, lastSeenAt }.
+ *   2. Provider — accept currentProfileId from a higher-level
+ *      ProfilesProvider; load/save against the current profile's key.
+ *   3. Migration — on first run after upgrade, move the existing
+ *      "alpine-map-training:progress" payload into a new profile keyed by
+ *      profileName (or "Default" if blank). Set it as current.
+ *   4. UI — replace the single "Start fresh" row with a Users section:
+ *      switch profile, add profile (re-runs onboarding for the new slot),
+ *      rename profile, delete profile, export profile.
+ *   5. Export (Pass B) — namespace exports by profile so trainers can
+ *      receive per-candidate Markdown without mixing data.
+ *
+ * Keep this comment in sync with reality. Delete the TODO when v5 ships.
+ */
 import {
   createContext,
   useCallback,
@@ -12,7 +39,9 @@ import {
 import {
   emptyProgress,
   type ConfidenceScore,
+  type ExerciseGrade,
   type FlashcardSchedule,
+  type OnboardingPrefs,
   type PageProgress,
   type PageStatus,
   type ProgressStore,
@@ -29,7 +58,7 @@ interface ProgressContextValue {
   // page
   getPage: (pageId: string) => PageProgress;
   setPageStatus: (pageId: string, status: PageStatus) => void;
-  toggleSelfCheck: (pageId: string, idx: number, total: number) => void;
+  toggleSelfCheck: (pageId: string, key: string) => void;
   markVisited: (pageId: string) => void;
   // quizzes
   getQuiz: (quizId: string) => QuizProgress | undefined;
@@ -44,6 +73,16 @@ interface ProgressContextValue {
   setReadiness: (key: string, status: ReadinessStatus, notes?: string) => void;
   // settings
   setTrainerMode: (on: boolean) => void;
+  /** Save the captured onboarding choices and mark the flow complete. */
+  setOnboardingPrefs: (prefs: OnboardingPrefs) => void;
+  /** Update the candidate's local profile (name + email). */
+  setProfile: (profile: { name?: string; email?: string }) => void;
+  /** Save a per-exercise free-text input on a page. */
+  setInput: (pageId: string, inputKey: string, value: string) => void;
+  /** Save an AI grade for one exercise on a page. */
+  setGrade: (pageId: string, exerciseKey: string, grade: ExerciseGrade) => void;
+  /** Remove an AI grade for one exercise on a page (used by Re-grade). */
+  clearGrade: (pageId: string, exerciseKey: string) => void;
   // flashcards
   getFlashcardSchedule: (cardId: string) => FlashcardSchedule | undefined;
   setFlashcardSchedule: (cardId: string, schedule: FlashcardSchedule) => void;
@@ -56,7 +95,7 @@ const ProgressContext = createContext<ProgressContextValue | null>(null);
 
 const DEFAULT_PAGE: PageProgress = {
   status: "not-started",
-  selfCheck: [],
+  selfCheck: {},
   lastViewed: "",
 };
 
@@ -98,13 +137,11 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleSelfCheck = useCallback(
-    (pageId: string, idx: number, total: number) => {
+    (pageId: string, key: string) => {
       setStore((prev) => {
         const existing = prev.pages[pageId] ?? DEFAULT_PAGE;
-        const arr = [...existing.selfCheck];
-        // Pad to total
-        while (arr.length < total) arr.push(false);
-        arr[idx] = !arr[idx];
+        const next: Record<string, boolean> = { ...existing.selfCheck };
+        next[key] = !next[key];
         // Auto-promote not-started → in-progress on first interaction
         const status: PageStatus =
           existing.status === "not-started" ? "in-progress" : existing.status;
@@ -114,7 +151,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
             ...prev.pages,
             [pageId]: {
               ...existing,
-              selfCheck: arr,
+              selfCheck: next,
               status,
               lastViewed: new Date().toISOString(),
             },
@@ -240,6 +277,99 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
 
+  const setOnboardingPrefs = useCallback((prefs: OnboardingPrefs) => {
+    setStore((prev) => ({
+      ...prev,
+      settings: {
+        ...prev.settings,
+        onboardingComplete: true,
+        startingLevel: prefs.startingLevel,
+        sessionMinutes: prefs.sessionMinutes,
+        studyDaysPerWeek: prefs.studyDaysPerWeek,
+      },
+    }));
+  }, []);
+
+  const setProfile = useCallback(
+    (profile: { name?: string; email?: string }) => {
+      setStore((prev) => ({
+        ...prev,
+        settings: {
+          ...prev.settings,
+          ...(profile.name !== undefined ? { profileName: profile.name } : {}),
+          ...(profile.email !== undefined
+            ? { profileEmail: profile.email }
+            : {}),
+        },
+      }));
+    },
+    [],
+  );
+
+  const setInput = useCallback(
+    (pageId: string, inputKey: string, value: string) => {
+      setStore((prev) => {
+        const existing = prev.pages[pageId] ?? DEFAULT_PAGE;
+        const existingInputs = existing.inputs ?? {};
+        return {
+          ...prev,
+          pages: {
+            ...prev.pages,
+            [pageId]: {
+              ...existing,
+              inputs: { ...existingInputs, [inputKey]: value },
+              // Typing into a page promotes it to in-progress, mirroring
+              // the self-check checkbox behaviour.
+              status:
+                existing.status === "not-started"
+                  ? "in-progress"
+                  : existing.status,
+              lastViewed: new Date().toISOString(),
+            },
+          },
+        };
+      });
+    },
+    [],
+  );
+
+  const setGrade = useCallback(
+    (pageId: string, exerciseKey: string, grade: ExerciseGrade) => {
+      setStore((prev) => {
+        const existing = prev.pages[pageId] ?? DEFAULT_PAGE;
+        const existingGrades = existing.grades ?? {};
+        return {
+          ...prev,
+          pages: {
+            ...prev.pages,
+            [pageId]: {
+              ...existing,
+              grades: { ...existingGrades, [exerciseKey]: grade },
+              lastViewed: new Date().toISOString(),
+            },
+          },
+        };
+      });
+    },
+    [],
+  );
+
+  const clearGrade = useCallback((pageId: string, exerciseKey: string) => {
+    setStore((prev) => {
+      const existing = prev.pages[pageId];
+      if (!existing || !existing.grades) return prev;
+      const nextGrades = { ...existing.grades };
+      delete nextGrades[exerciseKey];
+      return {
+        ...prev,
+        pages: {
+          ...prev.pages,
+          [pageId]: { ...existing, grades: nextGrades },
+        },
+      };
+    });
+  }, []);
+
   const getFlashcardSchedule = useCallback(
     (cardId: string) => store.flashcards[cardId],
     [store.flashcards],
@@ -279,6 +409,11 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       setConfidence,
       setReadiness,
       setTrainerMode,
+      setOnboardingPrefs,
+      setProfile,
+      setInput,
+      setGrade,
+      clearGrade,
       getFlashcardSchedule,
       setFlashcardSchedule,
       resetFlashcards,
@@ -298,6 +433,11 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       setConfidence,
       setReadiness,
       setTrainerMode,
+      setOnboardingPrefs,
+      setProfile,
+      setInput,
+      setGrade,
+      clearGrade,
       getFlashcardSchedule,
       setFlashcardSchedule,
       resetFlashcards,
@@ -311,10 +451,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
 export function useProgress(): ProgressContextValue {
   const ctx = useContext(ProgressContext);
   if (!ctx) {
-    throw new Error("useProgress must be used inside <ProgressProvider>");
+    throw new Error("useProgress must be used within a ProgressProvider");
   }
   return ctx;
 }
-
-// Convenience: typed export of the most common slice access
-export type { ConfidenceScore, PageProgress, QuizProgress, ReadinessCheck };

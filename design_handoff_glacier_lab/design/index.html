@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carta · Glacier Lab · Screen index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+.idx-hero { padding: 80px 0 56px; border-bottom: 1px solid var(--rule); margin-bottom: 56px; position: relative; overflow: hidden; }
+.idx-hero .grid-bg { background-size: 64px 64px; }
+.idx-hero > * { position: relative; }
+.idx-eyebrow { font-family: var(--font-mono); font-size: var(--fs-meta); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.idx-title { font-family: var(--font-display); font-weight: 800; font-size: 88px; line-height: 0.96; letter-spacing: -0.03em; margin: 12px 0 18px; max-width: 12ch; }
+.idx-title .red { color: var(--red); }
+.idx-lede { color: var(--ink-2); font-size: 18px; line-height: 1.55; max-width: 60ch; }
+.idx-meta { display: flex; gap: 8px; margin-top: 28px; flex-wrap: wrap; }
+
+.spec-row { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding: 0 0 48px; border-bottom: 1px solid var(--rule); margin-bottom: 56px; }
+.spec-card { grid-column: span 4; background: var(--paper-3); border: 1px solid var(--rule); padding: 22px; }
+.spec-card h3 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; font-weight: 600; }
+.spec-card .row { display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--rule); font-size: 13px; color: var(--ink-2); align-items: center; }
+.spec-card .row:first-of-type { border-top: 0; }
+.spec-card .row b { color: var(--ink); font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
+
+.swatch-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 12px; }
+.swatch-row .sw { aspect-ratio: 1.4; border-radius: 2px; border: 1px solid rgba(14,26,46,.08); position: relative; }
+.swatch-row .sw::after { content: attr(data-name); position: absolute; bottom: -16px; left: 0; right: 0; font: 600 9px var(--font-mono); color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; }
+.spec-card .swatch-row { margin-bottom: 24px; }
+
+.type-sample { font-family: var(--font-display); font-size: 30px; font-weight: 800; line-height: 1; letter-spacing: -0.025em; margin: 0 0 6px; }
+.type-sub { font-size: 13px; color: var(--ink-2); }
+.type-scale { display: flex; flex-direction: column; gap: 5px; margin-top: 14px; }
+.type-scale span { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); letter-spacing: 0.05em; }
+.type-scale span b { color: var(--ink); }
+
+.screens-head { display: flex; align-items: baseline; justify-content: space-between; margin: 0 0 28px; }
+.screens-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 36px; letter-spacing: -0.025em; margin: 0; }
+.screens-head .meta { font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.16em; text-transform: uppercase; }
+
+.screens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.screen-card { background: var(--paper-3); border: 1px solid var(--rule); padding: 22px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; color: inherit; transition: border-color .15s; }
+.screen-card:hover { border-color: var(--rule-2); }
+.screen-card .pv { aspect-ratio: 4/3; background: var(--paper); border: 1px solid var(--rule); overflow: hidden; position: relative; }
+.screen-card .pv svg { width: 100%; height: 100%; display: block; }
+.screen-card .num { font: 600 10px var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); display: flex; justify-content: space-between; align-items: center; }
+.screen-card .num .red-dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+.screen-card .nm { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; }
+.screen-card .desc { color: var(--ink-2); font-size: 13px; line-height: 1.5; }
+.screen-card .ft { display: flex; justify-content: space-between; align-items: center; font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; padding-top: 12px; border-top: 1px solid var(--rule); margin-top: auto; }
+.screen-card .ft .arr { color: var(--red); }
+
+.changelog { margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 200px 1fr; gap: 56px; }
+.changelog h2 { font: 600 10px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); margin: 0; font-weight: 600; }
+.changelog ul { list-style: none; padding: 0; margin: 0; }
+.changelog li { display: grid; grid-template-columns: 100px 1fr; gap: 18px; padding: 14px 0; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; }
+.changelog li:first-child { border-top: 0; padding-top: 0; }
+.changelog li time { font: 600 11px var(--font-mono); color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; }
+.changelog li b { color: var(--ink); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="std">
+
+  <div class="idx-hero">
+    <div class="grid-bg"></div>
+    <div class="idx-eyebrow">Carta · Glacier Lab · Direction 02 · Locked</div>
+    <h1 class="idx-title">Read the <span class="red">cool</span> mountain.</h1>
+    <p class="idx-lede">Carta restyled toward the international snowsports sector. Pale glacier-grey paper, deep navy ink, alpine red as the single accent. Manrope + IBM Plex Mono. Topographic motif retained, re-toned. Seven screens, mobile and desktop at the same fidelity.</p>
+    <div class="idx-meta">
+      <span class="tag"><span class="dot"></span>Direction 02 · Locked 13 May 2026</span>
+      <span class="tag">9 screens</span>
+      <span class="tag">Mobile + Desktop</span>
+      <span class="tag">BASI Alpine L4 ISTD</span>
+    </div>
+  </div>
+
+  <div class="spec-row">
+    <div class="spec-card">
+      <h3>Palette</h3>
+      <div class="swatch-row">
+        <div class="sw" style="background:#EEF1F4" data-name="paper"></div>
+        <div class="sw" style="background:#FFFFFF;border-color:rgba(0,0,0,.1)" data-name="card"></div>
+        <div class="sw" style="background:#E2E7EC" data-name="paper-2"></div>
+        <div class="sw" style="background:#0E1A2E" data-name="ink"></div>
+        <div class="sw" style="background:#D7263D" data-name="red"></div>
+        <div class="sw" style="background:#2480B5" data-name="ice"></div>
+      </div>
+      <p style="font-size:12px;color:var(--ink-2);line-height:1.5;margin:8px 0 0;">Pale glacier-grey paper; white card surface. Deep navy ink at full strength for body, 50% for secondary. Alpine red is the only heat accent — reserved for primary CTAs, active state, dues. Glacier blue is the secondary state (in-progress).</p>
+    </div>
+    <div class="spec-card">
+      <h3>Type</h3>
+      <div class="type-sample">Read the mountain.</div>
+      <div class="type-sub">Manrope 800 · -2.8% tracking</div>
+      <div class="type-scale">
+        <span><b>64 / 56 / 40 / 32</b> · Manrope 800 display</span>
+        <span><b>24 / 19 / 17 / 15</b> · Manrope 700/600 ui</span>
+        <span><b>15 / 14 / 13</b> · Manrope 400/500 body</span>
+        <span><b>11 / 10 / 9</b> · Plex Mono 600 caps · machine</span>
+      </div>
+    </div>
+    <div class="spec-card">
+      <h3>System</h3>
+      <div class="row"><span>Direction</span><b>02 · Glacier Lab</b></div>
+      <div class="row"><span>Tokens file</span><b>tokens.css</b></div>
+      <div class="row"><span>Component css</span><b>styles.css</b></div>
+      <div class="row"><span>Frame radii</span><b>2 / 4 / 8 / 28 px</b></div>
+      <div class="row"><span>Hairline</span><b>1 px · #D0D7E0</b></div>
+      <div class="row"><span>Hero photo</span><b>placeholder slot</b></div>
+      <div class="row"><span>Contour motif</span><b>retained, re-toned</b></div>
+    </div>
+  </div>
+
+  <div class="screens-head">
+    <h2>Screens · 09</h2>
+    <span class="meta">Each at mobile (375) + desktop (1200)</span>
+  </div>
+
+  <div class="screens-grid">
+
+    <a class="screen-card" href="home.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="80" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="94" y="36" width="292" height="120" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="108" y="78" font-family="Manrope" font-weight="800" font-size="22" fill="#0E1A2E" letter-spacing="-0.5">Read the</text>
+          <text x="108" y="100" font-family="Manrope" font-weight="800" font-size="22" fill="#0E1A2E" letter-spacing="-0.5">mountain.</text>
+          <rect x="108" y="115" width="90" height="18" fill="#D7263D"/>
+          <rect x="280" y="50" width="92" height="92" fill="#2480B5" opacity=".8"/>
+          <rect x="94" y="156" width="292" height="38" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="94" y="194" width="92" height="92" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="194" y="194" width="92" height="92" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="294" y="194" width="92" height="92" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="108" y="218" font-family="Manrope" font-weight="800" font-size="22" fill="#D7263D" letter-spacing="-0.5">01</text>
+          <text x="208" y="218" font-family="Manrope" font-weight="800" font-size="22" fill="#0E1A2E" letter-spacing="-0.5">02</text>
+          <text x="308" y="218" font-family="Manrope" font-weight="800" font-size="22" fill="#B5BFCE" letter-spacing="-0.5">03</text>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 01</span><span class="red-dot"></span></div>
+      <div class="nm">Home</div>
+      <div class="desc">Hero, level pathway, statistics strip, reference shelf. The entry point and the daily landing.</div>
+      <div class="ft"><span>Mobile + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="level-index.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="80" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="94" y="36" width="292" height="100" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="108" y="110" font-family="Manrope" font-weight="800" font-size="80" fill="#0E1A2E" letter-spacing="-3">01</text>
+          <text x="220" y="78" font-family="Manrope" font-weight="800" font-size="20" fill="#0E1A2E">Map literacy</text>
+          <rect x="220" y="88" width="120" height="3" fill="#D7263D"/>
+          <rect x="220" y="91" width="50" height="3" fill="#D0D7E0"/>
+          <rect x="94" y="142" width="292" height="28" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="94" y="172" width="292" height="28" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="94" y="202" width="292" height="28" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="94" y="232" width="292" height="28" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="97" y="232" width="3" height="28" fill="#D7263D"/>
+          <circle cx="112" cy="156" r="4" fill="#2E7D5B"/><text x="124" y="160" font-family="IBM Plex Mono" font-size="9" fill="#8693A6">C1.01 · Map types &amp; scale</text>
+          <circle cx="112" cy="186" r="4" fill="#2E7D5B"/><text x="124" y="190" font-family="IBM Plex Mono" font-size="9" fill="#8693A6">C1.02 · North arrow conventions</text>
+          <circle cx="112" cy="216" r="4" fill="#C58B2C"/><text x="124" y="220" font-family="IBM Plex Mono" font-size="9" fill="#8693A6">C1.12 · Spot heights</text>
+          <circle cx="112" cy="246" r="4" fill="#FFF" stroke="#D0D7E0"/><text x="124" y="250" font-family="IBM Plex Mono" font-size="9" fill="#0E1A2E" font-weight="600">C1.13 · Grid references · NEXT</text>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 02</span><span class="red-dot"></span></div>
+      <div class="nm">Level index</div>
+      <div class="desc">Every page within a level, with status, time-to-complete, and the "next" indicator.</div>
+      <div class="ft"><span>Mobile + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="workbook.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="70" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="324" y="36" width="62" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="84" y="36" width="240" height="250" fill="#EEF1F4"/>
+          <text x="98" y="68" font-family="Manrope" font-weight="800" font-size="22" fill="#0E1A2E">Summit shapes</text>
+          <rect x="98" y="82" width="200" height="36" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="98" y="82" width="3" height="36" fill="#D7263D"/>
+          <text x="108" y="98" font-family="IBM Plex Mono" font-size="8" fill="#D7263D" font-weight="600" letter-spacing="1.5">LEARNING AIM</text>
+          <text x="108" y="112" font-family="Manrope" font-size="9" fill="#3F4D63">Identify three principal forms…</text>
+          <rect x="98" y="130" width="65" height="65" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <g stroke="#0E1A2E" fill="none" stroke-width="0.8" opacity=".7" transform="translate(98 130)"><ellipse cx="32" cy="34" rx="24" ry="16"/><ellipse cx="32" cy="32" rx="18" ry="12"/><ellipse cx="32" cy="30" rx="12" ry="8"/></g>
+          <rect x="168" y="130" width="65" height="65" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <g stroke="#0E1A2E" fill="none" stroke-width="0.8" opacity=".7" transform="translate(168 130)"><path d="M8 50 Q 24 28, 32 24 Q 44 30, 58 50"/><path d="M14 44 Q 26 26, 32 22 Q 42 26, 54 44"/><path d="M22 38 Q 28 24, 32 20 Q 38 24, 46 38"/></g>
+          <rect x="238" y="130" width="65" height="65" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <g stroke="#0E1A2E" fill="none" stroke-width="0.8" opacity=".7" transform="translate(238 130)"><rect x="8" y="18" width="50" height="30"/><rect x="14" y="24" width="40" height="20"/></g>
+          <rect x="98" y="205" width="205" height="40" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="98" y="255" width="120" height="3" fill="#D0D7E0"/>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 03</span><span class="red-dot"></span></div>
+      <div class="nm">Workbook page</div>
+      <div class="desc">A reading page — aim, body, diagrams, table, hidden answer key, pager. The product's content beat.</div>
+      <div class="ft"><span>Mobile + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="quiz.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="180" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="26" y="78" font-family="IBM Plex Mono" font-weight="600" font-size="8" fill="#D7263D" letter-spacing="1.5">QUESTION 8 / 15</text>
+          <rect x="26" y="86" width="100" height="3" fill="#D7263D"/>
+          <rect x="126" y="86" width="50" height="3" fill="#D0D7E0"/>
+          <text x="26" y="110" font-family="Manrope" font-weight="800" font-size="14" fill="#0E1A2E">Six-figure grid</text>
+          <text x="26" y="124" font-family="Manrope" font-weight="800" font-size="14" fill="#0E1A2E">reference at 1:25k?</text>
+          <rect x="26" y="140" width="154" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="26" y="166" width="154" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="26" y="192" width="154" height="22" fill="#FFFFFF" stroke="#0E1A2E" stroke-width="2"/>
+          <circle cx="38" cy="203" r="3" fill="#0E1A2E"/>
+          <rect x="26" y="218" width="154" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+
+          <rect x="206" y="36" width="180" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="218" y="62" font-family="IBM Plex Mono" font-weight="600" font-size="8" fill="#8693A6" letter-spacing="1.5">L1 MOCK · SUBMITTED</text>
+          <text x="218" y="124" font-family="Manrope" font-weight="800" font-size="58" fill="#0E1A2E" letter-spacing="-3">12</text>
+          <text x="290" y="124" font-family="Manrope" font-weight="700" font-size="22" fill="#8693A6">/15</text>
+          <text x="218" y="148" font-family="Manrope" font-weight="700" font-size="13" fill="#D7263D">Pass mark cleared</text>
+          <rect x="218" y="166" width="160" height="3" fill="#2E7D5B"/>
+          <rect x="218" y="180" width="120" height="3" fill="#D7263D"/>
+          <rect x="218" y="194" width="90" height="3" fill="#2480B5"/>
+          <rect x="218" y="208" width="160" height="3" fill="#2E7D5B"/>
+          <rect x="218" y="222" width="20" height="3" fill="#A33B2A"/>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 04</span><span class="red-dot"></span></div>
+      <div class="nm">Quiz · question &amp; score</div>
+      <div class="desc">Single-question quiz flow and the post-submission breakdown by topic, with misses to drill.</div>
+      <div class="ft"><span>Mobile pair + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="flashcard.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="60" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="74" y="36" width="50" height="250" fill="#EEF1F4"/>
+          <rect x="124" y="50" width="200" height="180" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="124" y="50" width="200" height="3" fill="#D7263D"/>
+          <text x="134" y="74" font-family="IBM Plex Mono" font-weight="600" font-size="8" fill="#D7263D" letter-spacing="1.5">QUESTION</text>
+          <text x="134" y="98" font-family="Manrope" font-weight="800" font-size="14" fill="#0E1A2E">What does</text>
+          <text x="134" y="114" font-family="Manrope" font-weight="800" font-size="14" fill="#0E1A2E">tightening contour</text>
+          <text x="134" y="130" font-family="Manrope" font-weight="800" font-size="14" fill="#0E1A2E">spacing tell you?</text>
+          <line x1="134" y1="144" x2="314" y2="144" stroke="#D0D7E0"/>
+          <text x="134" y="160" font-family="IBM Plex Mono" font-weight="600" font-size="8" fill="#8693A6" letter-spacing="1.5">ANSWER</text>
+          <text x="134" y="178" font-family="Manrope" font-size="10" fill="#3F4D63">That aspect is the</text>
+          <text x="134" y="192" font-family="Manrope" font-size="10" fill="#3F4D63">steepest line from</text>
+          <text x="134" y="206" font-family="Manrope" font-size="10" fill="#3F4D63">the summit…</text>
+          <rect x="124" y="240" width="46" height="34" fill="#FFFFFF" stroke="#A33B2A"/>
+          <rect x="176" y="240" width="46" height="34" fill="#FFFFFF" stroke="#C58B2C"/>
+          <rect x="228" y="240" width="46" height="34" fill="#FFFFFF" stroke="#2E7D5B"/>
+          <rect x="280" y="240" width="46" height="34" fill="#FFFFFF" stroke="#2480B5"/>
+          <text x="147" y="260" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="9" fill="#A33B2A">Again</text>
+          <text x="199" y="260" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="9" fill="#C58B2C">Hard</text>
+          <text x="251" y="260" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="9" fill="#2E7D5B">Good</text>
+          <text x="303" y="260" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="9" fill="#2480B5">Easy</text>
+          <rect x="334" y="36" width="52" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 05</span><span class="red-dot"></span></div>
+      <div class="nm">Flashcard</div>
+      <div class="desc">SRS card review — question, reveal, four-button recall rating with intervals and keyboard shortcuts.</div>
+      <div class="ft"><span>Mobile + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="dashboard.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="80" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="108" y="68" font-family="Manrope" font-weight="800" font-size="20" fill="#0E1A2E">Your pathway</text>
+          <rect x="100" y="84" width="68" height="62" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="110" y="118" font-family="Manrope" font-weight="800" font-size="26" fill="#0E1A2E" letter-spacing="-1.5">28<tspan font-size="14" fill="#8693A6">%</tspan></text>
+          <text x="110" y="135" font-family="IBM Plex Mono" font-size="7" fill="#2E7D5B" letter-spacing="0.5">↑ 4% WEEK</text>
+          <rect x="172" y="84" width="68" height="62" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="182" y="118" font-family="Manrope" font-weight="800" font-size="26" fill="#0E1A2E" letter-spacing="-1.5">24</text>
+          <text x="182" y="135" font-family="IBM Plex Mono" font-size="7" fill="#D7263D" letter-spacing="0.5">CARDS DUE</text>
+          <rect x="244" y="84" width="68" height="62" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="254" y="118" font-family="Manrope" font-weight="800" font-size="26" fill="#0E1A2E" letter-spacing="-1.5">14</text>
+          <text x="254" y="135" font-family="IBM Plex Mono" font-size="7" fill="#8693A6" letter-spacing="0.5">DAY STREAK</text>
+          <rect x="316" y="84" width="70" height="62" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="326" y="118" font-family="Manrope" font-weight="800" font-size="26" fill="#0E1A2E" letter-spacing="-1.5">82<tspan font-size="14" fill="#8693A6">%</tspan></text>
+          <text x="326" y="135" font-family="IBM Plex Mono" font-size="7" fill="#2E7D5B" letter-spacing="0.5">L1 READY ✓</text>
+
+          <g transform="translate(100 158)">
+            <rect width="13" height="13" fill="#D0D7E0"/>
+            <rect x="16" y="0" width="13" height="13" fill="#2480B5" opacity=".4"/>
+            <rect x="32" y="0" width="13" height="13" fill="#2480B5" opacity=".6"/>
+            <rect x="48" y="0" width="13" height="13" fill="#2480B5" opacity=".4"/>
+            <rect x="64" y="0" width="13" height="13" fill="#2480B5" opacity=".8"/>
+            <rect x="80" y="0" width="13" height="13" fill="#2480B5"/>
+            <rect x="96" y="0" width="13" height="13" fill="#2480B5"/>
+            <rect x="112" y="0" width="13" height="13" fill="#2480B5" opacity=".6"/>
+            <rect x="128" y="0" width="13" height="13" fill="#2480B5" opacity=".8"/>
+            <rect x="144" y="0" width="13" height="13" fill="#2480B5"/>
+            <rect x="160" y="0" width="13" height="13" fill="#2480B5" opacity=".4"/>
+            <rect x="176" y="0" width="13" height="13" fill="#D0D7E0"/>
+            <rect x="192" y="0" width="13" height="13" fill="#2480B5" opacity=".8"/>
+            <rect x="208" y="0" width="13" height="13" fill="#2480B5"/>
+            <rect x="224" y="0" width="13" height="13" fill="#2480B5"/>
+            <rect x="240" y="0" width="13" height="13" fill="#2480B5" opacity=".4"/>
+            <rect x="256" y="0" width="13" height="13" fill="#2480B5" opacity=".6"/>
+            <rect x="272" y="0" width="13" height="13" fill="#2480B5"/>
+          </g>
+
+          <rect x="100" y="190" width="286" height="34" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="100" y="228" width="286" height="34" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="112" y="212" font-family="Manrope" font-weight="700" font-size="11" fill="#0E1A2E">Map literacy</text>
+          <rect x="290" y="207" width="80" height="3" fill="#D0D7E0"/>
+          <rect x="290" y="207" width="50" height="3" fill="#D7263D"/>
+          <text x="112" y="250" font-family="Manrope" font-weight="700" font-size="11" fill="#0E1A2E">Terrain interpretation</text>
+          <rect x="290" y="245" width="80" height="3" fill="#D0D7E0"/>
+          <rect x="290" y="245" width="18" height="3" fill="#2480B5"/>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 06</span><span class="red-dot"></span></div>
+      <div class="nm">Progress dashboard</div>
+      <div class="desc">Pathway %, per-level breakdown, readiness checks, 6-month study heatmap. Where the learner stands.</div>
+      <div class="ft"><span>Mobile + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="settings.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="80" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="108" y="66" font-family="Manrope" font-weight="800" font-size="20" fill="#0E1A2E">Settings</text>
+          <rect x="100" y="78" width="286" height="62" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="110" y="98" font-family="IBM Plex Mono" font-weight="600" font-size="8" fill="#8693A6" letter-spacing="1.5">STUDY</text>
+          <text x="110" y="118" font-family="Manrope" font-weight="700" font-size="11" fill="#0E1A2E">Daily review goal</text>
+          <rect x="280" y="110" width="80" height="20" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="280" y="110" width="27" height="20" fill="#FFFFFF" stroke="#0E1A2E"/>
+          <rect x="307" y="110" width="27" height="20" fill="#0E1A2E"/>
+          <rect x="334" y="110" width="26" height="20" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="316" y="124" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="9" fill="#FFFFFF">20</text>
+
+          <rect x="100" y="146" width="286" height="62" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="110" y="166" font-family="IBM Plex Mono" font-weight="600" font-size="8" fill="#8693A6" letter-spacing="1.5">NOTIFICATIONS</text>
+          <text x="110" y="186" font-family="Manrope" font-weight="700" font-size="11" fill="#0E1A2E">Daily reminder</text>
+          <rect x="340" y="180" width="32" height="18" rx="9" fill="#D7263D"/>
+          <circle cx="362" cy="189" r="6" fill="#FFFFFF"/>
+
+          <rect x="100" y="214" width="286" height="72" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="110" y="234" font-family="IBM Plex Mono" font-weight="600" font-size="8" fill="#8693A6" letter-spacing="1.5">OFFLINE &amp; STORAGE</text>
+          <rect x="110" y="246" width="266" height="6" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="111" y="247" width="128" height="4" fill="#2480B5"/>
+          <text x="110" y="270" font-family="IBM Plex Mono" font-size="7" fill="#8693A6" letter-spacing="0.5">124 MB · 1.7 GB FREE</text>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 07</span><span class="red-dot"></span></div>
+      <div class="nm">Settings</div>
+      <div class="desc">Study cadence, notifications, offline storage, appearance, danger zone, version footer.</div>
+      <div class="ft"><span>Mobile + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="onboarding.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="186" height="250" fill="#0E1A2E"/>
+          <g stroke="rgba(255,255,255,.08)" stroke-width="1">
+            <path d="M14 80h186M14 130h186M14 180h186M14 230h186M64 36v250M124 36v250M174 36v250"/>
+          </g>
+          <rect x="26" y="50" width="18" height="18" fill="#FFFFFF"/>
+          <text x="50" y="63" font-family="Manrope" font-weight="800" font-size="9" fill="#FFFFFF">Alpine Map Training</text>
+          <text x="26" y="118" font-family="IBM Plex Mono" font-weight="600" font-size="7" fill="#D7263D" letter-spacing="1.5">STEP 2 / 3</text>
+          <text x="26" y="160" font-family="Manrope" font-weight="800" font-size="16" fill="#FFFFFF" letter-spacing="-0.5">Two minutes</text>
+          <text x="26" y="176" font-family="Manrope" font-weight="800" font-size="16" fill="#FFFFFF" letter-spacing="-0.5">between lifts.</text>
+          <text x="26" y="192" font-family="Manrope" font-weight="800" font-size="16" fill="#D7263D" letter-spacing="-0.5">One card a ride.</text>
+
+          <rect x="206" y="36" width="180" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="218" y="56" font-family="IBM Plex Mono" font-weight="600" font-size="7" fill="#8693A6" letter-spacing="1.5">STEP 2 / 3</text>
+          <text x="218" y="82" font-family="Manrope" font-weight="800" font-size="15" fill="#0E1A2E" letter-spacing="-0.5">Starting level</text>
+          <rect x="218" y="94" width="50" height="54" fill="#FFFFFF" stroke="#0E1A2E" stroke-width="2"/>
+          <rect x="218" y="94" width="50" height="3" fill="#D7263D"/>
+          <text x="224" y="114" font-family="IBM Plex Mono" font-size="6" fill="#8693A6">FOUNDATION</text>
+          <text x="224" y="128" font-family="Manrope" font-weight="800" font-size="18" fill="#D7263D" letter-spacing="-0.5">01</text>
+          <text x="224" y="140" font-family="Manrope" font-weight="700" font-size="7" fill="#0E1A2E">Map literacy</text>
+          <rect x="273" y="94" width="50" height="54" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="279" y="114" font-family="IBM Plex Mono" font-size="6" fill="#8693A6">BUILD</text>
+          <text x="279" y="128" font-family="Manrope" font-weight="800" font-size="18" fill="#B5BFCE" letter-spacing="-0.5">02</text>
+          <text x="279" y="140" font-family="Manrope" font-weight="700" font-size="7" fill="#3F4D63">Terrain</text>
+          <rect x="328" y="94" width="50" height="54" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="334" y="114" font-family="IBM Plex Mono" font-size="6" fill="#8693A6">APPLY</text>
+          <text x="334" y="128" font-family="Manrope" font-weight="800" font-size="18" fill="#B5BFCE" letter-spacing="-0.5">03</text>
+          <text x="334" y="140" font-family="Manrope" font-weight="700" font-size="7" fill="#3F4D63">Nav</text>
+          <text x="218" y="170" font-family="Manrope" font-weight="700" font-size="9" fill="#0E1A2E">Daily review goal</text>
+          <g>
+            <rect x="218" y="178" width="22" height="16" fill="#FFFFFF" stroke="#D0D7E0"/>
+            <rect x="242" y="178" width="22" height="16" fill="#FFFFFF" stroke="#D0D7E0"/>
+            <rect x="266" y="178" width="22" height="16" fill="#FFFFFF" stroke="#D0D7E0"/>
+            <rect x="290" y="178" width="22" height="16" fill="#0E1A2E"/>
+            <rect x="314" y="178" width="22" height="16" fill="#FFFFFF" stroke="#D0D7E0"/>
+            <rect x="338" y="178" width="22" height="16" fill="#FFFFFF" stroke="#D0D7E0"/>
+          </g>
+          <text x="301" y="189" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="7" fill="#FFFFFF">20</text>
+          <rect x="218" y="242" width="100" height="22" fill="#D7263D"/>
+          <text x="268" y="257" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="8" fill="#FFFFFF">Begin pathway →</text>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 08</span><span class="red-dot"></span></div>
+      <div class="nm">Onboarding</div>
+      <div class="desc">First-run flow — three steps. Welcome, choose pathway, set daily cadence. The way in.</div>
+      <div class="ft"><span>Mobile trio + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="level-complete.html">
+      <div class="pv">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#EEF1F4"/>
+          <rect x="14" y="14" width="372" height="22" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="14" y="36" width="80" height="250" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <rect x="94" y="36" width="292" height="110" fill="#0E1A2E"/>
+          <g stroke="rgba(255,255,255,.05)" stroke-width="1">
+            <path d="M94 70h292M94 110h292"/>
+            <path d="M150 36v110M210 36v110M270 36v110M330 36v110"/>
+          </g>
+          <text x="108" y="54" font-family="IBM Plex Mono" font-weight="600" font-size="7" fill="#D7263D" letter-spacing="1.5">MILESTONE · L1</text>
+          <text x="108" y="128" font-family="Manrope" font-weight="800" font-size="68" fill="#FFFFFF" letter-spacing="-3">01</text>
+          <rect x="108" y="112" width="60" height="4" fill="#D7263D" transform="rotate(-6 138 114)"/>
+          <text x="190" y="96" font-family="Manrope" font-weight="800" font-size="16" fill="#FFFFFF" letter-spacing="-0.4">Level complete.</text>
+          <text x="190" y="110" font-family="Manrope" font-weight="800" font-size="16" fill="#FFFFFF" letter-spacing="-0.4">Map literacy.</text>
+          <rect x="190" y="118" width="110" height="14" fill="rgba(215,38,61,.18)" stroke="#D7263D"/>
+          <text x="196" y="128" font-family="IBM Plex Mono" font-weight="700" font-size="6" fill="#FF8A95" letter-spacing="1.5">✓ ISTD-FOUNDATION CLEARED</text>
+
+          <rect x="94" y="146" width="73" height="54" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="104" y="166" font-family="IBM Plex Mono" font-size="6" fill="#8693A6" letter-spacing="1">MOCK QUIZ</text>
+          <text x="104" y="188" font-family="Manrope" font-weight="800" font-size="24" fill="#0E1A2E" letter-spacing="-1.5">88<tspan font-size="12" fill="#8693A6">%</tspan></text>
+          <rect x="167" y="146" width="73" height="54" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="177" y="166" font-family="IBM Plex Mono" font-size="6" fill="#8693A6" letter-spacing="1">MASTERED</text>
+          <text x="177" y="188" font-family="Manrope" font-weight="800" font-size="24" fill="#0E1A2E" letter-spacing="-1.5">48</text>
+          <rect x="240" y="146" width="73" height="54" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="250" y="166" font-family="IBM Plex Mono" font-size="6" fill="#8693A6" letter-spacing="1">TIME</text>
+          <text x="250" y="188" font-family="Manrope" font-weight="800" font-size="24" fill="#0E1A2E" letter-spacing="-1.5">10h</text>
+          <rect x="313" y="146" width="73" height="54" fill="#FFFFFF" stroke="#D0D7E0"/>
+          <text x="323" y="166" font-family="IBM Plex Mono" font-size="6" fill="#8693A6" letter-spacing="1">PAGES</text>
+          <text x="323" y="188" font-family="Manrope" font-weight="800" font-size="24" fill="#0E1A2E" letter-spacing="-1.5">18</text>
+
+          <rect x="94" y="210" width="292" height="76" fill="#F7F9FB" stroke="#D0D7E0"/>
+          <text x="106" y="228" font-family="IBM Plex Mono" font-size="6" fill="#8693A6" letter-spacing="1.5">UP NEXT · UNLOCKED</text>
+          <text x="106" y="250" font-family="Manrope" font-weight="800" font-size="18" fill="#2480B5" letter-spacing="-0.5">02 · Terrain reading</text>
+          <text x="106" y="264" font-family="Manrope" font-size="8" fill="#3F4D63">Summit shapes, ridges, re-entrants…</text>
+          <rect x="272" y="250" width="100" height="22" fill="#2480B5"/>
+          <text x="322" y="265" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="8" fill="#FFFFFF">Begin Level 2 →</text>
+        </svg>
+      </div>
+      <div class="num"><span>Screen 09</span><span class="red-dot"></span></div>
+      <div class="nm">Level complete</div>
+      <div class="desc">The milestone screen — earned by clearing all four Level 1 readiness criteria. Recaps the score, teases Level 2.</div>
+      <div class="ft"><span>Mobile + Desktop</span><span class="arr">Open →</span></div>
+    </a>
+
+    <a class="screen-card" href="../sector-explore.html" style="background:var(--ink);color:var(--paper-3);border-color:var(--ink);">
+      <div class="pv" style="background:transparent;border-color:rgba(255,255,255,.18);">
+        <svg viewBox="0 0 400 300">
+          <rect width="400" height="300" fill="#0E1A2E"/>
+          <text x="200" y="80" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="36" fill="#FFFFFF" letter-spacing="-1">A</text>
+          <text x="200" y="110" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="36" fill="#D7263D" letter-spacing="-1">B</text>
+          <text x="200" y="140" text-anchor="middle" font-family="Manrope" font-weight="800" font-size="36" fill="#FFFFFF" letter-spacing="-1">C</text>
+          <text x="200" y="180" text-anchor="middle" font-family="IBM Plex Mono" font-weight="600" font-size="9" fill="rgba(255,255,255,.5)" letter-spacing="2">3 SECTOR DIRECTIONS</text>
+          <line x1="80" y1="210" x2="320" y2="210" stroke="rgba(255,255,255,.2)"/>
+          <text x="200" y="240" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="13" fill="rgba(255,255,255,.85)">Decision history</text>
+          <text x="200" y="258" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="rgba(255,255,255,.45)" letter-spacing="0.5">B · GLACIER LAB · LOCKED</text>
+        </svg>
+      </div>
+      <div class="num" style="color:rgba(255,255,255,.5);"><span>Reference</span><span class="red-dot"></span></div>
+      <div class="nm" style="color:var(--paper-3);">Original exploration</div>
+      <div class="desc" style="color:rgba(255,255,255,.7);">The three-direction sector benchmark that led us here. Useful as a reminder of why B was chosen.</div>
+      <div class="ft" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.5);"><span>A / B / C</span><span class="arr" style="color:var(--red);">Open →</span></div>
+    </a>
+
+  </div>
+
+  <div class="changelog">
+    <h2>Changelog</h2>
+    <ul>
+      <li><time>13 May 2026</time><span><b>Hero photography dropped in.</b> Five real photos placed: home (mobile + desktop), onboarding (mobile welcome + desktop brand panel), level-complete ("Up next" band). Files in <span class="mono">design/glacier/img/</span>. Sixth shot (study tabletop) held in reserve.</span></li>
+      <li><time>13 May 2026</time><span><b>Two new screens.</b> <span class="mono">onboarding.html</span> — three-step first-run flow (welcome, pathway, cadence), mobile trio + desktop composed. <span class="mono">level-complete.html</span> — Level 1 milestone moment, mobile + desktop. Index bumped to 09 screens; std-nav extended across all existing screens.</span></li>
+      <li><time>13 May 2026</time><span><b>Direction 02 · Glacier Lab</b> locked. All seven core screens redesigned in the new system. Tokens at <span class="mono">design/glacier/tokens.css</span>, shared primitives at <span class="mono">styles.css</span>. Hero photo placeholders marked for real photography drop-in. Topographic contour motif retained, re-toned in the cool palette.</span></li>
+      <li><time>13 May 2026</time><span><b>Sector benchmark</b> across BASI, PSIA-AASI, CSIA, NZSIA, APSI, ENSA, Swiss Snowsports, ISIA. Three directions explored (A Backcountry Tech, B Glacier Lab, C Patch &amp; Pin). B selected for institutional credibility + technical clarity.</span></li>
+      <li><time>Earlier</time><span>Direction 01 · Carta (warm cream / Fraunces / contour brown) shipped at <span class="mono">design/home.html</span> and friends. Retained for reference.</span></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
