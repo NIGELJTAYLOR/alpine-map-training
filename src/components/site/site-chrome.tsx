@@ -13,6 +13,7 @@ import {
   FileText,
   BookA,
   ArrowLeft,
+  Compass,
 } from "lucide-react";
 import { Wordmark } from "@/components/site/carta/wordmark";
 import { useProgress } from "@/lib/progress/provider";
@@ -45,6 +46,7 @@ const SIDEBAR_HOME: ReadonlyArray<{
   icon: React.ComponentType<{ className?: string }>;
 }> = [
   { href: "/", label: "Overview", icon: HomeIcon },
+  { href: "/how-to-use", label: "How to use", icon: Compass },
   { href: "/progress", label: "Progress", icon: BarChart3 },
 ];
 
