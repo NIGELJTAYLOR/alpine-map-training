@@ -53,7 +53,12 @@ export function ExerciseField({ n }: ExerciseFieldProps) {
   const slotEntries = Object.entries(inputs)
     .filter(([k]) => k.startsWith(slotPrefix))
     .map(([k, v]) => {
-      const q = parseInt(k.slice(slotPrefix.length), 10);
+      // Only "ex-N-qK" — strip the prefix and verify the rest is just digits.
+      // This excludes "ex-N-qK-img" (sketch image dataURLs) and any other
+      // future per-slot adjunct data we add. We never want such payloads
+      // included in the AI grading prompt.
+      const rest = k.slice(slotPrefix.length);
+      const q = /^\d+$/.test(rest) ? parseInt(rest, 10) : NaN;
       return { q, value: v };
     })
     .filter((e) => Number.isFinite(e.q))

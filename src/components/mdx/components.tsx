@@ -5,6 +5,7 @@ import { SelfCheckCheckbox } from "@/components/site/self-check-checkbox";
 import { DiagramCard } from "@/components/site/diagram-card";
 import { AnswerSlot } from "@/components/site/answer-slot";
 import { ExerciseField } from "@/components/site/exercise-field";
+import { SketchSlot } from "@/components/site/sketch-slot";
 import { getDiagramByRef } from "@/lib/content";
 
 interface DiagramTagProps {
@@ -19,9 +20,12 @@ export const mdxComponents = {
   // Inserted by the remark-exercise-fields velite plugin.
   //   <AnswerSlot ex q size />  — one typeable answer field, placed inline
   //     wherever the author wrote `____` in the source MDX.
+  //   <SketchSlot ex q widthCm heightCm />  — canvas + description for
+  //     `[Sketch space - approximately N cm by M cm]` markers.
   //   <ExerciseField n />       — Grade with AI button + grade panel at the
   //     end of each Exercise N section. Reads every `ex-{n}-q*` slot value.
   AnswerSlot,
+  SketchSlot,
   ExerciseField,
   Diagram: ({ fig, showCaption = true }: DiagramTagProps) => {
     const diagram = getDiagramByRef(fig);

@@ -104,6 +104,46 @@ function makeAnswerSlotInline(
   };
 }
 
+function makeSketchSlot(
+  ex: number,
+  q: number,
+  widthCm: number,
+  heightCm: number,
+): MdxJsxFlowElement {
+  return {
+    type: "mdxJsxFlowElement",
+    name: "SketchSlot",
+    attributes: [
+      { type: "mdxJsxAttribute", name: "ex", value: String(ex) },
+      { type: "mdxJsxAttribute", name: "q", value: String(q) },
+      { type: "mdxJsxAttribute", name: "widthCm", value: String(widthCm) },
+      { type: "mdxJsxAttribute", name: "heightCm", value: String(heightCm) },
+    ],
+    children: [],
+  };
+}
+
+/**
+ * Look for "[Sketch space - approximately N cm by M cm]" inside a text node.
+ * If found, return the parsed dimensions. Tolerates minor variants:
+ *   - "approximately" / "approx" / nothing
+ *   - "cm by" / "cm x"
+ *   - decimal dimensions
+ * Returns null if not matched.
+ */
+function parseSketchMarker(
+  value: string,
+): { widthCm: number; heightCm: number } | null {
+  const re =
+    /\[\s*Sketch space\s*[-—]?\s*(?:approximately|approx\.?)?\s*([0-9.]+)\s*cm\s*(?:by|x|×)\s*([0-9.]+)\s*cm[^\]]*\]/i;
+  const m = re.exec(value);
+  if (!m) return null;
+  const w = parseFloat(m[1]);
+  const h = parseFloat(m[2]);
+  if (!Number.isFinite(w) || !Number.isFinite(h)) return null;
+  return { widthCm: w, heightCm: h };
+}
+
 /**
  * Walk every node in `nodes`, replacing answer-slot patterns as we go.
  * Returns the new node list and the next slot index. Recurses into any
@@ -123,6 +163,31 @@ function rewriteSubtree(
       q += 1;
       result.push(makeAnswerSlotBlock(ex, q, "long") as unknown as RootContent);
       continue;
+    }
+
+    // ----- "[Sketch space - approximately N cm by M cm]" marker -----
+    // Detected at the paragraph level (a paragraph containing only this
+    // marker text). Replace the whole paragraph with a block SketchSlot.
+    if (
+      node.type === "paragraph" &&
+      Array.isArray((node as { children?: unknown }).children)
+    ) {
+      const para = node as { children: { type: string; value?: string }[] };
+      // Collect the paragraph's combined text content
+      let combined = "";
+      for (const child of para.children) {
+        if (child.type === "text" && typeof child.value === "string") {
+          combined += child.value;
+        }
+      }
+      const sketch = parseSketchMarker(combined);
+      if (sketch && /^\s*\[\s*Sketch space/i.test(combined)) {
+        q += 1;
+        result.push(
+          makeSketchSlot(ex, q, sketch.widthCm, sketch.heightCm) as unknown as RootContent,
+        );
+        continue;
+      }
     }
 
     // ----- Inline underscore runs inside a text node -----
