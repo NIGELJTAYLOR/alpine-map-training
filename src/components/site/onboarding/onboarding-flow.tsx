@@ -90,7 +90,7 @@ export function OnboardingFlow() {
           >
             <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-b from-ink/40 via-transparent to-ink/55" />
             <div className="absolute left-[22px] top-[22px] z-10 md:left-14 md:top-14">
-              <Wordmark href="" />
+              <Wordmark href="" variant="light" emblemSize={44} />
             </div>
           </div>
 
