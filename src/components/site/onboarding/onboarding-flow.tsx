@@ -97,12 +97,15 @@ export function OnboardingFlow() {
           <div className="flex flex-1 flex-col gap-[18px] px-[22px] py-7 md:mx-auto md:max-w-[560px] md:px-0 md:py-10">
             <StepDots current={1} />
             <h1 className="font-display text-[34px] font-extrabold leading-[1.02] tracking-[-0.028em] text-ink md:text-[44px]">
-              Read the <span className="text-red">cool</span> mountain.
+              Ready to <span className="text-red">read the mountain</span>?
             </h1>
             <p className="text-[14px] leading-[1.55] text-ink-2 md:text-[15px]">
-              Sixty-six workbook pages and one hundred and sixty flashcards,
-              tuned for BASI Alpine L4 ISTD navigation. Works offline in the
-              hut and on the lift.
+              Your map training starts here. Sixty-six in-app workbook pages
+              and one hundred and sixty flashcards, tuned for the BASI
+              Alpine L4 ISTD navigation syllabus and the ISIA Card. Works
+              offline in the hut and on the lift. Also includes a full
+              online and offline companion workbook of over four hundred
+              pages, for when you need inspiration or reference.
             </p>
             <div className="grid grid-cols-3 gap-px border border-rule bg-rule">
               <StatCell value="66" label="Pages" />

@@ -14,10 +14,12 @@ import {
   BookA,
   ArrowLeft,
   Compass,
+  BookMarked,
 } from "lucide-react";
 import { Wordmark } from "@/components/site/carta/wordmark";
 import { useProgress } from "@/lib/progress/provider";
 import { FLASHCARDS } from "@/data/flashcards.generated";
+import { BRAND } from "@/config/brand";
 
 interface SiteChromeProps {
   children: React.ReactNode;
@@ -37,6 +39,7 @@ const SIDEBAR_REFERENCE: ReadonlyArray<{
   { href: "/flashcards", label: "Flashcards", icon: Layers },
   { href: "/diagrams", label: "Diagrams", icon: MapIcon },
   { href: "/templates", label: "Templates", icon: FileText },
+  { href: "/companion-manual", label: "Companion manual", icon: BookMarked },
   { href: "/glossary", label: "Glossary", icon: BookA },
 ];
 
@@ -47,6 +50,7 @@ const SIDEBAR_HOME: ReadonlyArray<{
 }> = [
   { href: "/", label: "Overview", icon: HomeIcon },
   { href: "/how-to-use", label: "How to use", icon: Compass },
+  { href: "/companion-manual", label: "Companion manual", icon: BookMarked },
   { href: "/progress", label: "Progress", icon: BarChart3 },
 ];
 
@@ -66,7 +70,7 @@ const MOBILE_TABS: ReadonlyArray<{
   {
     href: "/levels/1",
     match: (p) => p.startsWith("/levels"),
-    label: "Workbook",
+    label: "Course",
     icon: BookOpen,
   },
   {
@@ -196,6 +200,12 @@ export function SiteChrome({ children }: SiteChromeProps) {
         >
           <div className="px-1.5">
             <Wordmark href="/" />
+            <p
+              className="mt-1.5 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-ink-3"
+              aria-label={`App version ${BRAND.version}`}
+            >
+              v{BRAND.version}
+            </p>
             {trainerOn ? (
               <Link
                 href="/settings"
@@ -221,7 +231,17 @@ export function SiteChrome({ children }: SiteChromeProps) {
             ))}
           </SidebarSection>
 
-          <SidebarSection label="Workbook">
+          <SidebarSection label="Course">
+            <SidebarLink
+              href="/companion-manual"
+              active={
+                pathname === "/companion-manual" ||
+                pathname.startsWith("/companion-manual/")
+              }
+              icon={<BookMarked className="h-[14px] w-[14px]" aria-hidden />}
+            >
+              Companion manual
+            </SidebarLink>
             {SIDEBAR_LEVELS.map((lv) => {
               const active = pathname.startsWith(lv.href);
               return (

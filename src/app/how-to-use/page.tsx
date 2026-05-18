@@ -16,9 +16,9 @@ export default function HowToUsePage() {
           How to use this app
         </h1>
         <p className="max-w-[62ch] text-[14px] leading-[1.55] text-ink-2 md:text-[15px]">
-          A short guide to getting the most out of the workbook. The app is
-          designed to be self-guiding, so think of this as a quick orientation
-          rather than a manual — read it once, then dive in.
+          A short guide to getting the most out of the app. It is designed
+          to be self-guiding, so think of this as a quick orientation
+          rather than a manual: read it once, then dive in.
         </p>
       </header>
 
@@ -38,14 +38,26 @@ export default function HowToUsePage() {
         {/* ===== Welcome ===== */}
         <section className="mb-10">
           <h2 className="mb-3 font-display text-[22px] font-extrabold tracking-[-0.018em] text-ink md:text-[26px]">
-            Welcome to the workbook
+            Welcome to the Alpine Map Training app
           </h2>
+          <p className="mb-3 max-w-[62ch] text-[15px] leading-[1.6] text-ink-2 md:text-[16px]">
+            The PerformOS Alpine Map Training app is a digital learning
+            companion built to help you reach the standard required for
+            the BASI Alpine Level 4 ISTD and the ISIA Card. The ISIA Card
+            is the international equivalent of the BASI Alpine Level 4.
+            Map reading is an essential skill at this level for ski
+            instructing and guiding, and the course takes a beginner or
+            novice map reader through to the standard those qualifications
+            expect.
+          </p>
           <p className="max-w-[62ch] text-[15px] leading-[1.6] text-ink-2 md:text-[16px]">
-            {BRAND.productDescription} Sixty-six pages of structured
-            navigation practice, one hundred and sixty flashcards, and two
-            graded quizzes. Designed to work in the hut, on the lift, and
-            anywhere else you have a few minutes to study — once the app is
-            installed it works offline, and every answer you type stays on
+            Inside you&rsquo;ll find sixty-six lesson pages, one hundred
+            and sixty flashcards, and two graded quizzes. A companion
+            workbook of over four hundred pages is bundled in for
+            reference, available both as an online edition you can read in
+            your browser and a downloadable PDF. Once installed the app
+            itself works offline, in the hut, on the lift, or anywhere you
+            have a few minutes to study. Every answer you type stays on
             your device until you choose to share it.
           </p>
         </section>
@@ -56,8 +68,9 @@ export default function HowToUsePage() {
             What you&rsquo;re working towards
           </h2>
           <p className="mb-4 max-w-[62ch] text-[14px] leading-[1.6] text-ink-2 md:text-[15px]">
-            The course is built around the BASI Alpine Level 4 ISTD navigation
-            syllabus, organised as a three-level pathway:
+            The course is built around the BASI Alpine Level 4 ISTD and
+            ISIA Card navigation syllabus, organised as a three-level
+            pathway:
           </p>
           <div className="grid gap-3 md:grid-cols-3">
             <div className="border border-rule bg-paper-3 p-4">
@@ -120,10 +133,11 @@ export default function HowToUsePage() {
               in progress amber.
             </Step>
             <Step n={2} title="Read the page, then answer the exercises">
-              Each workbook page has a short reading section followed by
-              numbered exercises. Type your answers directly into the inline
-              fields — your work auto-saves as you type. Use the self-check
-              checkboxes to mark off the page&rsquo;s learning aims.
+              Each lesson page has a short reading section followed by
+              numbered exercises. Type your answers directly into the
+              inline fields and your work auto-saves as you type. Use the
+              self-check checkboxes to mark off the page&rsquo;s learning
+              aims.
             </Step>
             <Step n={3} title="Grade with AI">
               At the bottom of each exercise, click{" "}
@@ -158,32 +172,42 @@ export default function HowToUsePage() {
           </h2>
           <ul className="space-y-2 text-[14px] leading-[1.6] text-ink-2 md:text-[15px]">
             <li>
-              <strong className="text-ink">Workbook</strong> &mdash; the three
-              levels in the sidebar. This is the main course content.
+              <strong className="text-ink">Course</strong>: the three
+              levels in the sidebar. This is the main learning content.
             </li>
             <li>
-              <strong className="text-ink">Flashcards</strong> &mdash; 160
+              <strong className="text-ink">Flashcards</strong>: 160
               spaced-repetition cards covering the whole syllabus. Useful
               between sessions to keep concepts fresh.
             </li>
             <li>
-              <strong className="text-ink">Diagrams</strong> &mdash; every
-              visual reference: schematic teaching diagrams, quiz map
+              <strong className="text-ink">Diagrams</strong>: every visual
+              reference, including schematic teaching diagrams, quiz map
               extracts, and the full Swisstopo and IGN source maps used
               throughout the course. All zoomable.
             </li>
             <li>
-              <strong className="text-ink">Templates</strong> &mdash;
-              printable route cards and pro-formas.
+              <strong className="text-ink">Templates</strong>: printable
+              route cards and pro-formas.
             </li>
             <li>
-              <strong className="text-ink">Glossary</strong> &mdash; quick
-              definitions for the technical vocabulary used in the workbook.
+              <strong className="text-ink">Glossary</strong>: quick
+              definitions for the technical vocabulary used throughout the
+              course.
             </li>
             <li>
-              <strong className="text-ink">Settings</strong> &mdash; your
-              name, email, trainer mode, &ldquo;Start fresh / new user&rdquo;
+              <strong className="text-ink">Settings</strong>: your name,
+              email, trainer mode, &ldquo;Start fresh / new user&rdquo;
               for sharing a device, and storage info.
+            </li>
+            <li>
+              <strong className="text-ink">Companion manual</strong>: a
+              four-hundred-page workbook PDF and online edition that
+              mirrors and expands on the course. Use it as a deeper
+              reference, an alternative angle on a topic, or a printable
+              copy to mark up by hand. Read it online in your browser
+              (works offline once you have opened it) or download the PDF
+              for a permanent copy.
             </li>
           </ul>
         </section>
@@ -195,11 +219,11 @@ export default function HowToUsePage() {
           </h2>
           <ul className="space-y-2 text-[14px] leading-[1.6] text-ink-2 md:text-[15px]">
             <li>
-              <strong className="text-ink">Install it as an app.</strong> The
-              workbook is a Progressive Web App. On a phone, use your
-              browser&rsquo;s &ldquo;Add to Home Screen&rdquo; option; on a
-              laptop, look for the install icon in your address bar. Once
-              installed it works offline.
+              <strong className="text-ink">Install it as an app.</strong>{" "}
+              This is a Progressive Web App. On a phone, use your
+              browser&rsquo;s &ldquo;Add to Home Screen&rdquo; option; on
+              a laptop, look for the install icon in your address bar.
+              Once installed it works offline.
             </li>
             <li>
               <strong className="text-ink">Your work stays on your device.</strong>{" "}
@@ -209,10 +233,10 @@ export default function HowToUsePage() {
               fresh; if you want continuity, export and import.
             </li>
             <li>
-              <strong className="text-ink">Trainer mode</strong> in Settings
-              auto-expands every page&rsquo;s answer key and surfaces the
-              trainer notes inline &mdash; useful when reviewing a candidate
-              with you.
+              <strong className="text-ink">Trainer mode</strong> in
+              Settings auto-expands every page&rsquo;s answer key and
+              surfaces the trainer notes inline. Useful when reviewing a
+              candidate with you.
             </li>
             <li>
               <strong className="text-ink">Use the diagrams page</strong> for
@@ -235,7 +259,7 @@ export default function HowToUsePage() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${BRAND.authorEmail}?subject=${encodeURIComponent(
-                BRAND.productName + " — feedback",
+                BRAND.productName + ": feedback",
               )}`}
               className="inline-flex items-center rounded-[2px] border border-rule bg-paper-2 px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-2 hover:border-ink hover:text-ink"
             >

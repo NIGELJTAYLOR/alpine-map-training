@@ -1,0 +1,119 @@
+/* =========================================================================
+   Carta · Glacier Lab — Design tokens
+   Alpine Map Training · PerformOS · Direction 02 (locked)
+   Cool light · Navy ink · Alpine red accent · Glacier blue secondary
+   ========================================================================= */
+
+:root {
+  /* ---------- Palette ---------- */
+  /* Paper (backgrounds, surfaces) */
+  --paper:      #EEF1F4;   /* pale glacier-grey — page background */
+  --paper-2:    #E2E7EC;   /* deeper grey — browser chrome, recessed surfaces */
+  --paper-3:    #FFFFFF;   /* card / list-row surface */
+  --paper-4:    #F7F9FB;   /* sidebar tint */
+
+  /* Ink (text & primary action) */
+  --ink:        #0E1A2E;   /* deep navy — body, primary action fill */
+  --ink-2:      #3F4D63;   /* secondary ink — body copy on cards */
+  --ink-3:      #8693A6;   /* tertiary ink — meta, captions, mono labels */
+  --ink-4:      #B5BFCE;   /* quaternary — placeholder, locked */
+
+  /* Hairline & decorative */
+  --rule:       #D0D7E0;   /* hairline — borders, dividers */
+  --rule-2:     #BCC5D0;   /* emphasised hairline */
+
+  /* Action & state */
+  --red:        #D7263D;   /* alpine red — single accent, used for CTAs + active */
+  --red-2:      #B41E32;   /* hover/pressed */
+  --red-bg:     rgba(215,38,61,.08);  /* tinted surface */
+  --red-line:   rgba(215,38,61,.4);
+  --ice:        #2480B5;   /* glacier blue — secondary accent (in-progress) */
+  --ice-bg:     rgba(36,128,181,.08);
+  --ice-line:   rgba(36,128,181,.4);
+  --moss:       #2E7D5B;   /* success */
+  --moss-bg:    rgba(46,125,91,.1);
+  --amber:      #C58B2C;   /* partial / in-progress badge alt */
+  --crimson:    #A33B2A;   /* error / "Again" */
+
+  /* Elevation */
+  --shadow:     0 1px 0 rgba(14,26,46,.04), 0 12px 32px -16px rgba(14,26,46,.22);
+  --shadow-sm:  0 1px 2px rgba(14,26,46,.06);
+
+  /* ---------- Type ---------- */
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-body:    'Manrope', system-ui, -apple-system, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  /* Type scale (px) */
+  --fs-display-xl: 88px;   /* big level numerals on level-index */
+  --fs-display-l:  64px;   /* desktop home h1 */
+  --fs-display-m:  48px;   /* desktop secondary h1 */
+  --fs-display-s:  36px;   /* mobile h1 */
+  --fs-h1:         32px;
+  --fs-h2:         24px;
+  --fs-h3:         19px;
+  --fs-h4:         16px;
+  --fs-body:       15px;
+  --fs-body-s:     14px;
+  --fs-body-xs:    13px;
+  --fs-meta:       11px;   /* mono labels, eyebrows */
+  --fs-meta-xs:    10px;
+  --fs-meta-xxs:   9px;
+
+  /* Tracking */
+  --tracking-display: -0.028em;
+  --tracking-h:       -0.015em;
+  --tracking-tight:   -0.01em;
+  --tracking-mono:     0.18em;
+  --tracking-mono-2:   0.14em;
+  --tracking-mono-3:   0.08em;
+
+  /* Leading */
+  --lh-display: 1.02;
+  --lh-h:       1.15;
+  --lh-body:    1.55;
+  --lh-tight:   1.25;
+
+  /* ---------- Spacing ---------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-7: 32px;
+  --sp-8: 40px;
+  --sp-9: 56px;
+  --sp-10: 64px;
+  --sp-11: 96px;
+
+  /* ---------- Radii ---------- */
+  --r-xs: 2px;    /* button, pill internals */
+  --r-sm: 4px;    /* card corners (subtle) */
+  --r-md: 6px;
+  --r-lg: 8px;    /* desktop frame */
+  --r-xl: 28px;   /* phone bezel */
+  --r-pill: 999px;
+
+  /* ---------- Borders ---------- */
+  --bw: 1px;
+  --bw-emph: 3px;
+}
+
+/* =========================================================================
+   Rules — keep the system honest
+   -------------------------------------------------------------------------
+   1. CTAs are filled --red on --paper for primary actions, --ink for
+      secondary primary. .btn.ghost is the only outlined option.
+   2. --red is the single heat accent. Reserve for: primary CTAs, active
+      state, "due" badges, hero-eyebrow dot, red.line accents.
+   3. --ice (glacier blue) is the secondary state: in-progress levels,
+      info pills, statistic emphasis where red would feel alarming.
+   4. Borders are 1px --rule. Cards sit on --paper-3 over --paper.
+   5. Mono is for machine codes (C2.1), eyebrows, captions, fractions.
+   6. Display = Manrope 800/700. Body = Manrope 400/500/600. Mono = Plex.
+   7. Status colour + shape: filled = active, half = partial, outline =
+      locked. Never rely on colour alone (colour-blind safety).
+   8. Topographic contour motif is sector-on-trend; render lines in
+      var(--ink) at 8-30% opacity for the cool, technical feel.
+   ========================================================================= */

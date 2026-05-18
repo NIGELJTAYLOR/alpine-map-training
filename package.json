@@ -1,6 +1,6 @@
 {
   "name": "alpine-map-training",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "predev": "velite && node scripts/build-flashcards-data.mjs",
@@ -13,7 +13,9 @@
     "content:watch": "velite --watch",
     "flashcards:build": "node scripts/build-flashcards-data.mjs",
     "flashcards:docx": "node scripts/build-flashcards-docx.mjs",
-    "maps:build": "node scripts/generate-quiz-maps.mjs"
+    "maps:build": "node scripts/generate-quiz-maps.mjs",
+    "manual:build": "node scripts/build-companion-manual.mjs",
+    "manual:inject-nav": "node scripts/inject-companion-manual-nav.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -33,12 +35,14 @@
     "velite": "^0.3.1"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "image-size": "^1.2.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

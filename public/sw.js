@@ -14,7 +14,7 @@
  * the runtime cache. Static-asset cache evicts itself by URL change.
  */
 
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const RUNTIME_CACHE = `amt-runtime-${CACHE_VERSION}`;
 const STATIC_CACHE = `amt-static-${CACHE_VERSION}`;
 const OFFLINE_URL = "/~offline";
@@ -52,7 +52,11 @@ function isStaticAsset(request) {
     url.pathname.startsWith("/_next/static/") ||
     url.pathname.startsWith("/diagrams/") ||
     url.pathname.startsWith("/static/") ||
-    /\.(png|jpe?g|gif|svg|webp|ico|woff2?|ttf|otf|eot|css|js|map)$/i.test(
+    // Companion manual: cache the entire static HTML edition so it
+    // opens offline. Pages, images, CSS and the PDF are all served from
+    // here. Cache-first so refreshes don't hit the network unnecessarily.
+    url.pathname.startsWith("/companion-manual/") ||
+    /\.(html|png|jpe?g|gif|svg|webp|ico|woff2?|ttf|otf|eot|css|js|map|pdf)$/i.test(
       url.pathname,
     )
   );

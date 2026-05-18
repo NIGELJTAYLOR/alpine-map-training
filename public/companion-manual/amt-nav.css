@@ -1,0 +1,121 @@
+/*
+ * Alpine Map Training — Companion manual top navigation bar.
+ *
+ * Added to every static HTML page in /public/companion-manual/ by
+ * scripts/inject-companion-manual-nav.mjs so users can return to the
+ * interactive app without juggling tabs.
+ *
+ * The bar is hidden when printing the page.
+ */
+
+.amt-app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  background: #0E1A2E;
+  color: #FFFFFF;
+  font-family:
+    "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  border-bottom: 1px solid #1d2c4a;
+  box-shadow: 0 2px 8px rgba(14, 26, 46, 0.08);
+}
+
+.amt-app-nav__label {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.amt-app-nav__label .amt-app-nav__sub {
+  display: block;
+  font-family:
+    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.amt-app-nav__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.amt-app-nav__btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 6px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.2;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.amt-app-nav__btn:hover,
+.amt-app-nav__btn:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
+  outline: none;
+}
+
+.amt-app-nav__btn--primary {
+  background: #D7263D;
+  border-color: #D7263D;
+}
+
+.amt-app-nav__btn--primary:hover,
+.amt-app-nav__btn--primary:focus-visible {
+  background: #C61C32;
+  border-color: #C61C32;
+}
+
+.amt-app-nav__btn svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 540px) {
+  .amt-app-nav {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .amt-app-nav__btn {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+  .amt-app-nav__btn-label-long {
+    display: none;
+  }
+}
+
+@media print {
+  .amt-app-nav {
+    display: none !important;
+  }
+}
