@@ -7,12 +7,17 @@ import { createContext, useContext, type ReactNode } from "react";
  *
  * The remark-exercise-fields plugin inserts `<ExerciseField n="..." />`
  * elements directly into the compiled MDX. Those rendered components don't
- * know their host page on their own — this context carries `pageId` (for
- * the progress store key) and `answerKeyBody` (so the AI grader can look
- * up the matching model answer for grading).
+ * know their host page on their own; this context carries:
+ *   - pageId: the progress store key for the page
+ *   - pageRawBody: the lesson's raw markdown, so the grader can be shown
+ *     the exact exercise prompt the candidate was answering
+ *   - answerKeyBody: the matching answer key's raw markdown, so the grader
+ *     can extract the model answer for the exercise being graded
  */
 export interface PageContextValue {
   pageId: string;
+  /** Raw markdown of this lesson page (used by the AI grader). */
+  pageRawBody?: string;
   /** Raw markdown of the matching answer key, or undefined if none exists. */
   answerKeyBody?: string;
 }

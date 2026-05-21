@@ -165,6 +165,7 @@ export default async function PageRoute({ params }: PageProps) {
         <PageBody
           pageId={page.id}
           body={page.body}
+          pageRawBody={page.rawBody}
           answerKeyBody={answerKey?.rawBody}
         />
 

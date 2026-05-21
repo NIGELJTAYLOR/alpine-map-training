@@ -36,7 +36,7 @@ type GradingState = "idle" | "building";
  */
 export function ExerciseField({ n }: ExerciseFieldProps) {
   const exerciseNumber = typeof n === "number" ? n : parseInt(String(n), 10);
-  const { pageId, answerKeyBody } = usePageContext();
+  const { pageId, pageRawBody, answerKeyBody } = usePageContext();
   const { hydrated, getPage, setGrade, clearGrade } = useProgress();
   const [gState, setGState] = useState<GradingState>("idle");
   const [gErr, setGErr] = useState<string>("");
@@ -75,6 +75,23 @@ export function ExerciseField({ n }: ExerciseFieldProps) {
     !hydrated || gState === "building" || !hasAnyAnswer;
 
   async function gradeOne() {
+    // Extract the matching exercise prompt from the lesson body so the
+    // grader sees what the candidate was actually asked. Without this the
+    // grader marks blind and hedges its score, which surfaced as confused
+    // "nearly" outputs on multi-input matching exercises in beta.
+    let promptBody = "";
+    let promptTitle = `Exercise ${exerciseNumber}`;
+    if (pageRawBody) {
+      const sections = splitByExerciseHeadings(pageRawBody);
+      const match = sections.find((s) => s.number === exerciseNumber);
+      if (match) {
+        promptBody = sanitiseForGrader(match.body);
+        if (match.title && match.title.trim().length > 0) {
+          promptTitle = `Exercise ${exerciseNumber} — ${match.title}`;
+        }
+      }
+    }
+
     let modelBody = "";
     if (answerKeyBody) {
       const sections = splitByExerciseHeadings(answerKeyBody);
@@ -89,8 +106,8 @@ export function ExerciseField({ n }: ExerciseFieldProps) {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          exerciseTitle: `Exercise ${exerciseNumber}`,
-          exercisePrompt: "",
+          exerciseTitle: promptTitle,
+          exercisePrompt: promptBody,
           modelAnswer: modelBody,
           candidateAnswer: combinedAnswer,
         }),
@@ -185,4 +202,19 @@ function fingerprint(s: string): string {
     h = Math.imul(h, 16777619);
   }
   return (h >>> 0).toString(16);
+}
+
+/**
+ * Strip MDX-only constructs from the lesson markdown before showing it
+ * to the grader. We remove the per-question `<AnswerSlot />` tags (their
+ * positions and labels are already implicit in the prompt text) and any
+ * other inline JSX elements that would only be noise to a text model.
+ */
+function sanitiseForGrader(body: string): string {
+  return body
+    .replace(/<AnswerSlot\b[^/>]*\/?>/gi, "")
+    .replace(/<\/AnswerSlot>/gi, "")
+    .replace(/<Diagram\b[^/>]*\/?>/gi, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
