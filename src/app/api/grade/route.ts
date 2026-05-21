@@ -29,7 +29,10 @@ import {
 
 const DEFAULT_MODEL = "claude-haiku-4-5-20251001";
 const ANTHROPIC_VERSION = "2023-06-01";
-const MAX_TOKENS = 1024;
+// Headroom for: analysis block (~150 tokens) + JSON payload with marking
+// points (~400 tokens) on a multi-part answer. 1024 was tight and could
+// truncate mid-JSON. 2000 keeps cost trivial on Haiku 4.5 (well under 1p).
+const MAX_TOKENS = 2000;
 
 // Models the route is willing to forward to. Defensive allowlist so a
 // caller can't spend money on, say, Opus by typing it into a query string.
@@ -151,18 +154,39 @@ export async function POST(request: Request): Promise<Response> {
     );
   }
 
-  // The system prompt asks for raw JSON. Some models still wrap it in
-  // ```json ... ``` despite the instruction. Strip defensively.
-  const cleaned = text
-    .replace(/^```(?:json)?\s*/i, "")
-    .replace(/\s*```$/i, "")
+  // The system prompt asks for a brief <analysis>...</analysis> reasoning
+  // block followed by the JSON. Be defensive: the model may emit multiple
+  // analysis blocks (e.g. echoing the worked examples in the prompt),
+  // wrap its JSON in code fences, or add prose like "Here is the JSON:"
+  // before the object. The strategy below:
+  //   1. Strip every <analysis>...</analysis> block.
+  //   2. Strip any markdown code fences.
+  //   3. Extract the substring from the first '{' to the last '}'. Any
+  //      narrative text outside that pair is ignored.
+  const stripped = text
+    .replace(/<analysis>[\s\S]*?<\/analysis>/gi, "")
+    .replace(/```(?:json)?/gi, "")
     .trim();
+
+  const firstBrace = stripped.indexOf("{");
+  const lastBrace = stripped.lastIndexOf("}");
+  const cleaned =
+    firstBrace >= 0 && lastBrace > firstBrace
+      ? stripped.slice(firstBrace, lastBrace + 1)
+      : stripped;
 
   let parsed: unknown;
   try {
     parsed = JSON.parse(cleaned);
   } catch (err) {
-    console.error("Grade JSON parse failed:", err, "raw:", cleaned);
+    console.error(
+      "Grade JSON parse failed:",
+      err,
+      "\n--- cleaned ---\n",
+      cleaned,
+      "\n--- raw ---\n",
+      text,
+    );
     return NextResponse.json(
       {
         error:

@@ -108,6 +108,7 @@ export function ExerciseField({ n }: ExerciseFieldProps) {
       const data = (await resp.json()) as {
         feedback: string;
         score: ExerciseGrade["score"];
+        markingPoints?: NonNullable<ExerciseGrade["markingPoints"]>;
         strengths: string[];
         improvements: string[];
         model: string;
@@ -115,6 +116,9 @@ export function ExerciseField({ n }: ExerciseFieldProps) {
       const next: ExerciseGrade = {
         feedback: data.feedback,
         score: data.score,
+        markingPoints: Array.isArray(data.markingPoints)
+          ? data.markingPoints
+          : [],
         strengths: data.strengths ?? [],
         improvements: data.improvements ?? [],
         model: data.model,

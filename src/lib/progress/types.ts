@@ -12,14 +12,33 @@ export type PageStatus = "not-started" | "in-progress" | "completed";
  */
 export type GradeScore = "met" | "nearly" | "not-yet";
 
+/**
+ * One marking point identified in the model answer, with whether the
+ * candidate's response covered it. Added in V1.3 alongside the marking-
+ * scheme grading prompt rewrite. Optional on the type so older grades
+ * stored before V1.3 continue to validate.
+ */
+export interface ExerciseMarkingPoint {
+  /** Plain-language statement of the point the answer should make. */
+  point: string;
+  /** True if the candidate covered this point (in any wording). */
+  covered: boolean;
+}
+
 export interface ExerciseGrade {
   /** Two to three sentence trainer-style paragraph addressed to the candidate. */
   feedback: string;
   /** Rubric judgement. */
   score: GradeScore;
-  /** Two to three concise positives. */
+  /**
+   * Concept-level marking points extracted from the model answer with a
+   * coverage flag per point. Added in V1.3. Absent on grades produced
+   * before the marking-scheme rewrite.
+   */
+  markingPoints?: ExerciseMarkingPoint[];
+  /** One to three concise positives. */
   strengths: string[];
-  /** Two to three concise improvement points. */
+  /** One to three concise improvement points. */
   improvements: string[];
   /** Anthropic model id used to produce this grade. */
   model: string;

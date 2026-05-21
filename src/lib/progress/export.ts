@@ -386,6 +386,14 @@ export function buildProgressMarkdown(
               );
               out.push("");
               out.push(quote(grade.feedback));
+              if (grade.markingPoints && grade.markingPoints.length > 0) {
+                out.push("");
+                out.push("**Marking points**");
+                for (const mp of grade.markingPoints) {
+                  const tick = mp.covered ? "[x]" : "[ ]";
+                  out.push(`- ${tick} ${mp.point}`);
+                }
+              }
               if (grade.strengths.length > 0) {
                 out.push("");
                 out.push("**Strengths**");

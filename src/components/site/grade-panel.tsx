@@ -70,6 +70,38 @@ export function GradePanel({
         {grade.feedback}
       </p>
 
+      {/* Marking-point breakdown (V1.3+). Hidden when absent. */}
+      {grade.markingPoints && grade.markingPoints.length > 0 ? (
+        <div className="mt-3">
+          <p className="mb-1 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-ink-3">
+            Marking points
+          </p>
+          <ul className="space-y-1 text-[13px] leading-[1.5] text-ink-2 md:text-[13.5px]">
+            {grade.markingPoints.map((mp, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <span
+                  aria-hidden
+                  className={
+                    "mt-[3px] inline-flex h-3.5 w-3.5 flex-none items-center justify-center font-mono text-[9px] font-bold " +
+                    (mp.covered
+                      ? "border border-moss bg-moss text-paper"
+                      : "border border-rule bg-paper-2 text-ink-3")
+                  }
+                >
+                  {mp.covered ? "✓" : "–"}
+                </span>
+                <span className={mp.covered ? "text-ink" : "text-ink-2"}>
+                  {mp.point}
+                </span>
+                <span className="sr-only">
+                  {mp.covered ? " (covered)" : " (not covered)"}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
       {/* Strengths + improvements two-column */}
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         {grade.strengths.length > 0 ? (
