@@ -493,7 +493,7 @@ export function SettingsPanel() {
 
       {/* ===== Backup and restore ===== */}
       <Section heading="Backup and restore" meta="From file">
-        {importStage === "idle" || importStage === "importing" ? (
+        {importStage === "idle" ? (
           <>
             <SetRow
               label="Download a backup file"
