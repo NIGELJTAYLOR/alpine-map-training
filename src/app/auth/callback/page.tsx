@@ -39,6 +39,12 @@ export default function AuthCallbackPage() {
       return;
     }
 
+    // From here on, supabase is non-null. Capture into a const that
+    // TypeScript can confidently narrow inside the nested waitForSession
+    // function below (the outer-scope narrowing is sometimes lost in
+    // async closures).
+    const client = supabase;
+
     // The Supabase client auto-detects the auth code in the URL and exchanges
     // it for a session (detectSessionInUrl: true on the client config). We
     // just need to wait for that to land. Poll getSession briefly with a
@@ -46,7 +52,7 @@ export default function AuthCallbackPage() {
     async function waitForSession() {
       const deadline = Date.now() + 5000;
       while (Date.now() < deadline) {
-        const { data } = await supabase.auth.getSession();
+        const { data } = await client.auth.getSession();
         if (cancelled) return;
         if (data.session) {
           setState("success");
