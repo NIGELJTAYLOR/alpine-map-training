@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import { Wordmark } from "@/components/site/carta/wordmark";
 import { useProgress } from "@/lib/progress/provider";
+import { useAuth } from "@/lib/auth/provider";
+import { isSupabaseConfigured } from "@/lib/supabase/client";
 import { FLASHCARDS } from "@/data/flashcards.generated";
 import { BRAND } from "@/config/brand";
 
@@ -286,6 +288,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
                 {item.label}
               </SidebarLink>
             ))}
+            <SignedInIndicator />
           </SidebarSection>
 
           {/* Stat tile sits at the foot of the sidebar */}
@@ -403,6 +406,56 @@ function SidebarSection({
         {label}
       </div>
       <div className="flex flex-col">{children}</div>
+    </div>
+  );
+}
+
+/**
+ * Compact signed-in indicator for the sidebar Account section.
+ *
+ * Signed in: shows the auth email (truncated) and a Sign out button.
+ * Signed out: shows a small "Sign in to sync" link to /login.
+ * Loading: renders nothing rather than flicker.
+ */
+function SignedInIndicator() {
+  const { hydrated, user, signOut } = useAuth();
+
+  // Hide entirely when auth is not configured in this environment.
+  // Sign-in CTAs only appear once Supabase is wired up.
+  if (!isSupabaseConfigured()) return null;
+  if (!hydrated) return null;
+
+  if (!user) {
+    return (
+      <Link
+        href="/login"
+        className="mt-1 px-2.5 py-2 text-[11px] font-medium text-ink-3 no-underline hover:text-ink"
+      >
+        Sign in to sync
+      </Link>
+    );
+  }
+
+  return (
+    <div className="mt-1 border-t border-rule px-2.5 pt-2.5">
+      <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-ink-3">
+        Signed in
+      </p>
+      <p
+        className="mt-1 truncate text-[12px] font-semibold text-ink"
+        title={user.email ?? undefined}
+      >
+        {user.email ?? "Account"}
+      </p>
+      <button
+        type="button"
+        onClick={() => {
+          void signOut();
+        }}
+        className="mt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-3 hover:text-ink"
+      >
+        Sign out
+      </button>
     </div>
   );
 }

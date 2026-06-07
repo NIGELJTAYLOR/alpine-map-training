@@ -33,6 +33,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -51,6 +52,12 @@ import {
   type ReadinessStatus,
 } from "./types";
 import { clearProgress, loadProgress, saveProgress } from "./store";
+import {
+  isEmptyProgress,
+  pullCloudProgress,
+  pushCloudProgress,
+} from "./sync";
+import { useAuth } from "@/lib/auth/provider";
 
 interface ProgressContextValue {
   hydrated: boolean;
@@ -114,6 +121,87 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     if (!hydrated) return;
     saveProgress(store);
   }, [store, hydrated]);
+
+  // ----------------------------------------------------------------
+  // Cloud sync (V1.4.0): mirror progress to Supabase when signed in.
+  // ----------------------------------------------------------------
+
+  // Live ref to the latest store. Lets background effects (debounced push,
+  // visibility/beforeunload flush) read a fresh snapshot without re-binding
+  // on every state change.
+  const storeRef = useRef(store);
+  useEffect(() => {
+    storeRef.current = store;
+  }, [store]);
+
+  const { user, hydrated: authReady } = useAuth();
+  const initialSyncDoneRef = useRef(false);
+
+  // Initial sync on sign-in. Policy: cloud wins when it has data; we only
+  // push local up when cloud is empty. Keeps multi-user-on-one-device safe
+  // and gives the user a reliable "my account is the source of truth"
+  // experience whenever they sign in on a new device.
+  useEffect(() => {
+    if (!hydrated || !authReady) return;
+    if (!user) {
+      // Signed out: reset so the next sign-in re-runs the initial sync.
+      initialSyncDoneRef.current = false;
+      return;
+    }
+    let cancelled = false;
+    initialSyncDoneRef.current = false;
+
+    (async () => {
+      const cloud = await pullCloudProgress(user.id);
+      if (cancelled) return;
+      if (cloud && !isEmptyProgress(cloud)) {
+        // Cloud has real data: adopt it locally.
+        setStore(cloud);
+      } else {
+        // Migration: push the current local store up so the row exists.
+        await pushCloudProgress(user.id, storeRef.current);
+      }
+      if (!cancelled) initialSyncDoneRef.current = true;
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // Re-run only when the signed-in user identity changes. Including
+    // `store` would create a loop because the initial sync itself calls
+    // setStore.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id, hydrated, authReady]);
+
+  // Debounced push on every progress change after the initial sync is done.
+  // Two-second debounce keeps API calls cheap during rapid typing/clicking.
+  useEffect(() => {
+    if (!hydrated || !user || !initialSyncDoneRef.current) return;
+    const t = window.setTimeout(() => {
+      void pushCloudProgress(user.id, storeRef.current);
+    }, 2000);
+    return () => window.clearTimeout(t);
+  }, [store, hydrated, user]);
+
+  // Flush on tab hide / close. visibilitychange fires before close on most
+  // browsers and is more reliable than beforeunload for async work; we
+  // listen for both as belt-and-braces.
+  useEffect(() => {
+    if (!user) return;
+    const userId = user.id;
+    function flush() {
+      void pushCloudProgress(userId, storeRef.current);
+    }
+    function onVisibility() {
+      if (document.visibilityState === "hidden") flush();
+    }
+    window.addEventListener("beforeunload", flush);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("beforeunload", flush);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, [user]);
 
   // ------------------------------------------------------------------ pages
   const getPage = useCallback(

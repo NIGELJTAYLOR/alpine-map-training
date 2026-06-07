@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/lib/auth/provider";
 import { ProgressProvider } from "@/lib/progress/provider";
 import { SwRegister } from "@/components/site/sw-register";
 import { InstallPrompt } from "@/components/site/install-prompt";
@@ -58,6 +59,12 @@ export default function RootLayout({
     <html
       lang="en-GB"
       className={`${manrope.variable} ${plexMono.variable} h-full antialiased`}
+      // Browser extensions (password managers, accessibility checkers, the
+      // focus-visible polyfill) mutate the root <html> element before React
+      // hydrates. suppressHydrationWarning is the documented Next.js escape
+      // hatch for this exact case. It is one-level-deep and does not affect
+      // hydration checking on any child element.
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
         <a
@@ -66,13 +73,15 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <ProgressProvider>
-          <IntroSplash />
-          <OfflineIndicator />
-          <SiteChrome>{children}</SiteChrome>
-          <InstallPrompt />
-          <SwRegister />
-        </ProgressProvider>
+        <AuthProvider>
+          <ProgressProvider>
+            <IntroSplash />
+            <OfflineIndicator />
+            <SiteChrome>{children}</SiteChrome>
+            <InstallPrompt />
+            <SwRegister />
+          </ProgressProvider>
+        </AuthProvider>
       </body>
     </html>
   );

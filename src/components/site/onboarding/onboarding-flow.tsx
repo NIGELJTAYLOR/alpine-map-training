@@ -126,7 +126,7 @@ export function OnboardingFlow() {
 
       {/* ===== Step 2: Identity ===== */}
       {step === 2 ? (
-        <section className="flex min-h-screen flex-col">
+        <section className="flex flex-col pb-24">
           <header className="border-b border-rule bg-paper-3 px-[22px] pb-4 pt-[26px] md:px-14 md:pt-12">
             <StepDots current={2} />
             <h2 className="mb-1.5 mt-3.5 font-display text-[24px] font-extrabold leading-tight tracking-[-0.018em] text-ink md:text-[36px]">
@@ -181,7 +181,7 @@ export function OnboardingFlow() {
             </label>
           </div>
 
-          <div className="mt-auto flex items-center gap-2 border-t border-rule bg-paper-3 px-[22px] py-4 md:mx-auto md:w-full md:max-w-[560px] md:border-0">
+          <div className="flex items-center gap-2 border-t border-rule bg-paper-3 px-[22px] py-4 md:mx-auto md:w-full md:max-w-[560px] md:border-0">
             <button type="button" onClick={back} className="btn ghost sm">
               <ArrowLeft className="h-3 w-3" aria-hidden />
               Back
@@ -202,7 +202,7 @@ export function OnboardingFlow() {
 
       {/* ===== Step 3: Pathway ===== */}
       {step === 3 ? (
-        <section className="flex min-h-screen flex-col">
+        <section className="flex flex-col pb-24">
           <header className="border-b border-rule bg-paper-3 px-[22px] pb-4 pt-[26px] md:px-14 md:pt-12">
             <StepDots current={3} />
             <h2 className="mb-1.5 mt-3.5 font-display text-[24px] font-extrabold leading-tight tracking-[-0.018em] text-ink md:text-[36px]">
@@ -285,7 +285,7 @@ export function OnboardingFlow() {
             </p>
           </div>
 
-          <div className="mt-auto flex items-center gap-2 border-t border-rule bg-paper-3 px-[22px] py-4 md:mx-auto md:w-full md:max-w-[640px] md:border-0">
+          <div className="flex items-center gap-2 border-t border-rule bg-paper-3 px-[22px] py-4 md:mx-auto md:w-full md:max-w-[640px] md:border-0">
             <button type="button" onClick={back} className="btn ghost sm">
               <ArrowLeft className="h-3 w-3" aria-hidden />
               Back
@@ -300,7 +300,7 @@ export function OnboardingFlow() {
 
       {/* ===== Step 4: Cadence ===== */}
       {step === 4 ? (
-        <section className="flex min-h-screen flex-col">
+        <section className="flex flex-col pb-24">
           <header className="border-b border-rule bg-paper-3 px-[22px] pb-4 pt-[26px] md:px-14 md:pt-12">
             <StepDots current={4} />
             <h2 className="mb-1.5 mt-3.5 font-display text-[24px] font-extrabold leading-tight tracking-[-0.018em] text-ink md:text-[36px]">
@@ -312,7 +312,7 @@ export function OnboardingFlow() {
             </p>
           </header>
 
-          <div className="flex-1 px-[22px] py-6 md:mx-auto md:w-full md:max-w-[640px] md:px-0 md:py-8">
+          <div className="px-[22px] py-6 md:mx-auto md:w-full md:max-w-[640px] md:px-0 md:py-8">
             <p className="mb-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-3">
               Study days per week
             </p>
@@ -373,7 +373,7 @@ export function OnboardingFlow() {
             </div>
           </div>
 
-          <div className="mt-auto flex items-center gap-2 border-t border-rule bg-paper-3 px-[22px] py-4 md:mx-auto md:w-full md:max-w-[640px] md:border-0">
+          <div className="flex items-center gap-2 border-t border-rule bg-paper-3 px-[22px] py-4 md:mx-auto md:w-full md:max-w-[640px] md:border-0">
             <button type="button" onClick={back} className="btn ghost sm">
               <ArrowLeft className="h-3 w-3" aria-hidden />
               Back

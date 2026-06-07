@@ -12,6 +12,7 @@ import {
 } from "@/lib/content";
 import { FLASHCARDS } from "@/data/flashcards.generated";
 import { useProgress } from "@/lib/progress/provider";
+import { WelcomeCard } from "@/components/site/welcome-card";
 
 const LEVEL_META: Record<number, { name: string; desc: string }> = {
   1: {
@@ -152,6 +153,10 @@ export function HomeView() {
 
   return (
     <>
+      {/* Optional welcome card — dismissible. Hidden once the user has both
+          completed onboarding and signed in. */}
+      <WelcomeCard />
+
       {/* =========================================================
           MOBILE — hero band (md:hidden hides on desktop)
           ========================================================= */}
