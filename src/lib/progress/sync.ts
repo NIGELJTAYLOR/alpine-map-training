@@ -27,6 +27,7 @@ export async function pullCloudProgress(
 ): Promise<ProgressStore | null> {
   try {
     const supabase = getSupabaseClient();
+    if (!supabase) return null;
     const { data, error } = await supabase
       .from("user_progress")
       .select("data, updated_at")
@@ -54,6 +55,7 @@ export async function pushCloudProgress(
 ): Promise<boolean> {
   try {
     const supabase = getSupabaseClient();
+    if (!supabase) return false;
     const { error } = await supabase
       .from("user_progress")
       .upsert(
@@ -82,6 +84,7 @@ export async function pushCloudProgress(
 export async function deleteCloudProgress(userId: string): Promise<boolean> {
   try {
     const supabase = getSupabaseClient();
+    if (!supabase) return false;
     const { error } = await supabase
       .from("user_progress")
       .delete()
