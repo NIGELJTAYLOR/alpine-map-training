@@ -14,7 +14,10 @@
  * the runtime cache. Static-asset cache evicts itself by URL change.
  */
 
-const CACHE_VERSION = "v2";
+// Bumped to v3 with the v1.4.x release line. Bumping this string forces
+// every client (installed PWAs included) to fetch the new SW on next load,
+// evict the old runtime and static caches, and serve fresh assets.
+const CACHE_VERSION = "v3";
 const RUNTIME_CACHE = `amt-runtime-${CACHE_VERSION}`;
 const STATIC_CACHE = `amt-static-${CACHE_VERSION}`;
 const OFFLINE_URL = "/~offline";
