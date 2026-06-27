@@ -1,0 +1,203 @@
+/* =========================================================================
+   Carta · Glacier Lab — shared component styles
+   Loaded after tokens.css. Contains: base resets, doc chrome,
+   wordmark, buttons, pills, progress, frames, contour bg, photo slot,
+   nav primitives. Screen-specific styles live in each screen's <style>.
+   ========================================================================= */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.display { font-family: var(--font-display); font-weight: 800; letter-spacing: var(--tracking-h); }
+.mono    { font-family: var(--font-mono); }
+
+/* =========================================================================
+   Standalone doc chrome (the page that holds the mock)
+   ========================================================================= */
+.std { max-width: 1320px; margin: 0 auto; padding: 56px 32px 96px; }
+.std-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+.std-eyebrow { font-family: var(--font-mono); font-size: var(--fs-meta); letter-spacing: var(--tracking-mono); text-transform: uppercase; color: var(--ink-3); font-weight: 500; }
+.std-title { font-family: var(--font-display); font-weight: 800; font-size: 40px; line-height: 1.05; letter-spacing: -0.025em; margin: 6px 0 0; }
+.std-sub { color: var(--ink-2); max-width: 720px; margin-top: 8px; font-size: 15px; }
+.std-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.std-nav a { font: 600 12px var(--font-mono); letter-spacing: 0.08em; padding: 6px 10px; border: 1px solid var(--rule); border-radius: 2px; color: var(--ink-2); text-decoration: none; background: var(--paper-3); }
+.std-nav a.active { background: var(--ink); color: var(--paper-3); border-color: var(--ink); }
+.std-nav a:hover { border-color: var(--rule-2); }
+
+.mocks { display: grid; gap: 32px; }
+.mocks.pair { grid-template-columns: 375px 1fr; align-items: start; }
+.mocks.single { grid-template-columns: 1fr; }
+.mocks.solo-phone { grid-template-columns: 375px; justify-content: start; }
+.mock-label { font-family: var(--font-mono); font-size: var(--fs-meta-xs); letter-spacing: var(--tracking-mono); text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; font-weight: 500; }
+
+/* =========================================================================
+   Frames
+   ========================================================================= */
+.phone {
+  width: 375px; min-height: 760px;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: var(--r-xl);
+  overflow: hidden; box-shadow: var(--shadow); position: relative;
+}
+.desktop {
+  width: 1200px; min-height: 760px;
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: var(--r-lg);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.ios-bar { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; font-size: 13px; font-weight: 700; color: var(--ink); }
+.ios-bar .icons { display: flex; gap: 5px; align-items: center; }
+.ios-bar svg { width: 14px; height: 12px; }
+.browser-bar { height: 36px; background: var(--paper-2); border-bottom: 1px solid var(--rule); display: flex; align-items: center; padding: 0 14px; gap: 8px; }
+.browser-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rule-2); }
+.browser-bar .url { flex: 1; height: 22px; background: var(--paper-3); border: 1px solid var(--rule); border-radius: 4px; font: 500 11px var(--font-mono); color: var(--ink-3); display: flex; align-items: center; padding: 0 10px; }
+
+/* =========================================================================
+   Wordmark
+   ========================================================================= */
+.wm { display: flex; align-items: center; gap: 10px; }
+.wm .mark { width: 30px; height: 30px; position: relative; flex-shrink: 0; }
+.wm .mark svg { display: block; width: 100%; height: 100%; }
+.wm .name { font-family: var(--font-display); font-weight: 800; font-size: 15px; letter-spacing: -0.01em; line-height: 1.05; }
+.wm .by { font: 500 9px var(--font-mono); letter-spacing: var(--tracking-mono-2); text-transform: uppercase; color: var(--ink-3); margin-top: 4px; line-height: 1; }
+
+/* =========================================================================
+   Buttons
+   ========================================================================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 22px; border-radius: var(--r-xs);
+  font: 700 13px var(--font-body); letter-spacing: 0.01em;
+  background: var(--ink); color: var(--paper-3);
+  border: 1px solid var(--ink); cursor: pointer; text-decoration: none;
+}
+.btn:hover { background: #1a2942; }
+.btn.red { background: var(--red); border-color: var(--red); }
+.btn.red:hover { background: var(--red-2); border-color: var(--red-2); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--rule-2); }
+.btn.ghost:hover { background: var(--paper-3); }
+.btn.sm { padding: 9px 14px; font-size: 12px; }
+.btn.block { width: 100%; }
+
+/* =========================================================================
+   Pills / tags
+   ========================================================================= */
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 9px; font: 600 10px var(--font-mono);
+  letter-spacing: var(--tracking-mono-2); text-transform: uppercase;
+  background: var(--paper-3); color: var(--ink-2);
+  border: 1px solid var(--rule); border-radius: var(--r-xs);
+}
+.tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+.tag.red { color: var(--red); border-color: var(--red-line); background: var(--red-bg); }
+.tag.ice { color: var(--ice); border-color: var(--ice-line); background: var(--ice-bg); }
+.tag.moss { color: var(--moss); border-color: rgba(46,125,91,.4); background: var(--moss-bg); }
+.tag.solid-red { color: var(--paper-3); background: var(--red); border-color: var(--red); }
+.tag.solid-ink { color: var(--paper-3); background: var(--ink); border-color: var(--ink); }
+
+/* =========================================================================
+   Progress
+   ========================================================================= */
+.pbar { height: 3px; background: var(--rule); position: relative; overflow: hidden; }
+.pbar i { display: block; height: 100%; background: var(--red); }
+.pbar.ice i { background: var(--ice); }
+.pbar.thick { height: 6px; }
+
+/* =========================================================================
+   Contour decoration — re-toned in glacier palette
+   Stroke in --ink at low opacity for the cool, technical feel.
+   ========================================================================= */
+.contour-bg { position: absolute; inset: 0; pointer-events: none; opacity: 1; }
+.contour-bg svg { width: 100%; height: 100%; display: block; }
+
+/* Grid bg (for hero panels needing a precise lab feel) */
+.grid-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(14,26,46,.06) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(14,26,46,.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.grid-bg.dense { background-size: 32px 32px; background-image: linear-gradient(rgba(14,26,46,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(14,26,46,.05) 1px, transparent 1px); }
+
+/* =========================================================================
+   Photo slot — placeholder for full-bleed photography to drop in later
+   ========================================================================= */
+.photo-slot {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--ink) 0%, #1a2942 100%);
+  color: var(--paper-3);
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-slot::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(135deg, transparent 0 24px, rgba(255,255,255,.04) 24px 26px, transparent 26px 50px);
+  background-size: 28px 28px;
+  opacity: .6;
+}
+.photo-slot .ps-label {
+  position: relative; font: 600 10px var(--font-mono); letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(255,255,255,.65);
+  text-align: center; line-height: 1.6;
+  padding: 14px 22px; border: 1px dashed rgba(255,255,255,.3); border-radius: 4px;
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(2px);
+}
+.photo-slot .ps-label small { display: block; color: rgba(255,255,255,.4); font-weight: 500; margin-top: 4px; letter-spacing: 0.18em; }
+
+/* When you want the photo placeholder to evoke a snow-scene tone */
+.photo-slot.cool { background: linear-gradient(160deg, #2480B5 0%, #0E1A2E 70%); }
+.photo-slot.pale { background: linear-gradient(180deg, #DDE6EE 0%, #B5C2CE 100%); color: var(--ink); }
+.photo-slot.pale .ps-label { color: var(--ink-2); border-color: rgba(14,26,46,.25); background: rgba(255,255,255,.4); }
+.photo-slot.pale .ps-label small { color: var(--ink-3); }
+
+/* Real photo loaded — background-image set inline */
+.photo-slot.has-img { background-color: var(--ink); background-size: cover; background-position: center; background-repeat: no-repeat; }
+.photo-slot.has-img::before { display: none; }
+.photo-slot.has-img .ps-label { display: none; }
+
+/* =========================================================================
+   Tabbar (mobile)
+   ========================================================================= */
+.tabbar {
+  position: sticky; bottom: 0; left: 0; right: 0; height: 70px; padding: 10px 0 14px;
+  background: var(--paper-3); border-top: 1px solid var(--rule);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.tabbar a { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--ink-3); text-decoration: none; font: 700 9px var(--font-body); letter-spacing: 0.06em; text-transform: uppercase; }
+.tabbar a.active { color: var(--red); }
+.tabbar a svg { width: 20px; height: 20px; }
+
+/* =========================================================================
+   Sidebar (desktop)
+   ========================================================================= */
+.sb { background: var(--paper-3); border-right: 1px solid var(--rule); padding: 24px 20px; display: flex; flex-direction: column; gap: 22px; }
+.sb-section { font: 600 9px var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; padding: 0 6px; }
+.sb-nav { display: flex; flex-direction: column; gap: 0; }
+.sb-nav a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; color: var(--ink-2); text-decoration: none; font: 600 13px var(--font-body); border-left: 2px solid transparent; }
+.sb-nav a:hover { background: var(--paper); }
+.sb-nav a.active { background: var(--paper); color: var(--ink); border-left-color: var(--red); padding-left: 8px; }
+.sb-nav a svg { width: 14px; height: 14px; }
+.sb-nav a .badge { margin-left: auto; font: 700 10px var(--font-mono); color: var(--red); }
+.sb-nav a .code { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); width: 22px; font-weight: 600; }
+.sb-nav a.active .code { color: var(--red); }
+.sb-stat { margin-top: auto; background: var(--paper); border: 1px solid var(--rule); border-radius: var(--r-sm); padding: 14px; }
+.sb-stat .l { font: 600 9px var(--font-mono); letter-spacing: var(--tracking-mono); text-transform: uppercase; color: var(--ink-3); }
+.sb-stat .v { font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1; margin: 6px 0; letter-spacing: var(--tracking-tight); }
+.sb-stat .v small { font-size: 14px; color: var(--ink-3); font-weight: 600; }
+.sb-stat .sub { font: 500 11px var(--font-mono); color: var(--ink-3); }
+
+/* =========================================================================
+   Reusable inline SVGs delivered via <use href="#glyph-...">
+   The HTML file should include the glyph sprite once; see _sprite.html
+   ========================================================================= */
+.ic { width: 18px; height: 18px; color: var(--red); }
+.ic-ink { color: var(--ink); }

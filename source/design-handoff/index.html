@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Workbook recreate · Handoff package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="reference/tokens.css">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 64px 40px 96px; }
+
+/* Top eyebrow row */
+.eyebrow { font: 600 11px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); display: flex; align-items: center; gap: 10px; }
+.eyebrow .dot { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+
+h1 { font-family: var(--font-display); font-weight: 800; font-size: 56px; line-height: 1.04; letter-spacing: -0.028em; margin: 16px 0 8px; }
+h1 em { font-style: normal; color: var(--red); }
+.dek { color: var(--ink-2); max-width: 720px; font-size: 17px; line-height: 1.5; margin: 0; }
+
+/* Section header */
+.section-head { display: flex; align-items: baseline; gap: 14px; margin: 56px 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.section-head .n { font: 600 10px var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.section-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.015em; margin: 0; }
+
+/* The prompt block */
+.prompt {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--red);
+  padding: 22px 26px;
+  margin: 18px 0 0;
+}
+.prompt .label { font: 600 10px var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); margin: 0 0 12px; }
+.prompt p { margin: 0 0 14px; font-size: 15px; line-height: 1.6; color: var(--ink); }
+.prompt p:last-child { margin-bottom: 0; }
+.prompt code { font-family: var(--font-mono); font-size: 13px; background: var(--paper); padding: 1px 5px; border: 1px solid var(--rule); color: var(--ink); }
+
+/* File tree */
+.tree {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  padding: 22px 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 18px 0 0;
+}
+.tree a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+.tree a:hover { border-bottom-color: var(--red); }
+.tree .comment { color: var(--ink-3); }
+.tree .folder { color: var(--ink); font-weight: 600; }
+
+/* Cards row */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 0; }
+.card {
+  background: var(--paper-3);
+  border: 1px solid var(--rule);
+  padding: 22px;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.15s;
+}
+.card:hover { border-color: var(--rule-2); }
+.card .kicker { font: 600 9px var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
+.card h3 { font-family: var(--font-display); font-weight: 800; font-size: 18px; margin: 0; letter-spacing: -0.015em; }
+.card p { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.card .open { margin-top: auto; font: 600 11px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 6px; }
+
+/* Steps */
+.steps { counter-reset: step; padding: 0; list-style: none; margin: 18px 0 0; }
+.steps li {
+  counter-increment: step;
+  padding: 16px 20px 16px 60px;
+  border: 1px solid var(--rule);
+  background: var(--paper-3);
+  position: relative;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 20px;
+  top: 16px;
+  font: 700 11px var(--font-mono);
+  letter-spacing: 0.06em;
+  color: var(--red);
+}
+.steps li b { font-weight: 700; }
+.steps li code { font-family: var(--font-mono); font-size: 12px; background: var(--paper); padding: 1px 4px; border: 1px solid var(--rule); }
+
+/* Reference preview */
+.preview { margin: 18px 0 0; }
+.preview-frame { border: 1px solid var(--rule); background: var(--paper-3); overflow: hidden; }
+.preview-frame .bar { height: 36px; background: var(--paper-2); border-bottom: 1px solid var(--rule); display: flex; align-items: center; padding: 0 14px; gap: 8px; }
+.preview-frame .bar .d { width: 10px; height: 10px; border-radius: 50%; background: var(--rule-2); }
+.preview-frame .bar .url { flex: 1; height: 22px; background: var(--paper-3); border: 1px solid var(--rule); border-radius: 4px; font: 500 11px var(--font-mono); color: var(--ink-3); display: flex; align-items: center; padding: 0 10px; }
+.preview-frame img { width: 100%; display: block; }
+.preview .cap { font: 600 10px var(--font-mono); color: var(--ink-3); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 10px; }
+
+/* Footer */
+.foot { margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--rule); font: 500 11px var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="eyebrow">
+    <span class="dot"></span>
+    Handoff package · Alpine Map Training
+  </div>
+
+  <h1>Build the workbook,<br>in <em>Glacier Lab</em> style.</h1>
+
+  <p class="dek">A self-contained folder you hand to a fresh Claude session. It has the 415-page Companion Manual, the exact visual reference for one finished workbook page, a stripped-down template, and a README that's already written as the prompt.</p>
+
+
+  <!-- ── 01 — The prompt ────────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="n">01</span>
+    <h2>The prompt to paste</h2>
+  </div>
+
+  <div class="prompt">
+    <p class="label">Copy → paste into the next Claude session</p>
+    <p>I have a Word document and a design reference. Please re-render the document as an HTML workbook in the reference's exact visual style.</p>
+    <p>Read <code>README.md</code> in this folder first — it's the full spec, including how to parse the .docx, what styles to map where, and the output layout.</p>
+    <p>Start by parsing the manual and showing me a structured outline of every page before you render anything. Then build <code>index.html</code> and the first content page (<code>B1.1</code>), and pause for feedback before continuing.</p>
+    <p>Do not paraphrase the manual content. Do not invent new colors, fonts, or components beyond what's in <code>reference/tokens.css</code> and <code>reference/styles.css</code>. Do not redraw figures — extract the originals from <code>word/media/</code>.</p>
+  </div>
+
+
+  <!-- ── 02 — What's in the package ──────────────────────────────── -->
+  <div class="section-head">
+    <span class="n">02</span>
+    <h2>What's in the package</h2>
+  </div>
+
+  <div class="tree">
+<span class="folder">workbook_recreate_handoff/</span>
+├── <a href="README.md">README.md</a>                    <span class="comment">← full spec — read this first</span>
+├── <span class="folder">source/</span>
+│   └── Alpine_Map_Training_Companion_Manual_v11.docx
+├── <span class="folder">reference/</span>
+│   ├── <a href="reference/workbook.html">workbook.html</a>            <span class="comment">← the one page that defines the style</span>
+│   ├── <a href="reference/tokens.css">tokens.css</a>               <span class="comment">← colors, fonts, spacing variables</span>
+│   ├── <a href="reference/styles.css">styles.css</a>               <span class="comment">← shared component primitives</span>
+│   └── <a href="reference/workbook-screenshot.png">workbook-screenshot.png</a>  <span class="comment">← rendered mobile + desktop</span>
+└── <span class="folder">template/</span>
+    └── <a href="template/page-template.html">page-template.html</a>       <span class="comment">← stripped scaffold per workbook page</span>
+  </div>
+
+
+  <!-- ── 03 — Cards ──────────────────────────────────────────────── -->
+  <div class="section-head">
+    <span class="n">03</span>
+    <h2>Quick links</h2>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="README.md">
+      <div class="kicker">Spec</div>
+      <h3>README.md</h3>
+      <p>The full prompt + spec. How to parse the manual, which Word styles map where, what to produce, what not to do.</p>
+      <div class="open">Open →</div>
+    </a>
+    <a class="card" href="reference/workbook.html">
+      <div class="kicker">Reference</div>
+      <h3>workbook.html</h3>
+      <p>The one finished page that defines the look. Mobile + desktop layouts, every component the workbook will need.</p>
+      <div class="open">Open →</div>
+    </a>
+    <a class="card" href="template/page-template.html">
+      <div class="kicker">Template</div>
+      <h3>page-template.html</h3>
+      <p>Stripped scaffold — every block in the right place with TODO markers. Duplicate this per workbook page.</p>
+      <div class="open">Open →</div>
+    </a>
+  </div>
+
+
+  <!-- ── 04 — Reference preview ──────────────────────────────────── -->
+  <div class="section-head">
+    <span class="n">04</span>
+    <h2>The target look</h2>
+  </div>
+
+  <div class="preview">
+    <div class="preview-frame">
+      <div class="bar">
+        <span class="d"></span><span class="d"></span><span class="d"></span>
+        <div class="url">reference / workbook.html · C2.1 Summit shapes</div>
+      </div>
+      <img src="reference/workbook-screenshot.png" alt="Glacier Lab workbook reference — mobile and desktop layouts side by side">
+    </div>
+    <div class="cap">Match this exactly · navy ink, Manrope display, Plex Mono machine codes, alpine red as the single heat accent</div>
+  </div>
+
+
+  <!-- ── 05 — How to hand it over ───────────────────────────────── -->
+  <div class="section-head">
+    <span class="n">05</span>
+    <h2>How to hand it over</h2>
+  </div>
+
+  <ol class="steps">
+    <li>Download this folder as a zip (use the download button in the chat — or zip <code>workbook_recreate_handoff/</code> manually).</li>
+    <li>Start a fresh Claude conversation in the project where you want the workbook to live.</li>
+    <li>Upload the zip. Tell Claude to extract it, or paste the contents file-by-file if uploading isn't available.</li>
+    <li>Paste the prompt from <b>section 01</b> above. Claude will read the README and follow the spec.</li>
+    <li>First deliverable should be the parsed outline of every page in the manual — sanity-check that before Claude renders anything. Then sign off on page <code>B1.1</code>. Batch the rest from there.</li>
+  </ol>
+
+
+  <div class="foot">
+    <span>Carta · Glacier Lab · Direction 02</span>
+    <span>Handoff v1 · May 2026</span>
+  </div>
+
+</div>
+
+</body>
+</html>
